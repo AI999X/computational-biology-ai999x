@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "computational-biology-ai999x"
+version = "1.0.0"
+description = "Offline computational biology solver: DNA and protein sequences, pairwise alignment, molecular masses, Mendelian and population genetics, phylogenetics, enzyme kinetics, population models and ecology, with steps, LaTeX and honest refusals"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Ibnul Jaif Farabi"}]
+maintainers = [{name = "AI999X"}]
+keywords = ["computational biology", "bioinformatics", "DNA", "protein", "sequence analysis", "translation", "open reading frame", "restriction sites", "melting temperature", "isoelectric point", "sequence alignment", "Needleman-Wunsch", "Smith-Waterman", "BLOSUM62", "Hardy-Weinberg", "population genetics", "genetic drift", "linkage disequilibrium", "phylogenetics", "neighbor joining", "UPGMA", "Tajima's D", "enzyme kinetics", "Michaelis-Menten", "Hill equation", "Leslie matrix", "diversity index", "flux balance analysis", "ecology", "ai999x", "offline", "cpu", "stem", "education", "step-by-step", "latex", "solver"]
+classifiers = ["License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Operating System :: OS Independent", "Intended Audience :: Education", "Intended Audience :: Science/Research", "Intended Audience :: Developers", "Topic :: Scientific/Engineering", "Topic :: Education", "Development Status :: 5 - Production/Stable"]
+dependencies = ["sympy>=1.12", "mpmath>=1.3"]
+
+[project.optional-dependencies]
+search = ["onnxruntime>=1.17", "tokenizers>=0.15", "numpy>=1.24"]
+plot = ["matplotlib>=3.7"]
+all = ["matplotlib>=3.7", "numpy>=1.24", "onnxruntime>=1.17", "tokenizers>=0.15"]
+reader = ["onnxruntime>=1.17", "tokenizers>=0.15", "numpy>=1.24"]
+
+[project.scripts]
+computational-biology-ai999x = "computational_biology_ai999x.cli:main"
+
+[project.urls]
+"Source" = "https://github.com/AI999X/computational-biology-ai999x"
+"Issues" = "https://github.com/AI999X/computational-biology-ai999x/issues"
+"Homepage" = "https://ai999x.com"
+"Hugging Face" = "https://huggingface.co/AI999X/computational-biology-ai999x"
+"Funding" = "https://buymeacoffee.com/ibnuljaiffarabi"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+computational_biology_ai999x = ["pack/*.json", "pack/*/*.json", "pack/*.sqlite", "pack/capabilities/*.py", "pack/search/*.onnx", "pack/reader/*.onnx"]

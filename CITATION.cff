@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "computational-biology-ai999x: an offline, verified computational biology solver"
+authors:
+  - family-names: Farabi
+    given-names: Ibnul Jaif
+    affiliation: AI999X
+version: 1.0.0
+license: Apache-2.0
+url: "https://huggingface.co/AI999X/computational-biology-ai999x"
+repository-code: "https://huggingface.co/AI999X/computational-biology-ai999x"
+keywords:
+  - computational biology
+  - bioinformatics
+  - DNA
+  - protein
+  - sequence analysis
+  - translation
+  - open reading frame
+  - restriction sites
+  - melting temperature
+  - isoelectric point
+  - sequence alignment
+  - Needleman-Wunsch
