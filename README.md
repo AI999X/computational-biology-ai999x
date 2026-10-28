@@ -4,7 +4,7 @@
 
 **[Install](https://pypi.org/project/computational-biology-ai999x/)** · **[Capability guide](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.2
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.3
 
 Field: **Life Sciences** · Tasks: Question Answering, Token Classification, Text Classification, Sentence Similarity, Feature Extraction
 
@@ -27,7 +27,7 @@ computational-biology-ai999x is an offline, deterministic Python solver that ans
 
 | Property | Value |
 |---|---|
-| Package | `computational-biology-ai999x` 1.0.2 (import `computational_biology_ai999x`) |
+| Package | `computational-biology-ai999x` 1.0.3 (import `computational_biology_ai999x`) |
 | Type | Deterministic neuro-symbolic computational biology engine (rule-based reading + certified symbolic capabilities) |
 | Capabilities | 83 certified procedures |
 | Knowledge pack | version 1.0.1 |
@@ -61,7 +61,7 @@ computational_biology.ask("Who created you?").message
 # -> computational-biology-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-Command line: `computational-biology-ai999x "<question>"`, `computational-biology-ai999x --capabilities`. The outputs above were produced by running this exact code on computational-biology-ai999x 1.0.2.
+Command line: `computational-biology-ai999x "<question>"`, `computational-biology-ai999x --capabilities`. The outputs above were produced by running this exact code on computational-biology-ai999x 1.0.3.
 
 ## Find the right capability, and draw it
 
@@ -222,10 +222,10 @@ _Fraction of heterozygosity retained under random genetic drift, (1 − 1/(2N))^
 ## Citation
 
 ```bibtex
-@software{computational_biology_ai999x_1_0_2,
+@software{computational_biology_ai999x_1_0_3,
   title  = {computational-biology-ai999x: an offline, verified computational biology solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.0.2},
+  year   = {2026}, version = {1.0.3},
   url    = {https://huggingface.co/AI999X/computational-biology-ai999x}
 }
 ```

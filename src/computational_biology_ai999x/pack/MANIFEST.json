@@ -1,5 +1,5 @@
 {
- "package": "1.0.2",
+ "package": "1.0.3",
  "pack": "1.0.1",
  "knowledge_db": null,
  "files": {
@@ -9,7 +9,7 @@
   "knowledge/reference_cases.json": "7414a14e2c4202a7fae8cdd14e1a2ef7267f35a9665b0633001349c698d4e4e7",
   "capabilities/procedures.py": "83f36009457aba69474db4966274b03621bb7baad396bf6893c5e7468daa69ae",
   "capabilities/procedures_certified.json": "da484bae1ee0f16b9ccc1f0b035aece87ea36137618d9f6ee0baba62b05bb72f",
-  "computational_biology_knowledge_public.sqlite": "6cd597591c1c1a4982c305bad8759f96e01ecbf2a366b0b04510efe4681628b5",
+  "computational_biology_knowledge_public.sqlite": "e560490d9b7f30cf2a549be2ca5484c3f55307d6a059c92843ed01e81ef4bd12",
   "search/encoder.int8.onnx": "521452d928a72da4d241b1835ab0f46b0e81ff58ffff0367b9a7029bd129fbd9",
   "search/tokenizer.json": "b2f2deb461e6ad672b8e42aac29773e7a9be77d582cdf58808113ea43fda565e",
   "search/index.json": "d8f81d9706c9a0efa7d9643bcec3d39a6c3500766ce0f44937d85ad90f772507",
@@ -19,6 +19,7 @@
  },
  "engine": [
   "__init__.py",
+  "_lazy.py",
   "answer.py",
   "compiler.py",
   "decision_reader.py",

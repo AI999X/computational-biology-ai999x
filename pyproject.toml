@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "computational-biology-ai999x"
-version = "1.0.2"
+version = "1.0.3"
 description = "Offline computational biology solver: DNA and protein sequences, pairwise alignment, molecular masses, Mendelian and population genetics, phylogenetics, enzyme kinetics, population models and ecology, with steps, LaTeX and honest refusals"
 readme = "README.md"
 requires-python = ">=3.10"
