@@ -206,6 +206,10 @@ $$
 - **Assumes:** DNA letters A, C, G, T only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The given strand ATGCCGTA (top, 5′→3′) paired with its partner strand (bottom, written 3′→5′ under it); A–T pairs and G–C pairs in two colours](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-reverse-complement-duplex)
+
+*The given strand ATGCCGTA (top, 5′→3′) paired with its partner strand (bottom, written 3′→5′ under it); A–T pairs and G–C pairs in two colours. Reading the partner strand 5′→3′ gives the package's reverse complement. Marked: revcomp = TACGGCAT.*
+
 ```python
 computational_biology_ai999x.solve('bio_reverse_complement', seq='ATGCCGTA')
 # -> revcomp = TACGGCAT   (SOLVED)
@@ -258,6 +262,10 @@ $$
 - **Assumes:** DNA letters only; the strand is stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The DNA ATGGCTTAA (5′→3′) given once as the coding strand and once as the template strand, with the mRNA the package returns for each (5′→3′): coding → AUGGCUUAA (T read as U), template → UUAAGCCAU (the complement read in reverse)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-transcription-sequence)
+
+*The DNA ATGGCTTAA (5′→3′) given once as the coding strand and once as the template strand, with the mRNA the package returns for each (5′→3′): coding → AUGGCUUAA (T read as U), template → UUAAGCCAU (the complement read in reverse). T and U shaded. Marked: mrna = AUGGCUUAA and UUAAGCCAU.*
+
 ```python
 computational_biology_ai999x.solve('bio_transcription', seq='ATGGCTTAA', strand='coding')
 # -> mrna = AUGGCUUAA   (SOLVED)
@@ -302,6 +310,10 @@ $$
 - **Method:** read codons in frame 1 and look each up in the standard genetic code (NCBI table 1)
 - **Assumes:** length a multiple of 3; DNA or RNA letters, not a mixture
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The coding sequence ATGGCCATTGTAATGGGCCGCTGA read in codons (numbered 1–8, alternately shaded) with the amino acid the package assigns under each codon by the standard genetic code; the stop codon is shown as *](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-translation-codons)
+
+*The coding sequence ATGGCCATTGTAATGGGCCGCTGA read in codons (numbered 1–8, alternately shaded) with the amino acid the package assigns under each codon by the standard genetic code; the stop codon is shown as *. Marked: protein = MAIVMGR* (stops shown), MAIVMGR (truncated at the stop), length 8.*
 
 ```python
 computational_biology_ai999x.solve('bio_translation', seq='ATGGCCATTGTAATGGGCCGCTGA', stops='show')
@@ -353,6 +365,14 @@ $$
 - **Assumes:** unambiguous DNA or RNA letters
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The sequence ATGCGCGA written base by base, G and C shaded](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-gc-content-sequence)
+
+*The sequence ATGCGCGA written base by base, G and C shaded. The package counts 5 G or C bases and returns the GC fraction 0.625. Marked: gc_count = 5, gc_fraction = 0.625.*
+
+![GC fraction along a 59-base sequence chosen to have GC-rich and AT-rich stretches (ATATTAATATGCGCGGCCGCATTATAAATTTATGCGCGCGGCCGGCGATATATTAATGC): each point is the package's GC fraction of one 10-base window (50 windows, step 1)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-gc-content-profile)
+
+*GC fraction along a 59-base sequence chosen to have GC-rich and AT-rich stretches (ATATTAATATGCGCGGCCGCATTATAAATTTATGCGCGCGGCCGGCGATATATTAATGC): each point is the package's GC fraction of one 10-base window (50 windows, step 1). Marked: the richest window, 1; line: the whole sequence, 0.4407.*
+
 ```python
 computational_biology_ai999x.solve('bio_gc_content', seq='ATGCGCGA')
 # -> gc_fraction = 0.625, gc_count = 5   (SOLVED)
@@ -399,6 +419,14 @@ $$
 - **Assumes:** 1 <= k <= sequence length
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The 28-base sequence CGTTCCAAAGATGTGGGCATGAGCTTAC cut into overlapping 3-mers: the package counts 26 3-mers, 25 of them distinct, the most frequent being ATG (2 times, shaded where it occurs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-kmer-counts-sequence)
+
+*The 28-base sequence CGTTCCAAAGATGTGGGCATGAGCTTAC cut into overlapping 3-mers: the package counts 26 3-mers, 25 of them distinct, the most frequent being ATG (2 times, shaded where it occurs). Marked: total = 26, distinct = 25, most_frequent = ATG, max_count = 2.*
+
+![k-mer counts of the 28-base sequence CGTTCCAAAGATGTGGGCATGAGCTTAC for k = 1 … 10, each a run of the package: the total number of overlapping words (28 − k + 1), the number of distinct words and the count of the most frequent; the dashed line is the number of possible words 4^k (drawn while it is under 40)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-kmer-counts-curve)
+
+*k-mer counts of the 28-base sequence CGTTCCAAAGATGTGGGCATGAGCTTAC for k = 1 … 10, each a run of the package: the total number of overlapping words (28 − k + 1), the number of distinct words and the count of the most frequent; the dashed line is the number of possible words 4^k (drawn while it is under 40). From k = 4 on every word is unique.*
+
 ```python
 computational_biology_ai999x.solve('bio_kmer_counts', seq='ATATAT', k=2)
 # -> total = 5, distinct = 2, max_count = 3, most_frequent = AT   (SOLVED)
@@ -444,6 +472,10 @@ $$
 - **Assumes:** equal lengths (aligned, no gaps)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Two aligned sequences of 17 bases, seq1 = GAGCCTACTAACGGGAT and seq2 = CATCGTAATGACGGCCT: positions where they differ are shaded, equal positions joined by a bar](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hamming-distance-alignment)
+
+*Two aligned sequences of 17 bases, seq1 = GAGCCTACTAACGGGAT and seq2 = CATCGTAATGACGGCCT: positions where they differ are shaded, equal positions joined by a bar. The package returns mismatches = 7, p_distance = 0.4118 and identity = 0.5882.*
+
 ```python
 computational_biology_ai999x.solve('bio_hamming_distance', seq1='GAGCCTACTAACGGGAT', seq2='CATCGTAATGACGGCCT')
 # -> mismatches = 7, p_distance = 0.411765, identity = 0.588235   (SOLVED)
@@ -488,6 +520,10 @@ $$
 - **Assumes:** letters only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Edit distance between KITTEN and SITTING as a table: cell (i, j) is the package's edit distance between the first i letters of KITTEN and the first j letters of SITTING (42 runs); the top row and left column are the distances to the empty string (j and i)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-edit-distance-table)
+
+*Edit distance between KITTEN and SITTING as a table: cell (i, j) is the package's edit distance between the first i letters of KITTEN and the first j letters of SITTING (42 runs); the top row and left column are the distances to the empty string (j and i). The outlined cells trace one cheapest series of edits back through cells that satisfy the recurrence (match 0; substitution, insertion, deletion 1). Marked: distance = 3 (bottom right).*
+
 ```python
 computational_biology_ai999x.solve('bio_edit_distance', seq1='KITTEN', seq2='SITTING')
 # -> distance = 3   (SOLVED)
@@ -531,6 +567,10 @@ $$
 - **Method:** scan the three frames of both strands codon by codon: open at the first ATG, close at the next stop
 - **Assumes:** DNA letters only; standard genetic code, start ATG, stops TAA TAG TGA
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The sequence GGATGAAACCCTAGGGATGTTTGGGCCCAAATAAGG (5′→3′) with its longest open reading frame shaded: the start codon ATG, the codons and the stop codon; under it, the package's translation of that frame, MFGPK](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-longest-orf-orf)
+
+*The sequence GGATGAAACCCTAGGGATGTTTGGGCCCAAATAAGG (5′→3′) with its longest open reading frame shaded: the start codon ATG, the codons and the stop codon; under it, the package's translation of that frame, MFGPK. The package returns length_nt = 18 (stop included), protein_length = 5 and orf_count = 2; the frame's position is located in the sequence as the ATG whose first in-frame stop closes 18 bases later.*
 
 ```python
 computational_biology_ai999x.solve('bio_longest_orf', seq='CCATGAAATTTGGGTAACC')
@@ -583,6 +623,14 @@ $$
 - **Assumes:** linear DNA; a listed enzyme
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![EcoRI digest of the sequence AAGAATTCTTGAATTCGGATCC (22 bases, 5′→3′): the package returns 2 cut positions (4, 12, the first base after each cut) and the fragment lengths 3, 8, 11 bp; each fragment is shaded in its own colour](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-restriction-sites-digest)
+
+*EcoRI digest of the sequence AAGAATTCTTGAATTCGGATCC (22 bases, 5′→3′): the package returns 2 cut positions (4, 12, the first base after each cut) and the fragment lengths 3, 8, 11 bp; each fragment is shaded in its own colour. Marked: positions = [4, 12], fragments = [3, 8, 11].*
+
+![Fragments of one 69-base sequence (GAATTCAAGCTTGGATCCAAGCTTCTGCAGGAATTCCCGGGATCCAAGCTTGTCGACCTCGAGGAATTC) cut by eight enzymes, one lane each, on a logarithmic length axis as on a gel: every band is a fragment length the package returns (equal lengths share one band)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-restriction-sites-gel)
+
+*Fragments of one 69-base sequence (GAATTCAAGCTTGGATCCAAGCTTCTGCAGGAATTCCCGGGATCCAAGCTTGTCGACCTCGAGGAATTC) cut by eight enzymes, one lane each, on a logarithmic length axis as on a gel: every band is a fragment length the package returns (equal lengths share one band). Number of sites: EcoRI 3, BamHI 2, HindIII 3, PstI 1, SmaI 1, SalI 1, AluI 3, TaqI 2.*
+
 ```python
 computational_biology_ai999x.solve('bio_restriction_sites', seq='AAGAATTCTTGAATTCGGATCC', enzyme='EcoRI')
 # -> n_sites = 2, positions = [4, 12], fragments = [3, 8, 11]   (SOLVED)
@@ -627,6 +675,10 @@ $$
 - **Method:** sum of nucleotide-monophosphate masses minus one water per phosphodiester bond (each strand)
 - **Assumes:** the sequence letters match the stated molecule
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Molecular mass against length for chains made by repeating AGC (the worked example's sequence), as single- or double-stranded DNA or RNA: 30 lengths × 4 cases, each a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-nucleic-acid-mass-curve)
+
+*Molecular mass against length for chains made by repeating AGC (the worked example's sequence), as single- or double-stranded DNA or RNA: 30 lengths × 4 cases, each a run of the package. Marked: the worked example, single-stranded DNA AGC, 949.6095 Da.*
 
 ```python
 computational_biology_ai999x.solve('bio_nucleic_acid_mass', seq='AGC', molecule='DNA', strands='single')
@@ -677,6 +729,10 @@ $$
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Mass of a ten-residue chain of each amino acid (poly-G … poly-W), each a run of the package, sorted: the spread shows how residue masses differ](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-mass-bars)
+
+*Mass of a ten-residue chain of each amino acid (poly-G … poly-W), each a run of the package, sorted: the spread shows how residue masses differ. Marked: the lightest, GGGGGGGGGG, 588.53 Da, and the heaviest, WWWWWWWWWW, 1880.1 Da. The 152-residue protein of the worked example weighs 17103.16 Da.*
+
 ```python
 computational_biology_ai999x.solve('bio_protein_mass', seq='MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV')
 # -> mass = 17103.2   (SOLVED)
@@ -723,6 +779,10 @@ $$
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Molar extinction coefficient at 280 nm (reduced cysteines) of the peptide G8 followed by a tryptophans and b tyrosines, a = 0–3 (rows), b = 0–4 (columns): each cell a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-extinction-heatmap)
+
+*Molar extinction coefficient at 280 nm (reduced cysteines) of the peptide G8 followed by a tryptophans and b tyrosines, a = 0–3 (rows), b = 0–4 (columns): each cell a run of the package. Each W adds the same amount, each Y another. The 152-residue protein of the worked example gives eps_reduced = 17420, eps_cystines = 17545, absorbance of 1 g/L 1.019 (reduced) and 1.026 (cystines).*
+
 ```python
 computational_biology_ai999x.solve('bio_protein_extinction', seq='MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV')
 # -> eps_reduced = 17420, eps_cystines = 17545, abs_reduced = 1.01853, abs_cystines = 1.02583   (SOLVED)
@@ -765,6 +825,10 @@ $$
 - **Method:** Henderson-Hasselbalch partial charges of the termini and the K, R, H, D, E, C, Y side chains
 - **Assumes:** standard amino acids only; $0  \leq  pH  \leq  14$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![charge (net charge (elementary charges)) against pH (pH of the solution (0 to 14)) from 3](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-net-charge-curve)
+
+*charge (net charge (elementary charges)) against pH (pH of the solution (0 to 14)) from 3.5 to 10.5. Other inputs as in the worked example: seq = INGAR. 31 points computed by computational-biology-ai999x; marked: the worked example, pH = 7, charge = 0.760092.*
 
 ```python
 computational_biology_ai999x.solve('bio_protein_net_charge', seq='INGAR', pH=7)
@@ -809,6 +873,10 @@ $$
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Net charge against pH for three peptides — the worked example INGAR, an acidic DDEEK and a basic KKRHA — each curve 57 runs of the package's net-charge capability; the dot on the zero line is the isoelectric point the package returns: INGAR pI = 9](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-isoelectric-point-titration)
+
+*Net charge against pH for three peptides — the worked example INGAR, an acidic DDEEK and a basic KKRHA — each curve 57 runs of the package's net-charge capability; the dot on the zero line is the isoelectric point the package returns: INGAR pI = 9.75, DDEEK pI = 3.917, KKRHA pI = 11.17. Marked: INGAR carries 0.7601 at pH 7 (charge_at_7).*
+
 ```python
 computational_biology_ai999x.solve('bio_isoelectric_point', seq='INGAR')
 # -> pI = 9.75002, charge_at_7 = 0.760092   (SOLVED)
@@ -850,6 +918,10 @@ $$
 - **Method:** mean Kyte-Doolittle hydropathy over the residues
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Hydropathy plot of the 152-residue protein of the package's worked examples (MAEGEITTFTALTE… (152 residues)): each point is the package's GRAVY (mean Kyte–Doolittle hydropathy) of one 9-residue window (144 windows); stretches above zero (shaded) are hydrophobic](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-gravy-profile)
+
+*Hydropathy plot of the 152-residue protein of the package's worked examples (MAEGEITTFTALTE… (152 residues)): each point is the package's GRAVY (mean Kyte–Doolittle hydropathy) of one 9-residue window (144 windows); stretches above zero (shaded) are hydrophobic. Marked: the most hydrophobic window, centred at residue 148, GRAVY 2.389; line: the whole protein, -0.5974.*
 
 ```python
 computational_biology_ai999x.solve('bio_gravy', seq='MKTLLIL')
@@ -893,6 +965,10 @@ $$
 - **Assumes:** standard amino acids, length >= 2
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Instability index along the 152-residue protein of the package's worked examples: each point is the package's index of one 20-residue window (133 windows), against the conventional threshold of 40 above which a protein is predicted unstable](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-instability-index-profile)
+
+*Instability index along the 152-residue protein of the package's worked examples: each point is the package's index of one 20-residue window (133 windows), against the conventional threshold of 40 above which a protein is predicted unstable. Marked: the highest window, centred at residue 99.5 (124.6); line: the whole protein, index 41.98.*
+
 ```python
 computational_biology_ai999x.solve('bio_instability_index', seq='MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV')
 # -> index = 41.9803   (SOLVED)
@@ -934,6 +1010,10 @@ $$
 - **Method:** 2 degC per A or T plus 4 degC per G or C
 - **Assumes:** unambiguous DNA letters
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Wallace-rule melting temperature of 12-, 16- and 20-base oligonucleotides against their number of G or C bases (sequences G…GA…A), each point a run of the package: every G or C adds twice what an A or T adds](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-tm-wallace-curve)
+
+*Wallace-rule melting temperature of 12-, 16- and 20-base oligonucleotides against their number of G or C bases (sequences G…GA…A), each point a run of the package: every G or C adds twice what an A or T adds. Marked: the worked example ACGTTGCAATGCCGTA (16 bases, 8 G or C counted in it), tm = 48 °C.*
 
 ```python
 computational_biology_ai999x.solve('bio_tm_wallace', seq='ACGTTGCAATGCCGTA')
@@ -980,6 +1060,10 @@ $$
 - **Assumes:** unambiguous DNA, length >= 2; $Na > 0$; dnac1 > dnac2/2
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Nearest-neighbour melting temperature of the 28-mer CGTTCCAAAGATGTGGGCATGAGCTTAC against sodium concentration (5–1000 mM, logarithmic) at three strand concentrations, each point a run of the package: more salt and more strands both stabilise the duplex](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-tm-nearest-neighbor-curve)
+
+*Nearest-neighbour melting temperature of the 28-mer CGTTCCAAAGATGTGGGCATGAGCTTAC against sodium concentration (5–1000 mM, logarithmic) at three strand concentrations, each point a run of the package: more salt and more strands both stabilise the duplex. Marked: the worked example, Na = 50 mM, 25 nM each, tm = 60.32 °C.*
+
 ```python
 computational_biology_ai999x.solve('bio_tm_nearest_neighbor', seq='CGTTCCAAAGATGTGGGCATGAGCTTAC', Na=50, dnac1=25, dnac2=25)
 # -> tm = 60.3209   (SOLVED)
@@ -1025,6 +1109,14 @@ $$
 - **Method:** dynamic programming over prefixes (Needleman-Wunsch)
 - **Assumes:** gap <= 0; end gaps scored like internal gaps
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Needleman–Wunsch table for GATTACA against GCATGCU (match 1, mismatch -1, gap -1): cell (i, j) is the package's optimal global score of the first i letters of GATTACA and the first j of GCATGCU (49 runs); the top row and left column are the all-gap scores j·gap and i·gap](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-global-alignment-score-table)
+
+*Needleman–Wunsch table for GATTACA against GCATGCU (match 1, mismatch -1, gap -1): cell (i, j) is the package's optimal global score of the first i letters of GATTACA and the first j of GCATGCU (49 runs); the top row and left column are the all-gap scores j·gap and i·gap. The outlined cells trace one optimal alignment back through cells that satisfy the recurrence. Marked: score = 0 (bottom right).*
+
+![score (optimal global alignment score) against match (score of a match) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-global-alignment-score-curve)
+
+*score (optimal global alignment score) against match (score of a match) from 0.5 to 1.5. One curve for each value of mismatch (score of a mismatch): -1, -0.5, -2. Other inputs as in the worked example: seq1 = GATTACA, seq2 = GCATGCU, gap = -1. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 1, score = 0.*
 
 ```python
 computational_biology_ai999x.solve('bio_global_alignment_score', seq1='GATTACA', seq2='GCATGCU', match=1, mismatch=-1, gap=-1)
@@ -1073,6 +1165,14 @@ $$
 - **Assumes:** open, extend <= 0; a gap of length L scores open + (L-1) extend; end gaps scored
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Global alignment score with affine gaps (Gotoh) of ACGTTTACG against ACGACG (match 2, mismatch -1, open -5, extend -1) as a table: cell (i, j) is the package's optimal global score of the first i letters of ACGTTTACG and the first j letters of ACGACG (54 runs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-global-alignment-affine-table)
+
+*Global alignment score with affine gaps (Gotoh) of ACGTTTACG against ACGACG (match 2, mismatch -1, open -5, extend -1) as a table: cell (i, j) is the package's optimal global score of the first i letters of ACGTTTACG and the first j letters of ACGACG (54 runs). The bottom-right cell is the returned score 5. Marked: score = 5.*
+
+![score (optimal global alignment score) against match (score of a match) from 1 to 3](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-global-alignment-affine-curve)
+
+*score (optimal global alignment score) against match (score of a match) from 1 to 3. One curve for each value of open (score of the first position of a gap (<= 0)): -5, -2.5, -10. Other inputs as in the worked example: seq1 = ACGTTTACG, seq2 = ACGACG, mismatch = -1, extend = -1. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 2, score = 5.*
+
 ```python
 computational_biology_ai999x.solve('bio_global_alignment_affine', seq1='ACGTTTACG', seq2='ACGACG', match=2, mismatch=-1, open=-5, extend=-1)
 # -> score = 5   (SOLVED)
@@ -1118,6 +1218,14 @@ $$
 - **Method:** dynamic programming with a floor at 0 (Smith-Waterman)
 - **Assumes:** match > 0; gap <= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Local alignment score (Smith-Waterman, linear gaps) of TGTTACGG against GGTTGACTA (match 3, mismatch -3, gap -2) as a table: cell (i, j) is the package's best local alignment score found within the first i letters of TGTTACGG and the first j letters of GGTTGACTA (72 runs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-local-alignment-score-table)
+
+*Local alignment score (Smith-Waterman, linear gaps) of TGTTACGG against GGTTGACTA (match 3, mismatch -3, gap -2) as a table: cell (i, j) is the package's best local alignment score found within the first i letters of TGTTACGG and the first j letters of GGTTGACTA (72 runs). The outlined cell is the first where the returned optimum 13 is reached: where the best local alignment ends (row 6, column 7). Marked: score = 13.*
+
+![score (optimal local alignment score (>= 0)) against match (score of a match) from 1](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-local-alignment-score-curve)
+
+*score (optimal local alignment score (>= 0)) against match (score of a match) from 1.5 to 4.5. One curve for each value of gap (score of each gap position (<= 0)): -2, -1, -4. Other inputs as in the worked example: seq1 = TGTTACGG, seq2 = GGTTGACTA, mismatch = -3. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 3, score = 13.*
 
 ```python
 computational_biology_ai999x.solve('bio_local_alignment_score', seq1='TGTTACGG', seq2='GGTTGACTA', match=3, mismatch=-3, gap=-2)
@@ -1166,6 +1274,14 @@ $$
 - **Assumes:** match > 0; open, extend <= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Local alignment score with affine gaps of TTACGTACGTTT against GGACGTTACGTGG (match 2, mismatch -1, open -3, extend -1) as a table: cell (i, j) is the package's best local alignment score found within the first i letters of TTACGTACGTTT and the first j letters of GGACGTTACGTGG (156 runs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-local-alignment-affine-table)
+
+*Local alignment score with affine gaps of TTACGTACGTTT against GGACGTTACGTGG (match 2, mismatch -1, open -3, extend -1) as a table: cell (i, j) is the package's best local alignment score found within the first i letters of TTACGTACGTTT and the first j letters of GGACGTTACGTGG (156 runs). The outlined cell is the first where the returned optimum 13 is reached: where the best local alignment ends (row 10, column 11). Marked: score = 13.*
+
+![score (optimal local alignment score (>= 0)) against match (score of a match) from 1 to 3](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-local-alignment-affine-curve)
+
+*score (optimal local alignment score (>= 0)) against match (score of a match) from 1 to 3. One curve for each value of open (score of the first position of a gap (<= 0)): -3, -1.5, -6. Other inputs as in the worked example: seq1 = TTACGTACGTTT, seq2 = GGACGTTACGTGG, mismatch = -1, extend = -1. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 2, score = 13.*
+
 ```python
 computational_biology_ai999x.solve('bio_local_alignment_affine', seq1='TTACGTACGTTT', seq2='GGACGTTACGTGG', match=2, mismatch=-1, open=-3, extend=-1)
 # -> score = 13   (SOLVED)
@@ -1211,6 +1327,14 @@ $$
 - **Assumes:** standard amino acids; open, extend <= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Global protein alignment score (BLOSUM62, affine gaps) of HEAGAWGHEE against PAWHEAE (BLOSUM62 substitution scores, open -10, extend -1) as a table: cell (i, j) is the package's optimal global score of the first i letters of HEAGAWGHEE and the first j letters of PAWHEAE (70 runs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-global-blosum62-table)
+
+*Global protein alignment score (BLOSUM62, affine gaps) of HEAGAWGHEE against PAWHEAE (BLOSUM62 substitution scores, open -10, extend -1) as a table: cell (i, j) is the package's optimal global score of the first i letters of HEAGAWGHEE and the first j letters of PAWHEAE (70 runs). The bottom-right cell is the returned score 3. Marked: score = 3.*
+
+![score (optimal global alignment score) against open (score of the first position of a gap (<= 0)) from -15 to -5](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-global-blosum62-curve)
+
+*score (optimal global alignment score) against open (score of the first position of a gap (<= 0)) from -15 to -5. One curve for each value of extend (score of each further gap position (<= 0)): -1, -0.5, -2. Other inputs as in the worked example: seq1 = HEAGAWGHEE, seq2 = PAWHEAE. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, open = -10, score = 3.*
+
 ```python
 computational_biology_ai999x.solve('bio_protein_global_blosum62', seq1='HEAGAWGHEE', seq2='PAWHEAE', open=-10, extend=-1)
 # -> score = 3   (SOLVED)
@@ -1255,6 +1379,14 @@ $$
 - **Method:** Gotoh's recursion with BLOSUM62 scores and a floor at 0
 - **Assumes:** standard amino acids; open, extend <= 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Local protein alignment score (BLOSUM62, affine gaps) of HEAGAWGHEE against PAWHEAE (BLOSUM62 substitution scores, open -8, extend -8) as a table: cell (i, j) is the package's best local alignment score found within the first i letters of HEAGAWGHEE and the first j letters of PAWHEAE (70 runs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-local-blosum62-table)
+
+*Local protein alignment score (BLOSUM62, affine gaps) of HEAGAWGHEE against PAWHEAE (BLOSUM62 substitution scores, open -8, extend -8) as a table: cell (i, j) is the package's best local alignment score found within the first i letters of HEAGAWGHEE and the first j letters of PAWHEAE (70 runs). The outlined cell is the first where the returned optimum 20 is reached: where the best local alignment ends (row 9, column 5). Marked: score = 20.*
+
+![score (optimal local alignment score (>= 0)) against open (score of the first position of a gap (<= 0)) from -12 to -4](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-local-blosum62-curve)
+
+*score (optimal local alignment score (>= 0)) against open (score of the first position of a gap (<= 0)) from -12 to -4. Other inputs as in the worked example: seq1 = HEAGAWGHEE, seq2 = PAWHEAE, extend = -8. 31 points computed by computational-biology-ai999x; marked: the worked example, open = -8, score = 20.*
 
 ```python
 computational_biology_ai999x.solve('bio_protein_local_blosum62', seq1='HEAGAWGHEE', seq2='PAWHEAE', open=-8, extend=-8)
@@ -1302,6 +1434,14 @@ $$
 - **Assumes:** gap <= 0; end gaps unscored
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Semi-global (end-gap-free) alignment score of TTTTACGTACGGGG against ACGTAC (match 1, mismatch -1, gap -1) as a table: cell (i, j) is the package's semi-global score (end gaps free) of the first i letters of TTTTACGTACGGGG and the first j letters of ACGTAC (84 runs)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-semiglobal-alignment-score-table)
+
+*Semi-global (end-gap-free) alignment score of TTTTACGTACGGGG against ACGTAC (match 1, mismatch -1, gap -1) as a table: cell (i, j) is the package's semi-global score (end gaps free) of the first i letters of TTTTACGTACGGGG and the first j letters of ACGTAC (84 runs). The bottom-right cell is the returned score 6. Marked: score = 6.*
+
+![score (optimal semi-global alignment score) against match (score of a match) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-semiglobal-alignment-score-curve)
+
+*score (optimal semi-global alignment score) against match (score of a match) from 0.5 to 1.5. Other inputs as in the worked example: seq1 = TTTTACGTACGGGG, seq2 = ACGTAC, mismatch = -1, gap = -1. 31 points computed by computational-biology-ai999x; marked: the worked example, match = 1, score = 6.*
+
 ```python
 computational_biology_ai999x.solve('bio_semiglobal_alignment_score', seq1='TTTTACGTACGGGG', seq2='ACGTAC', match=1, mismatch=-1, gap=-1)
 # -> score = 6   (SOLVED)
@@ -1346,6 +1486,14 @@ $$
 - **Method:** product over loci of the Punnett-square probability of each locus genotype
 - **Assumes:** the same loci in the same order; independent assortment; at most 6 loci
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Punnett square of the cross Aa × Aa: the gametes of each parent along the edges (one allele of each gene, equally likely), the offspring genotype in each cell; cells of the asked genotype Aa are shaded](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-cross-genotype-probability-punnett)
+
+*Punnett square of the cross Aa × Aa: the gametes of each parent along the edges (one allele of each gene, equally likely), the offspring genotype in each cell; cells of the asked genotype Aa are shaded. The package returns probability = 0.5 (1/2).*
+
+![Probability of every offspring genotype of the dihybrid cross AaBb × Aabb (a cross chosen for illustration), each bar a run of the package: AABb 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-cross-genotype-probability-bars)
+
+*Probability of every offspring genotype of the dihybrid cross AaBb × Aabb (a cross chosen for illustration), each bar a run of the package: AABb 0.125, AAbb 0.125, AaBb 0.25, Aabb 0.25, aaBb 0.125, aabb 0.125; together they sum to 1.*
 
 ```python
 computational_biology_ai999x.solve('bio_cross_genotype_probability', parent1='Aa', parent2='Aa', offspring='Aa')
@@ -1400,6 +1548,10 @@ $$
 - **Method:** per-locus phenotype probabilities (3/4 : $1/4$ for Aa x Aa) multiplied across loci
 - **Assumes:** complete dominance at every locus; independent assortment
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Punnett square of AaBb × AaBb, each offspring cell shaded by its phenotype class (A_ means at least one dominant A, aa recessive; classes and their cell counts read from the square)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-cross-phenotype-ratio-punnett)
+
+*Punnett square of AaBb × AaBb, each offspring cell shaded by its phenotype class (A_ means at least one dominant A, aa recessive; classes and their cell counts read from the square). The package returns ratio = 9:3:3:1, 9 genotypes, 4 phenotypes, p_all_dominant = 0.5625, p_all_recessive = 0.0625.*
 
 ```python
 computational_biology_ai999x.solve('bio_cross_phenotype_ratio', parent1='AaBb', parent2='AaBb')
@@ -1464,6 +1616,14 @@ $$
 
 *Observed genotype counts AA = 298, Aa = 489, aa = 213 beside the counts expected under Hardy–Weinberg equilibrium, computed by the package from the allele frequencies p = 0.5425, q = 0.4575: 294.306, 496.387, 209.306. χ² = 0.22149, p-value 0.637907; observed heterozygosity 0.489 against expected 0.496387 (F = 0.0148825).*
 
+![De Finetti diagram: a population is a point of the triangle whose distances to the sides are its genotype frequencies (AA, Aa, aa at the corners)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hardy-weinberg-test-triangle)
+
+*De Finetti diagram: a population is a point of the triangle whose distances to the sides are its genotype frequencies (AA, Aa, aa at the corners). The curve joins the Hardy–Weinberg proportions the package returns as expected counts (populations of 1000 at 51 allele frequencies). Marked: the worked example AA = 298, Aa = 489, aa = 213 (observed frequencies, counts / 1000) beside its expected point (exp_AA 294.3, exp_Aa 496.4, exp_aa 209.3); χ² = 0.2215, p-value 0.6379.*
+
+![chi2 (chi-square statistic) against n_Aa (number of Aa individuals) from 1 to 978 on a logarithmic axis](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hardy-weinberg-test-curve)
+
+*chi2 (chi-square statistic) against n_Aa (number of Aa individuals) from 1 to 978 on a logarithmic axis. One curve for each value of n_AA (number of AA individuals): 298, 149, 596. Other inputs as in the worked example: n_aa = 213. 37 points per curve computed by computational-biology-ai999x; marked: the worked example, n_Aa = 489, chi2 = 0.22149.*
+
 ```python
 computational_biology_ai999x.solve('bio_hardy_weinberg_test', n_AA=298, n_Aa=489, n_aa=213)
 # -> p = 0.5425, q = 0.4575, exp_AA = 294.306, exp_Aa = 496.387, exp_aa = 209.306, chi2 = 0.22149, p_value = 0.637907, Ho = 0.489, He = 0.496387, F = 0.0148825   (SOLVED)
@@ -1510,6 +1670,10 @@ $$
 - **Assumes:** both alleles present; $N  \leq  1000$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Exact Hardy–Weinberg test for 20 individuals carrying 20 copies of each allele: for every possible number of heterozygotes 0, 2, …, 20 (the homozygotes split equally), the package's probability of that configuration (bars) and its two-sided exact p-value (dots)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hardy-weinberg-exact-test-bars)
+
+*Exact Hardy–Weinberg test for 20 individuals carrying 20 copies of each allele: for every possible number of heterozygotes 0, 2, …, 20 (the homozygotes split equally), the package's probability of that configuration (bars) and its two-sided exact p-value (dots). Too few or too many heterozygotes are both improbable. Marked: the most probable count, 10, 0.3459. The worked example (AA 2, Aa 0, aa 2) gives p-value 0.08571.*
+
 ```python
 computational_biology_ai999x.solve('bio_hardy_weinberg_exact_test', n_AA=2, n_Aa=0, n_aa=2)
 # -> p_value = 0.0857143, p_observed = 0.0857143   (SOLVED)
@@ -1554,6 +1718,10 @@ $$
 - **Assumes:** $0 < p_{0} < 1$; $s > -1$; discrete generations
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Spread of a favoured allele under haploid selection from p0 = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-haploid-selection-trajectory)
+
+*Spread of a favoured allele under haploid selection from p0 = 0.01 for selection coefficients s = 0.05, 0.1, 0.2 and 0.5: each curve is p_t the package returns at t = 1, 3, …, 119 (the start p0 drawn at t = 0). Marked: s = 0.1 after 51 generations, p = 0.566.*
+
 ```python
 computational_biology_ai999x.solve('bio_haploid_selection', p0=0.5, s=1, t=1)
 # -> p_t = 0.666667   (SOLVED)
@@ -1596,6 +1764,10 @@ $$
 - **Method:** iterate q' = $q/(1+q)$
 - **Assumes:** $0 < q_{0}  \leq  1$; random mating, aa fitness 0
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Decline of a recessive lethal allele, whose homozygotes die before breeding, from q0 = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-recessive-lethal-trajectory)
+
+*Decline of a recessive lethal allele, whose homozygotes die before breeding, from q0 = 0.5, 0.2 and 0.05: each curve is q_t the package returns for t = 1 … 60 (q0 drawn at t = 0). Rare alleles hide in heterozygotes and fall ever more slowly. Marked: the worked example q0 = 0.5, t = 1, q_t = 0.3333.*
 
 ```python
 computational_biology_ai999x.solve('bio_recessive_lethal', q0=0.5, t=1)
@@ -1641,6 +1813,10 @@ $$
 - **Assumes:** $w_Aa > w_AA$ and $w_Aa > w_aa$; fitnesses positive
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Equilibrium frequency of allele A under heterozygote advantage (w_Aa = 1) for homozygote fitnesses w_AA (rows) and w_aa (columns) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-heterozygote-advantage-heatmap)
+
+*Equilibrium frequency of allele A under heterozygote advantage (w_Aa = 1) for homozygote fitnesses w_AA (rows) and w_aa (columns) from 0.5 to 0.95, each cell a run of the package rounded to 3 decimals: A is common where AA is the fitter homozygote. The worked example w_AA = 0.8, w_aa = 0.6 gives p_eq = 0.6667.*
+
 ```python
 computational_biology_ai999x.solve('bio_heterozygote_advantage', w_AA=0.8, w_Aa=1, w_aa=0.6)
 # -> p_eq = 0.666667   (SOLVED)
@@ -1685,6 +1861,10 @@ $$
 - **Method:** the root of q' - $q = 0$ for selection followed by mutation, by bisection (approximately sqrt(mu/s) for a recessive and mu/(hs) otherwise)
 - **Assumes:** $0 < mu  \leq  0.01$; $0.01  \leq  s  \leq  1$; $0  \leq  h  \leq  1$; selection then mutation, no back mutation
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Equilibrium frequency of a deleterious allele between mutation and selection (s = 1) against the mutation rate, for dominance h = 0, 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-mutation-selection-balance-curve)
+
+*Equilibrium frequency of a deleterious allele between mutation and selection (s = 1) against the mutation rate, for dominance h = 0, 0.01, 0.1 and 0.5: each curve 21 runs of the package. A fully recessive allele persists at about √(μ/s), a partly dominant one near μ/(hs). Marked: the worked example μ = 0.0001, s = 1, h = 0, q_eq = 0.01.*
 
 ```python
 computational_biology_ai999x.solve('bio_mutation_selection_balance', mu=0.0001, s=1, h=0)
@@ -1736,6 +1916,10 @@ $$
 
 *Fraction of heterozygosity retained under random genetic drift, (1 − 1/(2N))^t, for population sizes N = 5, 10, 25, 50, 100, 250 (rows) after 10, 25, 50, 100, 200 generations (columns), each cell computed by the package and rounded to 3 decimals. N = 50 keeps 0.366 after 100 generations; N = 5 keeps 0 after 200.*
 
+![H_t (expected heterozygosity after t generations) against i (initial copies of allele A (of 2N)) from 1 to 20](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-drift-heterozygosity-curve)
+
+*H_t (expected heterozygosity after t generations) against i (initial copies of allele A (of 2N)) from 1 to 20. One curve for each value of t (number of generations): 1, 2, 3. Other inputs as in the worked example: N = 10. 19 points per curve computed by computational-biology-ai999x; marked: the worked example, i = 10, H_t = 0.475.*
+
 ```python
 computational_biology_ai999x.solve('bio_drift_heterozygosity', N=10, i=10, t=1)
 # -> H0 = 0.5, H_t = 0.475, retained = 0.95   (SOLVED)
@@ -1781,6 +1965,10 @@ $$
 - **Assumes:** $0 < i < N$; $r > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![rho (fixation probability) against N (population size) from 1 to 20](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-moran-fixation-curve)
+
+*rho (fixation probability) against N (population size) from 1 to 20. One curve for each value of r (relative fitness of the mutant): 1, 0.5, 2. Other inputs as in the worked example: i = 1. 19 points per curve computed by computational-biology-ai999x; marked: the worked example, N = 10, rho = 0.1.*
+
 ```python
 computational_biology_ai999x.solve('bio_moran_fixation', N=10, i=1, r=1)
 # -> rho = 0.1   (SOLVED)
@@ -1825,6 +2013,14 @@ $$
 - **Assumes:** random mating within the breeding population; Wright-Fisher reproduction
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Ne (effective population size) against N_m (number of breeding males) from 1 to 20](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-ne-sex-ratio-curve)
+
+*Ne (effective population size) against N_m (number of breeding males) from 1 to 20. One curve for each value of N_f (number of breeding females): 90, 45, 180. 20 points per curve computed by computational-biology-ai999x; marked: the worked example, N_m = 10, Ne = 36.*
+
+![Ne (effective population size) over N_m (number of breeding males) from 1 to 20 and N_f (number of breeding females) from 1 to 180 (logarithmic vertical axis): each of the 20 × 15 cells is one run of computational-biology-ai999x, shaded by its value (light 2 to dark 72); iso-lines at Ne = 20, 40, 60](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-ne-sex-ratio-field)
+
+*Ne (effective population size) over N_m (number of breeding males) from 1 to 20 and N_f (number of breeding females) from 1 to 180 (logarithmic vertical axis): each of the 20 × 15 cells is one run of computational-biology-ai999x, shaded by its value (light 2 to dark 72); iso-lines at Ne = 20, 40, 60. Marked: the worked example, N_m = 10, N_f = 90, Ne = 36.*
+
 ```python
 computational_biology_ai999x.solve('bio_ne_sex_ratio', N_m=10, N_f=90)
 # -> Ne = 36, Ne_over_N = 0.36   (SOLVED)
@@ -1867,6 +2063,14 @@ $$
 - **Method:** harmonic mean of the generation sizes; heterozygosity falls by $1 - 1/(2N_i)$ in generation i
 - **Assumes:** whole positive sizes; Wright-Fisher reproduction each generation
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Census sizes 1000, 10, 1000 in successive generations (logarithmic axis): the package returns the effective size Ne = 29](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-ne-fluctuating-size-bars)
+
+*Census sizes 1000, 10, 1000 in successive generations (logarithmic axis): the package returns the effective size Ne = 29.41, the harmonic mean, which the single bottleneck drags far below the arithmetic mean 670 (computed from the sizes for comparison); heterozygosity retained over the three generations 0.9491. Marked: Ne = 29.41.*
+
+![Effective size of a population of 1000 that passes through one bottleneck generation of size 1 … 1000, over 3 and over 10 generations: each point a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-ne-fluctuating-size-curve)
+
+*Effective size of a population of 1000 that passes through one bottleneck generation of size 1 … 1000, over 3 and over 10 generations: each point a run of the package. A single small generation dominates Ne; its weight fades over more generations.*
 
 ```python
 computational_biology_ai999x.solve('bio_ne_fluctuating_size', sizes=[1000, 10, 1000])
@@ -1911,6 +2115,10 @@ $$
 - **Method:** HS = mean of 2p(1-p), $HT = 2$ pbar (1 - pbar), FST = (HT - HS)/HT
 - **Assumes:** equal subpopulation weights; biallelic locus; 0 < mean $p < 1$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Fixation index between two subpopulations whose allele frequencies p are 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-fst-heatmap)
+
+*Fixation index between two subpopulations whose allele frequencies p are 0.1 … 0.9 (rows: the first, columns: the second), each cell a run of the package rounded to 3 decimals: zero on the diagonal, largest for opposite frequencies. The worked example p = [0.2, 0.8] gives HS = 0.32, HT = 0.5, FST = 0.36.*
 
 ```python
 computational_biology_ai999x.solve('bio_fst', p=[0.2, 0.8])
@@ -1959,6 +2167,14 @@ $$
 - **Assumes:** both loci polymorphic; phased haplotype counts
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Haplotype counts of two loci as a 2 × 2 table (rows: allele A or a, columns: B or b): AB = 40, Ab = 10, aB = 10, ab = 40](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-linkage-disequilibrium-table)
+
+*Haplotype counts of two loci as a 2 × 2 table (rows: allele A or a, columns: B or b): AB = 40, Ab = 10, aB = 10, ab = 40. The excess of AB and ab over what independent loci would give is the disequilibrium the package returns: D = 0.15, D′ = 0.6, r² = 0.36.*
+
+![r2 (squared correlation r^2) against n_AB (number of AB haplotypes) from 1 to 80 on a logarithmic axis](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-linkage-disequilibrium-curve)
+
+*r2 (squared correlation r^2) against n_AB (number of AB haplotypes) from 1 to 80 on a logarithmic axis. One curve for each value of n_ab (number of ab haplotypes): 40, 20, 80. Other inputs as in the worked example: n_Ab = 10, n_aB = 10. 30 points per curve computed by computational-biology-ai999x; marked: the worked example, n_AB = 40, r2 = 0.36.*
+
 ```python
 computational_biology_ai999x.solve('bio_linkage_disequilibrium', n_AB=40, n_Ab=10, n_aB=10, n_ab=40)
 # -> D = 0.15, D_prime = 0.6, r2 = 0.36   (SOLVED)
@@ -2001,6 +2217,10 @@ $$
 - **Method:** Haldane $d = -ln$(1-2r)/2; Kosambi $d = ln$($(1+2r)/(1-2r)$)/4 (Morgans, x100 for cM)
 - **Assumes:** $0  \leq  r < 0.5$; map function stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Map distance against recombination fraction r = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-map-distance-curve)
+
+*Map distance against recombination fraction r = 0.01 … 0.49 by the Haldane and Kosambi map functions, each curve 41 runs of the package; the dashed line d = 100·r is drawn for comparison. Both corrections grow without bound as r approaches 1/2 (unlinked loci). Marked: the worked example r = 0.2 (haldane), d = 25.54 cM.*
 
 ```python
 computational_biology_ai999x.solve('bio_map_distance', r=0.2, map='haldane')
@@ -2047,6 +2267,10 @@ $$
 - **Assumes:** $d  \geq  0$; map function stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![r (recombination fraction) against d_cM (map distance in centimorgans) from 5 to 500 on a logarithmic axis](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-recombination-fraction-curve)
+
+*r (recombination fraction) against d_cM (map distance in centimorgans) from 5 to 500 on a logarithmic axis. One curve for each value of map (map function: haldane (no interference) or kosambi): haldane, kosambi. 41 points per curve computed by computational-biology-ai999x; marked: the worked example, d_cM = 50, r = 0.31606.*
+
 ```python
 computational_biology_ai999x.solve('bio_recombination_fraction', d_cM=50, map='haldane')
 # -> r = 0.31606   (SOLVED)
@@ -2089,6 +2313,14 @@ $$
 - **Method:** Wright's path counting: sum over common ancestors and non-overlapping paths of $(1/2)^{n_{1}+n_{2}+1}$ $(1 + F_A)$
 - **Assumes:** every non-founder has exactly two parents listed; no cycles; founders unrelated, $F = 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The pedigree P-S, Q-S, P-D, Q-D, S-X, D-X drawn by generation, each line joining a parent to its child; the individual X is shaded, and the ancestors shared by its two parents (read from the pedigree) in a second colour](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-pedigree-inbreeding-pedigree)
+
+*The pedigree P-S, Q-S, P-D, Q-D, S-X, D-X drawn by generation, each line joining a parent to its child; the individual X is shaded, and the ancestors shared by its two parents (read from the pedigree) in a second colour. The package returns the inbreeding coefficient F = 0.25.*
+
+![Inbreeding coefficient of an individual X whose parents are related in five ways, each a run of the package on the pedigree written: parent × offspring: P-S, Q-S, P-X, S-X; full sibs: P-S, Q-S, P-D, Q-D, S-X, D-X; half sibs: P-S, Q-S, P-D, R-D, S-X, D-X; uncle × niece: P-A, Q-A, P-B, Q-B, B-C, M-C, A-X, C-X; first cousins: P-A, Q-A, P-B, Q-B, A-C, M-C, B-D, N-D, C-X, D-X](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-pedigree-inbreeding-bars)
+
+*Inbreeding coefficient of an individual X whose parents are related in five ways, each a run of the package on the pedigree written: parent × offspring: P-S, Q-S, P-X, S-X; full sibs: P-S, Q-S, P-D, Q-D, S-X, D-X; half sibs: P-S, Q-S, P-D, R-D, S-X, D-X; uncle × niece: P-A, Q-A, P-B, Q-B, B-C, M-C, A-X, C-X; first cousins: P-A, Q-A, P-B, Q-B, A-C, M-C, B-D, N-D, C-X, D-X.*
 
 ```python
 computational_biology_ai999x.solve('bio_pedigree_inbreeding', pedigree='P-S, Q-S, P-D, Q-D, S-X, D-X', individual='X')
@@ -2141,6 +2373,10 @@ $$
 - **Assumes:** equal lengths, no gaps; $p < 0.75$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Jukes–Cantor distance against the observed proportion of differing sites: pairs of 20-base sequences differing at 0 … 14 sites, each a run of the package (p and d both returned)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-jukes-cantor-distance-curve)
+
+*Jukes–Cantor distance against the observed proportion of differing sites: pairs of 20-base sequences differing at 0 … 14 sites, each a run of the package (p and d both returned). The correction grows without bound as p approaches 3/4, the proportion two unrelated sequences share by chance. Marked: the worked example AAAAAAAAAA / AAAAAAAACC, p = 0.2, d = 0.2326.*
+
 ```python
 computational_biology_ai999x.solve('bio_jukes_cantor_distance', seq1='AAAAAAAAAA', seq2='AAAAAAAACC')
 # -> p = 0.2, d = 0.232616   (SOLVED)
@@ -2184,6 +2420,10 @@ $$
 - **Assumes:** equal lengths, no gaps; $1 - 2P - Q > 0$ and $1 - 2Q > 0$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Kimura two-parameter distance for pairs of 20-base sequences differing at k sites, where every difference is a transition, a transversion, or alternately one and the other; each point is a run of the package (a pair it refuses, past saturation, is left out)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-kimura-distance-curve)
+
+*Kimura two-parameter distance for pairs of 20-base sequences differing at k sites, where every difference is a transition, a transversion, or alternately one and the other; each point is a run of the package (a pair it refuses, past saturation, is left out). Transitions saturate first. Marked: the worked example AAAAAAAAAA / AAAAAAAGGC (3 differences), d = 0.4024.*
+
 ```python
 computational_biology_ai999x.solve('bio_kimura_distance', seq1='AAAAAAAAAA', seq2='AAAAAAAGGC')
 # -> d = 0.402359   (SOLVED)
@@ -2226,6 +2466,14 @@ $$
 - **Method:** repeatedly merge the closest clusters; distances to a merged cluster are size-weighted averages
 - **Assumes:** symmetric, zero diagonal, positive distances; no ties in a merge step
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![UPGMA tree of 4 taxa (named A–D in the order of the rows of D = [[0, 2, 4, 6], [2, 0, 4, 6], [4, 4, 0, 6], [6, 6, 6, 0]]), drawn against node height (axis below)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-upgma-tree)
+
+*UPGMA tree of 4 taxa (named A–D in the order of the rows of D = [[0, 2, 4, 6], [2, 0, 4, 6], [4, 4, 0, 6], [6, 6, 6, 0]]), drawn against node height (axis below). The package returns the node heights 1, 2, 3 and the root height 3, written at the nodes; which clusters join at each node is the UPGMA pairing read from D, whose heights match the returned ones.*
+
+![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): D (input)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-upgma-matrix)
+
+*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): D (input). Returned with them by computational-biology-ai999x: root_height = 3.*
 
 ```python
 computational_biology_ai999x.solve('bio_upgma', D=[[0, 2, 4, 6], [2, 0, 4, 6], [4, 4, 0, 6], [6, 6, 6, 0]])
@@ -2271,6 +2519,14 @@ $$
 - **Assumes:** at least 3 taxa; no ties in the joining criterion; negative branch lengths kept as computed
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Neighbour-joining tree of 5 taxa (A–E, the rows of D = [[0, 5, 9, 9, 8], [5, 0, 10, 10, 9], [9, 10, 0, 8, 7], [9, 10, 8, 0, 3], [8, 9, 7, 3, 0]]), drawn to scale from the last joining point (an unrooted tree has no root; the dot is where its three last branches meet)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-neighbor-joining-tree)
+
+*Neighbour-joining tree of 5 taxa (A–E, the rows of D = [[0, 5, 9, 9, 8], [5, 0, 10, 10, 9], [9, 10, 0, 8, 7], [9, 10, 8, 0, 3], [8, 9, 7, 3, 0]]), drawn to scale from the last joining point (an unrooted tree has no root; the dot is where its three last branches meet). The package returns the terminal branch lengths 2, 3, 4, 2, 1 (A–E) and the total length 17; the topology and the internal branches (second colour) are the neighbour-joining pairing read from D, which reproduces both.*
+
+![The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): D (input); branch (returned)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-neighbor-joining-matrix)
+
+*The matrices of the worked example as heatmaps (rows and columns numbered; each cell shaded by its magnitude, negative values in the second colour; each panel shaded by its own largest magnitude): D (input); branch (returned). Returned with them by computational-biology-ai999x: total_length = 17.*
+
 ```python
 computational_biology_ai999x.solve('bio_neighbor_joining', D=[[0, 5, 9, 9, 8], [5, 0, 10, 10, 9], [9, 10, 0, 8, 7], [9, 10, 8, 0, 3], [8, 9, 7, 3, 0]])
 # -> total_length = 17, branch = [2.0, 3.0, 4.0, 2.0, 1.0]   (SOLVED)
@@ -2313,6 +2569,10 @@ $$
 - **Method:** double factorials: $(2n-3)$!! rooted, $(2n-5)$!! unrooted
 - **Assumes:** $n  \geq  2$ (rooted) or $n  \geq  3$ (unrooted); $n  \leq  100$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![count (number of distinct bifurcating trees) against n (number of taxa) from 1 to 13, logarithmic output axis](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-tree-count-curve)
+
+*count (number of distinct bifurcating trees) against n (number of taxa) from 1 to 13, logarithmic output axis. One curve for each value of rooted (rooted or unrooted trees): unrooted, rooted. 11 points per curve computed by computational-biology-ai999x; marked: the worked example, n = 5, count = 15.*
 
 ```python
 computational_biology_ai999x.solve('bio_tree_count', n=5, rooted='unrooted')
@@ -2358,6 +2618,10 @@ $$
 - **Assumes:** the same taxa; at least 4 taxa; trees compared unrooted; branch lengths ignored
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![tree 1 = ((A,B),(C,D),(E,F)); and tree 2 = ((A,C),(B,D),(E,F)); drawn side by side](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-robinson-foulds-trees)
+
+*tree 1 = ((A,B),(C,D),(E,F)); and tree 2 = ((A,C),(B,D),(E,F)); drawn side by side. Each internal branch splits the taxa in two; branches whose split the other tree lacks are drawn thick (read from the two trees), shared ones in the second colour. The package counts them: rf = 4, normalised 0.6667.*
+
 ```python
 computational_biology_ai999x.solve('bio_robinson_foulds', tree1='((A,B),(C,D),(E,F));', tree2='((A,C),(B,D),(E,F));')
 # -> rf = 4, rf_normalized = 0.666667   (SOLVED)
@@ -2400,6 +2664,10 @@ $$
 - **Method:** dynamic programming over the tree site by site (equivalent to Fitch's algorithm with unit costs)
 - **Assumes:** strictly bifurcating rooted tree; one aligned sequence per leaf; unit cost per change
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The tree ((A,B),(C,D)); with the character states of each taxon at 4 sites (A:AACG B:AATG C:GACT D:GGCT); letters of a site are coloured by state](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-fitch-parsimony-tree)
+
+*The tree ((A,B),(C,D)); with the character states of each taxon at 4 sites (A:AACG B:AATG C:GACT D:GGCT); letters of a site are coloured by state. Under each site, the minimum number of changes the package returns for that site alone (1, 1, 1, 1); their sum is the Fitch parsimony score of all sites, score = 4.*
 
 ```python
 computational_biology_ai999x.solve('bio_fitch_parsimony', tree='((A,B),(C,D));', states='A:AACG B:AATG C:GACT D:GGCT')
@@ -2446,6 +2714,14 @@ $$
 - **Assumes:** neutral Kingman coalescent; diploid: a pair coalesces at rate $1/(2Ne)$ per generation
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Expected genealogy of 8 gene copies in a population of effective size Ne = 1000: the dashed levels are the expected times of the successive coalescences, T(n) − T(j − 1), from the expected times to the most recent common ancestor T(k) the package returns for k = 2 … 8 (T(1) = 0)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-coalescent-times-genealogy)
+
+*Expected genealogy of 8 gene copies in a population of effective size Ne = 1000: the dashed levels are the expected times of the successive coalescences, T(n) − T(j − 1), from the expected times to the most recent common ancestor T(k) the package returns for k = 2 … 8 (T(1) = 0). Which lineages join at each level is drawn arbitrarily; the long last wait, two lineages becoming one, is about half the total. Marked: t_mrca = 3500 generations.*
+
+![t_mrca (expected TMRCA in generations) against n (number of sampled gene copies) from 1 to 10](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-coalescent-times-curve)
+
+*t_mrca (expected TMRCA in generations) against n (number of sampled gene copies) from 1 to 10. One curve for each value of Ne (diploid effective population size): 1000, 500, 2000. 9 points per curve computed by computational-biology-ai999x; marked: the worked example, n = 2, t_mrca = 2000.*
+
 ```python
 computational_biology_ai999x.solve('bio_coalescent_times', n=2, Ne=1000)
 # -> t_mrca = 2000, total_length = 4000   (SOLVED)
@@ -2488,6 +2764,10 @@ $$
 - **Method:** average the differences over all pairs of sequences; divide by the alignment length
 - **Assumes:** at least 2 aligned DNA sequences of equal length, no gaps
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![A sample of 3 aligned sequences (AAAA AAAT AATT); the segregating sites (marked s, read from the sample) are shaded where a sequence differs from the first](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-nucleotide-diversity-sample)
+
+*A sample of 3 aligned sequences (AAAA AAAT AATT); the segregating sites (marked s, read from the sample) are shaded where a sequence differs from the first. The package returns the mean number of differences between two sequences k = 1.333 and the nucleotide diversity π = 0.3333.*
 
 ```python
 computational_biology_ai999x.solve('bio_nucleotide_diversity', seqs='AAAA AAAT AATT')
@@ -2533,6 +2813,10 @@ $$
 - **Assumes:** at least 2 aligned DNA sequences of equal length, no gaps
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![A sample of 3 aligned sequences (AAAA AAAT AATT); the segregating sites (marked s) are shaded where a sequence differs from the first](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-watterson-theta-sample)
+
+*A sample of 3 aligned sequences (AAAA AAAT AATT); the segregating sites (marked s) are shaded where a sequence differs from the first. The package counts S = 2 segregating sites and returns Watterson's θ = 1.333 (0.3333 per site).*
+
 ```python
 computational_biology_ai999x.solve('bio_watterson_theta', seqs='AAAA AAAT AATT')
 # -> S = 2, theta = 1.33333, theta_site = 0.333333   (SOLVED)
@@ -2575,6 +2859,14 @@ $$
 - **Method:** $D = (k - S/a_{1}) / sqrt$(e1 $S + e_{2}$ S $(S-1)$) with Tajima's constants
 - **Assumes:** at least 4 aligned DNA sequences; at least one segregating site
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The sample AAAAAA AAAAAT AAAATT AAATTT with its segregating sites marked s and shaded where a sequence differs from the first](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-tajima-d-sample)
+
+*The sample AAAAAA AAAAAT AAAATT AAATTT with its segregating sites marked s and shaded where a sequence differs from the first. Tajima's D compares the mean pairwise difference k = 1.667 (returned with D) with Watterson's θ = 1.636 (the package's Watterson capability on the same sample); the package returns D = 0.1677.*
+
+![Tajima's D the package returns for four samples: variants each carried by one sequence (an excess of rare variants gives D < 0), the worked example, a mixed sample, and two groups differing at four sites (variants at intermediate frequency give D > 0)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-tajima-d-bars)
+
+*Tajima's D the package returns for four samples: variants each carried by one sequence (an excess of rare variants gives D < 0), the worked example, a mixed sample, and two groups differing at four sites (variants at intermediate frequency give D > 0). Samples: rare variants: AAAAAAAA TAAAAAAA ATAAAAAA AATAAAAA AAATAAAA AAAATAAA; worked example: AAAAAA AAAAAT AAAATT AAATTT; mixed: AAAAAAAA AAAAAAAT AAAAAATT TAAAAAAA AAAAAATT TTAAAAAA; intermediate: AAAAAAAA AAAAAAAA AAAAAAAA TTTTAAAA TTTTAAAA TTTTAAAA.*
 
 ```python
 computational_biology_ai999x.solve('bio_tajima_d', seqs='AAAAAA AAAAAT AAAATT AAATTT')
@@ -2621,6 +2913,10 @@ $$
 - **Assumes:** positive S and v; positive slope and intercept
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Lineweaver–Burk (double-reciprocal) plot of the measurements S = [1, 2, 4, 8], v = [5, 6](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-lineweaver-burk-linear)
+
+*Lineweaver–Burk (double-reciprocal) plot of the measurements S = [1, 2, 4, 8], v = [5, 6.6666666667, 8, 8.8888888889]: points at (1/S, 1/v), and the straight line 1/v = (Km/Vmax)(1/S) + 1/Vmax drawn with the package's fit Vmax = 10, Km = 1 (r² = 1). Marked: the intercepts 1/Vmax = 0.1 and −1/Km = -1, derived from the returned values.*
+
 ```python
 computational_biology_ai999x.solve('bio_lineweaver_burk', S=[1, 2, 4, 8], v=[5, 6.6666666667, 8, 8.8888888889])
 # -> Vmax = 10, Km = 1, r2 = 1   (SOLVED)
@@ -2666,6 +2962,10 @@ $$
 - **Assumes:** positive S and v; positive slope and intercept
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Hanes–Woolf plot of S = [1, 2, 4, 8], v = [5, 6](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hanes-woolf-linear)
+
+*Hanes–Woolf plot of S = [1, 2, 4, 8], v = [5, 6.6666666667, 8, 8.8888888889]: points at (S, S/v) and the line S/v = S/Vmax + Km/Vmax with the package's fit Vmax = 10, Km = 1 (r² = 1). Marked: the intercepts −Km and Km/Vmax = 0.1, derived from the returned values.*
+
 ```python
 computational_biology_ai999x.solve('bio_hanes_woolf', S=[1, 2, 4, 8], v=[5, 6.6666666667, 8, 8.8888888889])
 # -> Vmax = 10, Km = 1, r2 = 1   (SOLVED)
@@ -2710,6 +3010,10 @@ $$
 - **Method:** ordinary least squares of v on v/S: intercept Vmax, slope -Km
 - **Assumes:** positive S and v; negative slope, positive intercept
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Eadie–Hofstee plot of S = [1, 2, 4, 8], v = [5, 6](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-eadie-hofstee-linear)
+
+*Eadie–Hofstee plot of S = [1, 2, 4, 8], v = [5, 6.6666666667, 8, 8.8888888889]: points at (v/S, v) and the line v = Vmax − Km·(v/S) with the package's fit Vmax = 10, Km = 1 (r² = 1). Marked: the intercepts Vmax and Vmax/Km = 10 (derived).*
 
 ```python
 computational_biology_ai999x.solve('bio_eadie_hofstee', S=[1, 2, 4, 8], v=[5, 6.6666666667, 8, 8.8888888889])
@@ -2758,6 +3062,10 @@ $$
 ![Michaelis–Menten fit to 4 measured rates (S = [1, 2, 4, 8]): the package returns Vmax = 10 and Km = 1; the curve drawn is v = Vmax·S/(Km + S) with those two values (the double-reciprocal fit gives Vmax = 10, Km = 1, r² = 1)](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-michaelis-menten-fit-fit.svg)
 
 *Michaelis–Menten fit to 4 measured rates (S = [1, 2, 4, 8]): the package returns Vmax = 10 and Km = 1; the curve drawn is v = Vmax·S/(Km + S) with those two values (the double-reciprocal fit gives Vmax = 10, Km = 1, r² = 1). Marked: S = Km = 1, v = Vmax/2 = 5.*
+
+![Direct linear plot of the 4 measured rates (S = [1, 2, 4, 8], v = [5, 6](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-michaelis-menten-fit-fit-2)
+
+*Direct linear plot of the 4 measured rates (S = [1, 2, 4, 8], v = [5, 6.6666666667, 8, 8.8888888889]): each measurement is the line through (−S, 0) and (0, v), the set of (Km, Vmax) pairs that would explain it exactly. The lines meet at the parameters the package's nonlinear fit returns. Marked: Km = 1, Vmax = 10.*
 
 ```python
 computational_biology_ai999x.solve('bio_michaelis_menten_fit', S=[1, 2, 4, 8], v=[5, 6.6666666667, 8, 8.8888888889])
@@ -2809,6 +3117,10 @@ $$
 
 *Substrate and product over time for an enzyme reaction with S0 = 10, Vmax = 1 and Km = 2 (integrated Michaelis–Menten law), computed by the package at 101 times. Half the substrate is converted at t = 6.38629; marked: t = 6.38629, S = 5.*
 
+![Substrate left as a fraction of the start, S/S0, against time for an enzyme with Vmax = 1 and Km = 2 (the worked example's) starting from S0 = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-michaelis-menten-progress-kinetics-2)
+
+*Substrate left as a fraction of the start, S/S0, against time for an enzyme with Vmax = 1 and Km = 2 (the worked example's) starting from S0 = 0.4, 4 and 40: S is the package's integrated Michaelis–Menten value at 80 times, divided by S0. Far below Km the decay is exponential; far above it the enzyme is saturated and S falls at a nearly constant rate.*
+
 ```python
 computational_biology_ai999x.solve('bio_michaelis_menten_progress', S0=10, Vmax=1, Km=2, t=5)
 # -> S = 6.01624, P = 3.98376   (SOLVED)
@@ -2853,6 +3165,10 @@ $$
 - **Method:** integrated Michaelis-Menten equation
 - **Assumes:** $0 < X < 1$; positive S0, Vmax, Km
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Time an enzyme needs to convert a fraction X of its substrate (S0 = 10, Vmax = 1) for Km = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-michaelis-menten-time-curve)
+
+*Time an enzyme needs to convert a fraction X of its substrate (S0 = 10, Vmax = 1) for Km = 0.5, 2 and 8, each curve 49 runs of the package; the last few per cent take longest. Marked: the worked example X = 0.5, Km = 2, t = 6.386.*
 
 ```python
 computational_biology_ai999x.solve('bio_michaelis_menten_time', S0=10, Vmax=1, Km=2, X=0.5)
@@ -2901,6 +3217,10 @@ $$
 - **Assumes:** $0 < Y < 1$; positive S; rising Hill plot
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Hill plot of the fractional saturations Y = [0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hill-plot-linear)
+
+*Hill plot of the fractional saturations Y = [0.0588235294118, 0.2, 0.5, 0.8] at S = [1, 2, 4, 8]: points at (log S, log(Y/(1 − Y))) and the line of slope n through log K, with the package's fit n = 2, K = 4 (r² = 1); a slope above 1 means cooperative binding. Marked: half saturation at S = K.*
+
 ```python
 computational_biology_ai999x.solve('bio_hill_plot', S=[1, 2, 4, 8], Y=[0.0588235294118, 0.2, 0.5, 0.8])
 # -> n = 2, K = 4, r2 = 1   (SOLVED)
@@ -2945,6 +3265,10 @@ $$
 - **Method:** Levenberg-Marquardt on v = Vmax $S^{n} / (K^{n} + S^{n})$, started from the Hill-plot line
 - **Assumes:** at least 4 distinct positive concentrations; positive responses; convergence
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Hill-equation fit to v = [0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hill-fit-fit)
+
+*Hill-equation fit to v = [0.588235294118, 2, 5, 8, 9.41176470588] at S = [1, 2, 4, 8, 16] (logarithmic S): the curve v = Vmax·Sⁿ/(Kⁿ + Sⁿ) drawn with the package's fit Vmax = 10, K = 4, n = 2, beside the non-cooperative curve with the same Vmax and K (n = 1, dashed) for comparison. Marked: S = K, v = Vmax/2.*
 
 ```python
 computational_biology_ai999x.solve('bio_hill_fit', S=[1, 2, 4, 8, 16], v=[0.588235294118, 2, 5, 8, 9.41176470588])
@@ -2992,6 +3316,14 @@ $$
 - **Assumes:** rates without inhibitor at 3 or more S; rates with inhibitor; convergence
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Rates measured at S = [1, 2, 4, 8, 1, 2, 4, 8] with inhibitor I = [0, 0, 0, 0, 2, 2, 2, 2] (dots), and the curves v = Vmax·S/(Km(1 + I/Ki) + S) drawn with the package's fit Vmax = 10, Km = 1, Ki = 1](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-competitive-inhibition-fit-fit)
+
+*Rates measured at S = [1, 2, 4, 8, 1, 2, 4, 8] with inhibitor I = [0, 0, 0, 0, 2, 2, 2, 2] (dots), and the curves v = Vmax·S/(Km(1 + I/Ki) + S) drawn with the package's fit Vmax = 10, Km = 1, Ki = 1. A competitive inhibitor raises the apparent Km (Km(1 + I/Ki), derived) and leaves Vmax unchanged.*
+
+![The same measurements in double-reciprocal form (points at 1/S, 1/v) with the lines of the package's fit Vmax = 10, Km = 1, Ki = 1: a competitive inhibitor turns the line about the common intercept 1/Vmax (marked, derived), the signature of competition for the active site](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-competitive-inhibition-fit-linear)
+
+*The same measurements in double-reciprocal form (points at 1/S, 1/v) with the lines of the package's fit Vmax = 10, Km = 1, Ki = 1: a competitive inhibitor turns the line about the common intercept 1/Vmax (marked, derived), the signature of competition for the active site.*
+
 ```python
 computational_biology_ai999x.solve('bio_competitive_inhibition_fit', S=[1, 2, 4, 8, 1, 2, 4, 8], I=[0, 0, 0, 0, 2, 2, 2, 2], v=[5, 6.66666666667, 8, 8.88888888889, 2.5, 4, 5.71428571429, 7.27272727273])
 # -> Vmax = 10, Km = 1, Ki = 1   (SOLVED)
@@ -3028,6 +3360,14 @@ $$
 - **Method:** count F, W and Y and divide by the length
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The 152-residue protein of the package's worked examples written 30 residues per row (row start numbers on the left), phenylalanine F, tryptophan W and tyrosine Y shaded](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-aromaticity-sequence)
+
+*The 152-residue protein of the package's worked examples written 30 residues per row (row start numbers on the left), phenylalanine F, tryptophan W and tyrosine Y shaded. The package returns aromatic_count = 15 and aromaticity = 0.09868.*
+
+![The worked example MFWYAK: its aromatic residues F, W and Y shaded; the package returns aromatic_count = 3 and aromaticity = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-aromaticity-example)
+
+*The worked example MFWYAK: its aromatic residues F, W and Y shaded; the package returns aromatic_count = 3 and aromaticity = 0.5.*
 
 ```python
 computational_biology_ai999x.solve('bio_aromaticity', seq='MFWYAK')
@@ -3073,6 +3413,10 @@ $$
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Amino-acid composition of the 152-residue protein of the package's worked examples (MAEGEITTFTALTE… (152 residues)): one bar per amino acid, the percentage the package returns, grouped by side-chain class](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-amino-acid-composition-bars)
+
+*Amino-acid composition of the 152-residue protein of the package's worked examples (MAEGEITTFTALTE… (152 residues)): one bar per amino acid, the percentage the package returns, grouped by side-chain class. Marked: the most common residue, L (11.84 %).*
+
 ```python
 computational_biology_ai999x.solve('bio_amino_acid_composition', seq='MAAAK')
 # -> percent = {'A': 60.0, 'C': 0.0, 'D': 0.0, 'E': 0.0, 'F': 0.0, 'G': 0.0, 'H': 0.0, 'I': 0.0, 'K': 20.0, 'L': 0.0, 'M': 20.0, 'N': 0.0, 'P': 0.0, 'Q': 0.0, 'R': 0.0, 'S': 0.0, 'T': 0.0, 'V': 0.0, 'W': 0.0, 'Y': 0.0}, most_common = A, length = 5   (SOLVED)
@@ -3116,6 +3460,10 @@ $$
 - **Method:** count the residues of each propensity group
 - **Assumes:** standard amino acids only
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Fractions of helix-, sheet- and turn-forming residues the package returns for four peptides: the worked example EMALKNPGSD (helix 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-secondary-structure-fraction-bars)
+
+*Fractions of helix-, sheet- and turn-forming residues the package returns for four peptides: the worked example EMALKNPGSD (helix 0.5, turn 0.5, sheet 0.1), a β-branched VIVYTFWE, a helix-like AELKKLLEEA and a turn-rich NPGDGSPN. The three classes overlap, so the bars of a peptide need not sum to 1.*
 
 ```python
 computational_biology_ai999x.solve('bio_secondary_structure_fraction', seq='EMALKNPGSD')
@@ -3167,6 +3515,10 @@ $$
 
 *Leslie-matrix projection of an age-structured population (fecundities F = [0, 1.5, 1], survival S = [0.5, 0.8], start n0 = [100, 50, 20]): each bar is the population the package returns at that step, split by age class. Growth settles to λ = 1.06152 per step (r = 0.0596993); at t = 12 the classes are [197.307, 92.9426, 69.9967]; marked: total = 360.247.*
 
+![Total population projected by the Leslie matrix F = [0, 1](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-leslie-projection-trajectory)
+
+*Total population projected by the Leslie matrix F = [0, 1.5, 1], S = [0.5, 0.8] from three starts of 170 individuals (the worked example n0 = [100, 50, 20], all newborn, all in the oldest class) on a logarithmic axis, each step a run of the package: after the starting oscillations all three grow in parallel at the dominant rate λ = 1.062 per step (the package's growth-rate capability).*
+
 ```python
 computational_biology_ai999x.solve('bio_leslie_projection', F=[0, 1.5, 1], S=[0.5, 0.8], n0=[100, 50, 20], t=1)
 # -> n_t = [95.0, 50.0, 40.0], total = 185   (SOLVED)
@@ -3213,6 +3565,14 @@ $$
 - **Assumes:** $0 < S_i  \leq  1$; $F_i  \geq  0$, at least one positive
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Stable age distribution of the Leslie matrix with fecundities F = [0, 1](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-leslie-growth-rate-bars)
+
+*Stable age distribution of the Leslie matrix with fecundities F = [0, 1.5, 1] and survival S = [0.5, 0.8] (the projection's worked example), as the package returns it, with its dominant eigenvalue λ = 1.062, intrinsic rate r = 0.0597 and net reproductive rate R0 = 1.15.*
+
+![Growth rate λ and net reproductive rate R0 of the Leslie matrix F = [0, 2], S = [0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-leslie-growth-rate-curve)
+
+*Growth rate λ and net reproductive rate R0 of the Leslie matrix F = [0, 2], S = [0.5] as the fecundity of the last class runs from 0.25 to 6, each point a run of the package: both cross 1 at the same fecundity, where the population just replaces itself. Marked: the worked example, F = [0, 2].*
+
 ```python
 computational_biology_ai999x.solve('bio_leslie_growth_rate', F=[0, 2], S=[0.5])
 # -> lambda1 = 1, r = 0, R0 = 1, stable = [0.666666666667, 0.333333333333]   (SOLVED)
@@ -3257,6 +3617,10 @@ $$
 - **Method:** H' = -sum p_i log p_i with $p_i = n_i / N$
 - **Assumes:** whole non-negative counts; zero counts are not species of the sample
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Shannon index H and Pielou evenness for communities of four species and 300 individuals, from perfectly even ([75, 75, 75, 75]) to dominated by one species ([291, 3, 3, 3]): 25 communities, each a run of the package (base = e)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-shannon-diversity-curve)
+
+*Shannon index H and Pielou evenness for communities of four species and 300 individuals, from perfectly even ([75, 75, 75, 75]) to dominated by one species ([291, 3, 3, 3]): 25 communities, each a run of the package (base = e). Marked: the worked example counts = [10, 10, 10, 10], H = 1.386.*
 
 ```python
 computational_biology_ai999x.solve('bio_shannon_diversity', counts=[10, 10, 10, 10], base='e')
@@ -3304,6 +3668,10 @@ $$
 - **Assumes:** whole non-negative counts; estimator stated
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Simpson diversity 1 − D and the probability D that two individuals belong to the same species for communities of four species and 300 individuals, from perfectly even ([75, 75, 75, 75]) to dominated by one species ([291, 3, 3, 3]): 25 communities, each a run of the package (estimator = infinite)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-simpson-diversity-curve)
+
+*Simpson diversity 1 − D and the probability D that two individuals belong to the same species for communities of four species and 300 individuals, from perfectly even ([75, 75, 75, 75]) to dominated by one species ([291, 3, 3, 3]): 25 communities, each a run of the package (estimator = infinite). Marked: the worked example counts = [10, 10, 10, 10], simpson = 0.75.*
+
 ```python
 computational_biology_ai999x.solve('bio_simpson_diversity', counts=[10, 10, 10, 10], estimator='infinite')
 # -> D = 0.25, simpson = 0.75, inverse = 4   (SOLVED)
@@ -3350,6 +3718,14 @@ $$
 - **Assumes:** whole counts; the classic form needs $F_{1} > 0$ and $F_{2} > 0$, otherwise the bias-corrected form is used (as scikit-bio does)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The sample counts = [1, 1, 1, 2, 2, 5, 10] as a rank-abundance bar chart: 7 species observed, 3 of them once and 2 twice](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-chao1-bars)
+
+*The sample counts = [1, 1, 1, 2, 2, 5, 10] as a rank-abundance bar chart: 7 species observed, 3 of them once and 2 twice. From these rare counts the package's Chao1 (classic) estimates the species present, seen or not: chao1 = 9.25.*
+
+![Chao1 richness of samples with f1 = 0 … 12 singletons, two doubletons and two common species (counts 5 and 10), by the classic and the bias-corrected formula, each point a run of the package; the dashed line is the number of species observed](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-chao1-curve)
+
+*Chao1 richness of samples with f1 = 0 … 12 singletons, two doubletons and two common species (counts 5 and 10), by the classic and the bias-corrected formula, each point a run of the package; the dashed line is the number of species observed. With few doubletons, singletons weigh heavily.*
+
 ```python
 computational_biology_ai999x.solve('bio_chao1', counts=[1, 1, 1, 2, 2, 5, 10], form='classic')
 # -> chao1 = 9.25, s_obs = 7, singletons = 3, doubletons = 2   (SOLVED)
@@ -3393,6 +3769,10 @@ $$
 - **Assumes:** whole counts; not every rare species a singleton
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The sample counts = [1, 1, 2, 3, 5, 8, 20, 50] (logarithmic), with the rare-species threshold 10: ACE estimates the richness from the species at or below it](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-ace-bars)
+
+*The sample counts = [1, 1, 2, 3, 5, 8, 20, 50] (logarithmic), with the rare-species threshold 10: ACE estimates the richness from the species at or below it. 8 species are observed (the bars); the package returns ace = 9.719.*
+
 ```python
 computational_biology_ai999x.solve('bio_ace', counts=[1, 1, 2, 3, 5, 8, 20, 50], rare_threshold=10)
 # -> ace = 9.7193   (SOLVED)
@@ -3434,6 +3814,10 @@ $$
 - **Method:** one minus the proportion of individuals that are singletons
 - **Assumes:** whole counts
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Good's sample coverage of samples made of 8 species seen 5 times each plus 0 … 12 species seen once: each point a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-goods-coverage-curve)
+
+*Good's sample coverage of samples made of 8 species seen 5 times each plus 0 … 12 species seen once: each point a run of the package. Every singleton is evidence of species not yet seen, and coverage falls as they accumulate. The worked example counts = [1, 1, 2, 6] gives coverage = 0.8.*
 
 ```python
 computational_biology_ai999x.solve('bio_goods_coverage', counts=[1, 1, 2, 6])
@@ -3478,6 +3862,10 @@ $$
 - **Assumes:** whole counts; $N  \geq  2$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Margalef and Menhinick richness indices for samples of S = 2 … 20 species with 10 individuals each (N = 10·S), each point a run of the package: both grow with S though N grows with it](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-richness-indices-curve)
+
+*Margalef and Menhinick richness indices for samples of S = 2 … 20 species with 10 individuals each (N = 10·S), each point a run of the package: both grow with S though N grows with it. The worked example counts = [10, 20, 30, 40] gives margalef = 0.6514, menhinick = 0.4.*
+
 ```python
 computational_biology_ai999x.solve('bio_richness_indices', counts=[10, 20, 30, 40])
 # -> margalef = 0.651442, menhinick = 0.4   (SOLVED)
@@ -3521,6 +3909,10 @@ $$
 - **Assumes:** whole counts; $N  \geq  2$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Berger–Parker index (share of the commonest species) and McIntosh dominance for communities of four species and 300 individuals, from perfectly even ([75, 75, 75, 75]) to dominated by one species ([291, 3, 3, 3]): 25 communities, each a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-dominance-indices-curve)
+
+*Berger–Parker index (share of the commonest species) and McIntosh dominance for communities of four species and 300 individuals, from perfectly even ([75, 75, 75, 75]) to dominated by one species ([291, 3, 3, 3]): 25 communities, each a run of the package. Marked: the worked example counts = [50, 30, 20], berger_parker = 0.5.*
+
 ```python
 computational_biology_ai999x.solve('bio_dominance_indices', counts=[50, 30, 20])
 # -> berger_parker = 0.5, mcintosh = 0.426176   (SOLVED)
@@ -3562,6 +3954,10 @@ $$
 - **Method:** logarithm of the multinomial coefficient over N (exact integer)
 - **Assumes:** whole counts; $N  \leq  20000$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Brillouin index of fully censused four-species collections of 300 and of 30 individuals along a gradient from even to dominated, each point a run of the package, with the Shannon index of the 300-individual collections (the package's Shannon capability, natural logarithm) dashed: Brillouin's index is lower, and more so for small collections](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-brillouin-diversity-curve)
+
+*Brillouin index of fully censused four-species collections of 300 and of 30 individuals along a gradient from even to dominated, each point a run of the package, with the Shannon index of the 300-individual collections (the package's Shannon capability, natural logarithm) dashed: Brillouin's index is lower, and more so for small collections. Marked: the worked example counts = [5, 3, 2] (three species), H_B = 0.7832.*
 
 ```python
 computational_biology_ai999x.solve('bio_brillouin_diversity', counts=[5, 3, 2])
@@ -3605,6 +4001,10 @@ $$
 - **Method:** one minus the chance that a species is missed, summed (exact)
 - **Assumes:** whole counts; $1  \leq  n  \leq  N$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Rarefaction curves: the expected number of species in a random subsample of n individuals, for a sample with counts [20, 10, 5, 3, 2, 1, 1] (n = 1 … 42) and for the worked example counts [2, 1, 1]; every point a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-rarefaction-curve)
+
+*Rarefaction curves: the expected number of species in a random subsample of n individuals, for a sample with counts [20, 10, 5, 3, 2, 1, 1] (n = 1 … 42) and for the worked example counts [2, 1, 1]; every point a run of the package. The curve flattens as the rare species are all found. Marked: the worked example n = 2, 1.833 species.*
 
 ```python
 computational_biology_ai999x.solve('bio_rarefaction', counts=[2, 1, 1], n=2)
@@ -3651,6 +4051,10 @@ $$
 - **Assumes:** the same species order in both samples; each sample non-empty
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Two community samples, x = [6, 7, 4, 0] and y = [10, 0, 6, 3] (individuals of the same four species), and the dissimilarities the package returns: Bray–Curtis 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-beta-diversity-bars)
+
+*Two community samples, x = [6, 7, 4, 0] and y = [10, 0, 6, 3] (individuals of the same four species), and the dissimilarities the package returns: Bray–Curtis 0.4444 (from the abundances), Jaccard 0.5 and Sørensen 0.3333 (from presence and absence only).*
+
 ```python
 computational_biology_ai999x.solve('bio_beta_diversity', x=[6, 7, 4, 0], y=[10, 0, 6, 3])
 # -> bray_curtis = 0.444444, jaccard = 0.5, sorensen = 0.333333   (SOLVED)
@@ -3696,6 +4100,10 @@ $$
 - **Assumes:** positive areas and counts; c refers to the area unit used
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Species–area relation on logarithmic axes: the counts S = [10, 20, 40, 80] on areas A = [1, 10, 100, 1000] (dots) and the power law S = c·A^z drawn with the package's log–log fit c = 10, z = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-species-area-fit)
+
+*Species–area relation on logarithmic axes: the counts S = [10, 20, 40, 80] on areas A = [1, 10, 100, 1000] (dots) and the power law S = c·A^z drawn with the package's log–log fit c = 10, z = 0.301 (r² = 1). Marked: c, the species expected on a unit area.*
+
 ```python
 computational_biology_ai999x.solve('bio_species_area', A=[1, 10, 100, 1000], S=[10, 20, 40, 80])
 # -> c = 10, z = 0.30103, r2 = 1   (SOLVED)
@@ -3739,6 +4147,10 @@ $$
 - **Method:** the hypergeometric likelihood increases while $N  \leq  MC/R$: the maximiser is floor(MC/R)
 - **Assumes:** closed population; $R  \geq  1$, R <= min(M, C); when MC/R is whole, $N = MC/R$ and $MC/R - 1$ tie; the larger is given
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![N_mle (maximum-likelihood population size (largest maximiser)) against R (number of marked animals recaptured) from 1 to 24](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-petersen-estimate-curve)
+
+*N_mle (maximum-likelihood population size (largest maximiser)) against R (number of marked animals recaptured) from 1 to 24. One curve for each value of M (number marked and released): 100, 50, 200. Other inputs as in the worked example: C = 80. 24 points per curve computed by computational-biology-ai999x; marked: the worked example, R = 12, N_mle = 666.*
 
 ```python
 computational_biology_ai999x.solve('bio_petersen_estimate', M=100, C=80, R=12)
@@ -3784,6 +4196,10 @@ $$
 - **Method:** weighted regression of R/C on M through the origin
 - **Assumes:** closed population; whole counts, $R  \leq  C$; at least one recapture of a marked animal
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Schumacher–Eschmeyer mark–recapture: on each occasion the share of the catch already marked, R/C (from C = [10, 10, 10], R = [0, 2, 3]), against the marked animals at large M = [0, 10, 18]](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-schumacher-eschmeyer-fit)
+
+*Schumacher–Eschmeyer mark–recapture: on each occasion the share of the catch already marked, R/C (from C = [10, 10, 10], R = [0, 2, 3]), against the marked animals at large M = [0, 10, 18]. In a closed population R/C ≈ M/N; the line through the origin has slope 1/N with the package's estimate N = 57.3.*
 
 ```python
 computational_biology_ai999x.solve('bio_schumacher_eschmeyer', C=[10, 10, 10], R=[0, 2, 3], M=[0, 10, 18])
@@ -3836,6 +4252,10 @@ $$
 
 *Chemostat operating diagram (Monod growth, μmax = 1, Ks = 1, Y = 0.5, feed S0 = 10): steady-state substrate and biomass computed by the package at 90 dilution rates up to washout; biomass productivity D·X peaks near D = 0.7 (2.68333). Marked: D = 0.5, X = 4.5, S = 1.*
 
+![X (steady-state biomass concentration) against mu_max (maximum specific growth rate (1/time)) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-chemostat-steady-state-curve)
+
+*X (steady-state biomass concentration) against mu_max (maximum specific growth rate (1/time)) from 0.5 to 1.5. One curve for each value of S0 (feed substrate concentration): 10, 5, 20. Other inputs as in the worked example: Ks = 1, Y = 0.5, D = 0.5. 29 points per curve computed by computational-biology-ai999x; marked: the worked example, mu_max = 1, X = 4.5.*
+
 ```python
 computational_biology_ai999x.solve('bio_chemostat_steady_state', mu_max=1, Ks=1, Y=0.5, D=0.5, S0=10)
 # -> S = 1, X = 4.5   (SOLVED)
@@ -3882,6 +4302,14 @@ $$
 - **Assumes:** steady state S $v = 0$; finite bounds $lb  \leq  ub$; a feasible flux distribution exists
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![The metabolic network of the stoichiometric matrix S = [[1, -1, 0, 0], [0, 1, -1, -1]] (metabolites M1–M2, reactions R1–R4, each arrow running from what a reaction consumes to what it makes, with its flux bounds [lb, ub] = [0, 0, 0, 0], [10, 8, 100, 3])](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-flux-balance-analysis-network)
+
+*The metabolic network of the stoichiometric matrix S = [[1, -1, 0, 0], [0, 1, -1, -1]] (metabolites M1–M2, reactions R1–R4, each arrow running from what a reaction consumes to what it makes, with its flux bounds [lb, ub] = [0, 0, 0, 0], [10, 8, 100, 3]). ★ marks the reaction the objective c = [0, 0, 1, 0] maximises; under steady state the package's flux balance returns objective = 8.*
+
+![Optimal objective of the network S = [[1, -1, 0, 0], [0, 1, -1, -1]] (bounds ub = [10, 8, 100, 3], objective c = [0, 0, 1, 0]) as the upper bound of R2, or of the uptake R1, runs from 0 to 12 with the others kept: each point a run of the package](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-flux-balance-analysis-curve)
+
+*Optimal objective of the network S = [[1, -1, 0, 0], [0, 1, -1, -1]] (bounds ub = [10, 8, 100, 3], objective c = [0, 0, 1, 0]) as the upper bound of R2, or of the uptake R1, runs from 0 to 12 with the others kept: each point a run of the package. The objective follows the tighter of the two bounds and levels off when the other limits it. Marked: the worked example, objective = 8.*
+
 ```python
 computational_biology_ai999x.solve('bio_flux_balance_analysis', S=[[1, -1, 0, 0], [0, 1, -1, -1]], lb=[0, 0, 0, 0], ub=[10, 8, 100, 3], c=[0, 0, 1, 0])
 # -> objective = 8   (SOLVED)
@@ -3924,6 +4352,14 @@ $$
 - **Method:** sum the lengths of every branch on a path from an observed taxon to the root, each once
 - **Assumes:** every branch has a length; taxa are leaves of the tree; rooted convention (path to the root included)
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The tree ((A:1,B:2):3,(C:4,D:5):6); drawn to scale (branch lengths written on the branches)](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-faith-pd-tree)
+
+*The tree ((A:1,B:2):3,(C:4,D:5):6); drawn to scale (branch lengths written on the branches). The branches joining the taxa A, B to the root are drawn thick: their summed length is Faith's phylogenetic diversity, which the package returns as pd = 6.*
+
+![Faith's phylogenetic diversity of every pair of taxa of the tree ((A:1,B:2):3,(C:4,D:5):6);, each bar a run of the package: a pair from different clades keeps more of the tree than two sister taxa](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-faith-pd-bars)
+
+*Faith's phylogenetic diversity of every pair of taxa of the tree ((A:1,B:2):3,(C:4,D:5):6);, each bar a run of the package: a pair from different clades keeps more of the tree than two sister taxa. Line: all 4 taxa together, 21.*
 
 ```python
 computational_biology_ai999x.solve('bio_faith_pd', tree='((A:1,B:2):3,(C:4,D:5):6);', taxa='A B')
