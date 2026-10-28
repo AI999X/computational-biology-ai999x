@@ -4,7 +4,7 @@
 
 **[Install](https://pypi.org/project/computational-biology-ai999x/)** · **[Capability guide](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
-License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.0
+License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.1
 
 Field: **Life Sciences** · Tasks: Question Answering, Token Classification, Text Classification, Sentence Similarity, Feature Extraction
 
@@ -27,7 +27,7 @@ computational-biology-ai999x is an offline, deterministic Python solver that ans
 
 | Property | Value |
 |---|---|
-| Package | `computational-biology-ai999x` 1.0.0 (import `computational_biology_ai999x`) |
+| Package | `computational-biology-ai999x` 1.0.1 (import `computational_biology_ai999x`) |
 | Type | Deterministic neuro-symbolic computational biology engine (rule-based reading + certified symbolic capabilities) |
 | Capabilities | 83 certified procedures |
 | Knowledge pack | version 1.0.1 |
@@ -61,7 +61,18 @@ computational_biology.ask("Who created you?").message
 # -> computational-biology-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-Command line: `computational-biology-ai999x "<question>"`, `computational-biology-ai999x --capabilities`. The outputs above were produced by running this exact code on computational-biology-ai999x 1.0.0.
+Command line: `computational-biology-ai999x "<question>"`, `computational-biology-ai999x --capabilities`. The outputs above were produced by running this exact code on computational-biology-ai999x 1.0.1.
+
+## Find the right capability, and draw it
+
+`computational_biology.search()` finds which certified capability a question is about — across **every** AI999X model, so a question for another model points you to it. It runs **[ai999x-encoder](https://huggingface.co/AI999X/ai999x-encoder)**, AI999X's own capability encoder (4.7M parameters, a 4.9 MB ONNX model, offline; the root `model.safetensors` of this repository): `pip install "computational-biology-ai999x[search]"`. `ask(question, suggest=True)` adds the same pointers to a question it does not answer; an answer itself never changes.
+
+```python
+import computational_biology_ai999x as computational_biology
+
+computational_biology.search("Solve x^2 - 5x + 6 = 0", k=2)
+# -> Roots of a quadratic equation (math-foundations-ai999x, 0.63); Roots of a cubic equation (math-foundations-ai999x, 0.59)
+```
 
 ## How every answer is verified
 
@@ -71,6 +82,122 @@ Command line: `computational-biology-ai999x "<question>"`, `computational-biolog
 4. **Checking** — dimensions, substitution back into the defining equation, and agreement between independent readings; any disagreement becomes a refusal, never a number.
 
 Capabilities are certified before they ship: each must reproduce hand-worked reference cases, reject a deliberately wrong variant (a control), and leave every benchmark answer unchanged.
+
+## Worked examples
+
+Each question was put to `computational-biology-ai999x`; the answer is the one it returned, with the steps it took.
+
+**Reverse complement of a DNA sequence** · _Sequences_
+
+> Reverse complement: seq = ATGCCGTA
+
+→ **revcomp = TACGGCAT**
+
+<details><summary>Steps</summary>
+
+- Reverse complement of a DNA sequence: seq = ATGCCGTA → revcomp = TACGGCAT
+
+</details>
+
+**Hardy-Weinberg chi-square test** · _Population genetics_
+
+> Hardy-Weinberg test: n_AA = 298, n_Aa = 489, n_aa = 213
+
+→ **p = 0.5425, q = 0.4575, exp_AA = 294.30625, exp_Aa = 496.3875, exp_aa = 209.30625, chi2 = 0.2214895876, p_value = 0.6379072638, Ho = 0.489, He = 0.4963875, F = 0.01488252625**
+
+<details><summary>Steps</summary>
+
+- Hardy-Weinberg chi-square test: n_AA = 298, n_Aa = 489, n_aa = 213 → p = 0.5425, q = 0.4575, exp_AA = 294.30625, exp_Aa = 496.3875, exp_aa = 209.30625, chi2 = 0.2214895876, p_value = 0.6379072638, Ho = 0.489, He = 0.4963875, F = 0.01488252625
+
+</details>
+
+**Global alignment score (Needleman-Wunsch, linear gaps)** · _Alignment_
+
+> Global alignment score: seq1 = GATTACA, seq2 = GCATGCU, match = 1, mismatch = -1, gap = -1
+
+→ **score = 0**
+
+<details><summary>Steps</summary>
+
+- Global alignment score (Needleman-Wunsch, linear gaps): seq1 = GATTACA, seq2 = GCATGCU, match = 1, mismatch = -1, gap = -1 → score = 0
+
+</details>
+
+**Phenotype ratio of a cross (complete dominance)** · _Genetics_
+
+> Cross phenotype ratio: parent1 = AaBb, parent2 = AaBb
+
+→ **p_all_dominant = 0.5625, p_all_recessive = 0.0625, n_genotypes = 9, n_phenotypes = 4, ratio = 9:3:3:1**
+
+<details><summary>Steps</summary>
+
+- Phenotype ratio of a cross (complete dominance): parent1 = AaBb, parent2 = AaBb → p_all_dominant = 0.5625, p_all_recessive = 0.0625, n_genotypes = 9, n_phenotypes = 4, ratio = 9:3:3:1
+
+</details>
+
+**Michaelis-Menten nonlinear least-squares fit** · _Enzyme kinetics_
+
+`m.solve("bio_michaelis_menten_fit", S="0.5, 1, 2, 5", v="2.2, 3.5, 5.1, 6.6")`
+
+→ **Vmax = 8.500055206, Km = 1.400014367**
+
+<details><summary>Steps</summary>
+
+- Michaelis-Menten nonlinear least-squares fit: S = [0.5, 1, 2, 5], v = [2.2, 3.5, 5.1, 6.6] → Vmax = 8.500055206, Km = 1.400014367
+
+</details>
+
+**ACE species richness estimator** · _Ecology_
+
+> ACE richness estimator: counts = [1, 1, 2, 3, 5, 8, 20, 50], rare_threshold = 10
+
+→ **ace = 9.719298246**
+
+<details><summary>Steps</summary>
+
+- ACE species richness estimator: counts = [1, 1, 2, 3, 5, 8, 20, 50], rare_threshold = 10 → ace = 9.719298246
+
+</details>
+
+## Figures
+
+Every point was computed by `computational-biology-ai999x`.
+
+**Michaelis–Menten kinetics: measured rates and fitted curve**
+
+![Michaelis–Menten kinetics: measured rates and fitted curve — computed by computational-biology-ai999x](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-michaelis-menten-fit-fit.svg)
+
+_Michaelis–Menten fit to 4 measured rates (S = [1, 2, 4, 8]): the package returns Vmax = 10 and Km = 1; the curve drawn is v = Vmax·S/(Km + S) with those two values (the double-reciprocal fit gives Vmax = 10, Km = 1, r² = 1). Marked: S = Km = 1, v = Vmax/2 = 5._
+
+**Enzyme progress curve: substrate and product over time**
+
+![Enzyme progress curve: substrate and product over time — computed by computational-biology-ai999x](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-michaelis-menten-progress-kinetics.svg)
+
+_Substrate and product over time for an enzyme reaction with S0 = 10, Vmax = 1 and Km = 2 (integrated Michaelis–Menten law), computed by the package at 101 times. Half the substrate is converted at t = 6.38629; marked: t = 6.38629, S = 5._
+
+**Chemostat steady states against dilution rate**
+
+![Chemostat steady states against dilution rate — computed by computational-biology-ai999x](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-chemostat-steady-state-operating.svg)
+
+_Chemostat operating diagram (Monod growth, μmax = 1, Ks = 1, Y = 0.5, feed S0 = 10): steady-state substrate and biomass computed by the package at 90 dilution rates up to washout; biomass productivity D·X peaks near D = 0.7 (2.68333). Marked: D = 0.5, X = 4.5, S = 1._
+
+**Age-structured population growth (Leslie matrix)**
+
+![Age-structured population growth (Leslie matrix) — computed by computational-biology-ai999x](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-leslie-projection-population.svg)
+
+_Leslie-matrix projection of an age-structured population (fecundities F = [0, 1.5, 1], survival S = [0.5, 0.8], start n0 = [100, 50, 20]): each bar is the population the package returns at that step, split by age class. Growth settles to λ = 1.06152 per step (r = 0.0596993); at t = 12 the classes are [197.307, 92.9426, 69.9967]; marked: total = 360.247._
+
+**Hardy–Weinberg: observed against expected genotypes**
+
+![Hardy–Weinberg: observed against expected genotypes — computed by computational-biology-ai999x](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-hardy-weinberg-test-bars.svg)
+
+_Observed genotype counts AA = 298, Aa = 489, aa = 213 beside the counts expected under Hardy–Weinberg equilibrium, computed by the package from the allele frequencies p = 0.5425, q = 0.4575: 294.306, 496.387, 209.306. χ² = 0.22149, p-value 0.637907; observed heterozygosity 0.489 against expected 0.496387 (F = 0.0148825)._
+
+**Heterozygosity lost by drift: population size against time**
+
+![Heterozygosity lost by drift: population size against time — computed by computational-biology-ai999x](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-drift-heterozygosity-heatmap.svg)
+
+_Fraction of heterozygosity retained under random genetic drift, (1 − 1/(2N))^t, for population sizes N = 5, 10, 25, 50, 100, 250 (rows) after 10, 25, 50, 100, 200 generations (columns), each cell computed by the package and rounded to 3 decimals. N = 50 keeps 0.366 after 100 generations; N = 5 keeps 0 after 200._
 
 ## Capabilities
 
@@ -95,10 +222,10 @@ Capabilities are certified before they ship: each must reproduce hand-worked ref
 ## Citation
 
 ```bibtex
-@software{computational_biology_ai999x_1_0_0,
+@software{computational_biology_ai999x_1_0_1,
   title  = {computational-biology-ai999x: an offline, verified computational biology solver},
   author = {Farabi, Ibnul Jaif}, organization = {AI999X},
-  year   = {2026}, version = {1.0.0},
+  year   = {2026}, version = {1.0.1},
   url    = {https://huggingface.co/AI999X/computational-biology-ai999x}
 }
 ```

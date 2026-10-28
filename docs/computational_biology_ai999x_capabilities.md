@@ -1460,6 +1460,10 @@ $$
 - **Assumes:** both alleles present; biallelic locus; no continuity correction
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Observed genotype counts AA = 298, Aa = 489, aa = 213 beside the counts expected under Hardy–Weinberg equilibrium, computed by the package from the allele frequencies p = 0](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-hardy-weinberg-test-bars.svg)
+
+*Observed genotype counts AA = 298, Aa = 489, aa = 213 beside the counts expected under Hardy–Weinberg equilibrium, computed by the package from the allele frequencies p = 0.5425, q = 0.4575: 294.306, 496.387, 209.306. χ² = 0.22149, p-value 0.637907; observed heterozygosity 0.489 against expected 0.496387 (F = 0.0148825).*
+
 ```python
 computational_biology_ai999x.solve('bio_hardy_weinberg_test', n_AA=298, n_Aa=489, n_aa=213)
 # -> p = 0.5425, q = 0.4575, exp_AA = 294.306, exp_Aa = 496.387, exp_aa = 209.306, chi2 = 0.22149, p_value = 0.637907, Ho = 0.489, He = 0.496387, F = 0.0148825   (SOLVED)
@@ -1727,6 +1731,10 @@ $$
 - **Method:** expected heterozygosity falls by the factor $1 - 1/(2N)$ each generation
 - **Assumes:** $0 < i < 2N$; constant N, random mating, no mutation or selection
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Fraction of heterozygosity retained under random genetic drift, (1 − 1/(2N))^t, for population sizes N = 5, 10, 25, 50, 100, 250 (rows) after 10, 25, 50, 100, 200 generations (columns), each cell computed by the package and rounded to 3 decimals](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-drift-heterozygosity-heatmap.svg)
+
+*Fraction of heterozygosity retained under random genetic drift, (1 − 1/(2N))^t, for population sizes N = 5, 10, 25, 50, 100, 250 (rows) after 10, 25, 50, 100, 200 generations (columns), each cell computed by the package and rounded to 3 decimals. N = 50 keeps 0.366 after 100 generations; N = 5 keeps 0 after 200.*
 
 ```python
 computational_biology_ai999x.solve('bio_drift_heterozygosity', N=10, i=10, t=1)
@@ -2747,6 +2755,10 @@ $$
 - **Assumes:** at least 3 distinct positive S; positive v; an interior least-squares optimum
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
+![Michaelis–Menten fit to 4 measured rates (S = [1, 2, 4, 8]): the package returns Vmax = 10 and Km = 1; the curve drawn is v = Vmax·S/(Km + S) with those two values (the double-reciprocal fit gives Vmax = 10, Km = 1, r² = 1)](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-michaelis-menten-fit-fit.svg)
+
+*Michaelis–Menten fit to 4 measured rates (S = [1, 2, 4, 8]): the package returns Vmax = 10 and Km = 1; the curve drawn is v = Vmax·S/(Km + S) with those two values (the double-reciprocal fit gives Vmax = 10, Km = 1, r² = 1). Marked: S = Km = 1, v = Vmax/2 = 5.*
+
 ```python
 computational_biology_ai999x.solve('bio_michaelis_menten_fit', S=[1, 2, 4, 8], v=[5, 6.6666666667, 8, 8.8888888889])
 # -> Vmax = 10, Km = 1   (SOLVED)
@@ -2792,6 +2804,10 @@ $$
 - **Method:** solve Km ln(S0/S) + (S0 - S) = Vmax t by bisection (for P below half conversion, for ln S above)
 - **Assumes:** positive S0, Vmax, Km; $t  \geq  0$; consistent units
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Substrate and product over time for an enzyme reaction with S0 = 10, Vmax = 1 and Km = 2 (integrated Michaelis–Menten law), computed by the package at 101 times](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-michaelis-menten-progress-kinetics.svg)
+
+*Substrate and product over time for an enzyme reaction with S0 = 10, Vmax = 1 and Km = 2 (integrated Michaelis–Menten law), computed by the package at 101 times. Half the substrate is converted at t = 6.38629; marked: t = 6.38629, S = 5.*
 
 ```python
 computational_biology_ai999x.solve('bio_michaelis_menten_progress', S0=10, Vmax=1, Km=2, t=5)
@@ -3146,6 +3162,10 @@ $$
 - **Method:** multiply the age vector by the Leslie matrix t times
 - **Assumes:** $0 < S_i  \leq  1$; $F_i  \geq  0$, at least one positive; $t  \leq  500$
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Leslie-matrix projection of an age-structured population (fecundities F = [0, 1](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-leslie-projection-population.svg)
+
+*Leslie-matrix projection of an age-structured population (fecundities F = [0, 1.5, 1], survival S = [0.5, 0.8], start n0 = [100, 50, 20]): each bar is the population the package returns at that step, split by age class. Growth settles to λ = 1.06152 per step (r = 0.0596993); at t = 12 the classes are [197.307, 92.9426, 69.9967]; marked: total = 360.247.*
 
 ```python
 computational_biology_ai999x.solve('bio_leslie_projection', F=[0, 1.5, 1], S=[0.5, 0.8], n0=[100, 50, 20], t=1)
@@ -3811,6 +3831,10 @@ $$
 - **Method:** growth balances dilution: mu(S) = D gives S; the substrate balance gives X
 - **Assumes:** D < mu_max; no washout $(S < S_{0})$; consistent units
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![Chemostat operating diagram (Monod growth, μmax = 1, Ks = 1, Y = 0](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/figures/bio-chemostat-steady-state-operating.svg)
+
+*Chemostat operating diagram (Monod growth, μmax = 1, Ks = 1, Y = 0.5, feed S0 = 10): steady-state substrate and biomass computed by the package at 90 dilution rates up to washout; biomass productivity D·X peaks near D = 0.7 (2.68333). Marked: D = 0.5, X = 4.5, S = 1.*
 
 ```python
 computational_biology_ai999x.solve('bio_chemostat_steady_state', mu_max=1, Ks=1, Y=0.5, D=0.5, S0=10)
