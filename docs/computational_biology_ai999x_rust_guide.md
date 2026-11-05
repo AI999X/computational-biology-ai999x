@@ -1,6 +1,6 @@
 # computational-biology: the Computational Biology program — user guide
 
-**computational-biology-ai999x 1.0.3**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
+**computational-biology-ai999x 1.1.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
 Computational Biology covers DNA and protein sequences, alignment, molecular weights, genetics and population genetics, phylogenetics, enzyme kinetics, metabolic and population models, and ecology. This guide is about `computational-biology`, the model as a self-contained program for Windows and Linux: 83 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model's page (https://www.ai999x.com/models/computational-biology-ai999x/); the Python package (`pip install computational-biology-ai999x`) has its own guide. Every command output printed here is what the program printed.
 
@@ -17,24 +17,24 @@ Computational Biology covers DNA and protein sequences, alignment, molecular wei
 
 ## 1. Get it
 
-Version 1.4.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS; the newest version is always under https://www.ai999x.com/downloads/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
+Version 1.4.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
 
 | what | system | download |
 |---|---|---|
-| Desktop app: Computational Biology | Windows x86-64 | https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-windows-x86_64.zip |
-| Desktop app: Computational Biology | Linux x86-64 | https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz |
-| Desktop app: all models | Windows x86-64 | https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip |
-| Desktop app: all models | Linux x86-64 | https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz |
-| Command line | Windows x86-64 | https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip |
-| Command line | Linux x86-64 | https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz |
+| Desktop app: Computational Biology | Windows x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-windows-x86_64.zip |
+| Desktop app: Computational Biology | Linux x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz |
+| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip |
+| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz |
+| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip |
+| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz |
 
 ### Desktop app
 
 Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
 tar xzf ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
 ./ai999x-computational-biology-1.4.0-linux-x86_64/ai999x-computational-biology
@@ -43,8 +43,8 @@ tar xzf ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
 It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
 tar xzf ai999x-1.4.0-linux-x86_64.tar.gz
 ./ai999x-1.4.0-linux-x86_64/ai999x
@@ -55,8 +55,8 @@ tar xzf ai999x-1.4.0-linux-x86_64.tar.gz
 The bundle holds one program per model; `computational-biology` is this one. The checksum line should print OK.
 
 ```shell
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
 mkdir -p ~/.local/share && tar xzf ai999x-cli-1.4.0-linux-x86_64.tar.gz -C ~/.local/share
 echo 'export PATH="$HOME/.local/share/ai999x-cli-1.4.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
@@ -69,8 +69,8 @@ The fourth line should print True.
 
 ```powershell
 $F = "ai999x-cli-1.4.0-windows-x86_64.zip"
-Invoke-WebRequest "https://www.ai999x.com/downloads/desktop/1.4.0/$F" -OutFile $F
-Invoke-WebRequest "https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS" -OutFile SHA256SUMS
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.4.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
 $D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.4.0-windows-x86_64"; $env:Path += ";$D"
@@ -369,8 +369,8 @@ score = 0
   match = 1
   mismatch = -1
   gap = -1
-  seq1 = GATTACA
   seq2 = GCATGCU
+  seq1 = GATTACA
   assumes: gap <= 0; end gaps scored like internal gaps
 ```
 
@@ -474,8 +474,8 @@ score = 13
   match = 3
   mismatch = -3
   gap = -2
-  seq1 = TGTTACGG
   seq2 = GGTTGACTA
+  seq1 = TGTTACGG
   assumes: match > 0; gap <= 0
 ```
 
@@ -1402,9 +1402,9 @@ $ computational-biology solve bio_cross_genotype_probability parent1=Aa parent2=
 probability = 0.5
 fraction = 1/2
   by: Probability of an offspring genotype in a cross  (product over loci of the Punnett-square probability of each locus genotype)
-  offspring = Aa
   parent2 = Aa
   parent1 = Aa
+  offspring = Aa
   assumes: the same loci in the same order; independent assortment; at most 6 loci
 ```
 
@@ -1504,8 +1504,8 @@ $ computational-biology solve bio_jukes_cantor_distance seq1=AAAAAAAAAA seq2=AAA
 p = 0.2
 d = 0.2326161962
   by: Jukes-Cantor distance  (d = -(3/4) ln(1 - 4p/3))
-  seq2 = AAAAAAAACC
   seq1 = AAAAAAAAAA
+  seq2 = AAAAAAAACC
   assumes: equal lengths, no gaps; p < 0.75
 ```
 
@@ -2332,8 +2332,8 @@ $$
 $ computational-biology solve bio_edit_distance seq1=KITTEN seq2=SITTING
 distance = 3
   by: Edit (Levenshtein) distance between sequences  (dynamic programming over prefixes (Wagner-Fischer))
-  seq1 = KITTEN
   seq2 = SITTING
+  seq1 = KITTEN
   assumes: letters only
 ```
 
@@ -2599,9 +2599,9 @@ $$
 $ computational-biology solve bio_nucleic_acid_mass seq=AGC molecule=DNA strands=single
 mass = 949.6095
   by: Molecular mass of DNA or RNA  (sum of nucleotide-monophosphate masses minus one water per phosphodiester bond (each strand))
-  strands = single
   seq = AGC
   molecule = DNA
+  strands = single
   assumes: the sequence letters match the stated molecule
 ```
 
@@ -2755,8 +2755,8 @@ n_sites = 2
 positions = [4,12]
 fragments = [3,8,11]
   by: Restriction sites and fragments  (find every occurrence of the recognition site (overlaps included) and cut at the enzyme's offset)
-  enzyme = EcoRI
   seq = AAGAATTCTTGAATTCGGATCC
+  enzyme = EcoRI
   assumes: linear DNA; a listed enzyme
 ```
 

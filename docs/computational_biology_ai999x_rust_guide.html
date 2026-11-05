@@ -21,30 +21,30 @@ figcaption{font-size:9pt;color:#555}
 .pb{page-break-after:always}
 </style></head><body>
 <h1>computational-biology: the Computational Biology program — user guide</h1>
-<p><strong>computational-biology-ai999x 1.0.3</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
+<p><strong>computational-biology-ai999x 1.1.0</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
 <p>Computational Biology covers DNA and protein sequences, alignment, molecular weights, genetics and population genetics, phylogenetics, enzyme kinetics, metabolic and population models, and ecology. This guide is about <code>computational-biology</code>, the model as a self-contained program for Windows and Linux: 83 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model&#x27;s page (https://www.ai999x.com/models/computational-biology-ai999x/); the Python package (<code>pip install computational-biology-ai999x</code>) has its own guide. Every command output printed here is what the program printed.</p>
 <h2>Contents</h2>
 <ul><li>1. Get it: desktop app, command line, browser, Python</li><li>2. Quick start</li><li>3. Writing inputs</li><li>4. Outcomes and exit codes</li><li>5. Scripts and agents: batch and JSON</li><li>6. Figures</li><li>7. In a web page or Node.js: WebAssembly</li><li>8. Every capability</li></ul>
 <h2>1. Get it</h2>
-<p>Version 1.4.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS; the newest version is always under https://www.ai999x.com/downloads/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/</p>
-<table><thead><tr><th>what</th><th>system</th><th>download</th></tr></thead><tbody><tr><td>Desktop app: Computational Biology</td><td>Windows x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: Computational Biology</td><td>Linux x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz</td></tr><tr><td>Desktop app: all models</td><td>Windows x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: all models</td><td>Linux x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz</td></tr><tr><td>Command line</td><td>Windows x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip</td></tr><tr><td>Command line</td><td>Linux x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz</td></tr></tbody></table>
+<p>Version 1.4.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/</p>
+<table><thead><tr><th>what</th><th>system</th><th>download</th></tr></thead><tbody><tr><td>Desktop app: Computational Biology</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: Computational Biology</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz</td></tr><tr><td>Desktop app: all models</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: all models</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz</td></tr><tr><td>Command line</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip</td></tr><tr><td>Command line</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz</td></tr></tbody></table>
 <h3>Desktop app</h3>
 <p>Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
-<pre><code class="shell">curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
 tar xzf ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
 ./ai999x-computational-biology-1.4.0-linux-x86_64/ai999x-computational-biology</code></pre>
 <p>It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
-<pre><code class="shell">curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
 tar xzf ai999x-1.4.0-linux-x86_64.tar.gz
 ./ai999x-1.4.0-linux-x86_64/ai999x</code></pre>
 <h3>Command line — Linux</h3>
 <p>The bundle holds one program per model; <code>computational-biology</code> is this one. The checksum line should print OK.</p>
-<pre><code class="shell">curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
-curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
 mkdir -p ~/.local/share &amp;&amp; tar xzf ai999x-cli-1.4.0-linux-x86_64.tar.gz -C ~/.local/share
 echo &#x27;export PATH=&quot;$HOME/.local/share/ai999x-cli-1.4.0-linux-x86_64:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
@@ -52,8 +52,8 @@ computational-biology --version</code></pre>
 <h3>Command line — Windows (PowerShell)</h3>
 <p>The fourth line should print True.</p>
 <pre><code class="powershell">$F = &quot;ai999x-cli-1.4.0-windows-x86_64.zip&quot;
-Invoke-WebRequest &quot;https://www.ai999x.com/downloads/desktop/1.4.0/$F&quot; -OutFile $F
-Invoke-WebRequest &quot;https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS&quot; -OutFile SHA256SUMS
+Invoke-WebRequest &quot;https://downloads.ai999x.com/desktop/1.4.0/$F&quot; -OutFile $F
+Invoke-WebRequest &quot;https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS&quot; -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split &#x27; &#x27;)[0]
 Expand-Archive $F -DestinationPath &quot;$env:LOCALAPPDATA\AI999X&quot; -Force
 $D = &quot;$env:LOCALAPPDATA\AI999X\ai999x-cli-1.4.0-windows-x86_64&quot;; $env:Path += &quot;;$D&quot;
@@ -223,8 +223,8 @@ score = 0
   match = 1
   mismatch = -1
   gap = -1
-  seq1 = GATTACA
   seq2 = GCATGCU
+  seq1 = GATTACA
   assumes: gap &lt;= 0; end gaps scored like internal gaps</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the highest possible score for aligning two entire sequences end-to-end. By applying dynamic programming to the prefixes of sequence one and sequence two, it evaluates every possible alignment path. The result, 0, represents the sum of scores for matched characters, mismatched characters, and gap positions, where each gap contributes a fixed penalty defined by the input parameter. This metric quantifies the overall similarity between the two inputs under the specified scoring scheme.</p>
 <h4 id="bio_global_alignment_affine">Global alignment score with affine gaps (Gotoh) — <code>bio_global_alignment_affine</code></h4>
@@ -268,8 +268,8 @@ score = 13
   match = 3
   mismatch = -3
   gap = -2
-  seq1 = TGTTACGG
   seq2 = GGTTGACTA
+  seq1 = TGTTACGG
   assumes: match &gt; 0; gap &lt;= 0</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the highest possible score for aligning a specific segment from the first sequence with a segment from the second sequence. Using dynamic programming, it evaluates matches, mismatches, and gaps to find the best local similarity. The resulting score of 13 indicates the strength of this local relationship, where higher values suggest more significant biological homology or shared motifs.</p>
 <h4 id="bio_local_alignment_affine">Local alignment score with affine gaps — <code>bio_local_alignment_affine</code></h4>
@@ -638,9 +638,9 @@ ratio = 9:3:3:1
 probability = 0.5
 fraction = 1/2
   by: Probability of an offspring genotype in a cross  (product over loci of the Punnett-square probability of each locus genotype)
-  offspring = Aa
   parent2 = Aa
   parent1 = Aa
+  offspring = Aa
   assumes: the same loci in the same order; independent assortment; at most 6 loci</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the likelihood that an offspring from parents with genotypes Aa and Aa will have the specific genotype Aa. It works by finding the probability for each gene locus independently using Punnett squares and then multiplying those probabilities together. The final result is a probability value of 0.5, which can also be expressed as the fraction 1/2. This method assumes that the genes are located on different chromosomes or are far enough apart to assort independently.</p>
 <h4 id="bio_recombination_fraction">Recombination fraction from a map distance — <code>bio_recombination_fraction</code></h4>
@@ -682,8 +682,8 @@ X = 4.5
 p = 0.2
 d = 0.2326161962
   by: Jukes-Cantor distance  (d = -(3/4) ln(1 - 4p/3))
-  seq2 = AAAAAAAACC
   seq1 = AAAAAAAAAA
+  seq2 = AAAAAAAACC
   assumes: equal lengths, no gaps; p &lt; 0.75</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the evolutionary distance between two DNA sequences by correcting for multiple hits. The input sequences were compared to find that the proportion of differing sites is 0.2. Applying the correction formula yields a final distance of 0.232616, which represents the estimated number of substitutions per site since the sequences diverged.</p>
 <h4 id="bio_kimura_distance">Kimura two-parameter distance — <code>bio_kimura_distance</code></h4>
@@ -1013,8 +1013,8 @@ aromatic_count = 3
 <pre><code class="shell">$ computational-biology solve bio_edit_distance seq1=KITTEN seq2=SITTING
 distance = 3
   by: Edit (Levenshtein) distance between sequences  (dynamic programming over prefixes (Wagner-Fischer))
-  seq1 = KITTEN
   seq2 = SITTING
+  seq1 = KITTEN
   assumes: letters only</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the minimum number of single-character edits, including insertions, deletions, or substitutions, required to transform the first sequence into the second. The result, represented as 3, quantifies the dissimilarity between KITTEN and SITTING under the assumption that all these operations carry a uniform cost of one unit.</p>
 <h4 id="bio_gc_content">GC content of a nucleic acid — <code>bio_gc_content</code></h4>
@@ -1123,9 +1123,9 @@ mass = 17103.1617
 <pre><code class="shell">$ computational-biology solve bio_nucleic_acid_mass seq=AGC molecule=DNA strands=single
 mass = 949.6095
   by: Molecular mass of DNA or RNA  (sum of nucleotide-monophosphate masses minus one water per phosphodiester bond (each strand))
-  strands = single
   seq = AGC
   molecule = DNA
+  strands = single
   assumes: the sequence letters match the stated molecule</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the average molecular mass of a DNA or RNA molecule based on its nucleotide composition. It sums the individual masses of each nucleotide monophosphate and subtracts the mass of water molecules lost during the formation of phosphodiester bonds between adjacent nucleotides. The final result, 949.61, represents the total mass per mole of the specified strand configuration, accounting for the presence of a five-prime phosphate group.</p>
 <h4 id="bio_protein_net_charge">Net charge of a protein at a pH — <code>bio_protein_net_charge</code></h4>
@@ -1189,8 +1189,8 @@ n_sites = 2
 positions = [4,12]
 fragments = [3,8,11]
   by: Restriction sites and fragments  (find every occurrence of the recognition site (overlaps included) and cut at the enzyme&#x27;s offset)
-  enzyme = EcoRI
   seq = AAGAATTCTTGAATTCGGATCC
+  enzyme = EcoRI
   assumes: linear DNA; a listed enzyme</code></pre>
 <p>In the worked example, seq = AAGAATTCTTGAATTCGGATCC, enzyme = EcoRI go through the equation above and give n_sites = 2, positions = [4, 12], fragments = [3, 8, 11]. It applies only when linear DNA; a listed enzyme: outside that it says what is wrong instead of returning a number.</p>
 <h4 id="bio_reverse_complement">Reverse complement of a DNA sequence — <code>bio_reverse_complement</code></h4>
