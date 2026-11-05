@@ -1,4 +1,4 @@
-# computational-biology: the Computational Biology program — user guide
+# computational-biology: the Computational Biology program, user guide
 
 **computational-biology-ai999x 1.1.0**, Rust build: command line, desktop app and browser. **Creator / engineer:** Ibnul Jaif Farabi · **Company:** AI999X · support@ai999x.com
 
@@ -17,63 +17,63 @@ Computational Biology covers DNA and protein sequences, alignment, molecular wei
 
 ## 1. Get it
 
-Version 1.4.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
+Version 1.5.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/
 
 | what | system | download |
 |---|---|---|
-| Desktop app: Computational Biology | Windows x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-windows-x86_64.zip |
-| Desktop app: Computational Biology | Linux x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz |
-| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip |
-| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz |
-| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip |
-| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz |
+| Desktop app: Computational Biology | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-computational-biology-1.5.0-windows-x86_64.zip |
+| Desktop app: Computational Biology | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-computational-biology-1.5.0-linux-x86_64.tar.gz |
+| Desktop app: all models | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip |
+| Desktop app: all models | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz |
+| Command line | Windows x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip |
+| Command line | Linux x86-64 | https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz |
 
 ### Desktop app
 
-Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-computational-biology-1.5.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
-./ai999x-computational-biology-1.4.0-linux-x86_64/ai999x-computational-biology
+tar xzf ai999x-computational-biology-1.5.0-linux-x86_64.tar.gz
+./ai999x-computational-biology-1.5.0-linux-x86_64/ai999x-computational-biology
 ```
 
-It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
+It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-1.4.0-linux-x86_64.tar.gz
-./ai999x-1.4.0-linux-x86_64/ai999x
+tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
+./ai999x-1.5.0-linux-x86_64/ai999x
 ```
 
-### Command line — Linux
+### Command line: Linux
 
 The bundle holds one program per model; `computational-biology` is this one. The checksum line should print OK.
 
 ```shell
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share && tar xzf ai999x-cli-1.4.0-linux-x86_64.tar.gz -C ~/.local/share
-echo 'export PATH="$HOME/.local/share/ai999x-cli-1.4.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
 computational-biology --version
 ```
 
-### Command line — Windows (PowerShell)
+### Command line: Windows (PowerShell)
 
 The fourth line should print True.
 
 ```powershell
-$F = "ai999x-cli-1.4.0-windows-x86_64.zip"
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.4.0/$F" -OutFile $F
-Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.4.0/SHA256SUMS" -OutFile SHA256SUMS
+$F = "ai999x-cli-1.5.0-windows-x86_64.zip"
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/$F" -OutFile $F
+Invoke-WebRequest "https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS" -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
 Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
-$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.4.0-windows-x86_64"; $env:Path += ";$D"
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64"; $env:Path += ";$D"
 [Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
 computational-biology --version
 ```
@@ -96,7 +96,7 @@ Prints the model, its version and that this is the Rust build.
 
 ```shell
 $ computational-biology --version
-computational-biology-ai999x 1.0.3 (Rust build, ax-engine 0.1.0)
+computational-biology-ai999x 1.5.0 (Rust build, ax-engine 1.5.0)
 ```
 
 ### 2.2 Ask in words
@@ -207,29 +207,7 @@ $ computational-biology solve bio_hardy_weinberg_test n_AA=298 n_Aa=489
 NEEDS_INPUT: bio_hardy_weinberg_test needs n_aa (number of aa individuals). Example: solve('bio_hardy_weinberg_test', n_AA=298, n_Aa=489, n_aa=213).
 ```
 
-### 2.9 Draw the figures
-
-The live figures for your own inputs, written as SVG files into the folder given with --out (here the current folder); open them in any browser. Without --out the SVG text comes back as JSON.
-
-```shell
-$ computational-biology figures bio_reverse_complement seq=ATGCCGTA --out .
-[
-  {
-    "slug": "bio-reverse-complement-duplex",
-    "title": "Reverse complement: the partner strand of a DNA sequence",
-    "caption": "The given strand ATGCCGTA (top, 5' to 3') paired with its partner strand (bottom, 3' to 5'); A-T and G-C pairs in two colours. Read 5' to 3', the partner strand is the model's reverse complement, revcomp = TACGGCAT. Your inputs: seq = ATGCCGTA.",
-    "file": ".\\bio-reverse-complement-duplex.svg"
-  },
-  {
-    "slug": "bio-reverse-complement-live-1",
-    "title": "How far each letter of seq moves",
-    "caption": "For each letter of seq and the same position of revcomp: how many places along the alphabet (A to Z, wrapping round) it moved. Your inputs: seq = ATGCCGTA.",
-    "file": ".\\bio-reverse-complement-live-1.svg"
-  }
-]
-```
-
-### 2.10 Many questions at once
+### 2.9 Many questions at once
 
 One JSON request per line in, one JSON answer per line out, in order: for scripts, notebooks and agents (the program starts once). In PowerShell: Get-Content cases.jsonl | computational-biology batch
 
@@ -302,24 +280,6 @@ answers = [json.loads(line) for line in out.splitlines()]
 
 `computational-biology figures <capability> name=value ... --out DIR` draws the live figures for those inputs and writes each as an SVG file into DIR (an existing folder); without `--out` the SVG text comes back as JSON. The desktop app and the model page draw the same figures as soon as you press Compute.
 
-```shell
-$ computational-biology figures bio_reverse_complement seq=ATGCCGTA --out .
-[
-  {
-    "slug": "bio-reverse-complement-duplex",
-    "title": "Reverse complement: the partner strand of a DNA sequence",
-    "caption": "The given strand ATGCCGTA (top, 5' to 3') paired with its partner strand (bottom, 3' to 5'); A-T and G-C pairs in two colours. Read 5' to 3', the partner strand is the model's reverse complement, revcomp = TACGGCAT. Your inputs: seq = ATGCCGTA.",
-    "file": ".\\bio-reverse-complement-duplex.svg"
-  },
-  {
-    "slug": "bio-reverse-complement-live-1",
-    "title": "How far each letter of seq moves",
-    "caption": "For each letter of seq and the same position of revcomp: how many places along the alphabet (A to Z, wrapping round) it moved. Your inputs: seq = ATGCCGTA.",
-    "file": ".\\bio-reverse-complement-live-1.svg"
-  }
-]
-```
-
 ## 7. In a web page or Node.js: WebAssembly
 
 The same model is a WebAssembly module, `computational_biology_ai999x.wasm` (https://www.ai999x.com/compute/rust/computational_biology_ai999x.wasm), with a small loader, `ax-wasm.js` (https://www.ai999x.com/compute/rust/ax-wasm.js). It runs in a browser, a Web Worker or Node.js, with no server.
@@ -343,7 +303,7 @@ By topic. For each: what it does, what it needs and gives, when it applies, and 
 
 <a id="bio_global_alignment_score"></a>
 
-#### Global alignment score (Needleman-Wunsch, linear gaps) — `bio_global_alignment_score`
+#### Global alignment score (Needleman-Wunsch, linear gaps), `bio_global_alignment_score`
 
 The optimal global (Needleman-Wunsch) alignment score of two sequences with stated match, mismatch and linear gap scores.
 
@@ -353,12 +313,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first sequence | — |
-| `seq2` | in | second sequence | — |
-| `match` | in | score of a match | — |
-| `mismatch` | in | score of a mismatch | — |
-| `gap` | in | score of each gap position (<= 0) | — |
-| `score` | out | optimal global alignment score | — |
+| `seq1` | in | first sequence | - |
+| `seq2` | in | second sequence | - |
+| `match` | in | score of a match | - |
+| `mismatch` | in | score of a mismatch | - |
+| `gap` | in | score of each gap position (<= 0) | - |
+| `score` | out | optimal global alignment score | - |
 
 **Applies when:** gap <= 0; end gaps scored like internal gaps.
 
@@ -369,8 +329,8 @@ score = 0
   match = 1
   mismatch = -1
   gap = -1
-  seq2 = GCATGCU
   seq1 = GATTACA
+  seq2 = GCATGCU
   assumes: gap <= 0; end gaps scored like internal gaps
 ```
 
@@ -378,7 +338,7 @@ score = 0
 
 <a id="bio_global_alignment_affine"></a>
 
-#### Global alignment score with affine gaps (Gotoh) — `bio_global_alignment_affine`
+#### Global alignment score with affine gaps (Gotoh), `bio_global_alignment_affine`
 
 The optimal global alignment score with affine gaps: a gap of length L scores open + (L-1)*extend.
 
@@ -388,13 +348,13 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first sequence | — |
-| `seq2` | in | second sequence | — |
-| `match` | in | score of a match | — |
-| `mismatch` | in | score of a mismatch | — |
-| `open` | in | score of the first position of a gap (<= 0) | — |
-| `extend` | in | score of each further gap position (<= 0) | — |
-| `score` | out | optimal global alignment score | — |
+| `seq1` | in | first sequence | - |
+| `seq2` | in | second sequence | - |
+| `match` | in | score of a match | - |
+| `mismatch` | in | score of a mismatch | - |
+| `open` | in | score of the first position of a gap (<= 0) | - |
+| `extend` | in | score of each further gap position (<= 0) | - |
+| `score` | out | optimal global alignment score | - |
 
 **Applies when:** open, extend <= 0; a gap of length L scores open + (L-1) extend; end gaps scored.
 
@@ -415,7 +375,7 @@ score = 5
 
 <a id="bio_protein_global_blosum62"></a>
 
-#### Global protein alignment score (BLOSUM62, affine gaps) — `bio_protein_global_blosum62`
+#### Global protein alignment score (BLOSUM62, affine gaps), `bio_protein_global_blosum62`
 
 The optimal global alignment score of two proteins with BLOSUM62 and affine gaps.
 
@@ -425,11 +385,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first protein sequence | — |
-| `seq2` | in | second protein sequence | — |
-| `open` | in | score of the first position of a gap (<= 0) | — |
-| `extend` | in | score of each further gap position (<= 0) | — |
-| `score` | out | optimal global alignment score | — |
+| `seq1` | in | first protein sequence | - |
+| `seq2` | in | second protein sequence | - |
+| `open` | in | score of the first position of a gap (<= 0) | - |
+| `extend` | in | score of each further gap position (<= 0) | - |
+| `score` | out | optimal global alignment score | - |
 
 **Applies when:** standard amino acids; open, extend <= 0.
 
@@ -439,8 +399,8 @@ score = 3
   by: Global protein alignment score (BLOSUM62, affine gaps)  (Gotoh's dynamic programming with BLOSUM62 substitution scores)
   open = -10
   extend = -1
-  seq2 = PAWHEAE
   seq1 = HEAGAWGHEE
+  seq2 = PAWHEAE
   assumes: standard amino acids; open, extend <= 0
 ```
 
@@ -448,7 +408,7 @@ score = 3
 
 <a id="bio_local_alignment_score"></a>
 
-#### Local alignment score (Smith-Waterman, linear gaps) — `bio_local_alignment_score`
+#### Local alignment score (Smith-Waterman, linear gaps), `bio_local_alignment_score`
 
 The optimal local (Smith-Waterman) alignment score of two sequences with stated match, mismatch and linear gap scores.
 
@@ -458,12 +418,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first sequence | — |
-| `seq2` | in | second sequence | — |
-| `match` | in | score of a match | — |
-| `mismatch` | in | score of a mismatch | — |
-| `gap` | in | score of each gap position (<= 0) | — |
-| `score` | out | optimal local alignment score (>= 0) | — |
+| `seq1` | in | first sequence | - |
+| `seq2` | in | second sequence | - |
+| `match` | in | score of a match | - |
+| `mismatch` | in | score of a mismatch | - |
+| `gap` | in | score of each gap position (<= 0) | - |
+| `score` | out | optimal local alignment score (>= 0) | - |
 
 **Applies when:** match > 0; gap <= 0.
 
@@ -474,8 +434,8 @@ score = 13
   match = 3
   mismatch = -3
   gap = -2
-  seq2 = GGTTGACTA
   seq1 = TGTTACGG
+  seq2 = GGTTGACTA
   assumes: match > 0; gap <= 0
 ```
 
@@ -483,7 +443,7 @@ score = 13
 
 <a id="bio_local_alignment_affine"></a>
 
-#### Local alignment score with affine gaps — `bio_local_alignment_affine`
+#### Local alignment score with affine gaps: `bio_local_alignment_affine`
 
 The optimal local alignment score with affine gaps (a gap of length L scores open + (L-1)*extend).
 
@@ -493,13 +453,13 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first sequence | — |
-| `seq2` | in | second sequence | — |
-| `match` | in | score of a match | — |
-| `mismatch` | in | score of a mismatch | — |
-| `open` | in | score of the first position of a gap (<= 0) | — |
-| `extend` | in | score of each further gap position (<= 0) | — |
-| `score` | out | optimal local alignment score (>= 0) | — |
+| `seq1` | in | first sequence | - |
+| `seq2` | in | second sequence | - |
+| `match` | in | score of a match | - |
+| `mismatch` | in | score of a mismatch | - |
+| `open` | in | score of the first position of a gap (<= 0) | - |
+| `extend` | in | score of each further gap position (<= 0) | - |
+| `score` | out | optimal local alignment score (>= 0) | - |
 
 **Applies when:** match > 0; open, extend <= 0.
 
@@ -511,8 +471,8 @@ score = 13
   mismatch = -1
   open = -3
   extend = -1
-  seq2 = GGACGTTACGTGG
   seq1 = TTACGTACGTTT
+  seq2 = GGACGTTACGTGG
   assumes: match > 0; open, extend <= 0
 ```
 
@@ -520,7 +480,7 @@ score = 13
 
 <a id="bio_protein_local_blosum62"></a>
 
-#### Local protein alignment score (BLOSUM62, affine gaps) — `bio_protein_local_blosum62`
+#### Local protein alignment score (BLOSUM62, affine gaps), `bio_protein_local_blosum62`
 
 The optimal local (Smith-Waterman) alignment score of two proteins with BLOSUM62 and affine gaps.
 
@@ -530,11 +490,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first protein sequence | — |
-| `seq2` | in | second protein sequence | — |
-| `open` | in | score of the first position of a gap (<= 0) | — |
-| `extend` | in | score of each further gap position (<= 0) | — |
-| `score` | out | optimal local alignment score (>= 0) | — |
+| `seq1` | in | first protein sequence | - |
+| `seq2` | in | second protein sequence | - |
+| `open` | in | score of the first position of a gap (<= 0) | - |
+| `extend` | in | score of each further gap position (<= 0) | - |
+| `score` | out | optimal local alignment score (>= 0) | - |
 
 **Applies when:** standard amino acids; open, extend <= 0.
 
@@ -544,8 +504,8 @@ score = 20
   by: Local protein alignment score (BLOSUM62, affine gaps)  (Gotoh's recursion with BLOSUM62 scores and a floor at 0)
   open = -8
   extend = -8
-  seq2 = PAWHEAE
   seq1 = HEAGAWGHEE
+  seq2 = PAWHEAE
   assumes: standard amino acids; open, extend <= 0
 ```
 
@@ -553,7 +513,7 @@ score = 20
 
 <a id="bio_semiglobal_alignment_score"></a>
 
-#### Semi-global (end-gap-free) alignment score — `bio_semiglobal_alignment_score`
+#### Semi-global (end-gap-free) alignment score, `bio_semiglobal_alignment_score`
 
 The optimal alignment score when gaps at either end of either sequence are free (fitting a read inside a longer sequence, overlaps), with linear internal gaps.
 
@@ -563,12 +523,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first sequence | — |
-| `seq2` | in | second sequence | — |
-| `match` | in | score of a match | — |
-| `mismatch` | in | score of a mismatch | — |
-| `gap` | in | score of each internal gap position (<= 0) | — |
-| `score` | out | optimal semi-global alignment score | — |
+| `seq1` | in | first sequence | - |
+| `seq2` | in | second sequence | - |
+| `match` | in | score of a match | - |
+| `mismatch` | in | score of a mismatch | - |
+| `gap` | in | score of each internal gap position (<= 0) | - |
+| `score` | out | optimal semi-global alignment score | - |
 
 **Applies when:** gap <= 0; end gaps unscored.
 
@@ -590,7 +550,7 @@ score = 6
 
 <a id="bio_ace"></a>
 
-#### ACE species richness estimator — `bio_ace`
+#### ACE species richness estimator: `bio_ace`
 
 The abundance-based coverage estimator (ACE) of species richness, with a stated rare-species threshold (10 is the usual value).
 
@@ -600,9 +560,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `rare_threshold` | in | largest count of a rare species (usually 10) | — |
-| `ace` | out | estimated species richness | — |
+| `counts` | in | number of individuals of each species | - |
+| `rare_threshold` | in | largest count of a rare species (usually 10) | - |
+| `ace` | out | estimated species richness | - |
 
 **Applies when:** whole counts; not every rare species a singleton.
 
@@ -617,7 +577,7 @@ ace = 9.719298246
 
 <a id="bio_dominance_indices"></a>
 
-#### Berger-Parker and McIntosh indices — `bio_dominance_indices`
+#### Berger-Parker and McIntosh indices: `bio_dominance_indices`
 
 The Berger-Parker dominance (share of the most abundant species) and McIntosh's index of a sample.
 
@@ -627,9 +587,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `berger_parker` | out | Berger-Parker dominance n_max/N | — |
-| `mcintosh` | out | McIntosh index (N - U)/(N - sqrt N), U = sqrt(sum n_i^2) | — |
+| `counts` | in | number of individuals of each species | - |
+| `berger_parker` | out | Berger-Parker dominance n_max/N | - |
+| `mcintosh` | out | McIntosh index (N - U)/(N - sqrt N), U = sqrt(sum n_i^2) | - |
 
 **Applies when:** whole counts; N >= 2.
 
@@ -645,7 +605,7 @@ mcintosh = 0.4261762219
 
 <a id="bio_beta_diversity"></a>
 
-#### Beta diversity between two samples — `bio_beta_diversity`
+#### Beta diversity between two samples: `bio_beta_diversity`
 
 The Bray-Curtis dissimilarity (abundances) and the Jaccard and Sorensen dissimilarities (presence and absence) between two community samples.
 
@@ -655,11 +615,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `x` | in | abundances of each species in the first sample | — |
-| `y` | in | abundances of the same species in the second sample | — |
-| `bray_curtis` | out | Bray-Curtis dissimilarity | — |
-| `jaccard` | out | Jaccard dissimilarity (1 - shared/union) | — |
-| `sorensen` | out | Sorensen dissimilarity (1 - 2 shared/(S_x + S_y)) | — |
+| `x` | in | abundances of each species in the first sample | - |
+| `y` | in | abundances of the same species in the second sample | - |
+| `bray_curtis` | out | Bray-Curtis dissimilarity | - |
+| `jaccard` | out | Jaccard dissimilarity (1 - shared/union) | - |
+| `sorensen` | out | Sorensen dissimilarity (1 - 2 shared/(S_x + S_y)) | - |
 
 **Applies when:** the same species order in both samples; each sample non-empty.
 
@@ -676,7 +636,7 @@ sorensen = 0.3333333333
 
 <a id="bio_brillouin_diversity"></a>
 
-#### Brillouin diversity index — `bio_brillouin_diversity`
+#### Brillouin diversity index: `bio_brillouin_diversity`
 
 Brillouin's diversity index of a fully censused collection (natural logarithm).
 
@@ -686,8 +646,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `H_B` | out | Brillouin index (nats per individual) | — |
+| `counts` | in | number of individuals of each species | - |
+| `H_B` | out | Brillouin index (nats per individual) | - |
 
 **Applies when:** whole counts; N <= 20000.
 
@@ -702,7 +662,7 @@ H_B = 0.7832014181
 
 <a id="bio_chao1"></a>
 
-#### Chao1 species richness estimator — `bio_chao1`
+#### Chao1 species richness estimator: `bio_chao1`
 
 The Chao1 estimate of total species richness from abundance counts (bias-corrected or classic form), with the observed richness and the numbers of singletons and doubletons.
 
@@ -712,12 +672,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `form` | in | bias_corrected or classic Chao1 | — |
-| `chao1` | out | estimated species richness | — |
-| `s_obs` | out | observed number of species | — |
-| `singletons` | out | species seen once (F1) | — |
-| `doubletons` | out | species seen twice (F2) | — |
+| `counts` | in | number of individuals of each species | - |
+| `form` | in | bias_corrected or classic Chao1 | - |
+| `chao1` | out | estimated species richness | - |
+| `s_obs` | out | observed number of species | - |
+| `singletons` | out | species seen once (F1) | - |
+| `doubletons` | out | species seen twice (F2) | - |
 
 **Applies when:** whole counts; the classic form needs F1 > 0 and F2 > 0, otherwise the bias-corrected form is used (as scikit-bio does).
 
@@ -736,7 +696,7 @@ doubletons = 2
 
 <a id="bio_faith_pd"></a>
 
-#### Faith's phylogenetic diversity — `bio_faith_pd`
+#### Faith's phylogenetic diversity: `bio_faith_pd`
 
 Faith's phylogenetic diversity of a set of observed taxa: the total branch length of the rooted tree connecting them to the root.
 
@@ -746,9 +706,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `tree` | in | rooted tree in Newick format with branch lengths | — |
-| `taxa` | in | observed taxa (leaf names separated by spaces) | — |
-| `pd` | out | Faith's PD (sum of branch lengths) | — |
+| `tree` | in | rooted tree in Newick format with branch lengths | - |
+| `taxa` | in | observed taxa (leaf names separated by spaces) | - |
+| `pd` | out | Faith's PD (sum of branch lengths) | - |
 
 **Applies when:** every branch has a length; taxa are leaves of the tree; rooted convention (path to the root included).
 
@@ -765,7 +725,7 @@ pd = 6
 
 <a id="bio_goods_coverage"></a>
 
-#### Good's coverage of a sample — `bio_goods_coverage`
+#### Good's coverage of a sample: `bio_goods_coverage`
 
 Good's coverage estimator: the estimated fraction of the community's individuals belonging to species already seen in the sample.
 
@@ -775,8 +735,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `coverage` | out | Good's coverage 1 - F1/N | — |
+| `counts` | in | number of individuals of each species | - |
+| `coverage` | out | Good's coverage 1 - F1/N | - |
 
 **Applies when:** whole counts.
 
@@ -791,7 +751,7 @@ coverage = 0.8
 
 <a id="bio_richness_indices"></a>
 
-#### Margalef and Menhinick richness indices — `bio_richness_indices`
+#### Margalef and Menhinick richness indices: `bio_richness_indices`
 
 Margalef's richness index (S - 1)/ln N and Menhinick's richness index S/sqrt(N) of a sample.
 
@@ -801,9 +761,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `margalef` | out | Margalef's index (S - 1)/ln N | — |
-| `menhinick` | out | Menhinick's index S/sqrt(N) | — |
+| `counts` | in | number of individuals of each species | - |
+| `margalef` | out | Margalef's index (S - 1)/ln N | - |
+| `menhinick` | out | Menhinick's index S/sqrt(N) | - |
 
 **Applies when:** whole counts; N >= 2.
 
@@ -819,7 +779,7 @@ menhinick = 0.4
 
 <a id="bio_petersen_estimate"></a>
 
-#### Mark-recapture population estimate (Petersen MLE) — `bio_petersen_estimate`
+#### Mark-recapture population estimate (Petersen MLE), `bio_petersen_estimate`
 
 The maximum-likelihood population size from one mark-recapture experiment: M animals marked, C caught later, R of them marked (hypergeometric likelihood).
 
@@ -829,10 +789,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `M` | in | number marked and released | — |
-| `C` | in | number caught in the second sample | — |
-| `R` | in | number of marked animals recaptured | — |
-| `N_mle` | out | maximum-likelihood population size (largest maximiser) | — |
+| `M` | in | number marked and released | - |
+| `C` | in | number caught in the second sample | - |
+| `R` | in | number of marked animals recaptured | - |
+| `N_mle` | out | maximum-likelihood population size (largest maximiser) | - |
 
 **Applies when:** closed population; R >= 1, R <= min(M, C); when MC/R is whole, N = MC/R and MC/R - 1 tie; the larger is given.
 
@@ -847,7 +807,7 @@ N_mle = 666
 
 <a id="bio_rarefaction"></a>
 
-#### Rarefied species richness — `bio_rarefaction`
+#### Rarefied species richness: `bio_rarefaction`
 
 The expected number of species in a random subsample of n individuals drawn without replacement (Hurlbert-Sanders rarefaction).
 
@@ -857,9 +817,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `n` | in | subsample size (individuals) | — |
-| `expected_species` | out | expected number of species in the subsample | — |
+| `counts` | in | number of individuals of each species | - |
+| `n` | in | subsample size (individuals) | - |
+| `expected_species` | out | expected number of species in the subsample | - |
 
 **Applies when:** whole counts; 1 <= n <= N.
 
@@ -874,7 +834,7 @@ expected_species = 1.833333333
 
 <a id="bio_schumacher_eschmeyer"></a>
 
-#### Schumacher-Eschmeyer multiple-census estimate — `bio_schumacher_eschmeyer`
+#### Schumacher-Eschmeyer multiple-census estimate, `bio_schumacher_eschmeyer`
 
 The Schumacher-Eschmeyer estimate of a closed population's size from repeated mark-recapture samples.
 
@@ -884,10 +844,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `C` | in | number caught on each occasion | — |
-| `R` | in | number of those already marked | — |
-| `M` | in | number of marked animals at large before each occasion | — |
-| `N` | out | estimated population size | — |
+| `C` | in | number caught on each occasion | - |
+| `R` | in | number of those already marked | - |
+| `M` | in | number of marked animals at large before each occasion | - |
+| `N` | out | estimated population size | - |
 
 **Applies when:** closed population; whole counts, R <= C; at least one recapture of a marked animal.
 
@@ -902,7 +862,7 @@ N = 57.2972973
 
 <a id="bio_shannon_diversity"></a>
 
-#### Shannon diversity index — `bio_shannon_diversity`
+#### Shannon diversity index: `bio_shannon_diversity`
 
 The Shannon diversity index H' of a community in the stated logarithm base, Pielou's evenness J' and the effective number of species exp(H').
 
@@ -912,11 +872,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `base` | in | logarithm base: e (nats), 2 (bits) or 10 | — |
-| `H` | out | Shannon index H' in the stated base | — |
-| `evenness` | out | Pielou's evenness J' = H'/ln S | — |
-| `effective_number` | out | effective number of species exp(H') (Hill number of order 1) | — |
+| `counts` | in | number of individuals of each species | - |
+| `base` | in | logarithm base: e (nats), 2 (bits) or 10 | - |
+| `H` | out | Shannon index H' in the stated base | - |
+| `evenness` | out | Pielou's evenness J' = H'/ln S | - |
+| `effective_number` | out | effective number of species exp(H') (Hill number of order 1) | - |
 
 **Applies when:** whole non-negative counts; zero counts are not species of the sample.
 
@@ -934,7 +894,7 @@ effective_number = 4
 
 <a id="bio_simpson_diversity"></a>
 
-#### Simpson diversity indices — `bio_simpson_diversity`
+#### Simpson diversity indices: `bio_simpson_diversity`
 
 Simpson's dominance D, Simpson's diversity 1 - D and the inverse Simpson index 1/D, with the stated estimator (infinite population: sum p^2; finite sample: sum n(n-1)/(N(N-1))).
 
@@ -944,11 +904,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `counts` | in | number of individuals of each species | — |
-| `estimator` | in | infinite (sum p^2) or finite-sample correction | — |
-| `D` | out | Simpson's dominance D | — |
-| `simpson` | out | Simpson's diversity 1 - D | — |
-| `inverse` | out | inverse Simpson 1/D | — |
+| `counts` | in | number of individuals of each species | - |
+| `estimator` | in | infinite (sum p^2) or finite-sample correction | - |
+| `D` | out | Simpson's dominance D | - |
+| `simpson` | out | Simpson's diversity 1 - D | - |
+| `inverse` | out | inverse Simpson 1/D | - |
 
 **Applies when:** whole non-negative counts; estimator stated.
 
@@ -966,7 +926,7 @@ inverse = 4
 
 <a id="bio_species_area"></a>
 
-#### Species-area relationship fit — `bio_species_area`
+#### Species-area relationship fit: `bio_species_area`
 
 The constants c and z of the Arrhenius species-area relationship S = c A^z fitted by least squares on log S against log A.
 
@@ -976,11 +936,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `A` | in | areas (any one unit) | — |
-| `S` | in | species counts | — |
-| `c` | out | constant c (species in a unit area) | — |
-| `z` | out | exponent z | — |
-| `r2` | out | r^2 of the log-log fit | — |
+| `A` | in | areas (any one unit) | - |
+| `S` | in | species counts | - |
+| `c` | out | constant c (species in a unit area) | - |
+| `z` | out | exponent z | - |
+| `r2` | out | r^2 of the log-log fit | - |
 
 **Applies when:** positive areas and counts; c refers to the area unit used.
 
@@ -999,7 +959,7 @@ r2 = 1
 
 <a id="bio_competitive_inhibition_fit"></a>
 
-#### Competitive inhibition global fit — `bio_competitive_inhibition_fit`
+#### Competitive inhibition global fit: `bio_competitive_inhibition_fit`
 
 Vmax, Km and the inhibition constant Ki of a competitive inhibitor fitted globally to rates measured at several substrate and inhibitor concentrations (nonlinear least squares, unweighted).
 
@@ -1009,12 +969,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | substrate concentrations (one per measurement) | — |
-| `I` | in | inhibitor concentrations (one per measurement, 0 for none) | — |
-| `v` | in | measured rates | — |
-| `Vmax` | out | maximum rate | — |
-| `Km` | out | Michaelis constant (unit of S) | — |
-| `Ki` | out | inhibition constant (unit of I) | — |
+| `S` | in | substrate concentrations (one per measurement) | - |
+| `I` | in | inhibitor concentrations (one per measurement, 0 for none) | - |
+| `v` | in | measured rates | - |
+| `Vmax` | out | maximum rate | - |
+| `Km` | out | Michaelis constant (unit of S) | - |
+| `Ki` | out | inhibition constant (unit of I) | - |
 
 **Applies when:** rates without inhibitor at 3 or more S; rates with inhibitor; convergence.
 
@@ -1031,7 +991,7 @@ Ki = 1.000000711
 
 <a id="bio_eadie_hofstee"></a>
 
-#### Eadie-Hofstee fit of Michaelis-Menten data — `bio_eadie_hofstee`
+#### Eadie-Hofstee fit of Michaelis-Menten data, `bio_eadie_hofstee`
 
 Vmax and Km from a least-squares line through the Eadie-Hofstee plot of v against v/S.
 
@@ -1041,11 +1001,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | substrate concentrations (any one unit) | — |
-| `v` | in | initial rates (any one unit) | — |
-| `Vmax` | out | maximum rate (unit of v) | — |
-| `Km` | out | Michaelis constant (unit of S) | — |
-| `r2` | out | coefficient of determination of the linear fit | — |
+| `S` | in | substrate concentrations (any one unit) | - |
+| `v` | in | initial rates (any one unit) | - |
+| `Vmax` | out | maximum rate (unit of v) | - |
+| `Km` | out | Michaelis constant (unit of S) | - |
+| `r2` | out | coefficient of determination of the linear fit | - |
 
 **Applies when:** positive S and v; negative slope, positive intercept.
 
@@ -1062,7 +1022,7 @@ r2 = 1
 
 <a id="bio_hanes_woolf"></a>
 
-#### Hanes-Woolf fit of Michaelis-Menten data — `bio_hanes_woolf`
+#### Hanes-Woolf fit of Michaelis-Menten data: `bio_hanes_woolf`
 
 Vmax and Km from a least-squares line through the Hanes-Woolf plot of S/v against S.
 
@@ -1072,11 +1032,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | substrate concentrations (any one unit) | — |
-| `v` | in | initial rates (any one unit) | — |
-| `Vmax` | out | maximum rate (unit of v) | — |
-| `Km` | out | Michaelis constant (unit of S) | — |
-| `r2` | out | coefficient of determination of the linear fit | — |
+| `S` | in | substrate concentrations (any one unit) | - |
+| `v` | in | initial rates (any one unit) | - |
+| `Vmax` | out | maximum rate (unit of v) | - |
+| `Km` | out | Michaelis constant (unit of S) | - |
+| `r2` | out | coefficient of determination of the linear fit | - |
 
 **Applies when:** positive S and v; positive slope and intercept.
 
@@ -1093,7 +1053,7 @@ r2 = 1
 
 <a id="bio_hill_plot"></a>
 
-#### Hill coefficient from a Hill plot — `bio_hill_plot`
+#### Hill coefficient from a Hill plot: `bio_hill_plot`
 
 The Hill coefficient n and half-saturation constant K from a least-squares line through the Hill plot of log10(Y/(1-Y)) against log10 S (Y = fractional saturation).
 
@@ -1103,11 +1063,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | ligand or substrate concentrations | — |
-| `Y` | in | fractional saturations (0 < Y < 1) | — |
-| `n` | out | Hill coefficient | — |
-| `K` | out | half-saturation concentration (unit of S) | — |
-| `r2` | out | coefficient of determination of the line | — |
+| `S` | in | ligand or substrate concentrations | - |
+| `Y` | in | fractional saturations (0 < Y < 1) | - |
+| `n` | out | Hill coefficient | - |
+| `K` | out | half-saturation concentration (unit of S) | - |
+| `r2` | out | coefficient of determination of the line | - |
 
 **Applies when:** 0 < Y < 1; positive S; rising Hill plot.
 
@@ -1124,7 +1084,7 @@ r2 = 1
 
 <a id="bio_hill_fit"></a>
 
-#### Hill equation nonlinear least-squares fit — `bio_hill_fit`
+#### Hill equation nonlinear least-squares fit: `bio_hill_fit`
 
 Vmax, the half-saturation constant K and the Hill coefficient n fitted to rate or binding data by nonlinear least squares (unweighted).
 
@@ -1134,11 +1094,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | concentrations (any one unit) | — |
-| `v` | in | rates or responses (any one unit) | — |
-| `Vmax` | out | maximum rate | — |
-| `K` | out | half-saturation concentration (unit of S) | — |
-| `n` | out | Hill coefficient | — |
+| `S` | in | concentrations (any one unit) | - |
+| `v` | in | rates or responses (any one unit) | - |
+| `Vmax` | out | maximum rate | - |
+| `K` | out | half-saturation concentration (unit of S) | - |
+| `n` | out | Hill coefficient | - |
 
 **Applies when:** at least 4 distinct positive concentrations; positive responses; convergence.
 
@@ -1155,7 +1115,7 @@ n = 2.000001561
 
 <a id="bio_lineweaver_burk"></a>
 
-#### Lineweaver-Burk fit of Michaelis-Menten data — `bio_lineweaver_burk`
+#### Lineweaver-Burk fit of Michaelis-Menten data, `bio_lineweaver_burk`
 
 Vmax and Km from a least-squares line through the double-reciprocal (Lineweaver-Burk) plot of 1/v against 1/S.
 
@@ -1165,11 +1125,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | substrate concentrations (any one unit) | — |
-| `v` | in | initial rates (any one unit) | — |
-| `Vmax` | out | maximum rate (unit of v) | — |
-| `Km` | out | Michaelis constant (unit of S) | — |
-| `r2` | out | coefficient of determination of the linear fit | — |
+| `S` | in | substrate concentrations (any one unit) | - |
+| `v` | in | initial rates (any one unit) | - |
+| `Vmax` | out | maximum rate (unit of v) | - |
+| `Km` | out | Michaelis constant (unit of S) | - |
+| `r2` | out | coefficient of determination of the linear fit | - |
 
 **Applies when:** positive S and v; positive slope and intercept.
 
@@ -1186,7 +1146,7 @@ r2 = 1
 
 <a id="bio_michaelis_menten_fit"></a>
 
-#### Michaelis-Menten nonlinear least-squares fit — `bio_michaelis_menten_fit`
+#### Michaelis-Menten nonlinear least-squares fit, `bio_michaelis_menten_fit`
 
 Vmax and Km of the Michaelis-Menten equation fitted to rate data by nonlinear least squares (unweighted).
 
@@ -1196,10 +1156,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | substrate concentrations (any one unit) | — |
-| `v` | in | initial rates (any one unit) | — |
-| `Vmax` | out | maximum rate (unit of v) | — |
-| `Km` | out | Michaelis constant (unit of S) | — |
+| `S` | in | substrate concentrations (any one unit) | - |
+| `v` | in | initial rates (any one unit) | - |
+| `Vmax` | out | maximum rate (unit of v) | - |
+| `Km` | out | Michaelis constant (unit of S) | - |
 
 **Applies when:** at least 3 distinct positive S; positive v; an interior least-squares optimum.
 
@@ -1215,7 +1175,7 @@ Km = 0.999999678
 
 <a id="bio_michaelis_menten_progress"></a>
 
-#### Substrate remaining in a Michaelis-Menten reaction — `bio_michaelis_menten_progress`
+#### Substrate remaining in a Michaelis-Menten reaction, `bio_michaelis_menten_progress`
 
 The substrate and product concentrations after a time t of an irreversible Michaelis-Menten reaction (integrated rate law; constant enzyme, no product inhibition).
 
@@ -1225,12 +1185,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S0` | in | initial substrate concentration | — |
-| `Vmax` | in | maximum rate (concentration per time) | — |
-| `Km` | in | Michaelis constant (concentration) | — |
-| `t` | in | elapsed time (time unit of Vmax) | — |
-| `S` | out | substrate concentration at t | — |
-| `P` | out | product concentration at t | — |
+| `S0` | in | initial substrate concentration | - |
+| `Vmax` | in | maximum rate (concentration per time) | - |
+| `Km` | in | Michaelis constant (concentration) | - |
+| `t` | in | elapsed time (time unit of Vmax) | - |
+| `S` | out | substrate concentration at t | - |
+| `P` | out | product concentration at t | - |
 
 **Applies when:** positive S0, Vmax, Km; t >= 0; consistent units.
 
@@ -1250,7 +1210,7 @@ P = 3.983756077
 
 <a id="bio_michaelis_menten_time"></a>
 
-#### Time to reach a conversion in a Michaelis-Menten reaction — `bio_michaelis_menten_time`
+#### Time to reach a conversion in a Michaelis-Menten reaction, `bio_michaelis_menten_time`
 
 The time an irreversible Michaelis-Menten reaction needs to convert a stated fraction of its substrate.
 
@@ -1260,11 +1220,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S0` | in | initial substrate concentration | — |
-| `Vmax` | in | maximum rate (concentration per time) | — |
-| `Km` | in | Michaelis constant (concentration) | — |
-| `X` | in | fraction of substrate converted (0 to 1, or a percentage) | — |
-| `t` | out | time (time unit of Vmax) | — |
+| `S0` | in | initial substrate concentration | - |
+| `Vmax` | in | maximum rate (concentration per time) | - |
+| `Km` | in | Michaelis constant (concentration) | - |
+| `X` | in | fraction of substrate converted (0 to 1, or a percentage) | - |
+| `t` | out | time (time unit of Vmax) | - |
 
 **Applies when:** 0 < X < 1; positive S0, Vmax, Km.
 
@@ -1285,7 +1245,7 @@ t = 6.386294361
 
 <a id="bio_pedigree_inbreeding"></a>
 
-#### Inbreeding coefficient from a pedigree — `bio_pedigree_inbreeding`
+#### Inbreeding coefficient from a pedigree: `bio_pedigree_inbreeding`
 
 Wright's inbreeding coefficient F of an individual from its pedigree (founders unrelated and not inbred).
 
@@ -1295,9 +1255,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `pedigree` | in | parent-child pairs, e.g. [P-S, Q-S, P-D, Q-D, S-X, D-X] | — |
-| `individual` | in | name of the individual | — |
-| `F` | out | inbreeding coefficient | — |
+| `pedigree` | in | parent-child pairs, e.g. [P-S, Q-S, P-D, Q-D, S-X, D-X] | - |
+| `individual` | in | name of the individual | - |
+| `F` | out | inbreeding coefficient | - |
 
 **Applies when:** every non-founder has exactly two parents listed; no cycles; founders unrelated, F = 0.
 
@@ -1313,7 +1273,7 @@ F = 0.25
 
 <a id="bio_map_distance"></a>
 
-#### Map distance from a recombination fraction — `bio_map_distance`
+#### Map distance from a recombination fraction, `bio_map_distance`
 
 The genetic map distance (cM) corresponding to a recombination fraction, by the Haldane or Kosambi map function.
 
@@ -1323,9 +1283,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `r` | in | recombination fraction (0 to 0.5) | — |
-| `map` | in | map function: haldane (no interference) or kosambi | — |
-| `d_cM` | out | map distance in centimorgans | — |
+| `r` | in | recombination fraction (0 to 0.5) | - |
+| `map` | in | map function: haldane (no interference) or kosambi | - |
+| `d_cM` | out | map distance in centimorgans | - |
 
 **Applies when:** 0 <= r < 0.5; map function stated.
 
@@ -1342,7 +1302,7 @@ d_cM = 25.54128119
 
 <a id="bio_cross_phenotype_ratio"></a>
 
-#### Phenotype ratio of a cross (complete dominance) — `bio_cross_phenotype_ratio`
+#### Phenotype ratio of a cross (complete dominance), `bio_cross_phenotype_ratio`
 
 The offspring phenotype ratio of a cross with complete dominance, the probabilities of the all-dominant and all-recessive phenotypes and the numbers of genotypes and phenotypes.
 
@@ -1352,13 +1312,13 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `parent1` | in | genotype of the first parent, letter pairs (e.g. AaBb) | — |
-| `parent2` | in | genotype of the second parent | — |
-| `p_all_dominant` | out | probability of showing every dominant trait | — |
-| `p_all_recessive` | out | probability of showing every recessive trait | — |
-| `n_genotypes` | out | number of distinct offspring genotypes | — |
-| `n_phenotypes` | out | number of distinct offspring phenotypes | — |
-| `ratio` | out | phenotype ratio, largest class first (e.g. 9:3:3:1) | — |
+| `parent1` | in | genotype of the first parent, letter pairs (e.g. AaBb) | - |
+| `parent2` | in | genotype of the second parent | - |
+| `p_all_dominant` | out | probability of showing every dominant trait | - |
+| `p_all_recessive` | out | probability of showing every recessive trait | - |
+| `n_genotypes` | out | number of distinct offspring genotypes | - |
+| `n_phenotypes` | out | number of distinct offspring phenotypes | - |
+| `ratio` | out | phenotype ratio, largest class first (e.g. 9:3:3:1) | - |
 
 **Applies when:** complete dominance at every locus; independent assortment.
 
@@ -1379,7 +1339,7 @@ ratio = 9:3:3:1
 
 <a id="bio_cross_genotype_probability"></a>
 
-#### Probability of an offspring genotype in a cross — `bio_cross_genotype_probability`
+#### Probability of an offspring genotype in a cross, `bio_cross_genotype_probability`
 
 The probability that an offspring of two parents has a stated genotype (monohybrid, dihybrid or more loci; independent assortment).
 
@@ -1389,11 +1349,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `parent1` | in | genotype of the first parent, letter pairs (e.g. AaBb) | — |
-| `parent2` | in | genotype of the second parent | — |
-| `offspring` | in | offspring genotype asked about | — |
-| `probability` | out | probability of the offspring genotype | — |
-| `fraction` | out | the same as a fraction | — |
+| `parent1` | in | genotype of the first parent, letter pairs (e.g. AaBb) | - |
+| `parent2` | in | genotype of the second parent | - |
+| `offspring` | in | offspring genotype asked about | - |
+| `probability` | out | probability of the offspring genotype | - |
+| `fraction` | out | the same as a fraction | - |
 
 **Applies when:** the same loci in the same order; independent assortment; at most 6 loci.
 
@@ -1402,8 +1362,8 @@ $ computational-biology solve bio_cross_genotype_probability parent1=Aa parent2=
 probability = 0.5
 fraction = 1/2
   by: Probability of an offspring genotype in a cross  (product over loci of the Punnett-square probability of each locus genotype)
-  parent2 = Aa
   parent1 = Aa
+  parent2 = Aa
   offspring = Aa
   assumes: the same loci in the same order; independent assortment; at most 6 loci
 ```
@@ -1412,7 +1372,7 @@ fraction = 1/2
 
 <a id="bio_recombination_fraction"></a>
 
-#### Recombination fraction from a map distance — `bio_recombination_fraction`
+#### Recombination fraction from a map distance, `bio_recombination_fraction`
 
 The recombination fraction between two loci a stated map distance apart, by the Haldane or Kosambi map function.
 
@@ -1422,9 +1382,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `d_cM` | in | map distance in centimorgans | — |
-| `map` | in | map function: haldane (no interference) or kosambi | — |
-| `r` | out | recombination fraction | — |
+| `d_cM` | in | map distance in centimorgans | - |
+| `map` | in | map function: haldane (no interference) or kosambi | - |
+| `r` | out | recombination fraction | - |
 
 **Applies when:** d >= 0; map function stated.
 
@@ -1443,7 +1403,7 @@ r = 0.3160602794
 
 <a id="bio_chemostat_steady_state"></a>
 
-#### Chemostat steady state (Monod kinetics) — `bio_chemostat_steady_state`
+#### Chemostat steady state (Monod kinetics): `bio_chemostat_steady_state`
 
 The steady-state substrate and biomass concentrations of a chemostat with Monod growth kinetics.
 
@@ -1453,13 +1413,13 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `mu_max` | in | maximum specific growth rate (1/time) | — |
-| `Ks` | in | half-saturation constant (concentration) | — |
-| `Y` | in | biomass yield (biomass per substrate) | — |
-| `D` | in | dilution rate (1/time, same unit as mu_max) | — |
-| `S0` | in | feed substrate concentration | — |
-| `S` | out | steady-state substrate concentration | — |
-| `X` | out | steady-state biomass concentration | — |
+| `mu_max` | in | maximum specific growth rate (1/time) | - |
+| `Ks` | in | half-saturation constant (concentration) | - |
+| `Y` | in | biomass yield (biomass per substrate) | - |
+| `D` | in | dilution rate (1/time, same unit as mu_max) | - |
+| `S0` | in | feed substrate concentration | - |
+| `S` | out | steady-state substrate concentration | - |
+| `X` | out | steady-state biomass concentration | - |
 
 **Applies when:** D < mu_max; no washout (S < S0); consistent units.
 
@@ -1482,7 +1442,7 @@ X = 4.5
 
 <a id="bio_jukes_cantor_distance"></a>
 
-#### Jukes-Cantor distance — `bio_jukes_cantor_distance`
+#### Jukes-Cantor distance: `bio_jukes_cantor_distance`
 
 The Jukes-Cantor (JC69) evolutionary distance between two aligned DNA sequences: the expected number of substitutions per site, corrected for multiple hits.
 
@@ -1492,10 +1452,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first aligned DNA sequence | — |
-| `seq2` | in | second aligned DNA sequence | — |
-| `p` | out | proportion of differing sites | — |
-| `d` | out | Jukes-Cantor distance (substitutions per site) | — |
+| `seq1` | in | first aligned DNA sequence | - |
+| `seq2` | in | second aligned DNA sequence | - |
+| `p` | out | proportion of differing sites | - |
+| `d` | out | Jukes-Cantor distance (substitutions per site) | - |
 
 **Applies when:** equal lengths, no gaps; p < 0.75.
 
@@ -1513,7 +1473,7 @@ d = 0.2326161962
 
 <a id="bio_kimura_distance"></a>
 
-#### Kimura two-parameter distance — `bio_kimura_distance`
+#### Kimura two-parameter distance: `bio_kimura_distance`
 
 The Kimura two-parameter (K80) distance between two aligned DNA sequences, separating transitions (A<->G, C<->T) from transversions.
 
@@ -1523,9 +1483,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first aligned DNA sequence | — |
-| `seq2` | in | second aligned DNA sequence | — |
-| `d` | out | K80 distance (substitutions per site) | — |
+| `seq1` | in | first aligned DNA sequence | - |
+| `seq2` | in | second aligned DNA sequence | - |
+| `d` | out | K80 distance (substitutions per site) | - |
 
 **Applies when:** equal lengths, no gaps; 1 - 2P - Q > 0 and 1 - 2Q > 0.
 
@@ -1542,7 +1502,7 @@ d = 0.4023594781
 
 <a id="bio_neighbor_joining"></a>
 
-#### Neighbour-joining branch lengths — `bio_neighbor_joining`
+#### Neighbour-joining branch lengths: `bio_neighbor_joining`
 
 The total tree length and the terminal branch lengths of the neighbour-joining tree of a distance matrix.
 
@@ -1552,9 +1512,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `D` | in | symmetric distance matrix, zero diagonal (at least 3 taxa) | — |
-| `total_length` | out | sum of all branch lengths | — |
-| `branch` | out | terminal branch length of each taxon, in input order | — |
+| `D` | in | symmetric distance matrix, zero diagonal (at least 3 taxa) | - |
+| `total_length` | out | sum of all branch lengths | - |
+| `branch` | out | terminal branch length of each taxon, in input order | - |
 
 **Applies when:** at least 3 taxa; no ties in the joining criterion; negative branch lengths kept as computed.
 
@@ -1570,7 +1530,7 @@ branch = [2.0,3.0,4.0,2.0,1.0]
 
 <a id="bio_tree_count"></a>
 
-#### Number of possible phylogenetic trees — `bio_tree_count`
+#### Number of possible phylogenetic trees: `bio_tree_count`
 
 The number of distinct labelled bifurcating trees for n taxa, rooted or unrooted.
 
@@ -1580,9 +1540,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `n` | in | number of taxa | — |
-| `rooted` | in | rooted or unrooted trees | — |
-| `count` | out | number of distinct bifurcating trees | — |
+| `n` | in | number of taxa | - |
+| `rooted` | in | rooted or unrooted trees | - |
+| `count` | out | number of distinct bifurcating trees | - |
 
 **Applies when:** n >= 2 (rooted) or n >= 3 (unrooted); n <= 100.
 
@@ -1598,7 +1558,7 @@ count = 15
 
 <a id="bio_fitch_parsimony"></a>
 
-#### Parsimony score of a tree (Fitch) — `bio_fitch_parsimony`
+#### Parsimony score of a tree (Fitch): `bio_fitch_parsimony`
 
 The minimum number of character changes (small parsimony score) needed on a given rooted bifurcating tree to explain aligned sequences at its leaves.
 
@@ -1608,9 +1568,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `tree` | in | rooted bifurcating tree in Newick format | — |
-| `states` | in | aligned sequence of each leaf, written name:SEQUENCE separated by spaces | — |
-| `score` | out | parsimony score (number of changes) | — |
+| `tree` | in | rooted bifurcating tree in Newick format | - |
+| `states` | in | aligned sequence of each leaf, written name:SEQUENCE separated by spaces | - |
+| `score` | out | parsimony score (number of changes) | - |
 
 **Applies when:** strictly bifurcating rooted tree; one aligned sequence per leaf; unit cost per change.
 
@@ -1627,7 +1587,7 @@ score = 4
 
 <a id="bio_robinson_foulds"></a>
 
-#### Robinson-Foulds distance between trees — `bio_robinson_foulds`
+#### Robinson-Foulds distance between trees: `bio_robinson_foulds`
 
 The Robinson-Foulds (symmetric-difference) distance between two trees on the same taxa, comparing their bipartitions (trees treated as unrooted), and the distance as a proportion.
 
@@ -1637,10 +1597,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `tree1` | in | first tree in Newick format | — |
-| `tree2` | in | second tree in Newick format | — |
-| `rf` | out | number of bipartitions found in only one tree | — |
-| `rf_normalized` | out | RF divided by the total number of non-trivial bipartitions of both trees | — |
+| `tree1` | in | first tree in Newick format | - |
+| `tree2` | in | second tree in Newick format | - |
+| `rf` | out | number of bipartitions found in only one tree | - |
+| `rf_normalized` | out | RF divided by the total number of non-trivial bipartitions of both trees | - |
 
 **Applies when:** the same taxa; at least 4 taxa; trees compared unrooted; branch lengths ignored.
 
@@ -1658,7 +1618,7 @@ rf_normalized = 0.6666666667
 
 <a id="bio_upgma"></a>
 
-#### UPGMA tree heights — `bio_upgma`
+#### UPGMA tree heights: `bio_upgma`
 
 The node heights of the UPGMA (average-linkage) tree of a distance matrix: the root height and every merge height (half the distance between the merged clusters).
 
@@ -1668,9 +1628,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `D` | in | symmetric distance matrix, zero diagonal | — |
-| `root_height` | out | height of the root | — |
-| `heights` | out | all node heights, ascending | — |
+| `D` | in | symmetric distance matrix, zero diagonal | - |
+| `root_height` | out | height of the root | - |
+| `heights` | out | all node heights, ascending | - |
 
 **Applies when:** symmetric, zero diagonal, positive distances; no ties in a merge step.
 
@@ -1688,7 +1648,7 @@ heights = [1.0,2.0,3.0]
 
 <a id="bio_leslie_growth_rate"></a>
 
-#### Leslie matrix growth rate and stable age distribution — `bio_leslie_growth_rate`
+#### Leslie matrix growth rate and stable age distribution, `bio_leslie_growth_rate`
 
 The asymptotic growth rate (dominant eigenvalue lambda and r = ln lambda), the net reproductive rate R0 and the stable age distribution of a Leslie model.
 
@@ -1698,12 +1658,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `F` | in | fecundity of each age class | — |
-| `S` | in | survival from each age class to the next (one fewer than F) | — |
-| `lambda1` | out | dominant eigenvalue (growth factor per step) | — |
-| `r` | out | intrinsic rate ln(lambda) | — |
-| `R0` | out | net reproductive rate (expected offspring per newborn) | — |
-| `stable` | out | stable age distribution (fractions summing to 1) | — |
+| `F` | in | fecundity of each age class | - |
+| `S` | in | survival from each age class to the next (one fewer than F) | - |
+| `lambda1` | out | dominant eigenvalue (growth factor per step) | - |
+| `r` | out | intrinsic rate ln(lambda) | - |
+| `R0` | out | net reproductive rate (expected offspring per newborn) | - |
+| `stable` | out | stable age distribution (fractions summing to 1) | - |
 
 **Applies when:** 0 < S_i <= 1; F_i >= 0, at least one positive.
 
@@ -1721,7 +1681,7 @@ stable = [0.666666666667,0.333333333333]
 
 <a id="bio_leslie_projection"></a>
 
-#### Leslie matrix population projection — `bio_leslie_projection`
+#### Leslie matrix population projection: `bio_leslie_projection`
 
 The age-class numbers and total population after t time steps of an age-structured (Leslie) model.
 
@@ -1731,12 +1691,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `F` | in | fecundity of each age class | — |
-| `S` | in | survival from each age class to the next (one fewer than F) | — |
-| `n0` | in | initial number in each age class | — |
-| `t` | in | number of time steps | — |
-| `n_t` | out | number in each age class after t steps | — |
-| `total` | out | total population after t steps | — |
+| `F` | in | fecundity of each age class | - |
+| `S` | in | survival from each age class to the next (one fewer than F) | - |
+| `n0` | in | initial number in each age class | - |
+| `t` | in | number of time steps | - |
+| `n_t` | out | number in each age class after t steps | - |
+| `total` | out | total population after t steps | - |
 
 **Applies when:** 0 < S_i <= 1; F_i >= 0, at least one positive; t <= 500.
 
@@ -1754,7 +1714,7 @@ total = 185
 
 <a id="bio_haploid_selection"></a>
 
-#### Allele frequency under haploid (genic) selection — `bio_haploid_selection`
+#### Allele frequency under haploid (genic) selection, `bio_haploid_selection`
 
 The frequency of allele A after t generations of haploid selection (relative fitness 1 + s against 1).
 
@@ -1764,10 +1724,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `p0` | in | initial frequency of A | — |
-| `s` | in | selection coefficient (fitness of A = 1 + s) | — |
-| `t` | in | number of generations | — |
-| `p_t` | out | frequency of A after t generations | — |
+| `p0` | in | initial frequency of A | - |
+| `s` | in | selection coefficient (fitness of A = 1 + s) | - |
+| `t` | in | number of generations | - |
+| `p_t` | out | frequency of A after t generations | - |
 
 **Applies when:** 0 < p0 < 1; s > -1; discrete generations.
 
@@ -1784,7 +1744,7 @@ p_t = 0.6666666667
 
 <a id="bio_recessive_lethal"></a>
 
-#### Decline of a recessive lethal allele — `bio_recessive_lethal`
+#### Decline of a recessive lethal allele: `bio_recessive_lethal`
 
 The frequency of a recessive lethal allele after t generations of selection (aa never reproduce).
 
@@ -1794,9 +1754,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `q0` | in | initial frequency of the lethal allele | — |
-| `t` | in | number of generations | — |
-| `q_t` | out | frequency after t generations | — |
+| `q0` | in | initial frequency of the lethal allele | - |
+| `t` | in | number of generations | - |
+| `q_t` | out | frequency after t generations | - |
 
 **Applies when:** 0 < q0 <= 1; random mating, aa fitness 0.
 
@@ -1812,7 +1772,7 @@ q_t = 0.3333333333
 
 <a id="bio_ne_sex_ratio"></a>
 
-#### Effective population size with unequal sex ratio — `bio_ne_sex_ratio`
+#### Effective population size with unequal sex ratio, `bio_ne_sex_ratio`
 
 The effective population size of a population with N_m breeding males and N_f breeding females.
 
@@ -1822,10 +1782,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `N_m` | in | number of breeding males | — |
-| `N_f` | in | number of breeding females | — |
-| `Ne` | out | effective population size | — |
-| `Ne_over_N` | out | Ne divided by the census N_m + N_f | — |
+| `N_m` | in | number of breeding males | - |
+| `N_f` | in | number of breeding females | - |
+| `Ne` | out | effective population size | - |
+| `Ne_over_N` | out | Ne divided by the census N_m + N_f | - |
 
 **Applies when:** random mating within the breeding population; Wright-Fisher reproduction.
 
@@ -1841,7 +1801,7 @@ Ne_over_N = 0.36
 
 <a id="bio_ne_fluctuating_size"></a>
 
-#### Effective size of a fluctuating population — `bio_ne_fluctuating_size`
+#### Effective size of a fluctuating population, `bio_ne_fluctuating_size`
 
 The effective population size over generations of changing size (harmonic mean) and the fraction of heterozygosity retained over those generations.
 
@@ -1851,9 +1811,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `sizes` | in | numbers of diploid individuals in successive generations | — |
-| `Ne` | out | effective size (harmonic mean of the sizes) | — |
-| `retained` | out | heterozygosity retained, product of (1 - 1/(2N_i)) | — |
+| `sizes` | in | numbers of diploid individuals in successive generations | - |
+| `Ne` | out | effective size (harmonic mean of the sizes) | - |
+| `retained` | out | heterozygosity retained, product of (1 - 1/(2N_i)) | - |
 
 **Applies when:** whole positive sizes; Wright-Fisher reproduction each generation.
 
@@ -1869,7 +1829,7 @@ retained = 0.9490502375
 
 <a id="bio_heterozygote_advantage"></a>
 
-#### Equilibrium under heterozygote advantage — `bio_heterozygote_advantage`
+#### Equilibrium under heterozygote advantage: `bio_heterozygote_advantage`
 
 The stable equilibrium frequency of allele A when the heterozygote is fittest (overdominance).
 
@@ -1879,10 +1839,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `w_AA` | in | relative fitness of AA | — |
-| `w_Aa` | in | relative fitness of Aa | — |
-| `w_aa` | in | relative fitness of aa | — |
-| `p_eq` | out | equilibrium frequency of A | — |
+| `w_AA` | in | relative fitness of AA | - |
+| `w_Aa` | in | relative fitness of Aa | - |
+| `w_aa` | in | relative fitness of aa | - |
+| `p_eq` | out | equilibrium frequency of A | - |
 
 **Applies when:** w_Aa > w_AA and w_Aa > w_aa; fitnesses positive.
 
@@ -1900,7 +1860,7 @@ p_eq = 0.6666666667
 
 <a id="bio_coalescent_times"></a>
 
-#### Expected coalescence times — `bio_coalescent_times`
+#### Expected coalescence times: `bio_coalescent_times`
 
 The expected time to the most recent common ancestor and the expected total branch length of the genealogy of n gene copies from a diploid population of effective size Ne (in generations).
 
@@ -1910,10 +1870,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `n` | in | number of sampled gene copies | — |
-| `Ne` | in | diploid effective population size | — |
-| `t_mrca` | out | expected TMRCA in generations | — |
-| `total_length` | out | expected total branch length in generations | — |
+| `n` | in | number of sampled gene copies | - |
+| `Ne` | in | diploid effective population size | - |
+| `t_mrca` | out | expected TMRCA in generations | - |
+| `total_length` | out | expected total branch length in generations | - |
 
 **Applies when:** neutral Kingman coalescent; diploid: a pair coalesces at rate 1/(2Ne) per generation.
 
@@ -1930,7 +1890,7 @@ total_length = 4000
 
 <a id="bio_fst"></a>
 
-#### Fixation index FST from subpopulation allele frequencies — `bio_fst`
+#### Fixation index FST from subpopulation allele frequencies, `bio_fst`
 
 Mean within-subpopulation heterozygosity HS, total heterozygosity HT and FST = (HT - HS)/HT for a biallelic locus in equally weighted subpopulations.
 
@@ -1940,10 +1900,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `p` | in | frequency of one allele in each subpopulation | — |
-| `HS` | out | mean expected heterozygosity within subpopulations | — |
-| `HT` | out | expected heterozygosity of the pooled population | — |
-| `FST` | out | fixation index (HT - HS)/HT | — |
+| `p` | in | frequency of one allele in each subpopulation | - |
+| `HS` | out | mean expected heterozygosity within subpopulations | - |
+| `HT` | out | expected heterozygosity of the pooled population | - |
+| `FST` | out | fixation index (HT - HS)/HT | - |
 
 **Applies when:** equal subpopulation weights; biallelic locus; 0 < mean p < 1.
 
@@ -1960,7 +1920,7 @@ FST = 0.36
 
 <a id="bio_moran_fixation"></a>
 
-#### Fixation probability in the Moran process — `bio_moran_fixation`
+#### Fixation probability in the Moran process: `bio_moran_fixation`
 
 The probability that a mutant with relative fitness r, starting from i copies in a Moran population of size N, eventually takes over the population.
 
@@ -1970,10 +1930,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `N` | in | population size | — |
-| `i` | in | initial number of mutants | — |
-| `r` | in | relative fitness of the mutant | — |
-| `rho` | out | fixation probability | — |
+| `N` | in | population size | - |
+| `i` | in | initial number of mutants | - |
+| `r` | in | relative fitness of the mutant | - |
+| `rho` | out | fixation probability | - |
 
 **Applies when:** 0 < i < N; r > 0.
 
@@ -1989,7 +1949,7 @@ rho = 0.1
 
 <a id="bio_hardy_weinberg_test"></a>
 
-#### Hardy-Weinberg chi-square test — `bio_hardy_weinberg_test`
+#### Hardy-Weinberg chi-square test: `bio_hardy_weinberg_test`
 
 Allele frequencies, Hardy-Weinberg expected genotype counts, the chi-square test of equilibrium (1 degree of freedom), observed and expected heterozygosity and the inbreeding coefficient F.
 
@@ -1999,19 +1959,19 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `n_AA` | in | number of AA individuals | — |
-| `n_Aa` | in | number of Aa individuals | — |
-| `n_aa` | in | number of aa individuals | — |
-| `p` | out | frequency of allele A | — |
-| `q` | out | frequency of allele a | — |
-| `exp_AA` | out | expected AA count (N p^2) | — |
-| `exp_Aa` | out | expected Aa count (2 N p q) | — |
-| `exp_aa` | out | expected aa count (N q^2) | — |
-| `chi2` | out | chi-square statistic | — |
-| `p_value` | out | p-value (chi-square, 1 degree of freedom) | — |
-| `Ho` | out | observed heterozygosity | — |
-| `He` | out | expected heterozygosity 2pq | — |
-| `F` | out | inbreeding coefficient 1 - Ho/He | — |
+| `n_AA` | in | number of AA individuals | - |
+| `n_Aa` | in | number of Aa individuals | - |
+| `n_aa` | in | number of aa individuals | - |
+| `p` | out | frequency of allele A | - |
+| `q` | out | frequency of allele a | - |
+| `exp_AA` | out | expected AA count (N p^2) | - |
+| `exp_Aa` | out | expected Aa count (2 N p q) | - |
+| `exp_aa` | out | expected aa count (N q^2) | - |
+| `chi2` | out | chi-square statistic | - |
+| `p_value` | out | p-value (chi-square, 1 degree of freedom) | - |
+| `Ho` | out | observed heterozygosity | - |
+| `He` | out | expected heterozygosity 2pq | - |
+| `F` | out | inbreeding coefficient 1 - Ho/He | - |
 
 **Applies when:** both alleles present; biallelic locus; no continuity correction.
 
@@ -2035,7 +1995,7 @@ F = 0.01488252625
 
 <a id="bio_hardy_weinberg_exact_test"></a>
 
-#### Hardy-Weinberg exact test — `bio_hardy_weinberg_exact_test`
+#### Hardy-Weinberg exact test: `bio_hardy_weinberg_exact_test`
 
 The exact (Wigginton) test of Hardy-Weinberg equilibrium for a biallelic locus: the two-sided p-value and the probability of the observed number of heterozygotes given the allele counts.
 
@@ -2045,11 +2005,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `n_AA` | in | number of AA individuals | — |
-| `n_Aa` | in | number of Aa individuals | — |
-| `n_aa` | in | number of aa individuals | — |
-| `p_value` | out | exact two-sided p-value (sum of probabilities not above the observed one) | — |
-| `p_observed` | out | probability of the observed heterozygote count | — |
+| `n_AA` | in | number of AA individuals | - |
+| `n_Aa` | in | number of Aa individuals | - |
+| `n_aa` | in | number of aa individuals | - |
+| `p_value` | out | exact two-sided p-value (sum of probabilities not above the observed one) | - |
+| `p_observed` | out | probability of the observed heterozygote count | - |
 
 **Applies when:** both alleles present; N <= 1000.
 
@@ -2065,7 +2025,7 @@ p_observed = 0.08571428571
 
 <a id="bio_linkage_disequilibrium"></a>
 
-#### Linkage disequilibrium D, D' and r^2 — `bio_linkage_disequilibrium`
+#### Linkage disequilibrium D, D' and r^2, `bio_linkage_disequilibrium`
 
 The linkage disequilibrium between two biallelic loci from haplotype counts: D, Lewontin's D' and r^2.
 
@@ -2075,13 +2035,13 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `n_AB` | in | number of AB haplotypes | — |
-| `n_Ab` | in | number of Ab haplotypes | — |
-| `n_aB` | in | number of aB haplotypes | — |
-| `n_ab` | in | number of ab haplotypes | — |
-| `D` | out | disequilibrium D = pAB - pA pB | — |
-| `D_prime` | out | Lewontin's D' = D / Dmax (signed) | — |
-| `r2` | out | squared correlation r^2 | — |
+| `n_AB` | in | number of AB haplotypes | - |
+| `n_Ab` | in | number of Ab haplotypes | - |
+| `n_aB` | in | number of aB haplotypes | - |
+| `n_ab` | in | number of ab haplotypes | - |
+| `D` | out | disequilibrium D = pAB - pA pB | - |
+| `D_prime` | out | Lewontin's D' = D / Dmax (signed) | - |
+| `r2` | out | squared correlation r^2 | - |
 
 **Applies when:** both loci polymorphic; phased haplotype counts.
 
@@ -2098,7 +2058,7 @@ r2 = 0.36
 
 <a id="bio_drift_heterozygosity"></a>
 
-#### Loss of heterozygosity by genetic drift — `bio_drift_heterozygosity`
+#### Loss of heterozygosity by genetic drift: `bio_drift_heterozygosity`
 
 The expected heterozygosity after t generations of genetic drift in a Wright-Fisher population of N diploids, starting from i copies of an allele.
 
@@ -2108,12 +2068,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `N` | in | number of diploid individuals | — |
-| `i` | in | initial copies of allele A (of 2N) | — |
-| `t` | in | number of generations | — |
-| `H0` | out | initial heterozygosity 2pq | — |
-| `H_t` | out | expected heterozygosity after t generations | — |
-| `retained` | out | fraction of heterozygosity retained, (1 - 1/(2N))^t | — |
+| `N` | in | number of diploid individuals | - |
+| `i` | in | initial copies of allele A (of 2N) | - |
+| `t` | in | number of generations | - |
+| `H0` | out | initial heterozygosity 2pq | - |
+| `H_t` | out | expected heterozygosity after t generations | - |
+| `retained` | out | fraction of heterozygosity retained, (1 - 1/(2N))^t | - |
 
 **Applies when:** 0 < i < 2N; constant N, random mating, no mutation or selection.
 
@@ -2130,7 +2090,7 @@ retained = 0.95
 
 <a id="bio_mutation_selection_balance"></a>
 
-#### Mutation-selection balance — `bio_mutation_selection_balance`
+#### Mutation-selection balance: `bio_mutation_selection_balance`
 
 The equilibrium frequency of a deleterious allele maintained by recurrent mutation against selection (fitness 1, 1 - hs, 1 - s), from the exact recursion.
 
@@ -2140,10 +2100,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `mu` | in | mutation rate A -> a per generation | — |
-| `s` | in | selection coefficient against aa | — |
-| `h` | in | dominance coefficient (0 recessive, 0.5 additive) | — |
-| `q_eq` | out | equilibrium frequency of the deleterious allele | — |
+| `mu` | in | mutation rate A -> a per generation | - |
+| `s` | in | selection coefficient against aa | - |
+| `h` | in | dominance coefficient (0 recessive, 0.5 additive) | - |
+| `q_eq` | out | equilibrium frequency of the deleterious allele | - |
 
 **Applies when:** 0 < mu <= 0.01; 0.01 <= s <= 1; 0 <= h <= 1; selection then mutation, no back mutation.
 
@@ -2161,7 +2121,7 @@ q_eq = 0.01
 
 <a id="bio_nucleotide_diversity"></a>
 
-#### Nucleotide diversity — `bio_nucleotide_diversity`
+#### Nucleotide diversity: `bio_nucleotide_diversity`
 
 The average number of pairwise differences k and the nucleotide diversity pi (per site) of a set of aligned DNA sequences.
 
@@ -2171,9 +2131,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seqs` | in | aligned DNA sequences separated by spaces | — |
-| `k` | out | mean number of pairwise differences | — |
-| `pi` | out | nucleotide diversity per site | — |
+| `seqs` | in | aligned DNA sequences separated by spaces | - |
+| `k` | out | mean number of pairwise differences | - |
+| `pi` | out | nucleotide diversity per site | - |
 
 **Applies when:** at least 2 aligned DNA sequences of equal length, no gaps.
 
@@ -2190,7 +2150,7 @@ pi = 0.3333333333
 
 <a id="bio_tajima_d"></a>
 
-#### Tajima's D — `bio_tajima_d`
+#### Tajima's D: `bio_tajima_d`
 
 Tajima's D neutrality statistic of aligned DNA sequences (the scaled difference between pi and Watterson's theta).
 
@@ -2200,9 +2160,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seqs` | in | aligned DNA sequences separated by spaces (at least 4) | — |
-| `D` | out | Tajima's D | — |
-| `k` | out | mean number of pairwise differences | — |
+| `seqs` | in | aligned DNA sequences separated by spaces (at least 4) | - |
+| `D` | out | Tajima's D | - |
+| `k` | out | mean number of pairwise differences | - |
 
 **Applies when:** at least 4 aligned DNA sequences; at least one segregating site.
 
@@ -2219,7 +2179,7 @@ k = 1.666666667
 
 <a id="bio_watterson_theta"></a>
 
-#### Watterson's estimator of theta — `bio_watterson_theta`
+#### Watterson's estimator of theta: `bio_watterson_theta`
 
 The number of segregating sites S and Watterson's estimator of the population mutation rate theta, per sequence and per site.
 
@@ -2229,10 +2189,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seqs` | in | aligned DNA sequences separated by spaces | — |
-| `S` | out | number of segregating sites | — |
-| `theta` | out | Watterson's theta per sequence (S / a_n) | — |
-| `theta_site` | out | Watterson's theta per site | — |
+| `seqs` | in | aligned DNA sequences separated by spaces | - |
+| `S` | out | number of segregating sites | - |
+| `theta` | out | Watterson's theta per sequence (S / a_n) | - |
+| `theta_site` | out | Watterson's theta per site | - |
 
 **Applies when:** at least 2 aligned DNA sequences of equal length, no gaps.
 
@@ -2252,7 +2212,7 @@ theta_site = 0.3333333333
 
 <a id="bio_amino_acid_composition"></a>
 
-#### Amino-acid composition of a protein — `bio_amino_acid_composition`
+#### Amino-acid composition of a protein: `bio_amino_acid_composition`
 
 The percentage of each of the 20 standard amino acids in a protein, its most common residue (alphabetically first among ties) and its length.
 
@@ -2262,10 +2222,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `percent` | out | percentage of each amino acid (one-letter code -> %) | — |
-| `most_common` | out | most common amino acid (alphabetically first among ties) | — |
-| `length` | out | number of residues | — |
+| `seq` | in | protein sequence | - |
+| `percent` | out | percentage of each amino acid (one-letter code -> %) | - |
+| `most_common` | out | most common amino acid (alphabetically first among ties) | - |
+| `length` | out | number of residues | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2283,7 +2243,7 @@ length = 5
 
 <a id="bio_aromaticity"></a>
 
-#### Aromaticity of a protein — `bio_aromaticity`
+#### Aromaticity of a protein: `bio_aromaticity`
 
 The aromaticity (relative frequency of Phe + Trp + Tyr, Lobry 1994) of a protein and its number of aromatic residues.
 
@@ -2293,9 +2253,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `aromaticity` | out | fraction of F, W and Y residues | — |
-| `aromatic_count` | out | number of F, W and Y residues | — |
+| `seq` | in | protein sequence | - |
+| `aromaticity` | out | fraction of F, W and Y residues | - |
+| `aromatic_count` | out | number of F, W and Y residues | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2312,7 +2272,7 @@ aromatic_count = 3
 
 <a id="bio_edit_distance"></a>
 
-#### Edit (Levenshtein) distance between sequences — `bio_edit_distance`
+#### Edit (Levenshtein) distance between sequences, `bio_edit_distance`
 
 The minimum number of substitutions, insertions and deletions turning one sequence into the other (unit costs; an unaligned comparison, unlike the p-distance).
 
@@ -2322,9 +2282,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first sequence | — |
-| `seq2` | in | second sequence | — |
-| `distance` | out | edit distance (unit costs) | — |
+| `seq1` | in | first sequence | - |
+| `seq2` | in | second sequence | - |
+| `distance` | out | edit distance (unit costs) | - |
 
 **Applies when:** letters only.
 
@@ -2332,8 +2292,8 @@ $$
 $ computational-biology solve bio_edit_distance seq1=KITTEN seq2=SITTING
 distance = 3
   by: Edit (Levenshtein) distance between sequences  (dynamic programming over prefixes (Wagner-Fischer))
-  seq2 = SITTING
   seq1 = KITTEN
+  seq2 = SITTING
   assumes: letters only
 ```
 
@@ -2341,7 +2301,7 @@ distance = 3
 
 <a id="bio_gc_content"></a>
 
-#### GC content of a nucleic acid — `bio_gc_content`
+#### GC content of a nucleic acid: `bio_gc_content`
 
 The fraction and number of G and C bases in a DNA or RNA sequence.
 
@@ -2351,9 +2311,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA or RNA sequence | — |
-| `gc_fraction` | out | fraction of G + C | — |
-| `gc_count` | out | number of G and C bases | — |
+| `seq` | in | DNA or RNA sequence | - |
+| `gc_fraction` | out | fraction of G + C | - |
+| `gc_count` | out | number of G and C bases | - |
 
 **Applies when:** unambiguous DNA or RNA letters.
 
@@ -2370,7 +2330,7 @@ gc_count = 5
 
 <a id="bio_gravy"></a>
 
-#### Grand average of hydropathy (GRAVY) — `bio_gravy`
+#### Grand average of hydropathy (GRAVY): `bio_gravy`
 
 The Kyte-Doolittle grand average of hydropathy of a protein (positive = hydrophobic).
 
@@ -2380,8 +2340,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `gravy` | out | GRAVY score | — |
+| `seq` | in | protein sequence | - |
+| `gravy` | out | GRAVY score | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2397,7 +2357,7 @@ gravy = 1.885714286
 
 <a id="bio_isoelectric_point"></a>
 
-#### Isoelectric point of a protein — `bio_isoelectric_point`
+#### Isoelectric point of a protein: `bio_isoelectric_point`
 
 The isoelectric point (pH of zero net charge) of a protein, with its net charge at pH 7 (Bjellqvist pK set).
 
@@ -2407,9 +2367,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `pI` | out | isoelectric point | — |
-| `charge_at_7` | out | net charge at pH 7 | — |
+| `seq` | in | protein sequence | - |
+| `pI` | out | isoelectric point | - |
+| `charge_at_7` | out | net charge at pH 7 | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2426,7 +2386,7 @@ charge_at_7 = 0.7600916143
 
 <a id="bio_kmer_counts"></a>
 
-#### k-mer counts of a sequence — `bio_kmer_counts`
+#### k-mer counts of a sequence, `bio_kmer_counts`
 
 Overlapping k-mer counts: the number of k-mers, of distinct k-mers, the highest count and the most frequent k-mer (alphabetically first among ties).
 
@@ -2436,12 +2396,12 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA or RNA sequence | — |
-| `k` | in | k-mer length | — |
-| `total` | out | number of overlapping k-mers (n - k + 1) | — |
-| `distinct` | out | number of distinct k-mers | — |
-| `max_count` | out | count of the most frequent k-mer | — |
-| `most_frequent` | out | most frequent k-mer (alphabetically first among ties) | — |
+| `seq` | in | DNA or RNA sequence | - |
+| `k` | in | k-mer length | - |
+| `total` | out | number of overlapping k-mers (n - k + 1) | - |
+| `distinct` | out | number of distinct k-mers | - |
+| `max_count` | out | count of the most frequent k-mer | - |
+| `most_frequent` | out | most frequent k-mer (alphabetically first among ties) | - |
 
 **Applies when:** 1 <= k <= sequence length.
 
@@ -2460,7 +2420,7 @@ most_frequent = AT
 
 <a id="bio_longest_orf"></a>
 
-#### Longest open reading frame — `bio_longest_orf`
+#### Longest open reading frame: `bio_longest_orf`
 
 The longest open reading frame (ATG to the first in-frame stop, stop included) over all six frames of a DNA sequence, its protein length and the number of ORFs.
 
@@ -2470,10 +2430,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA sequence 5'->3' | — |
-| `length_nt` | out | length of the longest ORF in nucleotides, stop codon included | — |
-| `protein_length` | out | amino acids encoded by the longest ORF (stop excluded) | — |
-| `orf_count` | out | number of ORFs (one per stop codon reached from an upstream in-frame ATG) | — |
+| `seq` | in | DNA sequence 5'->3' | - |
+| `length_nt` | out | length of the longest ORF in nucleotides, stop codon included | - |
+| `protein_length` | out | amino acids encoded by the longest ORF (stop excluded) | - |
+| `orf_count` | out | number of ORFs (one per stop codon reached from an upstream in-frame ATG) | - |
 
 **Applies when:** DNA letters only; standard genetic code, start ATG, stops TAA TAG TGA.
 
@@ -2491,7 +2451,7 @@ orf_count = 1
 
 <a id="bio_tm_nearest_neighbor"></a>
 
-#### Melting temperature by nearest-neighbour thermodynamics — `bio_tm_nearest_neighbor`
+#### Melting temperature by nearest-neighbour thermodynamics, `bio_tm_nearest_neighbor`
 
 The melting temperature of a DNA duplex (perfect complement) from nearest-neighbour thermodynamics (Allawi-SantaLucia 1997) with the SantaLucia 1998 sodium correction.
 
@@ -2501,11 +2461,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA sequence 5'->3' | — |
-| `Na` | in | sodium concentration in mM | — |
-| `dnac1` | in | concentration of the more concentrated strand in nM | — |
-| `dnac2` | in | concentration of the less concentrated strand in nM | — |
-| `tm` | out | melting temperature in degC | — |
+| `seq` | in | DNA sequence 5'->3' | - |
+| `Na` | in | sodium concentration in mM | - |
+| `dnac1` | in | concentration of the more concentrated strand in nM | - |
+| `dnac2` | in | concentration of the less concentrated strand in nM | - |
+| `tm` | out | melting temperature in degC | - |
 
 **Applies when:** unambiguous DNA, length >= 2; Na > 0; dnac1 > dnac2/2.
 
@@ -2524,7 +2484,7 @@ tm = 60.3209195
 
 <a id="bio_tm_wallace"></a>
 
-#### Melting temperature by the Wallace rule — `bio_tm_wallace`
+#### Melting temperature by the Wallace rule: `bio_tm_wallace`
 
 The approximate melting temperature of a short DNA primer (14-20 nt) by the Wallace rule.
 
@@ -2534,8 +2494,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA primer sequence | — |
-| `tm` | out | melting temperature in degC | — |
+| `seq` | in | DNA primer sequence | - |
+| `tm` | out | melting temperature in degC | - |
 
 **Applies when:** unambiguous DNA letters.
 
@@ -2551,7 +2511,7 @@ tm = 48
 
 <a id="bio_protein_mass"></a>
 
-#### Molecular mass of a protein — `bio_protein_mass`
+#### Molecular mass of a protein: `bio_protein_mass`
 
 The average molecular mass of a protein from its amino-acid sequence.
 
@@ -2561,8 +2521,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence (20 standard one-letter codes) | — |
-| `mass` | out | molecular mass in g/mol (Da) | — |
+| `seq` | in | protein sequence (20 standard one-letter codes) | - |
+| `mass` | out | molecular mass in g/mol (Da) | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2578,7 +2538,7 @@ mass = 17103.1617
 
 <a id="bio_nucleic_acid_mass"></a>
 
-#### Molecular mass of DNA or RNA — `bio_nucleic_acid_mass`
+#### Molecular mass of DNA or RNA: `bio_nucleic_acid_mass`
 
 The average molecular mass of a single- or double-stranded linear DNA or RNA with a 5' phosphate.
 
@@ -2588,10 +2548,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA or RNA sequence | — |
-| `molecule` | in | molecule type | — |
-| `strands` | in | single- or double-stranded | — |
-| `mass` | out | molecular mass in g/mol (Da) | — |
+| `seq` | in | DNA or RNA sequence | - |
+| `molecule` | in | molecule type | - |
+| `strands` | in | single- or double-stranded | - |
+| `mass` | out | molecular mass in g/mol (Da) | - |
 
 **Applies when:** the sequence letters match the stated molecule.
 
@@ -2609,7 +2569,7 @@ mass = 949.6095
 
 <a id="bio_protein_net_charge"></a>
 
-#### Net charge of a protein at a pH — `bio_protein_net_charge`
+#### Net charge of a protein at a pH: `bio_protein_net_charge`
 
 The net charge of a protein at a stated pH from its ionisable groups (Bjellqvist pK set).
 
@@ -2619,9 +2579,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `pH` | in | pH of the solution (0 to 14) | — |
-| `charge` | out | net charge (elementary charges) | — |
+| `seq` | in | protein sequence | - |
+| `pH` | in | pH of the solution (0 to 14) | - |
+| `charge` | out | net charge (elementary charges) | - |
 
 **Applies when:** standard amino acids only; 0 <= pH <= 14.
 
@@ -2638,7 +2598,7 @@ charge = 0.7600916143
 
 <a id="bio_hamming_distance"></a>
 
-#### p-distance (Hamming) between aligned sequences — `bio_hamming_distance`
+#### p-distance (Hamming) between aligned sequences, `bio_hamming_distance`
 
 Mismatches, p-distance and identity of two aligned sequences of equal length (no indels): the proportion of sites that differ.
 
@@ -2648,11 +2608,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq1` | in | first aligned sequence | — |
-| `seq2` | in | second aligned sequence (same length) | — |
-| `mismatches` | out | number of differing sites | — |
-| `p_distance` | out | proportion of differing sites | — |
-| `identity` | out | proportion of identical sites | — |
+| `seq1` | in | first aligned sequence | - |
+| `seq2` | in | second aligned sequence (same length) | - |
+| `mismatches` | out | number of differing sites | - |
+| `p_distance` | out | proportion of differing sites | - |
+| `identity` | out | proportion of identical sites | - |
 
 **Applies when:** equal lengths (aligned, no gaps).
 
@@ -2671,7 +2631,7 @@ identity = 0.5882352941
 
 <a id="bio_protein_extinction"></a>
 
-#### Protein extinction coefficient at 280 nm — `bio_protein_extinction`
+#### Protein extinction coefficient at 280 nm: `bio_protein_extinction`
 
 The molar extinction coefficient at 280 nm (cysteines reduced, and all cysteines as cystines) and the absorbance of a 1 g/L solution.
 
@@ -2681,11 +2641,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `eps_reduced` | out | extinction coefficient, cysteines reduced (M^-1 cm^-1) | — |
-| `eps_cystines` | out | extinction coefficient, cysteines paired as cystines (M^-1 cm^-1) | — |
-| `abs_reduced` | out | absorbance of 1 g/L, 1 cm, cysteines reduced | — |
-| `abs_cystines` | out | absorbance of 1 g/L, 1 cm, cystines | — |
+| `seq` | in | protein sequence | - |
+| `eps_reduced` | out | extinction coefficient, cysteines reduced (M^-1 cm^-1) | - |
+| `eps_cystines` | out | extinction coefficient, cysteines paired as cystines (M^-1 cm^-1) | - |
+| `abs_reduced` | out | absorbance of 1 g/L, 1 cm, cysteines reduced | - |
+| `abs_cystines` | out | absorbance of 1 g/L, 1 cm, cystines | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2704,7 +2664,7 @@ In the worked example, seq = MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRD
 
 <a id="bio_instability_index"></a>
 
-#### Protein instability index — `bio_instability_index`
+#### Protein instability index: `bio_instability_index`
 
 The Guruprasad instability index of a protein from its dipeptides (above 40 suggests an unstable protein in vivo).
 
@@ -2714,8 +2674,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence (at least 2 residues) | — |
-| `index` | out | instability index | — |
+| `seq` | in | protein sequence (at least 2 residues) | - |
+| `index` | out | instability index | - |
 
 **Applies when:** standard amino acids, length >= 2.
 
@@ -2731,7 +2691,7 @@ index = 41.98026316
 
 <a id="bio_restriction_sites"></a>
 
-#### Restriction sites and fragments — `bio_restriction_sites`
+#### Restriction sites and fragments: `bio_restriction_sites`
 
 Where a restriction enzyme cuts a linear DNA sequence: the number of sites, the cut positions and the fragment lengths.
 
@@ -2741,11 +2701,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | linear DNA sequence 5'->3' | — |
-| `enzyme` | in | restriction enzyme (name) | — |
-| `n_sites` | out | number of cuts | — |
-| `positions` | out | cut positions (1-based first base after each cut, top strand) | — |
-| `fragments` | out | fragment lengths in bp, 5'->3' order | — |
+| `seq` | in | linear DNA sequence 5'->3' | - |
+| `enzyme` | in | restriction enzyme (name) | - |
+| `n_sites` | out | number of cuts | - |
+| `positions` | out | cut positions (1-based first base after each cut, top strand) | - |
+| `fragments` | out | fragment lengths in bp, 5'->3' order | - |
 
 **Applies when:** linear DNA; a listed enzyme.
 
@@ -2764,7 +2724,7 @@ In the worked example, seq = AAGAATTCTTGAATTCGGATCC, enzyme = EcoRI go through t
 
 <a id="bio_reverse_complement"></a>
 
-#### Reverse complement of a DNA sequence — `bio_reverse_complement`
+#### Reverse complement of a DNA sequence: `bio_reverse_complement`
 
 The reverse complement of a DNA strand (the partner strand read 5'->3').
 
@@ -2774,8 +2734,8 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA sequence 5'->3' (A, C, G, T) | — |
-| `revcomp` | out | reverse complement 5'->3' | — |
+| `seq` | in | DNA sequence 5'->3' (A, C, G, T) | - |
+| `revcomp` | out | reverse complement 5'->3' | - |
 
 **Applies when:** DNA letters A, C, G, T only.
 
@@ -2791,7 +2751,7 @@ revcomp = TACGGCAT
 
 <a id="bio_secondary_structure_fraction"></a>
 
-#### Secondary-structure propensity fractions — `bio_secondary_structure_fraction`
+#### Secondary-structure propensity fractions: `bio_secondary_structure_fraction`
 
 The fractions of residues that tend to be in helices (E M A L K), turns (N P G S D) and sheets (V I Y F W L T), as ProtParam defines them (L counts for helix and sheet).
 
@@ -2801,10 +2761,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | protein sequence | — |
-| `helix` | out | fraction of helix-favouring residues | — |
-| `turn` | out | fraction of turn-favouring residues | — |
-| `sheet` | out | fraction of sheet-favouring residues | — |
+| `seq` | in | protein sequence | - |
+| `helix` | out | fraction of helix-favouring residues | - |
+| `turn` | out | fraction of turn-favouring residues | - |
+| `sheet` | out | fraction of sheet-favouring residues | - |
 
 **Applies when:** standard amino acids only.
 
@@ -2822,7 +2782,7 @@ sheet = 0.1
 
 <a id="bio_transcription"></a>
 
-#### Transcription of DNA into mRNA — `bio_transcription`
+#### Transcription of DNA into mRNA: `bio_transcription`
 
 The mRNA transcribed from a DNA strand given 5'->3', stated as the coding (sense) or template (antisense) strand.
 
@@ -2832,9 +2792,9 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA strand 5'->3' (A, C, G, T) | — |
-| `strand` | in | which strand is given: coding (sense) or template (antisense) | — |
-| `mrna` | out | mRNA 5'->3' | — |
+| `seq` | in | DNA strand 5'->3' (A, C, G, T) | - |
+| `strand` | in | which strand is given: coding (sense) or template (antisense) | - |
+| `mrna` | out | mRNA 5'->3' | - |
 
 **Applies when:** DNA letters only; the strand is stated.
 
@@ -2842,8 +2802,8 @@ $$
 $ computational-biology solve bio_transcription seq=ATGGCTTAA strand=coding
 mrna = AUGGCUUAA
   by: Transcription of DNA into mRNA  (coding strand: T -> U; template strand: reverse complement, then T -> U)
-  strand = coding
   seq = ATGGCTTAA
+  strand = coding
   assumes: DNA letters only; the strand is stated
 ```
 
@@ -2851,7 +2811,7 @@ In the worked example, seq = ATGGCTTAA, strand = coding go through the equation 
 
 <a id="bio_translation"></a>
 
-#### Translation with the standard genetic code — `bio_translation`
+#### Translation with the standard genetic code, `bio_translation`
 
 The protein encoded by a DNA or mRNA sequence read in frame 1 with the standard genetic code; stop codons shown as '*' or the protein truncated at the first stop.
 
@@ -2861,10 +2821,10 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `seq` | in | DNA or mRNA sequence 5'->3', length a multiple of 3 | — |
-| `stops` | in | show stop codons as '*' or truncate at the first stop | — |
-| `protein` | out | amino-acid sequence (one-letter codes) | — |
-| `length` | out | number of residues shown | — |
+| `seq` | in | DNA or mRNA sequence 5'->3', length a multiple of 3 | - |
+| `stops` | in | show stop codons as '*' or truncate at the first stop | - |
+| `protein` | out | amino-acid sequence (one-letter codes) | - |
+| `length` | out | number of residues shown | - |
 
 **Applies when:** length a multiple of 3; DNA or RNA letters, not a mixture.
 
@@ -2873,8 +2833,8 @@ $ computational-biology solve bio_translation seq=ATGGCCATTGTAATGGGCCGCTGA stops
 protein = MAIVMGR*
 length = 8
   by: Translation with the standard genetic code  (read codons in frame 1 and look each up in the standard genetic code (NCBI table 1))
-  stops = show
   seq = ATGGCCATTGTAATGGGCCGCTGA
+  stops = show
   assumes: length a multiple of 3; DNA or RNA letters, not a mixture
 ```
 
@@ -2884,7 +2844,7 @@ length = 8
 
 <a id="bio_flux_balance_analysis"></a>
 
-#### Flux balance analysis (optimal objective) — `bio_flux_balance_analysis`
+#### Flux balance analysis (optimal objective): `bio_flux_balance_analysis`
 
 The maximum of a linear objective (e.g. a biomass or product flux) over all steady-state flux distributions of a metabolic network within flux bounds: flux balance analysis.
 
@@ -2894,11 +2854,11 @@ $$
 
 | symbol |  | meaning | SI unit |
 |---|---|---|---|
-| `S` | in | stoichiometric matrix (metabolites x reactions) | — |
-| `lb` | in | lower bound of each reaction flux | — |
-| `ub` | in | upper bound of each reaction flux | — |
-| `c` | in | objective coefficient of each reaction | — |
-| `objective` | out | optimal objective value | — |
+| `S` | in | stoichiometric matrix (metabolites x reactions) | - |
+| `lb` | in | lower bound of each reaction flux | - |
+| `ub` | in | upper bound of each reaction flux | - |
+| `c` | in | objective coefficient of each reaction | - |
+| `objective` | out | optimal objective value | - |
 
 **Applies when:** steady state S v = 0; finite bounds lb <= ub; a feasible flux distribution exists.
 
@@ -2911,4 +2871,4 @@ objective = 8
 
 **What the worked example means:** This calculation determines the maximum possible value for the specified biological objective, such as biomass production or product synthesis. It solves a linear programming problem where the objective coefficients are given by [0, 0, 1, 0] and the network structure is defined by the stoichiometric matrix [1 -1 0 0; 0 1 -1 -1]. The solution must satisfy mass balance constraints and respect the reaction limits set by lower bounds [0, 0, 0, 0] and upper bounds [10, 8, 100, 3]. The resulting optimal objective value is 8, which indicates the theoretical peak performance of the metabolic network under these conditions.
 
-Questions and reports: support@ai999x.com. AI999X — The Future Is Self-Improving.
+Questions and reports: support@ai999x.com. AI999X, The Future Is Self-Improving.
