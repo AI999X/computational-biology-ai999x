@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/AI999X/computational-biology-ai999x/actions/workflows/ci.yml/badge.svg)](https://github.com/AI999X/computational-biology-ai999x/actions/workflows/ci.yml) [![PyPI](https://img.shields.io/pypi/v/computational-biology-ai999x)](https://pypi.org/project/computational-biology-ai999x/) [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Hugging%20Face-yellow)](https://huggingface.co/AI999X/computational-biology-ai999x)
 
-**[Install](https://pypi.org/project/computational-biology-ai999x/)** · **[Capability guide](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
+**[Desktop app & command line](https://www.ai999x.com/desktop-cli/)** · **[Compute in your browser](https://www.ai999x.com/models/computational-biology-ai999x/#try)** · **[Install (Python)](https://pypi.org/project/computational-biology-ai999x/)** · **[Guides](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/docs)** · **[Evaluation](https://huggingface.co/AI999X/computational-biology-ai999x/tree/main/evaluation)** · **[AI999X on Hugging Face](https://huggingface.co/AI999X)** · **[Website](https://ai999x.com)** · **[Support: Buy Me a Coffee](https://buymeacoffee.com/ibnuljaiffarabi)**
 
 License: Apache-2.0 · Author: Ibnul Jaif Farabi (creator and engineer) · Organization: AI999X · Version 1.0.3
 
@@ -12,7 +12,304 @@ computational-biology-ai999x is an offline, deterministic Python solver that ans
 
 **computational-biology-ai999x** is a compact, deterministic computational biology engine for Python. It reads a question in plain English (or a typed call), picks a certified computational biology capability, computes the answer exactly, checks it, and returns the result with its steps, units, LaTeX and assumptions — or an honest refusal that says what is missing. It runs fully offline on any CPU, needs no GPU, no API key and no internet, and is built to give **zero wrong answers**: when it is not sure, it refuses instead of guessing.
 
-[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-support%20development-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/ibnuljaiffarabi) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue) ![Offline](https://img.shields.io/badge/runs-offline%20on%20CPU-green)
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-support%20development-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/ibnuljaiffarabi) ![License](https://img.shields.io/badge/license-Apache--2.0-blue) ![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue) ![Offline](https://img.shields.io/badge/runs-offline%20on%20CPU-green) ![Rust](https://img.shields.io/badge/Rust-Windows%20%7C%20Linux%20%7C%20WebAssembly-orange)
+
+**Run it your way.** computational-biology-ai999x comes as the AI999X desktop app and as the command-line program `computational-biology` for Windows and Linux, runs in your browser as WebAssembly, and installs as a Python package. The desktop app, the command line and the browser run the same compiled Rust program on your own device: offline, no Python needed.
+
+## Get it
+
+| Way to run it | For | Get it |
+|---|---|---|
+| **AI999X Computational Biology desktop app** 1.2.0 | Windows, Linux — this model in its own app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-computational-biology-1.2.0-windows-x86_64.zip) · [Linux (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz) |
+| **AI999X desktop app** 1.2.0 | Windows, Linux — every AI999X model in one app: search, ask in words, forms, live figures, explanations, offline | [Windows (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-1.2.0-windows-x86_64.zip) · [Linux (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-1.2.0-linux-x86_64.tar.gz) |
+| **Command line** (`computational-biology`) | Windows, Linux — one program per model, offline, no Python | [Windows (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-windows-x86_64.zip) · [Linux (x86-64)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-linux-x86_64.tar.gz) |
+| **In your browser** | any device — nothing to install | [Compute on the model page](https://www.ai999x.com/models/computational-biology-ai999x/#try) |
+| **Python** | Python 3.10+ | `pip install computational-biology-ai999x` |
+
+Checksums: [SHA256SUMS](https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS) · every version: [https://www.ai999x.com/downloads/desktop/latest/](https://www.ai999x.com/downloads/desktop/latest/) · install guide: [desktop & command line](https://www.ai999x.com/desktop-cli/)
+
+## Rust versions
+
+Computational Biology also comes as native programs compiled from Rust, version 1.2.0 of the AI999X desktop app and command line: they run offline on your computer and need no Python. Each file is in this repository's `rust/` folder, on the [GitHub release v1.0.3](https://github.com/AI999X/computational-biology-ai999x/releases/tag/v1.0.3) and on the website.
+
+| Program | System | File | Size | Download | Use |
+|---|---|---|---|---|---|
+| Desktop app (Computational Biology) | Windows x86-64 | `ai999x-computational-biology-1.2.0-windows-x86_64.zip` | 7.5 MB | [Hub](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/rust/ai999x-computational-biology-1.2.0-windows-x86_64.zip) · [GitHub](https://github.com/AI999X/computational-biology-ai999x/releases/download/v1.0.3/ai999x-computational-biology-1.2.0-windows-x86_64.zip) · [website](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-computational-biology-1.2.0-windows-x86_64.zip) | unzip, then double-click `ai999x-computational-biology.exe` (no installer) |
+| Desktop app (Computational Biology) | Linux x86-64 | `ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz` | 8.5 MB | [Hub](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/rust/ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz) · [GitHub](https://github.com/AI999X/computational-biology-ai999x/releases/download/v1.0.3/ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz) · [website](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz) | extract, then run `./ai999x-computational-biology` (X11 or Wayland desktop) |
+| Command line (`computational-biology`) | Windows x86-64 | `ai999x-computational-biology-cli-1.2.0-windows-x86_64.zip` | 3.2 MB | [Hub](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/rust/ai999x-computational-biology-cli-1.2.0-windows-x86_64.zip) · [GitHub](https://github.com/AI999X/computational-biology-ai999x/releases/download/v1.0.3/ai999x-computational-biology-cli-1.2.0-windows-x86_64.zip) · [website (all models)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-windows-x86_64.zip) | unzip, then `computational-biology.exe ask "<question>"` or `computational-biology.exe solve <capability> name=value` |
+| Command line (`computational-biology`) | Linux x86-64 | `ai999x-computational-biology-cli-1.2.0-linux-x86_64.tar.gz` | 3.2 MB | [Hub](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/rust/ai999x-computational-biology-cli-1.2.0-linux-x86_64.tar.gz) · [GitHub](https://github.com/AI999X/computational-biology-ai999x/releases/download/v1.0.3/ai999x-computational-biology-cli-1.2.0-linux-x86_64.tar.gz) · [website (all models)](https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-linux-x86_64.tar.gz) | extract, then `./computational-biology ask "<question>"` or `./computational-biology solve <capability> name=value` |
+
+The command-line archive holds `computational-biology` with a README of its commands and examples, the licence and the notice. Checksums: [`rust/SHA256SUMS`](https://huggingface.co/AI999X/computational-biology-ai999x/resolve/main/rust/SHA256SUMS) (`sha256sum -c SHA256SUMS`).
+
+## Quick start
+
+### Desktop app
+
+Download **AI999X Computational Biology** for your system (above), unpack it and start it; type a question in words or pick a capability, fill in the form and press Compute. Figures and an explanation of the answer appear beside it. The AI999X desktop app has the same, with Computational Biology among all AI999X models.
+
+Linux, from a terminal:
+
+```bash
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+tar xzf ai999x-computational-biology-1.2.0-linux-x86_64.tar.gz
+./ai999x-computational-biology-1.2.0-linux-x86_64/ai999x-computational-biology
+```
+
+### Command line
+
+Linux:
+
+```bash
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/ai999x-cli-1.2.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+mkdir -p ~/.local/share && tar xzf ai999x-cli-1.2.0-linux-x86_64.tar.gz -C ~/.local/share
+echo 'export PATH="$HOME/.local/share/ai999x-cli-1.2.0-linux-x86_64:$PATH"' >> ~/.bashrc && source ~/.bashrc
+computational-biology --version
+```
+
+Windows (PowerShell):
+
+```powershell
+$F = "ai999x-cli-1.2.0-windows-x86_64.zip"
+Invoke-WebRequest "https://www.ai999x.com/downloads/desktop/1.2.0/$F" -OutFile $F
+Invoke-WebRequest "https://www.ai999x.com/downloads/desktop/1.2.0/SHA256SUMS" -OutFile SHA256SUMS
+(Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split ' ')[0]
+Expand-Archive $F -DestinationPath "$env:LOCALAPPDATA\AI999X" -Force
+$D = "$env:LOCALAPPDATA\AI999X\ai999x-cli-1.2.0-windows-x86_64"; $env:Path += ";$D"
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";$D", "User")
+computational-biology --version
+```
+
+Every command below was run as shown; the text under it is what the program printed.
+
+**Ask in words** — Write the question as you would say it: the program reads the quantities and their units, picks the capability and answers.
+
+```console
+$ computational-biology ask "Reverse complement: seq = ATGCCGTA"
+Read as: Reverse complement of a DNA sequence
+revcomp = TACGGCAT
+  by: Reverse complement of a DNA sequence  (complement each base (A-T, C-G) and reverse the order)
+  seq = ATGCCGTA
+  assumes: DNA letters A, C, G, T only
+```
+
+**What a capability needs** — The equation or method, every input and output with its SI unit. Read this before solve: it tells you the input names.
+
+```console
+$ computational-biology info bio_hardy_weinberg_test
+Hardy-Weinberg chi-square test
+  allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom
+  in   n_AA     number of AA individuals (integer) [1]
+  in   n_Aa     number of Aa individuals (integer) [1]
+  in   n_aa     number of aa individuals (integer) [1]
+  out  p        frequency of allele A [1]
+  out  q        frequency of allele a [1]
+  out  exp_AA   expected AA count (N p^2) [1]
+  out  exp_Aa   expected Aa count (2 N p q) [1]
+  out  exp_aa   expected aa count (N q^2) [1]
+  out  chi2     chi-square statistic [1]
+  out  p_value  p-value (chi-square, 1 degree of freedom) [1]
+  out  Ho       observed heterozygosity [1]
+  out  He       expected heterozygosity 2pq [1]
+  out  F        inbreeding coefficient 1 - Ho/He [1]
+```
+
+**Solve** — Inputs as name=value, each with any unit of the right kind. The answer lists every output, the method used, each input converted to SI, and the conditions the answer assumes.
+
+```console
+$ computational-biology solve bio_hardy_weinberg_test n_AA=298 n_Aa=489 n_aa=213
+p = 0.5425
+q = 0.4575
+exp_AA = 294.30625
+exp_Aa = 496.3875
+exp_aa = 209.30625
+chi2 = 0.2214895876
+p_value = 0.6379072638
+Ho = 0.489
+He = 0.4963875
+F = 0.01488252625
+  by: Hardy-Weinberg chi-square test  (allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom)
+  assumes: both alleles present; biallelic locus; no continuity correction
+```
+
+**Draw the figures** — The live figures for your own inputs, written as SVG files into the folder given with --out (here the current folder); open them in any browser. Without --out the SVG text comes back as JSON.
+
+```console
+$ computational-biology figures bio_reverse_complement seq=ATGCCGTA --out .
+[
+  {
+    "slug": "bio-reverse-complement-live-1",
+    "title": "How far each letter of seq moves",
+    "caption": "For each letter of seq and the same position of revcomp: how many places along the alphabet (A to Z, wrapping round) it moved. Your inputs: seq = ATGCCGTA.",
+    "file": "./bio-reverse-complement-live-1.svg"
+  }
+]
+```
+
+**Many questions at once** — One JSON request per line in, one JSON answer per line out, in order: for scripts, notebooks and agents (the program starts once). In PowerShell: Get-Content cases.jsonl | computational-biology batch
+
+`cases.jsonl`:
+
+```json
+{"key": "bio_hardy_weinberg_test", "inputs": {"n_AA": "298", "n_Aa": "489", "n_aa": "213"}}
+{"key": "bio_reverse_complement", "inputs": {"seq": "ATGCCGTA"}}
+```
+
+```console
+$ computational-biology batch < cases.jsonl
+{"outcome":"SOLVED","message":"","value":0.221489587647,"unit":"","solved_for":"chi2","values":[["p",0.5425,""],["q",0.4575,""],["exp_AA",294.30625,""],["exp_Aa",496.3875,""],["exp_aa",209.30625,""],["chi2",0.221489587647,""],["p_value",0.637907263782,""],["Ho",0.489,""],["He",0.4963875,""],["F",0.0148825262522,""]],"target":"chi2","phrase":"frequency of allele A","assumptions":["both alleles present","biallelic locus","no continuity correction"],"name":"Hardy-Weinberg chi-square test","equation":"allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom"}
+{"outcome":"SOLVED","message":"","value":null,"unit":"","solved_for":"revcomp","values":[["revcomp","TACGGCAT",""]],"target":"revcomp","phrase":"reverse complement 5'->3'","assumptions":["DNA letters A, C, G, T only"],"name":"Reverse complement of a DNA sequence","equation":"complement each base (A-T, C-G) and reverse the order"}
+```
+
+### In your browser
+
+Open [Computational Biology on ai999x.com](https://www.ai999x.com/models/computational-biology-ai999x/#try), choose a capability and press **Compute**: the model runs on your own device as WebAssembly; nothing is sent anywhere. Change any input (any unit of the right kind) and the answer, its explanation and the figures follow.
+
+In your own page: `computational_biology_ai999x.wasm` and the loader `ax-wasm.js` (https://www.ai999x.com/compute/rust/ax-wasm.js).
+
+### Python
+
+```bash
+pip install computational-biology-ai999x
+```
+
+## Worked examples in every form
+
+The same worked example from the command line, from Python and in the browser. Each command-line output is what the program printed.
+
+### Global alignment score (Needleman-Wunsch, linear gaps)
+
+The optimal global (Needleman-Wunsch) alignment score of two sequences with stated match, mismatch and linear gap scores.
+
+Command line:
+
+```console
+$ computational-biology solve bio_global_alignment_score seq1=GATTACA seq2=GCATGCU match=1 mismatch=-1 gap=-1
+score = 0
+  by: Global alignment score (Needleman-Wunsch, linear gaps)  (dynamic programming over prefixes (Needleman-Wunsch))
+  match = 1
+  mismatch = -1
+  gap = -1
+  seq1 = GATTACA
+  seq2 = GCATGCU
+  assumes: gap <= 0; end gaps scored like internal gaps
+```
+
+Python:
+
+```python
+import computational_biology_ai999x as m
+
+a = m.solve("bio_global_alignment_score", seq1="GATTACA", seq2="GCATGCU", match="1", mismatch="-1", gap="-1")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/computational-biology-ai999x/#cap-bio_global_alignment_score) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the highest possible score for aligning two entire sequences end-to-end. By applying dynamic programming to the prefixes of sequence one and sequence two, it evaluates every possible alignment path. The result, 0, represents the sum of scores for matched characters, mismatched characters, and gap positions, where each gap contributes a fixed penalty defined by the input parameter. This metric quantifies the overall similarity between the two inputs under the specified scoring scheme.
+
+### Global alignment score with affine gaps (Gotoh)
+
+The optimal global alignment score with affine gaps: a gap of length L scores open + (L-1)*extend.
+
+Command line:
+
+```console
+$ computational-biology solve bio_global_alignment_affine seq1=ACGTTTACG seq2=ACGACG match=2 mismatch=-1 open=-5 extend=-1
+score = 5
+  by: Global alignment score with affine gaps (Gotoh)  (Gotoh's three-state dynamic programming)
+  match = 2
+  mismatch = -1
+  open = -5
+  extend = -1
+  seq1 = ACGTTTACG
+  seq2 = ACGACG
+  assumes: open, extend <= 0; a gap of length L scores open + (L-1) extend; end gaps scored
+```
+
+Python:
+
+```python
+import computational_biology_ai999x as m
+
+a = m.solve("bio_global_alignment_affine", seq1="ACGTTTACG", seq2="ACGACG", match="2", mismatch="-1", open="-5", extend="-1")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/computational-biology-ai999x/#cap-bio_global_alignment_affine) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the highest possible similarity score for aligning two biological sequences globally, treating a new gap opening differently from extending an existing one. By applying Gotoh's dynamic programming method with a match score of 2 and mismatch penalty of -1, the algorithm evaluates all possible alignments while penalizing gaps based on an open cost of -5 and an extension cost of -1. The resulting value of 5 represents the maximum cumulative score achievable under these specific scoring rules, accounting for both substitutions and indels across the entire length of the sequences.
+
+### Global protein alignment score (BLOSUM62, affine gaps)
+
+The optimal global alignment score of two proteins with BLOSUM62 and affine gaps.
+
+Command line:
+
+```console
+$ computational-biology solve bio_protein_global_blosum62 seq1=HEAGAWGHEE seq2=PAWHEAE open=-10 extend=-1
+score = 3
+  by: Global protein alignment score (BLOSUM62, affine gaps)  (Gotoh's dynamic programming with BLOSUM62 substitution scores)
+  open = -10
+  extend = -1
+  seq1 = HEAGAWGHEE
+  seq2 = PAWHEAE
+  assumes: standard amino acids; open, extend <= 0
+```
+
+Python:
+
+```python
+import computational_biology_ai999x as m
+
+a = m.solve("bio_protein_global_blosum62", seq1="HEAGAWGHEE", seq2="PAWHEAE", open="-10", extend="-1")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/computational-biology-ai999x/#cap-bio_protein_global_blosum62) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the best global alignment score between two protein sequences using the BLOSUM62 substitution matrix and affine gap penalties. The result, 3, represents the maximum sum of match scores plus gap costs when aligning HEAGAWGHEE with PAWHEAE from end to end. A higher value indicates greater similarity and a better fit under the chosen scoring scheme.
+
+### Local alignment score (Smith-Waterman, linear gaps)
+
+The optimal local (Smith-Waterman) alignment score of two sequences with stated match, mismatch and linear gap scores.
+
+Command line:
+
+```console
+$ computational-biology solve bio_local_alignment_score seq1=TGTTACGG seq2=GGTTGACTA match=3 mismatch=-3 gap=-2
+score = 13
+  by: Local alignment score (Smith-Waterman, linear gaps)  (dynamic programming with a floor at 0 (Smith-Waterman))
+  match = 3
+  mismatch = -3
+  gap = -2
+  seq1 = TGTTACGG
+  seq2 = GGTTGACTA
+  assumes: match > 0; gap <= 0
+```
+
+Python:
+
+```python
+import computational_biology_ai999x as m
+
+a = m.solve("bio_local_alignment_score", seq1="TGTTACGG", seq2="GGTTGACTA", match="3", mismatch="-3", gap="-2")
+print(a.values or (a.value, a.unit))
+```
+
+Browser: [open this capability on the model page](https://www.ai999x.com/models/computational-biology-ai999x/#cap-bio_local_alignment_score) and press **Compute in your browser**.
+
+_What this means:_ This calculation determines the highest possible score for aligning a specific segment from the first sequence with a segment from the second sequence. Using dynamic programming, it evaluates matches, mismatches, and gaps to find the best local similarity. The resulting score of 13 indicates the strength of this local relationship, where higher values suggest more significant biological homology or shared motifs.
+
+## Documentation
+
+- **Rust user guide** — the command line, every capability with a command and what it printed: [PDF](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_rust_guide.pdf) · [Markdown](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_rust_guide.md)
+- **Python guide** — every capability with a Python example: [PDF](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_capabilities.pdf) · [Markdown](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_capabilities.md)
+- **Desktop app & command line** — downloads, install, ask and search, figures, offline use, checksums: https://www.ai999x.com/desktop-cli/
+- **Model page** — compute in your browser, every capability explained: https://www.ai999x.com/models/computational-biology-ai999x/
 
 ## Highlights
 
@@ -20,6 +317,7 @@ computational-biology-ai999x is an offline, deterministic Python solver that ans
 - **Zero wrong answers by design.** Seven explicit outcomes — SOLVED, NEEDS_INPUT, AMBIGUOUS, INVALID_INPUT, OUT_OF_SCOPE, UNRECOGNIZED_FORMAT, INTERNAL_ERROR — never a silent guess. Every one of its 616 documented answers is reproduced exactly on every tested platform.
 - **Plain-English questions and a guaranteed typed interface.** `ask()` reads documented question forms; `solve(capability_id, **inputs)` always solves a supported task with valid inputs.
 - **Explains itself.** Steps, formulas in LaTeX, units, assumptions and the model used, ready for notebooks, tutoring apps and homework checkers.
+- **Native and in the browser.** Every capability also computes natively in Rust: the desktop app and the `computational-biology` command line for Windows and Linux, and WebAssembly on the model page — no Python, no network.
 - **Small and portable.** Pure Python (sympy, mpmath); identical answers on Windows and Linux (Python 3.10, 3.11, 3.12, 3.13, 3.14).
 - **Coverage:** DNA and protein sequences, pairwise alignment, molecular masses, Mendelian and population genetics, phylogenetics, enzyme kinetics, population models and ecology.
 
@@ -38,7 +336,7 @@ computational-biology-ai999x is an offline, deterministic Python solver that ans
 | Creator / engineer | Ibnul Jaif Farabi |
 | Organization | AI999X |
 
-## Quickstart
+## Python quick start
 
 ```bash
 pip install computational-biology-ai999x
@@ -61,7 +359,7 @@ computational_biology.ask("Who created you?").message
 # -> computational-biology-ai999x was created and engineered by Ibnul Jaif Farabi at AI999X.
 ```
 
-Command line: `computational-biology-ai999x "<question>"`, `computational-biology-ai999x --capabilities`. The outputs above were produced by running this exact code on computational-biology-ai999x 1.0.3.
+The Python package also installs a Python command, `computational-biology-ai999x "<question>"`; for the native program use `computational-biology` (above). The outputs above were produced by running this exact code on computational-biology-ai999x 1.0.3.
 
 ## Find the right capability, and draw it
 
@@ -83,7 +381,7 @@ computational_biology.search("Solve x^2 - 5x + 6 = 0", k=2)
 
 Capabilities are certified before they ship: each must reproduce hand-worked reference cases, reject a deliberately wrong variant (a control), and leave every benchmark answer unchanged.
 
-## Worked examples
+## Python worked examples, with their steps
 
 Each question was put to `computational-biology-ai999x`; the answer is the one it returned, with the steps it took.
 

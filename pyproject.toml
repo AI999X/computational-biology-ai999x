@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "computational-biology-ai999x"
-version = "1.0.3"
+version = "1.1.0"
 description = "Offline computational biology solver: DNA and protein sequences, pairwise alignment, molecular masses, Mendelian and population genetics, phylogenetics, enzyme kinetics, population models and ecology, with steps, LaTeX and honest refusals"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Apache-2.0"}
-authors = [{name = "Ibnul Jaif Farabi"}]
-maintainers = [{name = "AI999X"}]
+authors = [{name = "AI999X Labs", email = "support@ai999x.com"}, {name = "Ibnul Jaif Farabi", email = "ibnuljaiffarabi@ai999x.com"}]
+maintainers = [{name = "AI999X Labs", email = "support@ai999x.com"}]
 keywords = ["computational biology", "bioinformatics", "DNA", "protein", "sequence analysis", "translation", "open reading frame", "restriction sites", "melting temperature", "isoelectric point", "sequence alignment", "Needleman-Wunsch", "Smith-Waterman", "BLOSUM62", "Hardy-Weinberg", "population genetics", "genetic drift", "linkage disequilibrium", "phylogenetics", "neighbor joining", "UPGMA", "Tajima's D", "enzyme kinetics", "Michaelis-Menten", "Hill equation", "Leslie matrix", "diversity index", "flux balance analysis", "ecology", "ai999x", "offline", "cpu", "stem", "education", "step-by-step", "latex", "solver"]
 classifiers = ["License :: OSI Approved :: Apache Software License", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Operating System :: OS Independent", "Intended Audience :: Education", "Intended Audience :: Science/Research", "Intended Audience :: Developers", "Topic :: Scientific/Engineering", "Topic :: Education", "Development Status :: 5 - Production/Stable"]
 dependencies = ["sympy>=1.12", "mpmath>=1.3"]

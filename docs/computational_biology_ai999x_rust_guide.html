@@ -1,0 +1,1256 @@
+<!doctype html><html><head><meta charset="utf-8"><title>computational-biology — user guide (Rust build)</title>
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+@page{size:A4;margin:16mm 15mm}
+body{font-family:"Segoe UI",Arial,sans-serif;font-size:10.5pt;line-height:1.45;color:#1b1f24;max-width:880px;margin:auto}
+h1{font-size:22pt;border-bottom:2px solid #2b5c8a;padding-bottom:4px;margin-top:28px;page-break-before:always}
+h1:first-of-type{page-break-before:avoid}
+h2{font-size:15pt;color:#2b5c8a;margin-top:22px;page-break-after:avoid}
+h3{font-size:12pt;margin-top:16px;page-break-after:avoid}
+pre{background:#f4f6f8;border:1px solid #dde3e8;border-radius:4px;padding:8px 10px;font-size:8.8pt;white-space:pre-wrap;page-break-inside:avoid}
+code{font-family:Consolas,monospace;font-size:9pt;background:#f4f6f8;padding:0 2px}
+pre code{background:none;padding:0}
+table{border-collapse:collapse;margin:8px 0;font-size:9pt;width:100%;page-break-inside:auto}
+th,td{border:1px solid #cfd6dd;padding:3px 6px;vertical-align:top;text-align:left}
+th{background:#eaf0f5}
+.math{margin:6px 0;overflow-x:auto}
+.badge{display:inline-block;color:#fff;border-radius:3px;padding:0 5px;font-size:8.5pt;white-space:nowrap}
+figure{margin:10px 0;text-align:center;page-break-inside:avoid}figure img{max-width:88%}.svgfig svg{max-width:88%;height:auto}
+figcaption{font-size:9pt;color:#555}
+.pb{page-break-after:always}
+</style></head><body>
+<h1>computational-biology: the Computational Biology program — user guide</h1>
+<p><strong>computational-biology-ai999x 1.0.3</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
+<p>Computational Biology covers DNA and protein sequences, alignment, molecular weights, genetics and population genetics, phylogenetics, enzyme kinetics, metabolic and population models, and ecology. This guide is about <code>computational-biology</code>, the model as a self-contained program for Windows and Linux: 83 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model&#x27;s page (https://www.ai999x.com/models/computational-biology-ai999x/); the Python package (<code>pip install computational-biology-ai999x</code>) has its own guide. Every command output printed here is what the program printed.</p>
+<h2>Contents</h2>
+<ul><li>1. Get it: desktop app, command line, browser, Python</li><li>2. Quick start</li><li>3. Writing inputs</li><li>4. Outcomes and exit codes</li><li>5. Scripts and agents: batch and JSON</li><li>6. Figures</li><li>7. In a web page or Node.js: WebAssembly</li><li>8. Every capability</li></ul>
+<h2>1. Get it</h2>
+<p>Version 1.4.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS; the newest version is always under https://www.ai999x.com/downloads/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/</p>
+<table><thead><tr><th>what</th><th>system</th><th>download</th></tr></thead><tbody><tr><td>Desktop app: Computational Biology</td><td>Windows x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: Computational Biology</td><td>Linux x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz</td></tr><tr><td>Desktop app: all models</td><td>Windows x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: all models</td><td>Linux x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz</td></tr><tr><td>Command line</td><td>Windows x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-windows-x86_64.zip</td></tr><tr><td>Command line</td><td>Linux x86-64</td><td>https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz</td></tr></tbody></table>
+<h3>Desktop app</h3>
+<p>Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
+<pre><code class="shell">curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+tar xzf ai999x-computational-biology-1.4.0-linux-x86_64.tar.gz
+./ai999x-computational-biology-1.4.0-linux-x86_64/ai999x-computational-biology</code></pre>
+<p>It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.4.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
+<pre><code class="shell">curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-1.4.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+tar xzf ai999x-1.4.0-linux-x86_64.tar.gz
+./ai999x-1.4.0-linux-x86_64/ai999x</code></pre>
+<h3>Command line — Linux</h3>
+<p>The bundle holds one program per model; <code>computational-biology</code> is this one. The checksum line should print OK.</p>
+<pre><code class="shell">curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/ai999x-cli-1.4.0-linux-x86_64.tar.gz
+curl -LO https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS
+sha256sum -c --ignore-missing SHA256SUMS
+mkdir -p ~/.local/share &amp;&amp; tar xzf ai999x-cli-1.4.0-linux-x86_64.tar.gz -C ~/.local/share
+echo &#x27;export PATH=&quot;$HOME/.local/share/ai999x-cli-1.4.0-linux-x86_64:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
+computational-biology --version</code></pre>
+<h3>Command line — Windows (PowerShell)</h3>
+<p>The fourth line should print True.</p>
+<pre><code class="powershell">$F = &quot;ai999x-cli-1.4.0-windows-x86_64.zip&quot;
+Invoke-WebRequest &quot;https://www.ai999x.com/downloads/desktop/1.4.0/$F&quot; -OutFile $F
+Invoke-WebRequest &quot;https://www.ai999x.com/downloads/desktop/1.4.0/SHA256SUMS&quot; -OutFile SHA256SUMS
+(Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split &#x27; &#x27;)[0]
+Expand-Archive $F -DestinationPath &quot;$env:LOCALAPPDATA\AI999X&quot; -Force
+$D = &quot;$env:LOCALAPPDATA\AI999X\ai999x-cli-1.4.0-windows-x86_64&quot;; $env:Path += &quot;;$D&quot;
+[Environment]::SetEnvironmentVariable(&quot;Path&quot;, [Environment]::GetEnvironmentVariable(&quot;Path&quot;, &quot;User&quot;) + &quot;;$D&quot;, &quot;User&quot;)
+computational-biology --version</code></pre>
+<h3>In your browser</h3>
+<p>Open https://www.ai999x.com/models/computational-biology-ai999x/, choose a capability and press Compute in your browser: the same program runs on your device as WebAssembly; nothing is sent anywhere.</p>
+<h3>Python</h3>
+<pre><code class="shell">pip install computational-biology-ai999x</code></pre>
+<h2>2. Quick start</h2>
+<h3>2.1 Check the install</h3>
+<p>Prints the model, its version and that this is the Rust build.</p>
+<pre><code class="shell">$ computational-biology --version
+computational-biology-ai999x 1.0.3 (Rust build, ax-engine 0.1.0)</code></pre>
+<h3>2.2 Ask in words</h3>
+<p>Write the question as you would say it: the program reads the quantities and their units, picks the capability and answers.</p>
+<pre><code class="shell">$ computational-biology ask &quot;Reverse complement: seq = ATGCCGTA&quot;
+Read as: Reverse complement of a DNA sequence
+revcomp = TACGGCAT
+  by: Reverse complement of a DNA sequence  (complement each base (A-T, C-G) and reverse the order)
+  seq = ATGCCGTA
+  assumes: DNA letters A, C, G, T only</code></pre>
+<h3>2.3 Find a capability</h3>
+<p>Search the capabilities by what you want to know; the first column is the id to pass to info and solve.</p>
+<pre><code class="shell">$ computational-biology search &quot;hardy-weinberg chi-square test&quot;
+bio_hardy_weinberg_test              Hardy-Weinberg chi-square test  (population genetics / Hardy-Weinberg)
+bio_hardy_weinberg_exact_test        Hardy-Weinberg exact test  (population genetics / Hardy-Weinberg)
+bio_michaelis_menten_fit             Michaelis-Menten nonlinear least-squares fit  (enzyme kinetics / Michaelis-Menten)
+bio_hill_fit                         Hill equation nonlinear least-squares fit  (enzyme kinetics / cooperativity)
+bio_tajima_d                         Tajima&#x27;s D  (population genetics / neutrality tests)
+bio_linkage_disequilibrium           Linkage disequilibrium D, D&#x27; and r^2  (population genetics / linkage disequilibrium)
+bio_pedigree_inbreeding              Inbreeding coefficient from a pedigree  (genetics / inbreeding)
+bio_semiglobal_alignment_score       Semi-global (end-gap-free) alignment score  (alignment / pairwise)
+… 6 more</code></pre>
+<h3>2.4 List the capabilities</h3>
+<p>Every capability the program answers: its id (what you pass to solve) and its name.</p>
+<pre><code class="shell">$ computational-biology list
+bio_ace                                  ACE species richness estimator
+bio_amino_acid_composition               Amino-acid composition of a protein
+bio_aromaticity                          Aromaticity of a protein
+bio_beta_diversity                       Beta diversity between two samples
+bio_brillouin_diversity                  Brillouin diversity index
+bio_chao1                                Chao1 species richness estimator
+bio_chemostat_steady_state               Chemostat steady state (Monod kinetics)
+bio_coalescent_times                     Expected coalescence times
+… 75 more</code></pre>
+<h3>2.5 What a capability needs</h3>
+<p>The equation or method, every input and output with its SI unit. Read this before solve: it tells you the input names.</p>
+<pre><code class="shell">$ computational-biology info bio_hardy_weinberg_test
+Hardy-Weinberg chi-square test
+  allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom
+  in   n_AA     number of AA individuals (integer) [1]
+  in   n_Aa     number of Aa individuals (integer) [1]
+  in   n_aa     number of aa individuals (integer) [1]
+  out  p        frequency of allele A [1]
+  out  q        frequency of allele a [1]
+  out  exp_AA   expected AA count (N p^2) [1]
+  out  exp_Aa   expected Aa count (2 N p q) [1]
+  out  exp_aa   expected aa count (N q^2) [1]
+  out  chi2     chi-square statistic [1]
+  out  p_value  p-value (chi-square, 1 degree of freedom) [1]
+  out  Ho       observed heterozygosity [1]
+  out  He       expected heterozygosity 2pq [1]
+  out  F        inbreeding coefficient 1 - Ho/He [1]</code></pre>
+<h3>2.6 Solve</h3>
+<p>Inputs as name=value, each with any unit of the right kind. The answer lists every output, the method used, each input converted to SI, and the conditions the answer assumes.</p>
+<pre><code class="shell">$ computational-biology solve bio_hardy_weinberg_test n_AA=298 n_Aa=489 n_aa=213
+p = 0.5425
+q = 0.4575
+exp_AA = 294.30625
+exp_Aa = 496.3875
+exp_aa = 209.30625
+chi2 = 0.2214895876
+p_value = 0.6379072638
+Ho = 0.489
+He = 0.4963875
+F = 0.01488252625
+  by: Hardy-Weinberg chi-square test  (allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom)
+  assumes: both alleles present; biallelic locus; no continuity correction</code></pre>
+<h3>2.7 Machine-readable answer</h3>
+<p>--json prints the same answer as one line of JSON (values in SI): for scripts and other programs.</p>
+<pre><code class="shell">$ computational-biology solve bio_hardy_weinberg_test n_AA=298 n_Aa=489 n_aa=213 --json
+{&quot;outcome&quot;:&quot;SOLVED&quot;,&quot;message&quot;:&quot;&quot;,&quot;value&quot;:0.221489587647,&quot;unit&quot;:&quot;&quot;,&quot;solved_for&quot;:&quot;chi2&quot;,&quot;values&quot;:[[&quot;p&quot;,0.5425,&quot;&quot;],[&quot;q&quot;,0.4575,&quot;&quot;],[&quot;exp_AA&quot;,294.30625,&quot;&quot;],[&quot;exp_Aa&quot;,496.3875,&quot;&quot;],[&quot;exp_aa&quot;,209.30625,&quot;&quot;],[&quot;chi2&quot;,0.221489587647,&quot;&quot;],[&quot;p_value&quot;,0.637907263782,&quot;&quot;],[&quot;Ho&quot;,0.489,&quot;&quot;],[&quot;He&quot;,0.4963875,&quot;&quot;],[&quot;F&quot;,0.0148825262522,&quot;&quot;]],&quot;target&quot;:&quot;chi2&quot;,&quot;phrase&quot;:&quot;frequency of allele A&quot;,&quot;assumptions&quot;:[&quot;both alleles present&quot;,&quot;biallelic locus&quot;,&quot;no continuity correction&quot;],&quot;name&quot;:&quot;Hardy-Weinberg chi-square test&quot;,&quot;equation&quot;:&quot;allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom&quot;}</code></pre>
+<h3>2.8 When an input is missing</h3>
+<p>No number is guessed: the answer names what is missing, shows a complete call, and the program exits with status 1.</p>
+<pre><code class="shell">$ computational-biology solve bio_hardy_weinberg_test n_AA=298 n_Aa=489
+NEEDS_INPUT: bio_hardy_weinberg_test needs n_aa (number of aa individuals). Example: solve(&#x27;bio_hardy_weinberg_test&#x27;, n_AA=298, n_Aa=489, n_aa=213).</code></pre>
+<h3>2.9 Draw the figures</h3>
+<p>The live figures for your own inputs, written as SVG files into the folder given with --out (here the current folder); open them in any browser. Without --out the SVG text comes back as JSON.</p>
+<pre><code class="shell">$ computational-biology figures bio_reverse_complement seq=ATGCCGTA --out .
+[
+  {
+    &quot;slug&quot;: &quot;bio-reverse-complement-duplex&quot;,
+    &quot;title&quot;: &quot;Reverse complement: the partner strand of a DNA sequence&quot;,
+    &quot;caption&quot;: &quot;The given strand ATGCCGTA (top, 5&#x27; to 3&#x27;) paired with its partner strand (bottom, 3&#x27; to 5&#x27;); A-T and G-C pairs in two colours. Read 5&#x27; to 3&#x27;, the partner strand is the model&#x27;s reverse complement, revcomp = TACGGCAT. Your inputs: seq = ATGCCGTA.&quot;,
+    &quot;file&quot;: &quot;.\\bio-reverse-complement-duplex.svg&quot;
+  },
+  {
+    &quot;slug&quot;: &quot;bio-reverse-complement-live-1&quot;,
+    &quot;title&quot;: &quot;How far each letter of seq moves&quot;,
+    &quot;caption&quot;: &quot;For each letter of seq and the same position of revcomp: how many places along the alphabet (A to Z, wrapping round) it moved. Your inputs: seq = ATGCCGTA.&quot;,
+    &quot;file&quot;: &quot;.\\bio-reverse-complement-live-1.svg&quot;
+  }
+]</code></pre>
+<h3>2.10 Many questions at once</h3>
+<p>One JSON request per line in, one JSON answer per line out, in order: for scripts, notebooks and agents (the program starts once). In PowerShell: Get-Content cases.jsonl | computational-biology batch</p>
+<p><code>cases.jsonl</code>:</p>
+<pre><code class="json">{&quot;key&quot;: &quot;bio_hardy_weinberg_test&quot;, &quot;inputs&quot;: {&quot;n_AA&quot;: &quot;298&quot;, &quot;n_Aa&quot;: &quot;489&quot;, &quot;n_aa&quot;: &quot;213&quot;}}
+{&quot;key&quot;: &quot;bio_reverse_complement&quot;, &quot;inputs&quot;: {&quot;seq&quot;: &quot;ATGCCGTA&quot;}}</code></pre>
+<pre><code class="shell">$ computational-biology batch &lt; cases.jsonl
+{&quot;outcome&quot;:&quot;SOLVED&quot;,&quot;message&quot;:&quot;&quot;,&quot;value&quot;:0.221489587647,&quot;unit&quot;:&quot;&quot;,&quot;solved_for&quot;:&quot;chi2&quot;,&quot;values&quot;:[[&quot;p&quot;,0.5425,&quot;&quot;],[&quot;q&quot;,0.4575,&quot;&quot;],[&quot;exp_AA&quot;,294.30625,&quot;&quot;],[&quot;exp_Aa&quot;,496.3875,&quot;&quot;],[&quot;exp_aa&quot;,209.30625,&quot;&quot;],[&quot;chi2&quot;,0.221489587647,&quot;&quot;],[&quot;p_value&quot;,0.637907263782,&quot;&quot;],[&quot;Ho&quot;,0.489,&quot;&quot;],[&quot;He&quot;,0.4963875,&quot;&quot;],[&quot;F&quot;,0.0148825262522,&quot;&quot;]],&quot;target&quot;:&quot;chi2&quot;,&quot;phrase&quot;:&quot;frequency of allele A&quot;,&quot;assumptions&quot;:[&quot;both alleles present&quot;,&quot;biallelic locus&quot;,&quot;no continuity correction&quot;],&quot;name&quot;:&quot;Hardy-Weinberg chi-square test&quot;,&quot;equation&quot;:&quot;allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom&quot;}
+{&quot;outcome&quot;:&quot;SOLVED&quot;,&quot;message&quot;:&quot;&quot;,&quot;value&quot;:null,&quot;unit&quot;:&quot;&quot;,&quot;solved_for&quot;:&quot;revcomp&quot;,&quot;values&quot;:[[&quot;revcomp&quot;,&quot;TACGGCAT&quot;,&quot;&quot;]],&quot;target&quot;:&quot;revcomp&quot;,&quot;phrase&quot;:&quot;reverse complement 5&#x27;-&gt;3&#x27;&quot;,&quot;assumptions&quot;:[&quot;DNA letters A, C, G, T only&quot;],&quot;name&quot;:&quot;Reverse complement of a DNA sequence&quot;,&quot;equation&quot;:&quot;complement each base (A-T, C-G) and reverse the order&quot;}</code></pre>
+<h2>3. Writing inputs</h2>
+<p>Inputs are written <code>name=value</code>, one per argument; <code>computational-biology info &lt;capability&gt;</code> lists the names. Quote an argument that holds a space or brackets (bash, zsh and PowerShell all accept double quotes). The answer always states each input as it was read, converted to SI, so a misread unit is visible at once.</p>
+<table><thead><tr><th>kind</th><th>example</th><th>how it is read</th></tr></thead><tbody><tr><td>a number with a unit</td><td><code>&quot;R=0.128 nm&quot;</code></td><td>any unit of the same kind; converted to SI</td></tr><tr><td>a number in SI</td><td><code>R=1.28e-10</code></td><td>no unit means the SI unit shown by info</td></tr><tr><td>a choice</td><td><code>structure=FCC</code></td><td>one of the values info lists</td></tr><tr><td>a list or vector</td><td><code>&quot;v=[1, 2, 3]&quot; or &quot;v=1, 2, 3&quot;</code></td><td>brackets keep it a list</td></tr><tr><td>a matrix</td><td><code>&quot;A=[[1, 2], [3, 4]]&quot;</code></td><td>one list per row</td></tr><tr><td>true / false</td><td><code>inclusive=true</code></td><td>for yes/no options</td></tr></tbody></table>
+<p>An equation can be solved for any of its quantities: give the others and add <code>--target &lt;symbol&gt;</code>. Without <code>--target</code>, the program solves for the quantity the capability is named after.</p>
+<h2>4. Outcomes and exit codes</h2>
+<p>The program never guesses a number: when it cannot answer, it says why and exits with status 1, so a script can tell an answer from a refusal without reading the text.</p>
+<table><thead><tr><th>outcome</th><th>meaning</th><th>exit status</th></tr></thead><tbody><tr><td>SOLVED</td><td>the answer: every output with its unit, the method, the inputs in SI, the conditions assumed</td><td>0</td></tr><tr><td>NEEDS_INPUT</td><td>an input is missing; the message names it and shows a complete call</td><td>1</td></tr><tr><td>INVALID_INPUT</td><td>a value or unit of the wrong kind, an unknown input name, or a value outside the conditions</td><td>1</td></tr><tr><td>AMBIGUOUS</td><td>the inputs allow two different answers; say which one is meant</td><td>1</td></tr><tr><td>OUT_OF_SCOPE</td><td>the model has no capability for this, or the result would not be meaningful</td><td>1</td></tr><tr><td>(usage)</td><td>a command the program does not know: it prints its usage</td><td>2</td></tr></tbody></table>
+<h2>5. Scripts and agents: batch and JSON</h2>
+<p><code>computational-biology solve ... --json</code> prints one answer as one line of JSON. <code>computational-biology batch</code> reads one request per line on standard input and writes one JSON answer per line, in order, starting the program once for any number of requests. A request is <code>{&quot;key&quot;: &quot;&lt;capability&gt;&quot;, &quot;inputs&quot;: {&quot;name&quot;: &quot;value&quot;, ...}, &quot;target&quot;: null}</code>. In PowerShell, pipe the file in: <code>Get-Content cases.jsonl | computational-biology batch</code>. <code>computational-biology catalog</code> prints every capability with its inputs as JSON, to build forms or tool definitions.</p>
+<table><thead><tr><th>answer field</th><th>meaning</th></tr></thead><tbody><tr><td>outcome</td><td>one of the outcomes above</td></tr><tr><td>message</td><td>why there is no answer (empty when SOLVED)</td></tr><tr><td>value, unit</td><td>the main result in SI units</td></tr><tr><td>values</td><td>every output: [symbol, value, unit] (procedures)</td></tr><tr><td>target</td><td>the quantity solved for</td></tr><tr><td>si</td><td>each numeric input converted to SI: [symbol, value]</td></tr><tr><td>assumptions</td><td>the conditions the answer relies on</td></tr><tr><td>name, equation</td><td>the capability and its equation or method</td></tr></tbody></table>
+<pre><code class="python">import json, subprocess
+
+reqs = [{&quot;key&quot;: &quot;&lt;capability&gt;&quot;, &quot;inputs&quot;: {&quot;name&quot;: &quot;value&quot;}}]
+out = subprocess.run([&quot;computational-biology&quot;, &quot;batch&quot;], input=&quot;\n&quot;.join(map(json.dumps, reqs)),
+                     capture_output=True, text=True, check=True).stdout
+answers = [json.loads(line) for line in out.splitlines()]</code></pre>
+<h2>6. Figures</h2>
+<p><code>computational-biology figures &lt;capability&gt; name=value ... --out DIR</code> draws the live figures for those inputs and writes each as an SVG file into DIR (an existing folder); without <code>--out</code> the SVG text comes back as JSON. The desktop app and the model page draw the same figures as soon as you press Compute.</p>
+<pre><code class="shell">$ computational-biology figures bio_reverse_complement seq=ATGCCGTA --out .
+[
+  {
+    &quot;slug&quot;: &quot;bio-reverse-complement-duplex&quot;,
+    &quot;title&quot;: &quot;Reverse complement: the partner strand of a DNA sequence&quot;,
+    &quot;caption&quot;: &quot;The given strand ATGCCGTA (top, 5&#x27; to 3&#x27;) paired with its partner strand (bottom, 3&#x27; to 5&#x27;); A-T and G-C pairs in two colours. Read 5&#x27; to 3&#x27;, the partner strand is the model&#x27;s reverse complement, revcomp = TACGGCAT. Your inputs: seq = ATGCCGTA.&quot;,
+    &quot;file&quot;: &quot;.\\bio-reverse-complement-duplex.svg&quot;
+  },
+  {
+    &quot;slug&quot;: &quot;bio-reverse-complement-live-1&quot;,
+    &quot;title&quot;: &quot;How far each letter of seq moves&quot;,
+    &quot;caption&quot;: &quot;For each letter of seq and the same position of revcomp: how many places along the alphabet (A to Z, wrapping round) it moved. Your inputs: seq = ATGCCGTA.&quot;,
+    &quot;file&quot;: &quot;.\\bio-reverse-complement-live-1.svg&quot;
+  }
+]</code></pre>
+<h2>7. In a web page or Node.js: WebAssembly</h2>
+<p>The same model is a WebAssembly module, <code>computational_biology_ai999x.wasm</code> (https://www.ai999x.com/compute/rust/computational_biology_ai999x.wasm), with a small loader, <code>ax-wasm.js</code> (https://www.ai999x.com/compute/rust/ax-wasm.js). It runs in a browser, a Web Worker or Node.js, with no server.</p>
+<pre><code class="html">&lt;script src=&quot;ax-wasm.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  AXWasm.load(&quot;computational_biology_ai999x.wasm&quot;).then(function (m) {
+    var a = m.solve({key: &quot;&lt;capability&gt;&quot;, inputs: {name: &quot;value&quot;}});
+    console.log(a.outcome, a.values || a.value);
+    console.log(m.catalog().capabilities.length + &quot; capabilities&quot;);
+  });
+&lt;/script&gt;</code></pre>
+<h2>8. Every capability</h2>
+<p>By topic. For each: what it does, what it needs and gives, when it applies, and a command with what the program printed for it. <code>computational-biology info &lt;id&gt;</code> shows the same inputs and outputs in the terminal.</p>
+<h3>Alignment (7)</h3>
+<h4 id="bio_global_alignment_score">Global alignment score (Needleman-Wunsch, linear gaps) — <code>bio_global_alignment_score</code></h4>
+<p>The optimal global (Needleman-Wunsch) alignment score of two sequences with stated match, mismatch and linear gap scores.</p>
+<div class="math">\[S_{i,j} = \max(S_{i-1,j-1}+s(x_i,y_j),\ S_{i-1,j}+g,\ S_{i,j-1}+g)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second sequence</td><td>—</td></tr><tr><td><code>match</code></td><td>in</td><td>score of a match</td><td>—</td></tr><tr><td><code>mismatch</code></td><td>in</td><td>score of a mismatch</td><td>—</td></tr><tr><td><code>gap</code></td><td>in</td><td>score of each gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal global alignment score</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> gap &lt;= 0; end gaps scored like internal gaps.</p>
+<pre><code class="shell">$ computational-biology solve bio_global_alignment_score seq1=GATTACA seq2=GCATGCU match=1 mismatch=-1 gap=-1
+score = 0
+  by: Global alignment score (Needleman-Wunsch, linear gaps)  (dynamic programming over prefixes (Needleman-Wunsch))
+  match = 1
+  mismatch = -1
+  gap = -1
+  seq1 = GATTACA
+  seq2 = GCATGCU
+  assumes: gap &lt;= 0; end gaps scored like internal gaps</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the highest possible score for aligning two entire sequences end-to-end. By applying dynamic programming to the prefixes of sequence one and sequence two, it evaluates every possible alignment path. The result, 0, represents the sum of scores for matched characters, mismatched characters, and gap positions, where each gap contributes a fixed penalty defined by the input parameter. This metric quantifies the overall similarity between the two inputs under the specified scoring scheme.</p>
+<h4 id="bio_global_alignment_affine">Global alignment score with affine gaps (Gotoh) — <code>bio_global_alignment_affine</code></h4>
+<p>The optimal global alignment score with affine gaps: a gap of length L scores open + (L-1)*extend.</p>
+<div class="math">\[g(L) = o + (L-1)\,e\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second sequence</td><td>—</td></tr><tr><td><code>match</code></td><td>in</td><td>score of a match</td><td>—</td></tr><tr><td><code>mismatch</code></td><td>in</td><td>score of a mismatch</td><td>—</td></tr><tr><td><code>open</code></td><td>in</td><td>score of the first position of a gap (&lt;= 0)</td><td>—</td></tr><tr><td><code>extend</code></td><td>in</td><td>score of each further gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal global alignment score</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> open, extend &lt;= 0; a gap of length L scores open + (L-1) extend; end gaps scored.</p>
+<pre><code class="shell">$ computational-biology solve bio_global_alignment_affine seq1=ACGTTTACG seq2=ACGACG match=2 mismatch=-1 open=-5 extend=-1
+score = 5
+  by: Global alignment score with affine gaps (Gotoh)  (Gotoh&#x27;s three-state dynamic programming)
+  match = 2
+  mismatch = -1
+  open = -5
+  extend = -1
+  seq1 = ACGTTTACG
+  seq2 = ACGACG
+  assumes: open, extend &lt;= 0; a gap of length L scores open + (L-1) extend; end gaps scored</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the highest possible similarity score for aligning two biological sequences globally, treating a new gap opening differently from extending an existing one. By applying Gotoh&#x27;s dynamic programming method with a match score of 2 and mismatch penalty of -1, the algorithm evaluates all possible alignments while penalizing gaps based on an open cost of -5 and an extension cost of -1. The resulting value of 5 represents the maximum cumulative score achievable under these specific scoring rules, accounting for both substitutions and indels across the entire length of the sequences.</p>
+<h4 id="bio_protein_global_blosum62">Global protein alignment score (BLOSUM62, affine gaps) — <code>bio_protein_global_blosum62</code></h4>
+<p>The optimal global alignment score of two proteins with BLOSUM62 and affine gaps.</p>
+<div class="math">\[S = \max_{\text{alignments}} \sum B_{62}(x,y) + \sum_{\text{gaps}} [o + (L-1)e]\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first protein sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second protein sequence</td><td>—</td></tr><tr><td><code>open</code></td><td>in</td><td>score of the first position of a gap (&lt;= 0)</td><td>—</td></tr><tr><td><code>extend</code></td><td>in</td><td>score of each further gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal global alignment score</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids; open, extend &lt;= 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_protein_global_blosum62 seq1=HEAGAWGHEE seq2=PAWHEAE open=-10 extend=-1
+score = 3
+  by: Global protein alignment score (BLOSUM62, affine gaps)  (Gotoh&#x27;s dynamic programming with BLOSUM62 substitution scores)
+  open = -10
+  extend = -1
+  seq2 = PAWHEAE
+  seq1 = HEAGAWGHEE
+  assumes: standard amino acids; open, extend &lt;= 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the best global alignment score between two protein sequences using the BLOSUM62 substitution matrix and affine gap penalties. The result, 3, represents the maximum sum of match scores plus gap costs when aligning HEAGAWGHEE with PAWHEAE from end to end. A higher value indicates greater similarity and a better fit under the chosen scoring scheme.</p>
+<h4 id="bio_local_alignment_score">Local alignment score (Smith-Waterman, linear gaps) — <code>bio_local_alignment_score</code></h4>
+<p>The optimal local (Smith-Waterman) alignment score of two sequences with stated match, mismatch and linear gap scores.</p>
+<div class="math">\[S_{i,j} = \max(0,\ S_{i-1,j-1}+s(x_i,y_j),\ S_{i-1,j}+g,\ S_{i,j-1}+g)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second sequence</td><td>—</td></tr><tr><td><code>match</code></td><td>in</td><td>score of a match</td><td>—</td></tr><tr><td><code>mismatch</code></td><td>in</td><td>score of a mismatch</td><td>—</td></tr><tr><td><code>gap</code></td><td>in</td><td>score of each gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal local alignment score (&gt;= 0)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> match &gt; 0; gap &lt;= 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_local_alignment_score seq1=TGTTACGG seq2=GGTTGACTA match=3 mismatch=-3 gap=-2
+score = 13
+  by: Local alignment score (Smith-Waterman, linear gaps)  (dynamic programming with a floor at 0 (Smith-Waterman))
+  match = 3
+  mismatch = -3
+  gap = -2
+  seq1 = TGTTACGG
+  seq2 = GGTTGACTA
+  assumes: match &gt; 0; gap &lt;= 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the highest possible score for aligning a specific segment from the first sequence with a segment from the second sequence. Using dynamic programming, it evaluates matches, mismatches, and gaps to find the best local similarity. The resulting score of 13 indicates the strength of this local relationship, where higher values suggest more significant biological homology or shared motifs.</p>
+<h4 id="bio_local_alignment_affine">Local alignment score with affine gaps — <code>bio_local_alignment_affine</code></h4>
+<p>The optimal local alignment score with affine gaps (a gap of length L scores open + (L-1)*extend).</p>
+<div class="math">\[g(L) = o + (L-1)\,e,\quad S \ge 0\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second sequence</td><td>—</td></tr><tr><td><code>match</code></td><td>in</td><td>score of a match</td><td>—</td></tr><tr><td><code>mismatch</code></td><td>in</td><td>score of a mismatch</td><td>—</td></tr><tr><td><code>open</code></td><td>in</td><td>score of the first position of a gap (&lt;= 0)</td><td>—</td></tr><tr><td><code>extend</code></td><td>in</td><td>score of each further gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal local alignment score (&gt;= 0)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> match &gt; 0; open, extend &lt;= 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_local_alignment_affine seq1=TTACGTACGTTT seq2=GGACGTTACGTGG match=2 mismatch=-1 open=-3 extend=-1
+score = 13
+  by: Local alignment score with affine gaps  (Gotoh&#x27;s recursion with a floor at 0)
+  match = 2
+  mismatch = -1
+  open = -3
+  extend = -1
+  seq2 = GGACGTTACGTGG
+  seq1 = TTACGTACGTTT
+  assumes: match &gt; 0; open, extend &lt;= 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the best local alignment score using Gotoh&#x27;s algorithm, which models gaps with affine penalties. The result, 13, represents the highest possible similarity between the two input sequences under the specified scoring scheme. This method assumes that opening a gap costs more than extending it, reflecting biological reality where insertions or deletions often occur as contiguous blocks rather than scattered single events. The score is non-negative due to the local alignment constraint, meaning any negative cumulative score resets to zero.</p>
+<h4 id="bio_protein_local_blosum62">Local protein alignment score (BLOSUM62, affine gaps) — <code>bio_protein_local_blosum62</code></h4>
+<p>The optimal local (Smith-Waterman) alignment score of two proteins with BLOSUM62 and affine gaps.</p>
+<div class="math">\[S = \max\Big(0, \max_{\text{local alignments}} \textstyle\sum B_{62} + \sum [o + (L-1)e]\Big)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first protein sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second protein sequence</td><td>—</td></tr><tr><td><code>open</code></td><td>in</td><td>score of the first position of a gap (&lt;= 0)</td><td>—</td></tr><tr><td><code>extend</code></td><td>in</td><td>score of each further gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal local alignment score (&gt;= 0)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids; open, extend &lt;= 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_protein_local_blosum62 seq1=HEAGAWGHEE seq2=PAWHEAE open=-8 extend=-8
+score = 20
+  by: Local protein alignment score (BLOSUM62, affine gaps)  (Gotoh&#x27;s recursion with BLOSUM62 scores and a floor at 0)
+  open = -8
+  extend = -8
+  seq2 = PAWHEAE
+  seq1 = HEAGAWGHEE
+  assumes: standard amino acids; open, extend &lt;= 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the highest-scoring local similarity between two protein sequences using BLOSUM62 substitution scores and affine gap penalties. The result, 20, represents the maximum sum of match scores minus gap costs for any contiguous subsequence pair. A positive value indicates significant homology or conserved motifs, while a zero suggests no detectable local similarity above background noise.</p>
+<h4 id="bio_semiglobal_alignment_score">Semi-global (end-gap-free) alignment score — <code>bio_semiglobal_alignment_score</code></h4>
+<p>The optimal alignment score when gaps at either end of either sequence are free (fitting a read inside a longer sequence, overlaps), with linear internal gaps.</p>
+<div class="math">\[S = \max\big(\max_j S_{n,j},\ \max_i S_{i,m}\big),\ S_{i,0}=S_{0,j}=0\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second sequence</td><td>—</td></tr><tr><td><code>match</code></td><td>in</td><td>score of a match</td><td>—</td></tr><tr><td><code>mismatch</code></td><td>in</td><td>score of a mismatch</td><td>—</td></tr><tr><td><code>gap</code></td><td>in</td><td>score of each internal gap position (&lt;= 0)</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>optimal semi-global alignment score</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> gap &lt;= 0; end gaps unscored.</p>
+<pre><code class="shell">$ computational-biology solve bio_semiglobal_alignment_score seq1=TTTTACGTACGGGG seq2=ACGTAC match=1 mismatch=-1 gap=-1
+score = 6
+  by: Semi-global (end-gap-free) alignment score  (Needleman-Wunsch with a zero first row and column and the best score on the last row or column)
+  match = 1
+  mismatch = -1
+  gap = -1
+  seq1 = TTTTACGTACGGGG
+  seq2 = ACGTAC
+  assumes: gap &lt;= 0; end gaps unscored</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the highest possible alignment score between two sequences where gaps at the beginning and end are not penalized. Using a scoring scheme that assigns 1 for matches, -1 for mismatches, and -1 for internal gaps, the algorithm identifies the best overlap or containment scenario. The resulting score of 6 represents the quality of this alignment under conditions where terminal gaps are free.</p>
+<h3>Ecology (14)</h3>
+<h4 id="bio_ace">ACE species richness estimator — <code>bio_ace</code></h4>
+<p>The abundance-based coverage estimator (ACE) of species richness, with a stated rare-species threshold (10 is the usual value).</p>
+<div class="math">\[S_{ace} = S_{abund} + \frac{S_{rare}}{C_{ace}} + \frac{F_1}{C_{ace}}\gamma^2\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>rare_threshold</code></td><td>in</td><td>largest count of a rare species (usually 10)</td><td>—</td></tr><tr><td><code>ace</code></td><td>out</td><td>estimated species richness</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts; not every rare species a singleton.</p>
+<pre><code class="shell">$ computational-biology solve bio_ace &quot;counts=[1, 1, 2, 3, 5, 8, 20, 50]&quot; rare_threshold=10
+ace = 9.719298246
+  by: ACE species richness estimator  (abundant species counted directly; rare species scaled by the sample coverage C = 1 - F1/N_rare with the coefficient-of-variation term (EstimateS form, as scikit-bio))
+  assumes: whole counts; not every rare species a singleton</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the abundance-based coverage estimator of species richness. It separates observed species into abundant and rare groups based on a threshold count, typically ten individuals. The method uses the number of abundant species plus an adjustment for rare species that accounts for sample coverage and the variance in their frequencies. The final estimate is 9.7193, which represents the predicted total number of distinct species in the community given the sampling effort.</p>
+<h4 id="bio_dominance_indices">Berger-Parker and McIntosh indices — <code>bio_dominance_indices</code></h4>
+<p>The Berger-Parker dominance (share of the most abundant species) and McIntosh&#x27;s index of a sample.</p>
+<div class="math">\[d = \frac{n_{\max}}{N},\quad D = \frac{N - U}{N - \sqrt N}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>berger_parker</code></td><td>out</td><td>Berger-Parker dominance n_max/N</td><td>—</td></tr><tr><td><code>mcintosh</code></td><td>out</td><td>McIntosh index (N - U)/(N - sqrt N), U = sqrt(sum n_i^2)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts; N &gt;= 2.</p>
+<pre><code class="shell">$ computational-biology solve bio_dominance_indices &quot;counts=[50, 30, 20]&quot;
+berger_parker = 0.5
+mcintosh = 0.4261762219
+  by: Berger-Parker and McIntosh indices  (largest count over N; McIntosh&#x27;s U statistic)
+  assumes: whole counts; N &gt;= 2</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines community dominance using two metrics derived from species counts. The Berger-Parker index represents the proportion of the total individuals that belong to the most abundant species, resulting in a value of 0.5. The McIntosh index measures diversity based on the distance of the community from an even distribution, yielding a score of 0.426176. These values indicate how much a single taxon controls the sample structure.</p>
+<h4 id="bio_beta_diversity">Beta diversity between two samples — <code>bio_beta_diversity</code></h4>
+<p>The Bray-Curtis dissimilarity (abundances) and the Jaccard and Sorensen dissimilarities (presence and absence) between two community samples.</p>
+<div class="math">\[BC = \frac{\sum|x_i - y_i|}{\sum (x_i + y_i)},\quad J = 1 - \frac{|A\cap B|}{|A\cup B|}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>x</code></td><td>in</td><td>abundances of each species in the first sample</td><td>—</td></tr><tr><td><code>y</code></td><td>in</td><td>abundances of the same species in the second sample</td><td>—</td></tr><tr><td><code>bray_curtis</code></td><td>out</td><td>Bray-Curtis dissimilarity</td><td>—</td></tr><tr><td><code>jaccard</code></td><td>out</td><td>Jaccard dissimilarity (1 - shared/union)</td><td>—</td></tr><tr><td><code>sorensen</code></td><td>out</td><td>Sorensen dissimilarity (1 - 2 shared/(S_x + S_y))</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> the same species order in both samples; each sample non-empty.</p>
+<pre><code class="shell">$ computational-biology solve bio_beta_diversity &quot;x=[6, 7, 4, 0]&quot; &quot;y=[10, 0, 6, 3]&quot;
+bray_curtis = 0.4444444444
+jaccard = 0.5
+sorensen = 0.3333333333
+  by: Beta diversity between two samples  (sum |x - y| / sum (x + y); presence-absence set differences)
+  assumes: the same species order in both samples; each sample non-empty</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the compositional difference between two ecological communities using abundance and presence-absence data. The Bray-Curtis dissimilarity, which measures how much the relative abundances of shared species differ, resulted in 0.444444. Additionally, the Jaccard dissimilarity, reflecting the proportion of species unique to either sample relative to the total union, was calculated as 0.5. These values quantify the extent to which the two samples are distinct from one another based on their species profiles.</p>
+<h4 id="bio_brillouin_diversity">Brillouin diversity index — <code>bio_brillouin_diversity</code></h4>
+<p>Brillouin&#x27;s diversity index of a fully censused collection (natural logarithm).</p>
+<div class="math">\[H_B = \frac{\ln N! - \sum_i \ln n_i!}{N}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>H_B</code></td><td>out</td><td>Brillouin index (nats per individual)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts; N &lt;= 20000.</p>
+<pre><code class="shell">$ computational-biology solve bio_brillouin_diversity &quot;counts=[5, 3, 2]&quot;
+H_B = 0.7832014181
+  by: Brillouin diversity index  (logarithm of the multinomial coefficient over N (exact integer))
+  assumes: whole counts; N &lt;= 20000</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the Brillouin diversity index, a measure of species diversity in a fully enumerated population. It uses the natural logarithm of the multinomial coefficient divided by the total number of individuals. The result, 0.783201, represents the information content per individual in nats. This value is derived from the specific counts of each species provided as [5, 3, 2]. Because this method assumes a complete census rather than a random sample, it describes the actual diversity of the observed group without estimating parameters for a larger unseen population.</p>
+<h4 id="bio_chao1">Chao1 species richness estimator — <code>bio_chao1</code></h4>
+<p>The Chao1 estimate of total species richness from abundance counts (bias-corrected or classic form), with the observed richness and the numbers of singletons and doubletons.</p>
+<div class="math">\[\hat S = S_{obs} + \frac{F_1(F_1-1)}{2(F_2+1)}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>form</code></td><td>in</td><td>bias_corrected or classic Chao1</td><td>—</td></tr><tr><td><code>chao1</code></td><td>out</td><td>estimated species richness</td><td>—</td></tr><tr><td><code>s_obs</code></td><td>out</td><td>observed number of species</td><td>—</td></tr><tr><td><code>singletons</code></td><td>out</td><td>species seen once (F1)</td><td>—</td></tr><tr><td><code>doubletons</code></td><td>out</td><td>species seen twice (F2)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts; the classic form needs F1 &gt; 0 and F2 &gt; 0, otherwise the bias-corrected form is used (as scikit-bio does).</p>
+<pre><code class="shell">$ computational-biology solve bio_chao1 &quot;counts=[1, 1, 1, 2, 2, 5, 10]&quot; form=classic
+chao1 = 9.25
+s_obs = 7
+singletons = 3
+doubletons = 2
+  by: Chao1 species richness estimator  (S_obs + F1^2/(2 F2) (classic) or S_obs + F1(F1 - 1)/(2(F2 + 1)) (bias-corrected))
+  form = classic
+  assumes: whole counts; the classic form needs F1 &gt; 0 and F2 &gt; 0, otherwise the bias-corrected form is used (as scikit-bio does)</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the Chao1 estimate of total species richness by extrapolating from observed abundance data. It uses the number of species actually seen, 7, along with the count of singletons, 3, and doubletons, 2. The resulting estimate, 9.25, suggests that there are likely more species present in the community than were directly observed, accounting for undetected rare species.</p>
+<h4 id="bio_faith_pd">Faith&#x27;s phylogenetic diversity — <code>bio_faith_pd</code></h4>
+<p>Faith&#x27;s phylogenetic diversity of a set of observed taxa: the total branch length of the rooted tree connecting them to the root.</p>
+<div class="math">\[PD = \sum_{b \in T(\text{taxa}) \cup R} \ell_b\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>tree</code></td><td>in</td><td>rooted tree in Newick format with branch lengths</td><td>—</td></tr><tr><td><code>taxa</code></td><td>in</td><td>observed taxa (leaf names separated by spaces)</td><td>—</td></tr><tr><td><code>pd</code></td><td>out</td><td>Faith&#x27;s PD (sum of branch lengths)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> every branch has a length; taxa are leaves of the tree; rooted convention (path to the root included).</p>
+<pre><code class="shell">$ computational-biology solve bio_faith_pd &quot;tree=((A:1,B:2):3,(C:4,D:5):6);&quot; &quot;taxa=A B&quot;
+pd = 6
+  by: Faith&#x27;s phylogenetic diversity  (sum the lengths of every branch on a path from an observed taxon to the root, each once)
+  tree = ((A:1,B:2):3,(C:4,D:5):6);
+  taxa = A B
+  assumes: every branch has a length; taxa are leaves of the tree; rooted convention (path to the root included)</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the evolutionary breadth of a specific set of organisms by summing the lengths of all branches in their rooted phylogenetic tree that connect any observed taxon to the root. Using the provided tree structure and list of taxa, the model computes a single value, 6, which quantifies the total amount of unique evolutionary history represented by these species. This metric helps distinguish between sets of species that may have similar counts but vastly different genetic divergence.</p>
+<h4 id="bio_goods_coverage">Good&#x27;s coverage of a sample — <code>bio_goods_coverage</code></h4>
+<p>Good&#x27;s coverage estimator: the estimated fraction of the community&#x27;s individuals belonging to species already seen in the sample.</p>
+<div class="math">\[C = 1 - \frac{F_1}{N}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>coverage</code></td><td>out</td><td>Good&#x27;s coverage 1 - F1/N</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts.</p>
+<pre><code class="shell">$ computational-biology solve bio_goods_coverage &quot;counts=[1, 1, 2, 6]&quot;
+coverage = 0.8
+  by: Good&#x27;s coverage of a sample  (one minus the proportion of individuals that are singletons)
+  assumes: whole counts</code></pre>
+<p><strong>What the worked example means:</strong> The calculation determines Good&#x27;s coverage by subtracting the proportion of singleton species from one. Using the input counts, the result is 0.8. This value estimates the fraction of the community&#x27;s individuals belonging to species already observed in the sample, serving as a measure of sampling completeness.</p>
+<h4 id="bio_richness_indices">Margalef and Menhinick richness indices — <code>bio_richness_indices</code></h4>
+<p>Margalef&#x27;s richness index (S - 1)/ln N and Menhinick&#x27;s richness index S/sqrt(N) of a sample.</p>
+<div class="math">\[D_{Mg} = \frac{S-1}{\ln N},\quad D_{Mn} = \frac{S}{\sqrt N}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>margalef</code></td><td>out</td><td>Margalef&#x27;s index (S - 1)/ln N</td><td>—</td></tr><tr><td><code>menhinick</code></td><td>out</td><td>Menhinick&#x27;s index S/sqrt(N)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts; N &gt;= 2.</p>
+<pre><code class="shell">$ computational-biology solve bio_richness_indices &quot;counts=[10, 20, 30, 40]&quot;
+margalef = 0.6514417229
+menhinick = 0.4
+  by: Margalef and Menhinick richness indices  (species and individuals counted)
+  assumes: whole counts; N &gt;= 2</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines species richness using two standard indices. The Margalef index, resulting in 0.651442, divides the number of species minus one by the natural logarithm of the total individuals. The Menhinick index, resulting in 0.4, divides the number of species by the square root of the total individuals. These values allow for comparing diversity across samples with different sizes.</p>
+<h4 id="bio_petersen_estimate">Mark-recapture population estimate (Petersen MLE) — <code>bio_petersen_estimate</code></h4>
+<p>The maximum-likelihood population size from one mark-recapture experiment: M animals marked, C caught later, R of them marked (hypergeometric likelihood).</p>
+<div class="math">\[\hat N = \left\lfloor \frac{MC}{R} \right\rfloor\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>M</code></td><td>in</td><td>number marked and released</td><td>—</td></tr><tr><td><code>C</code></td><td>in</td><td>number caught in the second sample</td><td>—</td></tr><tr><td><code>R</code></td><td>in</td><td>number of marked animals recaptured</td><td>—</td></tr><tr><td><code>N_mle</code></td><td>out</td><td>maximum-likelihood population size (largest maximiser)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> closed population; R &gt;= 1, R &lt;= min(M, C); when MC/R is whole, N = MC/R and MC/R - 1 tie; the larger is given.</p>
+<pre><code class="shell">$ computational-biology solve bio_petersen_estimate M=100 C=80 R=12
+N_mle = 666
+  by: Mark-recapture population estimate (Petersen MLE)  (the hypergeometric likelihood increases while N &lt;= MC/R: the maximiser is floor(MC/R))
+  assumes: closed population; R &gt;= 1, R &lt;= min(M, C); when MC/R is whole, N = MC/R and MC/R - 1 tie; the larger is given</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the maximum likelihood estimate for total population size using single-sample mark-recapture data. Given that 100 animals were initially marked and released, a subsequent sample of 80 animals was captured, of which 12 were found to be marked. The resulting estimate of 666 represents the most probable total number of individuals in the closed population based on the hypergeometric distribution of these counts.</p>
+<h4 id="bio_rarefaction">Rarefied species richness — <code>bio_rarefaction</code></h4>
+<p>The expected number of species in a random subsample of n individuals drawn without replacement (Hurlbert-Sanders rarefaction).</p>
+<div class="math">\[E[S_n] = \sum_i \left[1 - \binom{N-N_i}{n}\Big/\binom{N}{n}\right]\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>n</code></td><td>in</td><td>subsample size (individuals)</td><td>—</td></tr><tr><td><code>expected_species</code></td><td>out</td><td>expected number of species in the subsample</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole counts; 1 &lt;= n &lt;= N.</p>
+<pre><code class="shell">$ computational-biology solve bio_rarefaction &quot;counts=[2, 1, 1]&quot; n=2
+expected_species = 1.833333333
+  by: Rarefied species richness  (one minus the chance that a species is missed, summed (exact))
+  assumes: whole counts; 1 &lt;= n &lt;= N</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the expected number of species, 1.83333, when drawing a random subsample of size 2 from the original community. The input counts represent the abundance of each species in the full dataset. By applying exact rarefaction, the model accounts for sampling without replacement to provide a standardized measure of diversity that allows for fair comparison across samples with different total abundances.</p>
+<h4 id="bio_schumacher_eschmeyer">Schumacher-Eschmeyer multiple-census estimate — <code>bio_schumacher_eschmeyer</code></h4>
+<p>The Schumacher-Eschmeyer estimate of a closed population&#x27;s size from repeated mark-recapture samples.</p>
+<div class="math">\[\hat N = \frac{\sum_t C_tM_t^2}{\sum_t R_tM_t}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>C</code></td><td>in</td><td>number caught on each occasion</td><td>—</td></tr><tr><td><code>R</code></td><td>in</td><td>number of those already marked</td><td>—</td></tr><tr><td><code>M</code></td><td>in</td><td>number of marked animals at large before each occasion</td><td>—</td></tr><tr><td><code>N</code></td><td>out</td><td>estimated population size</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> closed population; whole counts, R &lt;= C; at least one recapture of a marked animal.</p>
+<pre><code class="shell">$ computational-biology solve bio_schumacher_eschmeyer &quot;C=[10, 10, 10]&quot; &quot;R=[0, 2, 3]&quot; &quot;M=[0, 10, 18]&quot;
+N = 57.2972973
+  by: Schumacher-Eschmeyer multiple-census estimate  (weighted regression of R/C on M through the origin)
+  assumes: closed population; whole counts, R &lt;= C; at least one recapture of a marked animal</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the total population size using the Schumacher-Eschmeyer method, which applies a weighted linear regression through the origin to relate the number of recaptured marked individuals to the number of marked animals available at large. The result, 57.2973, represents the best estimate of the closed population&#x27;s size based on the observed capture history where [10, 10, 10] were caught and [0, 2, 3] were already marked during each occasion.</p>
+<h4 id="bio_shannon_diversity">Shannon diversity index — <code>bio_shannon_diversity</code></h4>
+<p>The Shannon diversity index H&#x27; of a community in the stated logarithm base, Pielou&#x27;s evenness J&#x27; and the effective number of species exp(H&#x27;).</p>
+<div class="math">\[H&#x27; = -\sum_i p_i \log_b p_i,\quad J&#x27; = \frac{H&#x27;}{\log_b S}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>base</code></td><td>in</td><td>logarithm base: e (nats), 2 (bits) or 10</td><td>—</td></tr><tr><td><code>H</code></td><td>out</td><td>Shannon index H&#x27; in the stated base</td><td>—</td></tr><tr><td><code>evenness</code></td><td>out</td><td>Pielou&#x27;s evenness J&#x27; = H&#x27;/ln S</td><td>—</td></tr><tr><td><code>effective_number</code></td><td>out</td><td>effective number of species exp(H&#x27;) (Hill number of order 1)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole non-negative counts; zero counts are not species of the sample.</p>
+<pre><code class="shell">$ computational-biology solve bio_shannon_diversity &quot;counts=[10, 10, 10, 10]&quot; base=e
+H = 1.386294361
+evenness = 1
+effective_number = 4
+  by: Shannon diversity index  (H&#x27; = -sum p_i log p_i with p_i = n_i / N)
+  base = e
+  assumes: whole non-negative counts; zero counts are not species of the sample</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the biodiversity of a community using the provided counts for each species. The Shannon diversity index, reported as 1.38629, measures uncertainty in predicting the species identity of an individual taken at random from the dataset. From this, Pielou&#x27;s evenness, shown as 1, indicates how evenly individuals are distributed among the species present. Finally, the effective number of species, given by 4, represents the equivalent number of equally abundant species that would yield the same level of diversity.</p>
+<h4 id="bio_simpson_diversity">Simpson diversity indices — <code>bio_simpson_diversity</code></h4>
+<p>Simpson&#x27;s dominance D, Simpson&#x27;s diversity 1 - D and the inverse Simpson index 1/D, with the stated estimator (infinite population: sum p^2; finite sample: sum n(n-1)/(N(N-1))).</p>
+<div class="math">\[D = \sum_i p_i^2 \quad\text{or}\quad D = \frac{\sum n_i(n_i-1)}{N(N-1)}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>counts</code></td><td>in</td><td>number of individuals of each species</td><td>—</td></tr><tr><td><code>estimator</code></td><td>in</td><td>infinite (sum p^2) or finite-sample correction</td><td>—</td></tr><tr><td><code>D</code></td><td>out</td><td>Simpson&#x27;s dominance D</td><td>—</td></tr><tr><td><code>simpson</code></td><td>out</td><td>Simpson&#x27;s diversity 1 - D</td><td>—</td></tr><tr><td><code>inverse</code></td><td>out</td><td>inverse Simpson 1/D</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole non-negative counts; estimator stated.</p>
+<pre><code class="shell">$ computational-biology solve bio_simpson_diversity &quot;counts=[10, 10, 10, 10]&quot; estimator=infinite
+D = 0.25
+simpson = 0.75
+inverse = 4
+  by: Simpson diversity indices  (D = sum p_i^2 or sum n_i(n_i - 1)/(N(N - 1)))
+  estimator = infinite
+  assumes: whole non-negative counts; estimator stated</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the Simpson&#x27;s dominance index, which measures the probability that two individuals randomly selected from a sample belong to the same species. Using the provided counts for each species and the specified estimator method, the model computes the dominance value 0.25. From this, it derives the Simpson&#x27;s diversity index as one minus the dominance, resulting in 0.75, and the inverse Simpson index, representing the effective number of species, calculated as 4. These metrics collectively describe how evenly individuals are distributed among the observed species.</p>
+<h4 id="bio_species_area">Species-area relationship fit — <code>bio_species_area</code></h4>
+<p>The constants c and z of the Arrhenius species-area relationship S = c A^z fitted by least squares on log S against log A.</p>
+<div class="math">\[\ln S = \ln c + z\ln A\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>A</code></td><td>in</td><td>areas (any one unit)</td><td>—</td></tr><tr><td><code>S</code></td><td>in</td><td>species counts</td><td>—</td></tr><tr><td><code>c</code></td><td>out</td><td>constant c (species in a unit area)</td><td>—</td></tr><tr><td><code>z</code></td><td>out</td><td>exponent z</td><td>—</td></tr><tr><td><code>r2</code></td><td>out</td><td>r^2 of the log-log fit</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> positive areas and counts; c refers to the area unit used.</p>
+<pre><code class="shell">$ computational-biology solve bio_species_area &quot;A=[1, 10, 100, 1000]&quot; &quot;S=[10, 20, 40, 80]&quot;
+c = 10
+z = 0.3010299957
+r2 = 1
+  by: Species-area relationship fit  (ordinary least squares of ln S on ln A: slope z, intercept ln c)
+  assumes: positive areas and counts; c refers to the area unit used</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the parameters of the Arrhenius species-area relationship by applying ordinary least squares to the logarithm of species counts against the logarithm of areas. The resulting constant c, valued at 10, represents the expected number of species in a unit area, while the exponent z, valued at 0.30103, describes the rate at which species richness increases with area. The coefficient of determination r-squared is 1, indicating how well the power-law model explains the variation in the data.</p>
+<h3>Enzyme kinetics (9)</h3>
+<h4 id="bio_competitive_inhibition_fit">Competitive inhibition global fit — <code>bio_competitive_inhibition_fit</code></h4>
+<p>Vmax, Km and the inhibition constant Ki of a competitive inhibitor fitted globally to rates measured at several substrate and inhibitor concentrations (nonlinear least squares, unweighted).</p>
+<div class="math">\[v = \frac{V_{\max}S}{K_m\left(1 + \frac{[I]}{K_i}\right) + S}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>substrate concentrations (one per measurement)</td><td>—</td></tr><tr><td><code>I</code></td><td>in</td><td>inhibitor concentrations (one per measurement, 0 for none)</td><td>—</td></tr><tr><td><code>v</code></td><td>in</td><td>measured rates</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>out</td><td>maximum rate</td><td>—</td></tr><tr><td><code>Km</code></td><td>out</td><td>Michaelis constant (unit of S)</td><td>—</td></tr><tr><td><code>Ki</code></td><td>out</td><td>inhibition constant (unit of I)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> rates without inhibitor at 3 or more S; rates with inhibitor; convergence.</p>
+<pre><code class="shell">$ computational-biology solve bio_competitive_inhibition_fit &quot;S=[1, 2, 4, 8, 1, 2, 4, 8]&quot; &quot;I=[0, 0, 0, 0, 2, 2, 2, 2]&quot; &quot;v=[5, 6.66667, 8, 8.88889, 2.5, 4, 5.71429, 7.27273]&quot;
+Vmax = 10.00000204
+Km = 1.000000099
+Ki = 1.000000711
+  by: Competitive inhibition global fit  (Levenberg-Marquardt on v = Vmax S / (Km (1 + I/Ki) + S), started from the uninhibited fit)
+  assumes: rates without inhibitor at 3 or more S; rates with inhibitor; convergence</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the kinetic parameters for competitive inhibition by fitting the observed reaction rates to the theoretical model. The result provides the maximum velocity, which is 10, alongside the substrate affinity constant, 1. It also estimates the inhibitor dissociation constant, 1, indicating how strongly the inhibitor binds to the enzyme relative to the substrate.</p>
+<h4 id="bio_eadie_hofstee">Eadie-Hofstee fit of Michaelis-Menten data — <code>bio_eadie_hofstee</code></h4>
+<p>Vmax and Km from a least-squares line through the Eadie-Hofstee plot of v against v/S.</p>
+<div class="math">\[v = V_{\max} - K_m\frac{v}{S}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>substrate concentrations (any one unit)</td><td>—</td></tr><tr><td><code>v</code></td><td>in</td><td>initial rates (any one unit)</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>out</td><td>maximum rate (unit of v)</td><td>—</td></tr><tr><td><code>Km</code></td><td>out</td><td>Michaelis constant (unit of S)</td><td>—</td></tr><tr><td><code>r2</code></td><td>out</td><td>coefficient of determination of the linear fit</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> positive S and v; negative slope, positive intercept.</p>
+<pre><code class="shell">$ computational-biology solve bio_eadie_hofstee &quot;S=[1, 2, 4, 8]&quot; &quot;v=[5, 6.66667, 8, 8.88889]&quot;
+Vmax = 10.0000015
+Km = 0.9999999798
+r2 = 1
+  by: Eadie-Hofstee fit of Michaelis-Menten data  (ordinary least squares of v on v/S: intercept Vmax, slope -Km)
+  assumes: positive S and v; negative slope, positive intercept</code></pre>
+<p><strong>What the worked example means:</strong> This calculation performs an ordinary least squares regression on the Eadie-Hofstee plot, where reaction velocity is plotted against the ratio of velocity to substrate concentration. The y-intercept of this linear fit provides the estimate for the maximum reaction rate, which is 10, while the negative slope gives the Michaelis constant, estimated as 1. The goodness of fit is quantified by the coefficient of determination, reported here as 1, indicating how well the linear model explains the variance in the observed data.</p>
+<h4 id="bio_hanes_woolf">Hanes-Woolf fit of Michaelis-Menten data — <code>bio_hanes_woolf</code></h4>
+<p>Vmax and Km from a least-squares line through the Hanes-Woolf plot of S/v against S.</p>
+<div class="math">\[\frac Sv = \frac{1}{V_{\max}}S + \frac{K_m}{V_{\max}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>substrate concentrations (any one unit)</td><td>—</td></tr><tr><td><code>v</code></td><td>in</td><td>initial rates (any one unit)</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>out</td><td>maximum rate (unit of v)</td><td>—</td></tr><tr><td><code>Km</code></td><td>out</td><td>Michaelis constant (unit of S)</td><td>—</td></tr><tr><td><code>r2</code></td><td>out</td><td>coefficient of determination of the linear fit</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> positive S and v; positive slope and intercept.</p>
+<pre><code class="shell">$ computational-biology solve bio_hanes_woolf &quot;S=[1, 2, 4, 8]&quot; &quot;v=[5, 6.66667, 8, 8.88889]&quot;
+Vmax = 10.00000075
+Km = 0.9999997
+r2 = 1
+  by: Hanes-Woolf fit of Michaelis-Menten data  (ordinary least squares of S/v on S: slope 1/Vmax, intercept Km/Vmax)
+  assumes: positive S and v; positive slope and intercept</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the kinetic parameters for an enzyme reaction by performing ordinary least squares regression on the Hanes-Woolf plot, which graphs substrate concentration divided by initial velocity against substrate concentration. The slope of this linear fit corresponds to the reciprocal of the maximum rate, while the intercept represents the ratio of the Michaelis constant to the maximum rate. Using the input data, the model computes a maximum rate of 10 and a Michaelis constant of 1. The quality of this linear approximation is indicated by the coefficient of determination, calculated here as 1, showing how well the transformed data aligns with the theoretical linear relationship.</p>
+<h4 id="bio_hill_plot">Hill coefficient from a Hill plot — <code>bio_hill_plot</code></h4>
+<p>The Hill coefficient n and half-saturation constant K from a least-squares line through the Hill plot of log10(Y/(1-Y)) against log10 S (Y = fractional saturation).</p>
+<div class="math">\[\log\frac{Y}{1-Y} = n\log S - n\log K\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>ligand or substrate concentrations</td><td>—</td></tr><tr><td><code>Y</code></td><td>in</td><td>fractional saturations (0 &lt; Y &lt; 1)</td><td>—</td></tr><tr><td><code>n</code></td><td>out</td><td>Hill coefficient</td><td>—</td></tr><tr><td><code>K</code></td><td>out</td><td>half-saturation concentration (unit of S)</td><td>—</td></tr><tr><td><code>r2</code></td><td>out</td><td>coefficient of determination of the line</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; Y &lt; 1; positive S; rising Hill plot.</p>
+<pre><code class="shell">$ computational-biology solve bio_hill_plot &quot;S=[1, 2, 4, 8]&quot; &quot;Y=[0.0588235, 0.2, 0.5, 0.8]&quot;
+n = 2.00000023
+K = 4.000000106
+r2 = 1
+  by: Hill coefficient from a Hill plot  (ordinary least squares of log10(Y/(1-Y)) on log10 S: slope n, intercept -n log10 K)
+  assumes: 0 &lt; Y &lt; 1; positive S; rising Hill plot</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the cooperativity and binding affinity from saturation data. By plotting the logarithm of the ratio of bound to unbound fraction against the logarithm of concentration, a straight line is fitted using least squares. The slope of this line yields the Hill coefficient 2, indicating how sharply saturation changes with concentration, while the intercept relates to the half-saturation constant 4, representing the concentration at which half the sites are occupied. The coefficient of determination 1 quantifies how well the linear model fits the transformed data.</p>
+<h4 id="bio_hill_fit">Hill equation nonlinear least-squares fit — <code>bio_hill_fit</code></h4>
+<p>Vmax, the half-saturation constant K and the Hill coefficient n fitted to rate or binding data by nonlinear least squares (unweighted).</p>
+<div class="math">\[v = \frac{V_{\max}S^n}{K^n + S^n}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>concentrations (any one unit)</td><td>—</td></tr><tr><td><code>v</code></td><td>in</td><td>rates or responses (any one unit)</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>out</td><td>maximum rate</td><td>—</td></tr><tr><td><code>K</code></td><td>out</td><td>half-saturation concentration (unit of S)</td><td>—</td></tr><tr><td><code>n</code></td><td>out</td><td>Hill coefficient</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> at least 4 distinct positive concentrations; positive responses; convergence.</p>
+<pre><code class="shell">$ computational-biology solve bio_hill_fit &quot;S=[1, 2, 4, 8, 16]&quot; &quot;v=[0.588235, 2, 5, 8, 9.41176]&quot;
+Vmax = 9.999993248
+K = 3.999996626
+n = 2.000001561
+  by: Hill equation nonlinear least-squares fit  (Levenberg-Marquardt on v = Vmax S^n / (K^n + S^n), started from the Hill-plot line)
+  assumes: at least 4 distinct positive concentrations; positive responses; convergence</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the parameters that best describe the relationship between concentration and response using the Hill equation. It estimates the maximum possible rate, which is 10, and the concentration required to reach half of that maximum, known as the half-saturation constant or K, which is 4. Additionally, it quantifies cooperativity through the Hill coefficient, n, calculated here as 2. These values define the sigmoidal curve fitted to the input data points.</p>
+<h4 id="bio_lineweaver_burk">Lineweaver-Burk fit of Michaelis-Menten data — <code>bio_lineweaver_burk</code></h4>
+<p>Vmax and Km from a least-squares line through the double-reciprocal (Lineweaver-Burk) plot of 1/v against 1/S.</p>
+<div class="math">\[\frac1v = \frac{K_m}{V_{\max}}\frac1S + \frac1{V_{\max}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>substrate concentrations (any one unit)</td><td>—</td></tr><tr><td><code>v</code></td><td>in</td><td>initial rates (any one unit)</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>out</td><td>maximum rate (unit of v)</td><td>—</td></tr><tr><td><code>Km</code></td><td>out</td><td>Michaelis constant (unit of S)</td><td>—</td></tr><tr><td><code>r2</code></td><td>out</td><td>coefficient of determination of the linear fit</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> positive S and v; positive slope and intercept.</p>
+<pre><code class="shell">$ computational-biology solve bio_lineweaver_burk &quot;S=[1, 2, 4, 8]&quot; &quot;v=[5, 6.66667, 8, 8.88889]&quot;
+Vmax = 10.00000249
+Km = 1.000000304
+r2 = 1
+  by: Lineweaver-Burk fit of Michaelis-Menten data  (ordinary least squares of 1/v on 1/S: intercept 1/Vmax, slope Km/Vmax)
+  assumes: positive S and v; positive slope and intercept</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the kinetic parameters for an enzyme reaction by applying ordinary least squares to the double reciprocal plot. The input substrate concentrations and initial rates are transformed into their reciprocals, allowing a linear regression to estimate the y-intercept as the inverse of the maximum velocity and the slope as the ratio of the Michaelis constant to the maximum velocity. The resulting maximum rate is 10 and the Michaelis constant is 1, indicating how quickly the enzyme reaches saturation and its affinity for the substrate respectively.</p>
+<h4 id="bio_michaelis_menten_fit">Michaelis-Menten nonlinear least-squares fit — <code>bio_michaelis_menten_fit</code></h4>
+<p>Vmax and Km of the Michaelis-Menten equation fitted to rate data by nonlinear least squares (unweighted).</p>
+<div class="math">\[\min_{V_{\max},K_m} \sum_i \Big(v_i - \frac{V_{\max}S_i}{K_m+S_i}\Big)^2\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>substrate concentrations (any one unit)</td><td>—</td></tr><tr><td><code>v</code></td><td>in</td><td>initial rates (any one unit)</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>out</td><td>maximum rate (unit of v)</td><td>—</td></tr><tr><td><code>Km</code></td><td>out</td><td>Michaelis constant (unit of S)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> at least 3 distinct positive S; positive v; an interior least-squares optimum.</p>
+<pre><code class="shell">$ computational-biology solve bio_michaelis_menten_fit &quot;S=[1, 2, 4, 8]&quot; &quot;v=[5, 6.66667, 8, 8.88889]&quot;
+Vmax = 10.00000077
+Km = 0.999999678
+  by: Michaelis-Menten nonlinear least-squares fit  (variable projection: Vmax is linear given Km; the best Km zeroes the derivative of the projected fit)
+  assumes: at least 3 distinct positive S; positive v; an interior least-squares optimum</code></pre>
+<p><strong>What the worked example means:</strong> This analysis computes the enzyme kinetic parameters Vmax and Km by fitting the Michaelis-Menten equation to measured initial rates. The resulting maximum velocity is 10, representing the rate at saturation, while the Michaelis constant is 1, indicating the substrate concentration needed to reach half of that maximum speed.</p>
+<h4 id="bio_michaelis_menten_progress">Substrate remaining in a Michaelis-Menten reaction — <code>bio_michaelis_menten_progress</code></h4>
+<p>The substrate and product concentrations after a time t of an irreversible Michaelis-Menten reaction (integrated rate law; constant enzyme, no product inhibition).</p>
+<div class="math">\[K_m\ln\frac{S_0}{S} + (S_0 - S) = V_{\max}t\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S0</code></td><td>in</td><td>initial substrate concentration</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>in</td><td>maximum rate (concentration per time)</td><td>—</td></tr><tr><td><code>Km</code></td><td>in</td><td>Michaelis constant (concentration)</td><td>—</td></tr><tr><td><code>t</code></td><td>in</td><td>elapsed time (time unit of Vmax)</td><td>—</td></tr><tr><td><code>S</code></td><td>out</td><td>substrate concentration at t</td><td>—</td></tr><tr><td><code>P</code></td><td>out</td><td>product concentration at t</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> positive S0, Vmax, Km; t &gt;= 0; consistent units.</p>
+<pre><code class="shell">$ computational-biology solve bio_michaelis_menten_progress S0=10 Vmax=1 Km=2 t=5
+S = 6.016243923
+P = 3.983756077
+  by: Substrate remaining in a Michaelis-Menten reaction  (solve Km ln(S0/S) + (S0 - S) = Vmax t by bisection (for P below half conversion, for ln S above))
+  S0 = 10
+  Vmax = 1
+  Km = 2
+  t = 5
+  assumes: positive S0, Vmax, Km; t &gt;= 0; consistent units</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the remaining substrate and formed product after a specified time in an irreversible Michaelis-Menten reaction. It solves the integrated rate law equation Km ln(S0/S) + (S0 - S) = Vmax t using bisection to find the substrate concentration at time t. The result shows that with initial substrate 10, maximum rate 1, and Michaelis constant 2, the system evolves such that substrate decreases while product increases, providing a complete progress curve rather than just an initial rate.</p>
+<h4 id="bio_michaelis_menten_time">Time to reach a conversion in a Michaelis-Menten reaction — <code>bio_michaelis_menten_time</code></h4>
+<p>The time an irreversible Michaelis-Menten reaction needs to convert a stated fraction of its substrate.</p>
+<div class="math">\[t = \frac{K_m\ln\frac{1}{1-X} + S_0X}{V_{\max}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S0</code></td><td>in</td><td>initial substrate concentration</td><td>—</td></tr><tr><td><code>Vmax</code></td><td>in</td><td>maximum rate (concentration per time)</td><td>—</td></tr><tr><td><code>Km</code></td><td>in</td><td>Michaelis constant (concentration)</td><td>—</td></tr><tr><td><code>X</code></td><td>in</td><td>fraction of substrate converted (0 to 1, or a percentage)</td><td>—</td></tr><tr><td><code>t</code></td><td>out</td><td>time (time unit of Vmax)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; X &lt; 1; positive S0, Vmax, Km.</p>
+<pre><code class="shell">$ computational-biology solve bio_michaelis_menten_time S0=10 Vmax=1 Km=2 X=0.5
+t = 6.386294361
+  by: Time to reach a conversion in a Michaelis-Menten reaction  (integrated Michaelis-Menten equation)
+  S0 = 10
+  Vmax = 1
+  Km = 2
+  X = 0.5
+  assumes: 0 &lt; X &lt; 1; positive S0, Vmax, Km</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the duration required for an irreversible Michaelis-Menten reaction to achieve a specific conversion level. Using the integrated rate law, it accounts for the decreasing substrate concentration as the reaction proceeds. With an initial substrate of 10, maximum velocity of 1, and Michaelis constant of 2, reaching a conversion fraction of 0.5 takes exactly 6.38629. This result helps predict when a biochemical assay or metabolic pathway will reach a desired state.</p>
+<h3>Genetics (5)</h3>
+<h4 id="bio_pedigree_inbreeding">Inbreeding coefficient from a pedigree — <code>bio_pedigree_inbreeding</code></h4>
+<p>Wright&#x27;s inbreeding coefficient F of an individual from its pedigree (founders unrelated and not inbred).</p>
+<div class="math">\[F_X = \sum_{\text{paths}} \left(\tfrac12\right)^{n_1+n_2+1}(1 + F_A)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>pedigree</code></td><td>in</td><td>parent-child pairs, e.g. [P-S, Q-S, P-D, Q-D, S-X, D-X]</td><td>—</td></tr><tr><td><code>individual</code></td><td>in</td><td>name of the individual</td><td>—</td></tr><tr><td><code>F</code></td><td>out</td><td>inbreeding coefficient</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> every non-founder has exactly two parents listed; no cycles; founders unrelated, F = 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_pedigree_inbreeding &quot;pedigree=P-S, Q-S, P-D, Q-D, S-X, D-X&quot; individual=X
+F = 0.25
+  by: Inbreeding coefficient from a pedigree  (Wright&#x27;s path counting: sum over common ancestors and non-overlapping paths of (1/2)^(n1+n2+1) (1 + F_A))
+  individual = X
+  assumes: every non-founder has exactly two parents listed; no cycles; founders unrelated, F = 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the inbreeding coefficient, denoted as F, for a specific individual based on their pedigree. The value 0.25 represents the probability that two alleles at any given locus are identical by descent from a common ancestor. This metric is derived using Wright&#x27;s path counting method, which sums contributions from all non-overlapping paths connecting the parents through their shared ancestors. A higher value indicates greater genetic similarity between the parents and increased risk of homozygosity for deleterious recessive traits.</p>
+<h4 id="bio_map_distance">Map distance from a recombination fraction — <code>bio_map_distance</code></h4>
+<p>The genetic map distance (cM) corresponding to a recombination fraction, by the Haldane or Kosambi map function.</p>
+<div class="math">\[d_H = -\tfrac12\ln(1-2r),\quad d_K = \tfrac14\ln\frac{1+2r}{1-2r}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>r</code></td><td>in</td><td>recombination fraction (0 to 0.5)</td><td>—</td></tr><tr><td><code>map</code></td><td>in</td><td>map function: haldane (no interference) or kosambi</td><td>—</td></tr><tr><td><code>d_cM</code></td><td>out</td><td>map distance in centimorgans</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt;= r &lt; 0.5; map function stated.</p>
+<pre><code class="shell">$ computational-biology solve bio_map_distance r=0.2 map=haldane
+d_cM = 25.54128119
+  by: Map distance from a recombination fraction  (Haldane d = -ln(1-2r)/2; Kosambi d = ln((1+2r)/(1-2r))/4 (Morgans, x100 for cM))
+  r = 0.2
+  map = haldane
+  assumes: 0 &lt;= r &lt; 0.5; map function stated</code></pre>
+<p><strong>What the worked example means:</strong> This calculation converts an observed recombination fraction into a genetic map distance measured in centimorgans. By applying the selected map function, specifically haldane, to the input value of 0.2, the tool accounts for crossover interference to provide a more accurate estimate of physical distance than raw recombination data alone. The resulting map distance is 25.5413 centimorgans.</p>
+<h4 id="bio_cross_phenotype_ratio">Phenotype ratio of a cross (complete dominance) — <code>bio_cross_phenotype_ratio</code></h4>
+<p>The offspring phenotype ratio of a cross with complete dominance, the probabilities of the all-dominant and all-recessive phenotypes and the numbers of genotypes and phenotypes.</p>
+<div class="math">\[(\tfrac34 D + \tfrac14 r)^n \Rightarrow 9:3:3:1 \text{ for two loci}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>parent1</code></td><td>in</td><td>genotype of the first parent, letter pairs (e.g. AaBb)</td><td>—</td></tr><tr><td><code>parent2</code></td><td>in</td><td>genotype of the second parent</td><td>—</td></tr><tr><td><code>p_all_dominant</code></td><td>out</td><td>probability of showing every dominant trait</td><td>—</td></tr><tr><td><code>p_all_recessive</code></td><td>out</td><td>probability of showing every recessive trait</td><td>—</td></tr><tr><td><code>n_genotypes</code></td><td>out</td><td>number of distinct offspring genotypes</td><td>—</td></tr><tr><td><code>n_phenotypes</code></td><td>out</td><td>number of distinct offspring phenotypes</td><td>—</td></tr><tr><td><code>ratio</code></td><td>out</td><td>phenotype ratio, largest class first (e.g. 9:3:3:1)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> complete dominance at every locus; independent assortment.</p>
+<pre><code class="shell">$ computational-biology solve bio_cross_phenotype_ratio parent1=AaBb parent2=AaBb
+p_all_dominant = 0.5625
+p_all_recessive = 0.0625
+n_genotypes = 9
+n_phenotypes = 4
+ratio = 9:3:3:1
+  by: Phenotype ratio of a cross (complete dominance)  (per-locus phenotype probabilities (3/4 : 1/4 for Aa x Aa) multiplied across loci)
+  parent1 = AaBb
+  parent2 = AaBb
+  assumes: complete dominance at every locus; independent assortment</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the expected offspring outcomes for a genetic cross involving complete dominance and independent assortment. Analyzing the parental genotypes AaBb and AaBb gives the specific phenotype ratio 9:3:3:1 and the count of distinct phenotypes 4. The result also includes the probability that an offspring exhibits every dominant trait, which is 0.5625, and the probability of showing every recessive trait, given as 0.0625. Additionally, the total number of unique genotypes produced by this cross is 9. These values describe the statistical distribution of traits in the next generation under Mendelian assumptions.</p>
+<h4 id="bio_cross_genotype_probability">Probability of an offspring genotype in a cross — <code>bio_cross_genotype_probability</code></h4>
+<p>The probability that an offspring of two parents has a stated genotype (monohybrid, dihybrid or more loci; independent assortment).</p>
+<div class="math">\[P = \prod_{\ell} P_\ell(g_\ell)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>parent1</code></td><td>in</td><td>genotype of the first parent, letter pairs (e.g. AaBb)</td><td>—</td></tr><tr><td><code>parent2</code></td><td>in</td><td>genotype of the second parent</td><td>—</td></tr><tr><td><code>offspring</code></td><td>in</td><td>offspring genotype asked about</td><td>—</td></tr><tr><td><code>probability</code></td><td>out</td><td>probability of the offspring genotype</td><td>—</td></tr><tr><td><code>fraction</code></td><td>out</td><td>the same as a fraction</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> the same loci in the same order; independent assortment; at most 6 loci.</p>
+<pre><code class="shell">$ computational-biology solve bio_cross_genotype_probability parent1=Aa parent2=Aa offspring=Aa
+probability = 0.5
+fraction = 1/2
+  by: Probability of an offspring genotype in a cross  (product over loci of the Punnett-square probability of each locus genotype)
+  offspring = Aa
+  parent2 = Aa
+  parent1 = Aa
+  assumes: the same loci in the same order; independent assortment; at most 6 loci</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the likelihood that an offspring from parents with genotypes Aa and Aa will have the specific genotype Aa. It works by finding the probability for each gene locus independently using Punnett squares and then multiplying those probabilities together. The final result is a probability value of 0.5, which can also be expressed as the fraction 1/2. This method assumes that the genes are located on different chromosomes or are far enough apart to assort independently.</p>
+<h4 id="bio_recombination_fraction">Recombination fraction from a map distance — <code>bio_recombination_fraction</code></h4>
+<p>The recombination fraction between two loci a stated map distance apart, by the Haldane or Kosambi map function.</p>
+<div class="math">\[r_H = \tfrac12(1 - e^{-2d}),\quad r_K = \tfrac12\tanh 2d\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>d_cM</code></td><td>in</td><td>map distance in centimorgans</td><td>—</td></tr><tr><td><code>map</code></td><td>in</td><td>map function: haldane (no interference) or kosambi</td><td>—</td></tr><tr><td><code>r</code></td><td>out</td><td>recombination fraction</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> d &gt;= 0; map function stated.</p>
+<pre><code class="shell">$ computational-biology solve bio_recombination_fraction d_cM=50 map=haldane
+r = 0.3160602794
+  by: Recombination fraction from a map distance  (Haldane r = (1 - e^{-2d})/2; Kosambi r = tanh(2d)/2 (d in Morgans))
+  d_cM = 50
+  map = haldane
+  assumes: d &gt;= 0; map function stated</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the probability of recombination between two genetic loci based on their stated map distance. By applying the selected map function to the input distance of 50, the model computes a recombination fraction of 0.31606. This value represents the likelihood that crossing over will separate these loci during meiosis, providing a direct measure of linkage strength.</p>
+<h3>Microbial growth (1)</h3>
+<h4 id="bio_chemostat_steady_state">Chemostat steady state (Monod kinetics) — <code>bio_chemostat_steady_state</code></h4>
+<p>The steady-state substrate and biomass concentrations of a chemostat with Monod growth kinetics.</p>
+<div class="math">\[\bar S = \frac{K_sD}{\mu_{\max} - D},\quad \bar X = Y(S_0 - \bar S)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>mu_max</code></td><td>in</td><td>maximum specific growth rate (1/time)</td><td>—</td></tr><tr><td><code>Ks</code></td><td>in</td><td>half-saturation constant (concentration)</td><td>—</td></tr><tr><td><code>Y</code></td><td>in</td><td>biomass yield (biomass per substrate)</td><td>—</td></tr><tr><td><code>D</code></td><td>in</td><td>dilution rate (1/time, same unit as mu_max)</td><td>—</td></tr><tr><td><code>S0</code></td><td>in</td><td>feed substrate concentration</td><td>—</td></tr><tr><td><code>S</code></td><td>out</td><td>steady-state substrate concentration</td><td>—</td></tr><tr><td><code>X</code></td><td>out</td><td>steady-state biomass concentration</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> D &lt; mu_max; no washout (S &lt; S0); consistent units.</p>
+<pre><code class="shell">$ computational-biology solve bio_chemostat_steady_state mu_max=1 Ks=1 Y=0.5 D=0.5 S0=10
+S = 1
+X = 4.5
+  by: Chemostat steady state (Monod kinetics)  (growth balances dilution: mu(S) = D gives S; the substrate balance gives X)
+  mu_max = 1
+  Ks = 1
+  Y = 0.5
+  D = 0.5
+  S0 = 10
+  assumes: D &lt; mu_max; no washout (S &lt; S0); consistent units</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the equilibrium concentrations of substrate and biomass in a chemostat operating under Monod kinetics. Balancing the specific growth rate against the dilution rate shows that the residual substrate level settles at 1. The corresponding biomass density, derived from the yield coefficient and the consumed substrate, reaches a stable value of 4.5. These results indicate how efficiently the culture converts feed into cell mass under the specified flow conditions.</p>
+<h3>Phylogenetics (7)</h3>
+<h4 id="bio_jukes_cantor_distance">Jukes-Cantor distance — <code>bio_jukes_cantor_distance</code></h4>
+<p>The Jukes-Cantor (JC69) evolutionary distance between two aligned DNA sequences: the expected number of substitutions per site, corrected for multiple hits.</p>
+<div class="math">\[d = -\tfrac34 \ln\!\left(1 - \tfrac43 p\right)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first aligned DNA sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second aligned DNA sequence</td><td>—</td></tr><tr><td><code>p</code></td><td>out</td><td>proportion of differing sites</td><td>—</td></tr><tr><td><code>d</code></td><td>out</td><td>Jukes-Cantor distance (substitutions per site)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> equal lengths, no gaps; p &lt; 0.75.</p>
+<pre><code class="shell">$ computational-biology solve bio_jukes_cantor_distance seq1=AAAAAAAAAA seq2=AAAAAAAACC
+p = 0.2
+d = 0.2326161962
+  by: Jukes-Cantor distance  (d = -(3/4) ln(1 - 4p/3))
+  seq2 = AAAAAAAACC
+  seq1 = AAAAAAAAAA
+  assumes: equal lengths, no gaps; p &lt; 0.75</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the evolutionary distance between two DNA sequences by correcting for multiple hits. The input sequences were compared to find that the proportion of differing sites is 0.2. Applying the correction formula yields a final distance of 0.232616, which represents the estimated number of substitutions per site since the sequences diverged.</p>
+<h4 id="bio_kimura_distance">Kimura two-parameter distance — <code>bio_kimura_distance</code></h4>
+<p>The Kimura two-parameter (K80) distance between two aligned DNA sequences, separating transitions (A&lt;-&gt;G, C&lt;-&gt;T) from transversions.</p>
+<div class="math">\[d = -\tfrac12\ln(1-2P-Q) - \tfrac14\ln(1-2Q)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first aligned DNA sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second aligned DNA sequence</td><td>—</td></tr><tr><td><code>d</code></td><td>out</td><td>K80 distance (substitutions per site)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> equal lengths, no gaps; 1 - 2P - Q &gt; 0 and 1 - 2Q &gt; 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_kimura_distance seq1=AAAAAAAAAA seq2=AAAAAAAGGC
+d = 0.4023594781
+  by: Kimura two-parameter distance  (P = transition proportion, Q = transversion proportion, d = -ln(1-2P-Q)/2 - ln(1-2Q)/4)
+  seq1 = AAAAAAAAAA
+  seq2 = AAAAAAAGGC
+  assumes: equal lengths, no gaps; 1 - 2P - Q &gt; 0 and 1 - 2Q &gt; 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the evolutionary distance between two aligned DNA sequences using the Kimura two-parameter model. It accounts for different rates of transitions and transversions by analyzing the proportions of these changes in the input sequences. The resulting value, 0.402359, represents the estimated number of nucleotide substitutions per site that have occurred since the sequences diverged from a common ancestor.</p>
+<h4 id="bio_neighbor_joining">Neighbour-joining branch lengths — <code>bio_neighbor_joining</code></h4>
+<p>The total tree length and the terminal branch lengths of the neighbour-joining tree of a distance matrix.</p>
+<div class="math">\[Q_{ij} = (r-2)d_{ij} - R_i - R_j,\quad \ell_i = \tfrac12 d_{ij} + \frac{R_i - R_j}{2(r-2)}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>D</code></td><td>in</td><td>symmetric distance matrix, zero diagonal (at least 3 taxa)</td><td>—</td></tr><tr><td><code>total_length</code></td><td>out</td><td>sum of all branch lengths</td><td>—</td></tr><tr><td><code>branch</code></td><td>out</td><td>terminal branch length of each taxon, in input order</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> at least 3 taxa; no ties in the joining criterion; negative branch lengths kept as computed.</p>
+<pre><code class="shell">$ computational-biology solve bio_neighbor_joining &quot;D=[[0, 5, 9, 9, 8], [5, 0, 10, 10, 9], [9, 10, 0, 8, 7], [9, 10, 8, 0, 3], [8, 9, 7, 3, 0]]&quot;
+total_length = 17
+branch = [2.0,3.0,4.0,2.0,1.0]
+  by: Neighbour-joining branch lengths  (Saitou-Nei: join the pair minimising Q = (r-2) d_ij - R_i - R_j; branch lengths from the row sums)
+  assumes: at least 3 taxa; no ties in the joining criterion; negative branch lengths kept as computed</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the structure of a phylogenetic tree using the Saitou-Nei neighbour-joining algorithm. It starts with a symmetric distance matrix representing evolutionary distances between taxa. The method iteratively joins pairs that minimize a specific criterion based on their distances to all other taxa, adjusting for the number of remaining nodes. The result is a tree where the sum of all edge weights equals 17, and the individual lengths from each taxon to its nearest internal node are provided in [2, 3, 4, 2, 1]. This approach does not assume equal rates of evolution across lineages, allowing for non-ultrametric trees that reflect variable divergence speeds.</p>
+<h4 id="bio_tree_count">Number of possible phylogenetic trees — <code>bio_tree_count</code></h4>
+<p>The number of distinct labelled bifurcating trees for n taxa, rooted or unrooted.</p>
+<div class="math">\[N_{\text{rooted}} = (2n-3)!!,\quad N_{\text{unrooted}} = (2n-5)!!\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>n</code></td><td>in</td><td>number of taxa</td><td>—</td></tr><tr><td><code>rooted</code></td><td>in</td><td>rooted or unrooted trees</td><td>—</td></tr><tr><td><code>count</code></td><td>out</td><td>number of distinct bifurcating trees</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> n &gt;= 2 (rooted) or n &gt;= 3 (unrooted); n &lt;= 100.</p>
+<pre><code class="shell">$ computational-biology solve bio_tree_count n=5 rooted=unrooted
+count = 15
+  by: Number of possible phylogenetic trees  (double factorials: (2n-3)!! rooted, (2n-5)!! unrooted)
+  rooted = unrooted
+  assumes: n &gt;= 2 (rooted) or n &gt;= 3 (unrooted); n &lt;= 100</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the total count of unique labeled phylogenetic tree structures possible for a specified set of taxa. Using double factorials based on whether the trees are rooted or unrooted, it computes that there are 15 distinct binary tree topologies for the input of 5 taxa.</p>
+<h4 id="bio_fitch_parsimony">Parsimony score of a tree (Fitch) — <code>bio_fitch_parsimony</code></h4>
+<p>The minimum number of character changes (small parsimony score) needed on a given rooted bifurcating tree to explain aligned sequences at its leaves.</p>
+<div class="math">\[c_v(a) = \sum_{w\in\mathrm{children}(v)} \min_b \big(c_w(b) + [a\ne b]\big)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>tree</code></td><td>in</td><td>rooted bifurcating tree in Newick format</td><td>—</td></tr><tr><td><code>states</code></td><td>in</td><td>aligned sequence of each leaf, written name:SEQUENCE separated by spaces</td><td>—</td></tr><tr><td><code>score</code></td><td>out</td><td>parsimony score (number of changes)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> strictly bifurcating rooted tree; one aligned sequence per leaf; unit cost per change.</p>
+<pre><code class="shell">$ computational-biology solve bio_fitch_parsimony &quot;tree=((A,B),(C,D));&quot; &quot;states=A:AACG B:AATG C:GACT D:GGCT&quot;
+score = 4
+  by: Parsimony score of a tree (Fitch)  (dynamic programming over the tree site by site (equivalent to Fitch&#x27;s algorithm with unit costs))
+  tree = ((A,B),(C,D));
+  states = A:AACG B:AATG C:GACT D:GGCT
+  assumes: strictly bifurcating rooted tree; one aligned sequence per leaf; unit cost per change</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the parsimony score for the provided rooted bifurcating tree and aligned leaf sequences. By applying dynamic programming equivalent to Fitch&#x27;s algorithm with unit costs, it computes the smallest possible number of character state transitions needed to account for the data at the leaves. The resulting value, 4, represents the total count of mutations or changes inferred across all sites in the alignment.</p>
+<h4 id="bio_robinson_foulds">Robinson-Foulds distance between trees — <code>bio_robinson_foulds</code></h4>
+<p>The Robinson-Foulds (symmetric-difference) distance between two trees on the same taxa, comparing their bipartitions (trees treated as unrooted), and the distance as a proportion.</p>
+<div class="math">\[\mathrm{RF} = |S_1 \setminus S_2| + |S_2 \setminus S_1|\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>tree1</code></td><td>in</td><td>first tree in Newick format</td><td>—</td></tr><tr><td><code>tree2</code></td><td>in</td><td>second tree in Newick format</td><td>—</td></tr><tr><td><code>rf</code></td><td>out</td><td>number of bipartitions found in only one tree</td><td>—</td></tr><tr><td><code>rf_normalized</code></td><td>out</td><td>RF divided by the total number of non-trivial bipartitions of both trees</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> the same taxa; at least 4 taxa; trees compared unrooted; branch lengths ignored.</p>
+<pre><code class="shell">$ computational-biology solve bio_robinson_foulds &quot;tree1=((A,B),(C,D),(E,F));&quot; &quot;tree2=((A,C),(B,D),(E,F));&quot;
+rf = 4
+rf_normalized = 0.6666666667
+  by: Robinson-Foulds distance between trees  (non-trivial bipartitions of each tree; count those not shared)
+  tree1 = ((A,B),(C,D),(E,F));
+  tree2 = ((A,C),(B,D),(E,F));
+  assumes: the same taxa; at least 4 taxa; trees compared unrooted; branch lengths ignored</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the topological difference between two unrooted phylogenetic trees by comparing their sets of non-trivial bipartitions. The result, 4, represents the count of splits found in one tree but not the other, while 0.666667 expresses this difference as a proportion of the total possible distinct splits. A lower value indicates greater similarity in the inferred evolutionary relationships.</p>
+<h4 id="bio_upgma">UPGMA tree heights — <code>bio_upgma</code></h4>
+<p>The node heights of the UPGMA (average-linkage) tree of a distance matrix: the root height and every merge height (half the distance between the merged clusters).</p>
+<div class="math">\[d_{(ij),k} = \frac{n_i d_{ik} + n_j d_{jk}}{n_i + n_j},\quad h = d_{ij}/2\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>D</code></td><td>in</td><td>symmetric distance matrix, zero diagonal</td><td>—</td></tr><tr><td><code>root_height</code></td><td>out</td><td>height of the root</td><td>—</td></tr><tr><td><code>heights</code></td><td>out</td><td>all node heights, ascending</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> symmetric, zero diagonal, positive distances; no ties in a merge step.</p>
+<pre><code class="shell">$ computational-biology solve bio_upgma &quot;D=[[0, 2, 4, 6], [2, 0, 4, 6], [4, 4, 0, 6], [6, 6, 6, 0]]&quot;
+root_height = 3
+heights = [1.0,2.0,3.0]
+  by: UPGMA tree heights  (repeatedly merge the closest clusters; distances to a merged cluster are size-weighted averages)
+  assumes: symmetric, zero diagonal, positive distances; no ties in a merge step</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the node heights for a hierarchical clustering tree using the Unweighted Pair Group Method with Arithmetic Mean. Starting from the symmetric distance matrix [0 2 4 6; 2 0 4 6; 4 4 0 6; 6 6 6 0], the algorithm repeatedly merges the two closest clusters, calculating new distances as size-weighted averages. Each merge step produces a node height equal to half the distance between the merged clusters. The final result provides the root height 3 and all internal node heights [1, 2, 3], which represent the evolutionary time or divergence levels under the assumption of a constant molecular clock.</p>
+<h3>Population biology (2)</h3>
+<h4 id="bio_leslie_growth_rate">Leslie matrix growth rate and stable age distribution — <code>bio_leslie_growth_rate</code></h4>
+<p>The asymptotic growth rate (dominant eigenvalue lambda and r = ln lambda), the net reproductive rate R0 and the stable age distribution of a Leslie model.</p>
+<div class="math">\[\sum_{i} F_i\,l_i\,\lambda^{-i} = 1,\quad R_0 = \sum_i F_i l_i\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>F</code></td><td>in</td><td>fecundity of each age class</td><td>—</td></tr><tr><td><code>S</code></td><td>in</td><td>survival from each age class to the next (one fewer than F)</td><td>—</td></tr><tr><td><code>lambda1</code></td><td>out</td><td>dominant eigenvalue (growth factor per step)</td><td>—</td></tr><tr><td><code>r</code></td><td>out</td><td>intrinsic rate ln(lambda)</td><td>—</td></tr><tr><td><code>R0</code></td><td>out</td><td>net reproductive rate (expected offspring per newborn)</td><td>—</td></tr><tr><td><code>stable</code></td><td>out</td><td>stable age distribution (fractions summing to 1)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; S_i &lt;= 1; F_i &gt;= 0, at least one positive.</p>
+<pre><code class="shell">$ computational-biology solve bio_leslie_growth_rate &quot;F=[0, 2]&quot; &quot;S=[0.5]&quot;
+lambda1 = 1
+r = 0
+R0 = 1
+stable = [0.666666666667,0.333333333333]
+  by: Leslie matrix growth rate and stable age distribution  (the positive root of the Euler-Lotka equation sum F_i l_i lambda^-i = 1; stable distribution proportional to l_i lambda^-(i-1))
+  assumes: 0 &lt; S_i &lt;= 1; F_i &gt;= 0, at least one positive</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the asymptotic growth characteristics of a population using Leslie matrix theory. Solving for the dominant eigenvalue gives the growth factor per time step, which is 1. This value translates to an intrinsic growth rate of 0. The net reproductive rate, representing the expected number of offspring produced by a newborn over its lifetime, is calculated as 1. Finally, the stable age distribution, showing the proportional makeup of each age class once transient dynamics settle, is given by [0.666667, 0.333333]. These outputs rely on the input fecundity values [0, 2] and survival rates [0.5].</p>
+<h4 id="bio_leslie_projection">Leslie matrix population projection — <code>bio_leslie_projection</code></h4>
+<p>The age-class numbers and total population after t time steps of an age-structured (Leslie) model.</p>
+<div class="math">\[\mathbf n_{t+1} = L\,\mathbf n_t,\quad L = \begin{pmatrix}F_1 &amp; F_2 &amp; \cdots\\ S_1 &amp; 0 &amp; \\ &amp; \ddots &amp; \end{pmatrix}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>F</code></td><td>in</td><td>fecundity of each age class</td><td>—</td></tr><tr><td><code>S</code></td><td>in</td><td>survival from each age class to the next (one fewer than F)</td><td>—</td></tr><tr><td><code>n0</code></td><td>in</td><td>initial number in each age class</td><td>—</td></tr><tr><td><code>t</code></td><td>in</td><td>number of time steps</td><td>—</td></tr><tr><td><code>n_t</code></td><td>out</td><td>number in each age class after t steps</td><td>—</td></tr><tr><td><code>total</code></td><td>out</td><td>total population after t steps</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; S_i &lt;= 1; F_i &gt;= 0, at least one positive; t &lt;= 500.</p>
+<pre><code class="shell">$ computational-biology solve bio_leslie_projection &quot;F=[0, 1.5, 1]&quot; &quot;S=[0.5, 0.8]&quot; &quot;n0=[100, 50, 20]&quot; t=1
+n_t = [95.0,50.0,40.0]
+total = 185
+  by: Leslie matrix population projection  (multiply the age vector by the Leslie matrix t times)
+  assumes: 0 &lt; S_i &lt;= 1; F_i &gt;= 0, at least one positive; t &lt;= 500</code></pre>
+<p><strong>What the worked example means:</strong> This calculation projects the future state of an age-structured population by multiplying the initial age vector by the Leslie matrix repeatedly. The resulting age distribution after 1 steps is given by [95, 50, 40], and the sum of these values yields the total population size of 185. This outcome reflects how specific survival rates and fecundity levels interact over discrete time intervals to shape demographic structure.</p>
+<h3>Population genetics (16)</h3>
+<h4 id="bio_haploid_selection">Allele frequency under haploid (genic) selection — <code>bio_haploid_selection</code></h4>
+<p>The frequency of allele A after t generations of haploid selection (relative fitness 1 + s against 1).</p>
+<div class="math">\[p&#x27; = \frac{p(1+s)}{1+sp}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>p0</code></td><td>in</td><td>initial frequency of A</td><td>—</td></tr><tr><td><code>s</code></td><td>in</td><td>selection coefficient (fitness of A = 1 + s)</td><td>—</td></tr><tr><td><code>t</code></td><td>in</td><td>number of generations</td><td>—</td></tr><tr><td><code>p_t</code></td><td>out</td><td>frequency of A after t generations</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; p0 &lt; 1; s &gt; -1; discrete generations.</p>
+<pre><code class="shell">$ computational-biology solve bio_haploid_selection p0=0.5 s=1 t=1
+p_t = 0.6666666667
+  by: Allele frequency under haploid (genic) selection  (iterate p&#x27; = p(1+s)/(1+sp) generation by generation)
+  p0 = 0.5
+  s = 1
+  assumes: 0 &lt; p0 &lt; 1; s &gt; -1; discrete generations</code></pre>
+<p><strong>What the worked example means:</strong> The model calculates the frequency of allele A after a specified number of generations under haploid selection. Starting from an initial frequency of 0.5, with a selection coefficient of 1, the algorithm iterates the recurrence relation to determine the final state. The resulting frequency, 0.666667, represents the proportion of the population carrying allele A once evolutionary pressure has acted for 1 discrete time steps.</p>
+<h4 id="bio_recessive_lethal">Decline of a recessive lethal allele — <code>bio_recessive_lethal</code></h4>
+<p>The frequency of a recessive lethal allele after t generations of selection (aa never reproduce).</p>
+<div class="math">\[q&#x27; = \frac{q}{1+q}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>q0</code></td><td>in</td><td>initial frequency of the lethal allele</td><td>—</td></tr><tr><td><code>t</code></td><td>in</td><td>number of generations</td><td>—</td></tr><tr><td><code>q_t</code></td><td>out</td><td>frequency after t generations</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; q0 &lt;= 1; random mating, aa fitness 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_recessive_lethal q0=0.5 t=1
+q_t = 0.3333333333
+  by: Decline of a recessive lethal allele  (iterate q&#x27; = q/(1+q))
+  q0 = 0.5
+  assumes: 0 &lt; q0 &lt;= 1; random mating, aa fitness 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines how much a harmful recessive allele has declined in frequency over time. Starting from an initial frequency of 0.5, the model applies selection pressure where homozygous individuals do not reproduce, iterating the formula for 1 generations to yield a final frequency of 0.333333. This result illustrates that while selection removes these alleles efficiently when they are common, their decline slows as they become rare because most copies are hidden in healthy carriers.</p>
+<h4 id="bio_ne_sex_ratio">Effective population size with unequal sex ratio — <code>bio_ne_sex_ratio</code></h4>
+<p>The effective population size of a population with N_m breeding males and N_f breeding females.</p>
+<div class="math">\[N_e = \frac{4N_mN_f}{N_m+N_f}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>N_m</code></td><td>in</td><td>number of breeding males</td><td>—</td></tr><tr><td><code>N_f</code></td><td>in</td><td>number of breeding females</td><td>—</td></tr><tr><td><code>Ne</code></td><td>out</td><td>effective population size</td><td>—</td></tr><tr><td><code>Ne_over_N</code></td><td>out</td><td>Ne divided by the census N_m + N_f</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> random mating within the breeding population; Wright-Fisher reproduction.</p>
+<pre><code class="shell">$ computational-biology solve bio_ne_sex_ratio N_m=10 N_f=90
+Ne = 36
+Ne_over_N = 0.36
+  by: Effective population size with unequal sex ratio  (Wright&#x27;s formula)
+  assumes: random mating within the breeding population; Wright-Fisher reproduction</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the effective population size using Wright&#x27;s formula for unequal sex ratios. It takes the number of breeding males, 10, and breeding females, 90, to compute the genetic contribution balance. The resulting effective size, 36, reflects how many individuals would be needed in an idealized population to experience the same rate of genetic drift. This value represents 0.36 of the actual census size, highlighting the impact of sex ratio imbalance on genetic diversity.</p>
+<h4 id="bio_ne_fluctuating_size">Effective size of a fluctuating population — <code>bio_ne_fluctuating_size</code></h4>
+<p>The effective population size over generations of changing size (harmonic mean) and the fraction of heterozygosity retained over those generations.</p>
+<div class="math">\[\frac{1}{N_e} = \frac{1}{t}\sum_{i=1}^t \frac{1}{N_i},\quad \frac{H_t}{H_0} = \prod_i \Big(1-\frac{1}{2N_i}\Big)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>sizes</code></td><td>in</td><td>numbers of diploid individuals in successive generations</td><td>—</td></tr><tr><td><code>Ne</code></td><td>out</td><td>effective size (harmonic mean of the sizes)</td><td>—</td></tr><tr><td><code>retained</code></td><td>out</td><td>heterozygosity retained, product of (1 - 1/(2N_i))</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> whole positive sizes; Wright-Fisher reproduction each generation.</p>
+<pre><code class="shell">$ computational-biology solve bio_ne_fluctuating_size &quot;sizes=[1000, 10, 1000]&quot;
+Ne = 29.41176471
+retained = 0.9490502375
+  by: Effective size of a fluctuating population  (harmonic mean of the generation sizes; heterozygosity falls by 1 - 1/(2N_i) in generation i)
+  assumes: whole positive sizes; Wright-Fisher reproduction each generation</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the effective population size, which is the harmonic mean of the individual generation sizes provided in [1000, 10, 1000]. It also computes the fraction of initial genetic variation that remains after these generations, shown as 0.94905. The result highlights how brief reductions in population count disproportionately impact genetic diversity compared to periods of growth.</p>
+<h4 id="bio_heterozygote_advantage">Equilibrium under heterozygote advantage — <code>bio_heterozygote_advantage</code></h4>
+<p>The stable equilibrium frequency of allele A when the heterozygote is fittest (overdominance).</p>
+<div class="math">\[\hat p = \frac{w_{Aa} - w_{aa}}{2w_{Aa} - w_{AA} - w_{aa}} = \frac{t}{s+t}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>w_AA</code></td><td>in</td><td>relative fitness of AA</td><td>—</td></tr><tr><td><code>w_Aa</code></td><td>in</td><td>relative fitness of Aa</td><td>—</td></tr><tr><td><code>w_aa</code></td><td>in</td><td>relative fitness of aa</td><td>—</td></tr><tr><td><code>p_eq</code></td><td>out</td><td>equilibrium frequency of A</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> w_Aa &gt; w_AA and w_Aa &gt; w_aa; fitnesses positive.</p>
+<pre><code class="shell">$ computational-biology solve bio_heterozygote_advantage w_AA=0.8 w_Aa=1 w_aa=0.6
+p_eq = 0.6666666667
+  by: Equilibrium under heterozygote advantage  (the interior fixed point of the selection recursion)
+  w_AA = 0.8
+  w_Aa = 1
+  w_aa = 0.6
+  assumes: w_Aa &gt; w_AA and w_Aa &gt; w_aa; fitnesses positive</code></pre>
+<p><strong>What the worked example means:</strong> This calculation finds the stable genetic state where the allele frequency stops changing because the mixed genotype survives better than either pure type. Given the relative fitnesses of the two homozygotes and the heterozygote, the model computes that allele A will settle at a frequency of 0.666667. This result indicates how natural selection maintains diversity by favoring individuals carrying both versions of the gene over those with just one kind.</p>
+<h4 id="bio_coalescent_times">Expected coalescence times — <code>bio_coalescent_times</code></h4>
+<p>The expected time to the most recent common ancestor and the expected total branch length of the genealogy of n gene copies from a diploid population of effective size Ne (in generations).</p>
+<div class="math">\[E[T_{MRCA}] = 4N_e\left(1 - \frac1n\right),\quad E[L] = 4N_e\sum_{i=1}^{n-1}\frac1i\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>n</code></td><td>in</td><td>number of sampled gene copies</td><td>—</td></tr><tr><td><code>Ne</code></td><td>in</td><td>diploid effective population size</td><td>—</td></tr><tr><td><code>t_mrca</code></td><td>out</td><td>expected TMRCA in generations</td><td>—</td></tr><tr><td><code>total_length</code></td><td>out</td><td>expected total branch length in generations</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> neutral Kingman coalescent; diploid: a pair coalesces at rate 1/(2Ne) per generation.</p>
+<pre><code class="shell">$ computational-biology solve bio_coalescent_times n=2 Ne=1000
+t_mrca = 2000
+total_length = 4000
+  by: Expected coalescence times  (sum of exponential waiting times while k lineages remain, mean 4Ne/(k(k-1)))
+  Ne = 1000
+  assumes: neutral Kingman coalescent; diploid: a pair coalesces at rate 1/(2Ne) per generation</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the expected time to the most recent common ancestor and the total branch length for a sample of 2 gene copies drawn from a diploid population with an effective size of 1000. Under the neutral Kingman coalescent model, these values represent the average duration in generations until all sampled lineages merge into one ancestral lineage, and the sum of all branch lengths in that genealogy. The result shows that the expected time to the most recent common ancestor is 2000 generations, while the expected total branch length is 4000 generations, which are key metrics for estimating mutation accumulation and demographic history.</p>
+<h4 id="bio_fst">Fixation index FST from subpopulation allele frequencies — <code>bio_fst</code></h4>
+<p>Mean within-subpopulation heterozygosity HS, total heterozygosity HT and FST = (HT - HS)/HT for a biallelic locus in equally weighted subpopulations.</p>
+<div class="math">\[F_{ST} = \frac{H_T - H_S}{H_T}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>p</code></td><td>in</td><td>frequency of one allele in each subpopulation</td><td>—</td></tr><tr><td><code>HS</code></td><td>out</td><td>mean expected heterozygosity within subpopulations</td><td>—</td></tr><tr><td><code>HT</code></td><td>out</td><td>expected heterozygosity of the pooled population</td><td>—</td></tr><tr><td><code>FST</code></td><td>out</td><td>fixation index (HT - HS)/HT</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> equal subpopulation weights; biallelic locus; 0 &lt; mean p &lt; 1.</p>
+<pre><code class="shell">$ computational-biology solve bio_fst &quot;p=[0.2, 0.8]&quot;
+HS = 0.32
+HT = 0.5
+FST = 0.36
+  by: Fixation index FST from subpopulation allele frequencies  (HS = mean of 2p(1-p), HT = 2 pbar (1 - pbar), FST = (HT - HS)/HT)
+  assumes: equal subpopulation weights; biallelic locus; 0 &lt; mean p &lt; 1</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the fixation index by comparing genetic diversity within groups to the overall population. It uses the mean expected heterozygosity within subpopulations, denoted as 0.32, and the expected heterozygosity of the pooled population, denoted as 0.5. The resulting fixation index, 0.36, represents the proportion of total genetic variation attributable to differences between subpopulations. A higher value indicates greater genetic differentiation among the groups.</p>
+<h4 id="bio_moran_fixation">Fixation probability in the Moran process — <code>bio_moran_fixation</code></h4>
+<p>The probability that a mutant with relative fitness r, starting from i copies in a Moran population of size N, eventually takes over the population.</p>
+<div class="math">\[\rho_i = \frac{1 - r^{-i}}{1 - r^{-N}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>N</code></td><td>in</td><td>population size</td><td>—</td></tr><tr><td><code>i</code></td><td>in</td><td>initial number of mutants</td><td>—</td></tr><tr><td><code>r</code></td><td>in</td><td>relative fitness of the mutant</td><td>—</td></tr><tr><td><code>rho</code></td><td>out</td><td>fixation probability</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; i &lt; N; r &gt; 0.</p>
+<pre><code class="shell">$ computational-biology solve bio_moran_fixation N=10 i=1 r=1
+rho = 0.1
+  by: Fixation probability in the Moran process  (gambler&#x27;s-ruin solution of the Moran birth-death chain (i/N when r = 1))
+  r = 1
+  assumes: 0 &lt; i &lt; N; r &gt; 0</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the likelihood that a specific mutant variant will eventually replace all other variants in a fixed-size population. Using the gambler&#x27;s ruin solution for the Moran birth-death chain, it computes the fixation probability based on the initial number of mutants, the total population size, and the mutant&#x27;s relative fitness. The resulting value of 0.1 represents the chance of evolutionary takeover under these stochastic conditions.</p>
+<h4 id="bio_hardy_weinberg_test">Hardy-Weinberg chi-square test — <code>bio_hardy_weinberg_test</code></h4>
+<p>Allele frequencies, Hardy-Weinberg expected genotype counts, the chi-square test of equilibrium (1 degree of freedom), observed and expected heterozygosity and the inbreeding coefficient F.</p>
+<div class="math">\[\chi^2 = \sum \frac{(O-E)^2}{E},\quad E = (Np^2,\ 2Npq,\ Nq^2)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>n_AA</code></td><td>in</td><td>number of AA individuals</td><td>—</td></tr><tr><td><code>n_Aa</code></td><td>in</td><td>number of Aa individuals</td><td>—</td></tr><tr><td><code>n_aa</code></td><td>in</td><td>number of aa individuals</td><td>—</td></tr><tr><td><code>p</code></td><td>out</td><td>frequency of allele A</td><td>—</td></tr><tr><td><code>q</code></td><td>out</td><td>frequency of allele a</td><td>—</td></tr><tr><td><code>exp_AA</code></td><td>out</td><td>expected AA count (N p^2)</td><td>—</td></tr><tr><td><code>exp_Aa</code></td><td>out</td><td>expected Aa count (2 N p q)</td><td>—</td></tr><tr><td><code>exp_aa</code></td><td>out</td><td>expected aa count (N q^2)</td><td>—</td></tr><tr><td><code>chi2</code></td><td>out</td><td>chi-square statistic</td><td>—</td></tr><tr><td><code>p_value</code></td><td>out</td><td>p-value (chi-square, 1 degree of freedom)</td><td>—</td></tr><tr><td><code>Ho</code></td><td>out</td><td>observed heterozygosity</td><td>—</td></tr><tr><td><code>He</code></td><td>out</td><td>expected heterozygosity 2pq</td><td>—</td></tr><tr><td><code>F</code></td><td>out</td><td>inbreeding coefficient 1 - Ho/He</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> both alleles present; biallelic locus; no continuity correction.</p>
+<pre><code class="shell">$ computational-biology solve bio_hardy_weinberg_test n_AA=298 n_Aa=489 n_aa=213
+p = 0.5425
+q = 0.4575
+exp_AA = 294.30625
+exp_Aa = 496.3875
+exp_aa = 209.30625
+chi2 = 0.2214895876
+p_value = 0.6379072638
+Ho = 0.489
+He = 0.4963875
+F = 0.01488252625
+  by: Hardy-Weinberg chi-square test  (allele counting, expected counts N p^2, 2Npq, N q^2, chi-square with 3 - 1 - 1 = 1 degree of freedom)
+  assumes: both alleles present; biallelic locus; no continuity correction</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines whether observed genotype counts differ significantly from those expected under Hardy-Weinberg equilibrium. Starting with input counts for homozygous dominant, heterozygous, and homozygous recessive individuals, the method computes allele frequencies p and q. These frequencies generate expected genotype counts based on the product of total population size and Hardy-Weinberg proportions. The chi-square statistic compares observed and expected values, resulting in a value of 0.22149. A corresponding p-value of 0.637907 assesses statistical significance. Additionally, the analysis reports observed heterozygosity at 0.489, expected heterozygosity at 0.496387, and an inbreeding coefficient F of 0.0148825, quantifying the deficit or excess of heterozygotes relative to random mating expectations.</p>
+<h4 id="bio_hardy_weinberg_exact_test">Hardy-Weinberg exact test — <code>bio_hardy_weinberg_exact_test</code></h4>
+<p>The exact (Wigginton) test of Hardy-Weinberg equilibrium for a biallelic locus: the two-sided p-value and the probability of the observed number of heterozygotes given the allele counts.</p>
+<div class="math">\[P(n_{AB}\mid n_A) = \frac{N!}{n_{AA}!\,n_{AB}!\,n_{BB}!}\,\frac{2^{n_{AB}}\,n_A!\,n_B!}{(2N)!}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>n_AA</code></td><td>in</td><td>number of AA individuals</td><td>—</td></tr><tr><td><code>n_Aa</code></td><td>in</td><td>number of Aa individuals</td><td>—</td></tr><tr><td><code>n_aa</code></td><td>in</td><td>number of aa individuals</td><td>—</td></tr><tr><td><code>p_value</code></td><td>out</td><td>exact two-sided p-value (sum of probabilities not above the observed one)</td><td>—</td></tr><tr><td><code>p_observed</code></td><td>out</td><td>probability of the observed heterozygote count</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> both alleles present; N &lt;= 1000.</p>
+<pre><code class="shell">$ computational-biology solve bio_hardy_weinberg_exact_test n_AA=2 n_Aa=0 n_aa=2
+p_value = 0.08571428571
+p_observed = 0.08571428571
+  by: Hardy-Weinberg exact test  (exact conditional distribution of heterozygote counts given the allele counts (rational arithmetic))
+  assumes: both alleles present; N &lt;= 1000</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the exact probability of observing the specific number of heterozygotes given the total allele counts in the sample. Using rational arithmetic to avoid approximation errors, it computes the likelihood of the observed genotype configuration compared to all possible configurations with the same allele frequencies. The resulting p-value of 0.0857143 quantifies how likely such a deviation from expected proportions would occur by chance if the population were truly in equilibrium. A low value suggests significant departure from random mating assumptions.</p>
+<h4 id="bio_linkage_disequilibrium">Linkage disequilibrium D, D&#x27; and r^2 — <code>bio_linkage_disequilibrium</code></h4>
+<p>The linkage disequilibrium between two biallelic loci from haplotype counts: D, Lewontin&#x27;s D&#x27; and r^2.</p>
+<div class="math">\[D = p_{AB} - p_Ap_B,\quad r^2 = \frac{D^2}{p_Aq_Ap_Bq_B},\quad D&#x27; = \frac{D}{D_{\max}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>n_AB</code></td><td>in</td><td>number of AB haplotypes</td><td>—</td></tr><tr><td><code>n_Ab</code></td><td>in</td><td>number of Ab haplotypes</td><td>—</td></tr><tr><td><code>n_aB</code></td><td>in</td><td>number of aB haplotypes</td><td>—</td></tr><tr><td><code>n_ab</code></td><td>in</td><td>number of ab haplotypes</td><td>—</td></tr><tr><td><code>D</code></td><td>out</td><td>disequilibrium D = pAB - pA pB</td><td>—</td></tr><tr><td><code>D_prime</code></td><td>out</td><td>Lewontin&#x27;s D&#x27; = D / Dmax (signed)</td><td>—</td></tr><tr><td><code>r2</code></td><td>out</td><td>squared correlation r^2</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> both loci polymorphic; phased haplotype counts.</p>
+<pre><code class="shell">$ computational-biology solve bio_linkage_disequilibrium n_AB=40 n_Ab=10 n_aB=10 n_ab=40
+D = 0.15
+D_prime = 0.6
+r2 = 0.36
+  by: Linkage disequilibrium D, D&#x27; and r^2  (haplotype and allele frequencies (exact fractions); Dmax from the allele frequencies)
+  assumes: both loci polymorphic; phased haplotype counts</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the linkage disequilibrium between two genetic loci using phased haplotype counts. The raw disequilibrium coefficient D equals 0.15, representing the difference between observed and expected haplotype frequencies. To account for allele frequency constraints, this value is normalized to produce Lewontin&#x27;s D prime at 0.6 and the squared correlation coefficient r squared at 0.36, which indicate the strength of non-random association.</p>
+<h4 id="bio_drift_heterozygosity">Loss of heterozygosity by genetic drift — <code>bio_drift_heterozygosity</code></h4>
+<p>The expected heterozygosity after t generations of genetic drift in a Wright-Fisher population of N diploids, starting from i copies of an allele.</p>
+<div class="math">\[H_t = H_0\left(1 - \frac{1}{2N}\right)^t\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>N</code></td><td>in</td><td>number of diploid individuals</td><td>—</td></tr><tr><td><code>i</code></td><td>in</td><td>initial copies of allele A (of 2N)</td><td>—</td></tr><tr><td><code>t</code></td><td>in</td><td>number of generations</td><td>—</td></tr><tr><td><code>H0</code></td><td>out</td><td>initial heterozygosity 2pq</td><td>—</td></tr><tr><td><code>H_t</code></td><td>out</td><td>expected heterozygosity after t generations</td><td>—</td></tr><tr><td><code>retained</code></td><td>out</td><td>fraction of heterozygosity retained, (1 - 1/(2N))^t</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; i &lt; 2N; constant N, random mating, no mutation or selection.</p>
+<pre><code class="shell">$ computational-biology solve bio_drift_heterozygosity N=10 i=10 t=1
+H0 = 0.5
+H_t = 0.475
+retained = 0.95
+  by: Loss of heterozygosity by genetic drift  (expected heterozygosity falls by the factor 1 - 1/(2N) each generation)
+  assumes: 0 &lt; i &lt; 2N; constant N, random mating, no mutation or selection</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the expected level of genetic variation remaining in a population after a specific period of genetic drift. Starting with an initial heterozygosity of 0.5, derived from 10 copies of an allele within a population of 10 diploid individuals, the model projects that variation declines over 1 generations. The final expected heterozygosity is 0.475, which corresponds to retaining 0.95 of the original genetic diversity, illustrating how finite population size erodes variability through random sampling alone.</p>
+<h4 id="bio_mutation_selection_balance">Mutation-selection balance — <code>bio_mutation_selection_balance</code></h4>
+<p>The equilibrium frequency of a deleterious allele maintained by recurrent mutation against selection (fitness 1, 1 - hs, 1 - s), from the exact recursion.</p>
+<div class="math">\[\hat q \approx \sqrt{\mu/s}\ (h=0),\quad \hat q \approx \frac{\mu}{hs}\ (h&gt;0)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>mu</code></td><td>in</td><td>mutation rate A -&gt; a per generation</td><td>—</td></tr><tr><td><code>s</code></td><td>in</td><td>selection coefficient against aa</td><td>—</td></tr><tr><td><code>h</code></td><td>in</td><td>dominance coefficient (0 recessive, 0.5 additive)</td><td>—</td></tr><tr><td><code>q_eq</code></td><td>out</td><td>equilibrium frequency of the deleterious allele</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 0 &lt; mu &lt;= 0.01; 0.01 &lt;= s &lt;= 1; 0 &lt;= h &lt;= 1; selection then mutation, no back mutation.</p>
+<pre><code class="shell">$ computational-biology solve bio_mutation_selection_balance mu=0.0001 s=1 h=0
+q_eq = 0.01
+  by: Mutation-selection balance  (the root of q&#x27; - q = 0 for selection followed by mutation, by bisection (approximately sqrt(mu/s) for a recessive and mu/(hs) otherwise))
+  mu = 0.0001
+  s = 1
+  h = 0
+  assumes: 0 &lt; mu &lt;= 0.01; 0.01 &lt;= s &lt;= 1; 0 &lt;= h &lt;= 1; selection then mutation, no back mutation</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the stable frequency of a harmful gene variant in a population where new mutations constantly arise but natural selection removes them. Solving for the point where the change in allele frequency due to selection followed by mutation equals zero shows that the equilibrium frequency is approximately 0.01. This result indicates how often the deleterious trait persists despite being disadvantageous, offering insight into genetic load and disease prevalence under the given parameters of mutation rate, selection coefficient, and dominance.</p>
+<h4 id="bio_nucleotide_diversity">Nucleotide diversity — <code>bio_nucleotide_diversity</code></h4>
+<p>The average number of pairwise differences k and the nucleotide diversity pi (per site) of a set of aligned DNA sequences.</p>
+<div class="math">\[\pi = \frac{1}{L}\binom{n}{2}^{-1}\sum_{i&lt;j} d_{ij}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seqs</code></td><td>in</td><td>aligned DNA sequences separated by spaces</td><td>—</td></tr><tr><td><code>k</code></td><td>out</td><td>mean number of pairwise differences</td><td>—</td></tr><tr><td><code>pi</code></td><td>out</td><td>nucleotide diversity per site</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> at least 2 aligned DNA sequences of equal length, no gaps.</p>
+<pre><code class="shell">$ computational-biology solve bio_nucleotide_diversity &quot;seqs=AAAA AAAT AATT&quot;
+k = 1.333333333
+pi = 0.3333333333
+  by: Nucleotide diversity  (average the differences over all pairs of sequences; divide by the alignment length)
+  seqs = AAAA AAAT AATT
+  assumes: at least 2 aligned DNA sequences of equal length, no gaps</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the average genetic variation within a set of aligned DNA sequences. It computes the mean number of differences between all possible pairs of sequences, resulting in a value of 1.33333, and then normalizes this by the sequence length to provide the nucleotide diversity per site, which is 0.333333. These metrics indicate how genetically distinct the sampled individuals are from one another.</p>
+<h4 id="bio_tajima_d">Tajima&#x27;s D — <code>bio_tajima_d</code></h4>
+<p>Tajima&#x27;s D neutrality statistic of aligned DNA sequences (the scaled difference between pi and Watterson&#x27;s theta).</p>
+<div class="math">\[D = \frac{\hat\theta_\pi - \hat\theta_W}{\sqrt{e_1S + e_2S(S-1)}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seqs</code></td><td>in</td><td>aligned DNA sequences separated by spaces (at least 4)</td><td>—</td></tr><tr><td><code>D</code></td><td>out</td><td>Tajima&#x27;s D</td><td>—</td></tr><tr><td><code>k</code></td><td>out</td><td>mean number of pairwise differences</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> at least 4 aligned DNA sequences; at least one segregating site.</p>
+<pre><code class="shell">$ computational-biology solve bio_tajima_d &quot;seqs=AAAAAA AAAAAT AAAATT AAATTT&quot;
+D = 0.167655795
+k = 1.666666667
+  by: Tajima&#x27;s D  (D = (k - S/a1) / sqrt(e1 S + e2 S (S-1)) with Tajima&#x27;s constants)
+  seqs = AAAAAA AAAAAT AAAATT AAATTT
+  assumes: at least 4 aligned DNA sequences; at least one segregating site</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines Tajima&#x27;s D, a statistic that compares two estimates of genetic diversity. It uses the average number of pairwise nucleotide differences, represented here as 1.66667, and contrasts it with Watterson&#x27;s estimator based on segregating sites. The resulting value of 0.167656 indicates whether the population deviates from neutral evolution expectations, where positive values suggest balancing selection or population contraction, and negative values imply recent expansion or purifying selection.</p>
+<h4 id="bio_watterson_theta">Watterson&#x27;s estimator of theta — <code>bio_watterson_theta</code></h4>
+<p>The number of segregating sites S and Watterson&#x27;s estimator of the population mutation rate theta, per sequence and per site.</p>
+<div class="math">\[\hat\theta_W = \frac{S}{a_n},\quad a_n = \sum_{i=1}^{n-1}\frac1i\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seqs</code></td><td>in</td><td>aligned DNA sequences separated by spaces</td><td>—</td></tr><tr><td><code>S</code></td><td>out</td><td>number of segregating sites</td><td>—</td></tr><tr><td><code>theta</code></td><td>out</td><td>Watterson&#x27;s theta per sequence (S / a_n)</td><td>—</td></tr><tr><td><code>theta_site</code></td><td>out</td><td>Watterson&#x27;s theta per site</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> at least 2 aligned DNA sequences of equal length, no gaps.</p>
+<pre><code class="shell">$ computational-biology solve bio_watterson_theta &quot;seqs=AAAA AAAT AATT&quot;
+S = 2
+theta = 1.333333333
+theta_site = 0.3333333333
+  by: Watterson&#x27;s estimator of theta  (count segregating sites and divide by the harmonic number a_n = sum_{i=1}^{n-1} 1/i)
+  seqs = AAAA AAAT AATT
+  assumes: at least 2 aligned DNA sequences of equal length, no gaps</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the population mutation rate using Watterson&#x27;s estimator. It counts the number of variable positions in the aligned sequences, denoted as S, which equals 2. This count is divided by the harmonic number derived from the sample size to yield theta per sequence, calculated as 1.33333. To normalize for sequence length, this value is further divided by the total number of sites to produce theta per site, shown as 0.333333. These metrics provide a baseline expectation for genetic diversity under neutral evolution.</p>
+<h3>Sequences (21)</h3>
+<h4 id="bio_amino_acid_composition">Amino-acid composition of a protein — <code>bio_amino_acid_composition</code></h4>
+<p>The percentage of each of the 20 standard amino acids in a protein, its most common residue (alphabetically first among ties) and its length.</p>
+<div class="math">\[\%a = 100\,\frac{n_a}{n}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>percent</code></td><td>out</td><td>percentage of each amino acid (one-letter code -&gt; %)</td><td>—</td></tr><tr><td><code>most_common</code></td><td>out</td><td>most common amino acid (alphabetically first among ties)</td><td>—</td></tr><tr><td><code>length</code></td><td>out</td><td>number of residues</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_amino_acid_composition seq=MAAAK
+percent = {&quot;A&quot;:60.0,&quot;C&quot;:0.0,&quot;D&quot;:0.0,&quot;E&quot;:0.0,&quot;F&quot;:0.0,&quot;G&quot;:0.0,&quot;H&quot;:0.0,&quot;I&quot;:0.0,&quot;K&quot;:20.0,&quot;L&quot;:0.0,&quot;M&quot;:20.0,&quot;N&quot;:0.0,&quot;P&quot;:0.0,&quot;Q&quot;:0.0,&quot;R&quot;:0.0,&quot;S&quot;:0.0,&quot;T&quot;:0.0,&quot;V&quot;:0.0,&quot;W&quot;:0.0,&quot;Y&quot;:0.0}
+most_common = A
+length = 5
+  by: Amino-acid composition of a protein  (count each residue and divide by the length)
+  seq = MAAAK
+  assumes: standard amino acids only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the percentage composition of each standard amino acid within the provided protein sequence. By counting every residue and dividing by the total number of residues, it reveals that the sequence consists of MAAAK characters. The analysis identifies A as the most frequently occurring residue, while the total length is recorded as 5. This breakdown helps characterize the chemical nature of the protein based on its primary structure.</p>
+<h4 id="bio_aromaticity">Aromaticity of a protein — <code>bio_aromaticity</code></h4>
+<p>The aromaticity (relative frequency of Phe + Trp + Tyr, Lobry 1994) of a protein and its number of aromatic residues.</p>
+<div class="math">\[\mathrm{Ar} = \frac{n_F + n_W + n_Y}{n}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>aromaticity</code></td><td>out</td><td>fraction of F, W and Y residues</td><td>—</td></tr><tr><td><code>aromatic_count</code></td><td>out</td><td>number of F, W and Y residues</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_aromaticity seq=MFWYAK
+aromaticity = 0.5
+aromatic_count = 3
+  by: Aromaticity of a protein  (count F, W and Y and divide by the length)
+  seq = MFWYAK
+  assumes: standard amino acids only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the aromaticity of a protein sequence by identifying phenylalanine, tryptophan, and tyrosine residues. The result, expressed as 0.5, represents the fraction of these specific amino acids relative to the total length of the input sequence MFWYAK. This metric provides insight into the hydrophobic character and potential stability contributions of the protein structure.</p>
+<h4 id="bio_edit_distance">Edit (Levenshtein) distance between sequences — <code>bio_edit_distance</code></h4>
+<p>The minimum number of substitutions, insertions and deletions turning one sequence into the other (unit costs; an unaligned comparison, unlike the p-distance).</p>
+<div class="math">\[D_{i,j} = \min(D_{i-1,j}+1,\ D_{i,j-1}+1,\ D_{i-1,j-1}+[x_i\ne y_j])\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second sequence</td><td>—</td></tr><tr><td><code>distance</code></td><td>out</td><td>edit distance (unit costs)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> letters only.</p>
+<pre><code class="shell">$ computational-biology solve bio_edit_distance seq1=KITTEN seq2=SITTING
+distance = 3
+  by: Edit (Levenshtein) distance between sequences  (dynamic programming over prefixes (Wagner-Fischer))
+  seq1 = KITTEN
+  seq2 = SITTING
+  assumes: letters only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the minimum number of single-character edits, including insertions, deletions, or substitutions, required to transform the first sequence into the second. The result, represented as 3, quantifies the dissimilarity between KITTEN and SITTING under the assumption that all these operations carry a uniform cost of one unit.</p>
+<h4 id="bio_gc_content">GC content of a nucleic acid — <code>bio_gc_content</code></h4>
+<p>The fraction and number of G and C bases in a DNA or RNA sequence.</p>
+<div class="math">\[\mathrm{GC} = \frac{n_G + n_C}{n}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA or RNA sequence</td><td>—</td></tr><tr><td><code>gc_fraction</code></td><td>out</td><td>fraction of G + C</td><td>—</td></tr><tr><td><code>gc_count</code></td><td>out</td><td>number of G and C bases</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> unambiguous DNA or RNA letters.</p>
+<pre><code class="shell">$ computational-biology solve bio_gc_content seq=ATGCGCGA
+gc_fraction = 0.625
+gc_count = 5
+  by: GC content of a nucleic acid  (count G and C and divide by the length)
+  seq = ATGCGCGA
+  assumes: unambiguous DNA or RNA letters</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the proportion of guanine and cytosine bases within the provided nucleic acid sequence. Counting the occurrences of these specific bases, which totals 5, and dividing by the total length of the sequence gives a GC fraction of 0.625. This metric serves as an indicator of the thermal stability and structural properties of the DNA or RNA molecule.</p>
+<h4 id="bio_gravy">Grand average of hydropathy (GRAVY) — <code>bio_gravy</code></h4>
+<p>The Kyte-Doolittle grand average of hydropathy of a protein (positive = hydrophobic).</p>
+<div class="math">\[\mathrm{GRAVY} = \frac{1}{n}\sum_i h(a_i)\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>gravy</code></td><td>out</td><td>GRAVY score</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_gravy seq=MKTLLIL
+gravy = 1.885714286
+  by: Grand average of hydropathy (GRAVY)  (mean Kyte-Doolittle hydropathy over the residues)
+  seq = MKTLLIL
+  assumes: standard amino acids only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the Grand Average of Hydropathy by taking the mean of Kyte-Doolittle hydropathy indices for all residues in the protein sequence MKTLLIL. The resulting value, 1.88571, represents the average hydrophobicity of the entire chain. A positive value suggests a tendency toward hydrophobic interactions, often associated with membrane-spanning regions or buried cores, while a negative value indicates hydrophilic character typical of solvent-exposed surfaces. This metric provides a global summary of the sequence&#x27;s chemical nature rather than identifying specific local motifs.</p>
+<h4 id="bio_isoelectric_point">Isoelectric point of a protein — <code>bio_isoelectric_point</code></h4>
+<p>The isoelectric point (pH of zero net charge) of a protein, with its net charge at pH 7 (Bjellqvist pK set).</p>
+<div class="math">\[Z(\mathrm{pI}) = 0\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>pI</code></td><td>out</td><td>isoelectric point</td><td>—</td></tr><tr><td><code>charge_at_7</code></td><td>out</td><td>net charge at pH 7</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_isoelectric_point seq=INGAR
+pI = 9.750024638
+charge_at_7 = 0.7600916143
+  by: Isoelectric point of a protein  (the net charge decreases with pH: bisection for the pH where it is zero, to full precision)
+  seq = INGAR
+  assumes: standard amino acids only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the specific pH value where the protein carries no overall electrical charge, known as the isoelectric point. The result is derived from the amino acid sequence by summing the charges of all ionizable groups using standard pK values. At the computed isoelectric point of 9.75002, the positive and negative charges balance perfectly. Additionally, the net charge at a physiological pH of seven is reported as 0.760092, indicating whether the molecule tends to attract or repel other charged species in typical biological environments.</p>
+<h4 id="bio_kmer_counts">k-mer counts of a sequence — <code>bio_kmer_counts</code></h4>
+<p>Overlapping k-mer counts: the number of k-mers, of distinct k-mers, the highest count and the most frequent k-mer (alphabetically first among ties).</p>
+<div class="math">\[N_k = n - k + 1\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA or RNA sequence</td><td>—</td></tr><tr><td><code>k</code></td><td>in</td><td>k-mer length</td><td>—</td></tr><tr><td><code>total</code></td><td>out</td><td>number of overlapping k-mers (n - k + 1)</td><td>—</td></tr><tr><td><code>distinct</code></td><td>out</td><td>number of distinct k-mers</td><td>—</td></tr><tr><td><code>max_count</code></td><td>out</td><td>count of the most frequent k-mer</td><td>—</td></tr><tr><td><code>most_frequent</code></td><td>out</td><td>most frequent k-mer (alphabetically first among ties)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> 1 &lt;= k &lt;= sequence length.</p>
+<pre><code class="shell">$ computational-biology solve bio_kmer_counts seq=ATATAT k=2
+total = 5
+distinct = 2
+max_count = 3
+most_frequent = AT
+  by: k-mer counts of a sequence  (slide a window of length k one base at a time and count each word)
+  seq = ATATAT
+  assumes: 1 &lt;= k &lt;= sequence length</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the frequency of every substring of length k within the provided nucleotide sequence. Sliding a window of size 2 across the sequence ATATAT shows that there are 5 overlapping k-mers in total. Among these, 2 unique patterns appear. The most common pattern observed is AT, which occurs 3 times.</p>
+<h4 id="bio_longest_orf">Longest open reading frame — <code>bio_longest_orf</code></h4>
+<p>The longest open reading frame (ATG to the first in-frame stop, stop included) over all six frames of a DNA sequence, its protein length and the number of ORFs.</p>
+<div class="math">\[\ell = 3(j - i + 1)\ \text{for ATG at codon } i,\ \text{first stop at codon } j\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA sequence 5&#x27;-&gt;3&#x27;</td><td>—</td></tr><tr><td><code>length_nt</code></td><td>out</td><td>length of the longest ORF in nucleotides, stop codon included</td><td>—</td></tr><tr><td><code>protein_length</code></td><td>out</td><td>amino acids encoded by the longest ORF (stop excluded)</td><td>—</td></tr><tr><td><code>orf_count</code></td><td>out</td><td>number of ORFs (one per stop codon reached from an upstream in-frame ATG)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> DNA letters only; standard genetic code, start ATG, stops TAA TAG TGA.</p>
+<pre><code class="shell">$ computational-biology solve bio_longest_orf seq=CCATGAAATTTGGGTAACC
+length_nt = 15
+protein_length = 4
+orf_count = 1
+  by: Longest open reading frame  (scan the three frames of both strands codon by codon: open at the first ATG, close at the next stop)
+  seq = CCATGAAATTTGGGTAACC
+  assumes: DNA letters only; standard genetic code, start ATG, stops TAA TAG TGA</code></pre>
+<p><strong>What the worked example means:</strong> This calculation identifies the longest continuous coding sequence within the provided DNA strand by scanning all six possible reading frames. It begins at the first start codon and ends at the first in-frame stop codon. The resulting longest open reading frame measures 15 nucleotides, which corresponds to a protein length of 4 amino acids when excluding the stop signal. Additionally, the total number of valid open reading frames detected across the sequence is 1.</p>
+<h4 id="bio_tm_nearest_neighbor">Melting temperature by nearest-neighbour thermodynamics — <code>bio_tm_nearest_neighbor</code></h4>
+<p>The melting temperature of a DNA duplex (perfect complement) from nearest-neighbour thermodynamics (Allawi-SantaLucia 1997) with the SantaLucia 1998 sodium correction.</p>
+<div class="math">\[T_m = \frac{1000\,\Delta H}{\Delta S + 0.368(N-1)\ln[\mathrm{Na^+}] + R\ln k} - 273.15\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA sequence 5&#x27;-&gt;3&#x27;</td><td>—</td></tr><tr><td><code>Na</code></td><td>in</td><td>sodium concentration in mM</td><td>—</td></tr><tr><td><code>dnac1</code></td><td>in</td><td>concentration of the more concentrated strand in nM</td><td>—</td></tr><tr><td><code>dnac2</code></td><td>in</td><td>concentration of the less concentrated strand in nM</td><td>—</td></tr><tr><td><code>tm</code></td><td>out</td><td>melting temperature in degC</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> unambiguous DNA, length &gt;= 2; Na &gt; 0; dnac1 &gt; dnac2/2.</p>
+<pre><code class="shell">$ computational-biology solve bio_tm_nearest_neighbor seq=CGTTCCAAAGATGTGGGCATGAGCTTAC Na=50 dnac1=25 dnac2=25
+tm = 60.3209195
+  by: Melting temperature by nearest-neighbour thermodynamics  (sum nearest-neighbour enthalpies and entropies with initiation terms; Tm = 1000 dH / (dS + R ln k) - 273.15 with dS corrected by 0.368 (N-1) ln[Na+])
+  Na = 50
+  dnac1 = 25
+  dnac2 = 25
+  seq = CGTTCCAAAGATGTGGGCATGAGCTTAC
+  assumes: unambiguous DNA, length &gt;= 2; Na &gt; 0; dnac1 &gt; dnac2/2</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the melting temperature of a DNA duplex using nearest-neighbor thermodynamics. It sums the enthalpy and entropy contributions from adjacent base pairs, including initiation terms, and applies corrections for sodium ion concentration and strand stoichiometry. The resulting value, 60.3209, represents the temperature at which half of the DNA strands are dissociated under these specific conditions.</p>
+<h4 id="bio_tm_wallace">Melting temperature by the Wallace rule — <code>bio_tm_wallace</code></h4>
+<p>The approximate melting temperature of a short DNA primer (14-20 nt) by the Wallace rule.</p>
+<div class="math">\[T_m = 2(n_A+n_T) + 4(n_G+n_C)\ ^\circ\mathrm{C}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA primer sequence</td><td>—</td></tr><tr><td><code>tm</code></td><td>out</td><td>melting temperature in degC</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> unambiguous DNA letters.</p>
+<pre><code class="shell">$ computational-biology solve bio_tm_wallace seq=ACGTTGCAATGCCGTA
+tm = 48
+  by: Melting temperature by the Wallace rule  (2 degC per A or T plus 4 degC per G or C)
+  seq = ACGTTGCAATGCCGTA
+  assumes: unambiguous DNA letters</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the approximate melting temperature of a short DNA primer using the Wallace rule. By counting the number of adenine and thymine bases, which contribute two degrees each, and guanine and cytosine bases, which contribute four degrees each, the tool derives the stability threshold. For the input sequence ACGTTGCAATGCCGTA, the resulting melting temperature is 48, indicating the point at which half of the primer strands are dissociated from their targets under standard conditions.</p>
+<h4 id="bio_protein_mass">Molecular mass of a protein — <code>bio_protein_mass</code></h4>
+<p>The average molecular mass of a protein from its amino-acid sequence.</p>
+<div class="math">\[M = \sum_i m(a_i) - (n-1)\,m_{\mathrm{H_2O}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence (20 standard one-letter codes)</td><td>—</td></tr><tr><td><code>mass</code></td><td>out</td><td>molecular mass in g/mol (Da)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_protein_mass seq=MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV
+mass = 17103.1617
+  by: Molecular mass of a protein  (sum of amino-acid masses minus one water per peptide bond)
+  seq = MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV
+  assumes: standard amino acids only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the average molecular mass of a protein based on its amino acid sequence. It sums the masses of individual amino acids and subtracts the mass of water molecules lost during peptide bond formation. The result, expressed as 17103.2, represents the total mass per mole of the protein in grams per mole or Daltons.</p>
+<h4 id="bio_nucleic_acid_mass">Molecular mass of DNA or RNA — <code>bio_nucleic_acid_mass</code></h4>
+<p>The average molecular mass of a single- or double-stranded linear DNA or RNA with a 5&#x27; phosphate.</p>
+<div class="math">\[M = \sum_i m(x_i) - (n-1)\,m_{\mathrm{H_2O}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA or RNA sequence</td><td>—</td></tr><tr><td><code>molecule</code></td><td>in</td><td>molecule type</td><td>—</td></tr><tr><td><code>strands</code></td><td>in</td><td>single- or double-stranded</td><td>—</td></tr><tr><td><code>mass</code></td><td>out</td><td>molecular mass in g/mol (Da)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> the sequence letters match the stated molecule.</p>
+<pre><code class="shell">$ computational-biology solve bio_nucleic_acid_mass seq=AGC molecule=DNA strands=single
+mass = 949.6095
+  by: Molecular mass of DNA or RNA  (sum of nucleotide-monophosphate masses minus one water per phosphodiester bond (each strand))
+  strands = single
+  seq = AGC
+  molecule = DNA
+  assumes: the sequence letters match the stated molecule</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the average molecular mass of a DNA or RNA molecule based on its nucleotide composition. It sums the individual masses of each nucleotide monophosphate and subtracts the mass of water molecules lost during the formation of phosphodiester bonds between adjacent nucleotides. The final result, 949.61, represents the total mass per mole of the specified strand configuration, accounting for the presence of a five-prime phosphate group.</p>
+<h4 id="bio_protein_net_charge">Net charge of a protein at a pH — <code>bio_protein_net_charge</code></h4>
+<p>The net charge of a protein at a stated pH from its ionisable groups (Bjellqvist pK set).</p>
+<div class="math">\[Z = \sum_{\text{basic}} \frac{n_i}{1+10^{\,pH-pK_i}} - \sum_{\text{acidic}} \frac{n_j}{1+10^{\,pK_j-pH}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>pH</code></td><td>in</td><td>pH of the solution (0 to 14)</td><td>—</td></tr><tr><td><code>charge</code></td><td>out</td><td>net charge (elementary charges)</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only; 0 &lt;= pH &lt;= 14.</p>
+<pre><code class="shell">$ computational-biology solve bio_protein_net_charge seq=INGAR pH=7
+charge = 0.7600916143
+  by: Net charge of a protein at a pH  (Henderson-Hasselbalch partial charges of the termini and the K, R, H, D, E, C, Y side chains)
+  pH = 7
+  seq = INGAR
+  assumes: standard amino acids only; 0 &lt;= pH &lt;= 14</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the total electrical charge of a protein by summing the partial charges of its ionizable groups, including the termini and specific side chains. Using the provided sequence and a solution pH of 7, the model applies the Henderson-Hasselbalch equation to estimate how many groups are protonated or deprotonated. The resulting net charge is 0.760092, which indicates whether the protein carries an overall positive, negative, or neutral electrical state under these conditions.</p>
+<h4 id="bio_hamming_distance">p-distance (Hamming) between aligned sequences — <code>bio_hamming_distance</code></h4>
+<p>Mismatches, p-distance and identity of two aligned sequences of equal length (no indels): the proportion of sites that differ.</p>
+<div class="math">\[p = \frac{1}{n}\sum_i [x_i \ne y_i]\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq1</code></td><td>in</td><td>first aligned sequence</td><td>—</td></tr><tr><td><code>seq2</code></td><td>in</td><td>second aligned sequence (same length)</td><td>—</td></tr><tr><td><code>mismatches</code></td><td>out</td><td>number of differing sites</td><td>—</td></tr><tr><td><code>p_distance</code></td><td>out</td><td>proportion of differing sites</td><td>—</td></tr><tr><td><code>identity</code></td><td>out</td><td>proportion of identical sites</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> equal lengths (aligned, no gaps).</p>
+<pre><code class="shell">$ computational-biology solve bio_hamming_distance seq1=GAGCCTACTAACGGGAT seq2=CATCGTAATGACGGCCT
+mismatches = 7
+p_distance = 0.4117647059
+identity = 0.5882352941
+  by: p-distance (Hamming) between aligned sequences  (compare the sequences site by site)
+  seq1 = GAGCCTACTAACGGGAT
+  seq2 = CATCGTAATGACGGCCT
+  assumes: equal lengths (aligned, no gaps)</code></pre>
+<p><strong>What the worked example means:</strong> This calculation compares the two provided aligned sequences site by site to determine their genetic difference. Counting the number of positions where the characters do not match gives 7. This count is then divided by the total number of sites in the sequences to yield the p-distance of 0.411765. Conversely, the identity, or proportion of matching sites, is 0.588235. This metric provides a simple measure of divergence assuming no insertions or deletions are present.</p>
+<h4 id="bio_protein_extinction">Protein extinction coefficient at 280 nm — <code>bio_protein_extinction</code></h4>
+<p>The molar extinction coefficient at 280 nm (cysteines reduced, and all cysteines as cystines) and the absorbance of a 1 g/L solution.</p>
+<div class="math">\[\varepsilon_{280} = 5500\,n_W + 1490\,n_Y + 125\,n_{\text{cystine}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>eps_reduced</code></td><td>out</td><td>extinction coefficient, cysteines reduced (M^-1 cm^-1)</td><td>—</td></tr><tr><td><code>eps_cystines</code></td><td>out</td><td>extinction coefficient, cysteines paired as cystines (M^-1 cm^-1)</td><td>—</td></tr><tr><td><code>abs_reduced</code></td><td>out</td><td>absorbance of 1 g/L, 1 cm, cysteines reduced</td><td>—</td></tr><tr><td><code>abs_cystines</code></td><td>out</td><td>absorbance of 1 g/L, 1 cm, cystines</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_protein_extinction seq=MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV
+eps_reduced = 17420
+eps_cystines = 17545
+abs_reduced = 1.01852513
+abs_cystines = 1.025833721
+  by: Protein extinction coefficient at 280 nm  (5500 per Trp + 1490 per Tyr (+ 125 per cystine); divide by the molecular mass for 1 g/L)
+  seq = MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV
+  assumes: standard amino acids only</code></pre>
+<p>In the worked example, seq = MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV go through the equation above and give eps_reduced = 17420, eps_cystines = 17545, abs_reduced = 1.01852513, abs_cystines = 1.025833721. It applies only when standard amino acids only: outside that it says what is wrong instead of returning a number.</p>
+<h4 id="bio_instability_index">Protein instability index — <code>bio_instability_index</code></h4>
+<p>The Guruprasad instability index of a protein from its dipeptides (above 40 suggests an unstable protein in vivo).</p>
+<div class="math">\[II = \frac{10}{L}\sum_{i=1}^{L-1} \mathrm{DIWV}(a_i, a_{i+1})\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence (at least 2 residues)</td><td>—</td></tr><tr><td><code>index</code></td><td>out</td><td>instability index</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids, length &gt;= 2.</p>
+<pre><code class="shell">$ computational-biology solve bio_instability_index seq=MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV
+index = 41.98026316
+  by: Protein instability index  (sum of the dipeptide instability weights (DIWV) times 10/L)
+  seq = MAEGEITTFTALTEKFNLPPGNYKKPKLLYCSNGGHFLRILPDGTVDGTRDRSDQHIQLQLSAESVGEVYIKSTETGQYLAMDTSGLLYGSQTPSEECLFLERLEENHYNTYTSKKHAEKNWFVGLKKNGSCKRGPRTHYGQKAILFLPLPV
+  assumes: standard amino acids, length &gt;= 2</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the Guruprasad instability index by summing specific weight values assigned to each consecutive pair of amino acids in the provided protein sequence and normalizing this total by the sequence length. The resulting value, 41.9803, serves as a quantitative estimate of the protein&#x27;s likely half-life within a cellular environment. An index exceeding forty generally suggests that the protein is unstable and prone to rapid degradation, whereas lower values imply greater stability. This metric relies solely on primary structure information to predict turnover rates without considering three-dimensional folding or external regulatory factors.</p>
+<h4 id="bio_restriction_sites">Restriction sites and fragments — <code>bio_restriction_sites</code></h4>
+<p>Where a restriction enzyme cuts a linear DNA sequence: the number of sites, the cut positions and the fragment lengths.</p>
+<div class="math">\[\text{cut at } i + c \text{ for each site start } i\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>linear DNA sequence 5&#x27;-&gt;3&#x27;</td><td>—</td></tr><tr><td><code>enzyme</code></td><td>in</td><td>restriction enzyme (name)</td><td>—</td></tr><tr><td><code>n_sites</code></td><td>out</td><td>number of cuts</td><td>—</td></tr><tr><td><code>positions</code></td><td>out</td><td>cut positions (1-based first base after each cut, top strand)</td><td>—</td></tr><tr><td><code>fragments</code></td><td>out</td><td>fragment lengths in bp, 5&#x27;-&gt;3&#x27; order</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> linear DNA; a listed enzyme.</p>
+<pre><code class="shell">$ computational-biology solve bio_restriction_sites seq=AAGAATTCTTGAATTCGGATCC enzyme=EcoRI
+n_sites = 2
+positions = [4,12]
+fragments = [3,8,11]
+  by: Restriction sites and fragments  (find every occurrence of the recognition site (overlaps included) and cut at the enzyme&#x27;s offset)
+  enzyme = EcoRI
+  seq = AAGAATTCTTGAATTCGGATCC
+  assumes: linear DNA; a listed enzyme</code></pre>
+<p>In the worked example, seq = AAGAATTCTTGAATTCGGATCC, enzyme = EcoRI go through the equation above and give n_sites = 2, positions = [4, 12], fragments = [3, 8, 11]. It applies only when linear DNA; a listed enzyme: outside that it says what is wrong instead of returning a number.</p>
+<h4 id="bio_reverse_complement">Reverse complement of a DNA sequence — <code>bio_reverse_complement</code></h4>
+<p>The reverse complement of a DNA strand (the partner strand read 5&#x27;-&gt;3&#x27;).</p>
+<div class="math">\[5&#x27;\text{-}x_1\dots x_n\text{-}3&#x27; \mapsto 5&#x27;\text{-}\bar x_n\dots \bar x_1\text{-}3&#x27;\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA sequence 5&#x27;-&gt;3&#x27; (A, C, G, T)</td><td>—</td></tr><tr><td><code>revcomp</code></td><td>out</td><td>reverse complement 5&#x27;-&gt;3&#x27;</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> DNA letters A, C, G, T only.</p>
+<pre><code class="shell">$ computational-biology solve bio_reverse_complement seq=ATGCCGTA
+revcomp = TACGGCAT
+  by: Reverse complement of a DNA sequence  (complement each base (A-T, C-G) and reverse the order)
+  seq = ATGCCGTA
+  assumes: DNA letters A, C, G, T only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the sequence of the complementary DNA strand, oriented in the five-prime to three-prime direction. By taking the input sequence ATGCCGTA, each base is replaced by its pair (A with T, C with G) and the entire order is reversed. The resulting string TACGGCAT represents how the opposite strand would be read from its own five-prime end, which is essential for understanding antiparallel DNA structure.</p>
+<h4 id="bio_secondary_structure_fraction">Secondary-structure propensity fractions — <code>bio_secondary_structure_fraction</code></h4>
+<p>The fractions of residues that tend to be in helices (E M A L K), turns (N P G S D) and sheets (V I Y F W L T), as ProtParam defines them (L counts for helix and sheet).</p>
+<div class="math">\[f_{\text{helix}} = \frac{n_E+n_M+n_A+n_L+n_K}{n}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>protein sequence</td><td>—</td></tr><tr><td><code>helix</code></td><td>out</td><td>fraction of helix-favouring residues</td><td>—</td></tr><tr><td><code>turn</code></td><td>out</td><td>fraction of turn-favouring residues</td><td>—</td></tr><tr><td><code>sheet</code></td><td>out</td><td>fraction of sheet-favouring residues</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> standard amino acids only.</p>
+<pre><code class="shell">$ computational-biology solve bio_secondary_structure_fraction seq=EMALKNPGSD
+helix = 0.5
+turn = 0.5
+sheet = 0.1
+  by: Secondary-structure propensity fractions  (count the residues of each propensity group)
+  seq = EMALKNPGSD
+  assumes: standard amino acids only</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the proportion of residues in the protein sequence that statistically favor forming specific secondary structures. By counting residues associated with helices, turns, and sheets according to ProtParam definitions, it yields the helix fraction as 0.5, the turn fraction as 0.5, and the sheet fraction as 0.1. These values provide a quick estimate of structural tendencies based solely on amino acid composition.</p>
+<h4 id="bio_transcription">Transcription of DNA into mRNA — <code>bio_transcription</code></h4>
+<p>The mRNA transcribed from a DNA strand given 5&#x27;-&gt;3&#x27;, stated as the coding (sense) or template (antisense) strand.</p>
+<div class="math">\[\text{mRNA} = \text{coding strand with } T\to U = \overline{\text{template}}^{\,R}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA strand 5&#x27;-&gt;3&#x27; (A, C, G, T)</td><td>—</td></tr><tr><td><code>strand</code></td><td>in</td><td>which strand is given: coding (sense) or template (antisense)</td><td>—</td></tr><tr><td><code>mrna</code></td><td>out</td><td>mRNA 5&#x27;-&gt;3&#x27;</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> DNA letters only; the strand is stated.</p>
+<pre><code class="shell">$ computational-biology solve bio_transcription seq=ATGGCTTAA strand=coding
+mrna = AUGGCUUAA
+  by: Transcription of DNA into mRNA  (coding strand: T -&gt; U; template strand: reverse complement, then T -&gt; U)
+  strand = coding
+  seq = ATGGCTTAA
+  assumes: DNA letters only; the strand is stated</code></pre>
+<p>In the worked example, seq = ATGGCTTAA, strand = coding go through the equation above and give mrna = AUGGCUUAA. It applies only when DNA letters only; the strand is stated: outside that it says what is wrong instead of returning a number.</p>
+<h4 id="bio_translation">Translation with the standard genetic code — <code>bio_translation</code></h4>
+<p>The protein encoded by a DNA or mRNA sequence read in frame 1 with the standard genetic code; stop codons shown as &#x27;*&#x27; or the protein truncated at the first stop.</p>
+<div class="math">\[\text{codon } x_{3i+1}x_{3i+2}x_{3i+3} \mapsto \text{amino acid}_i\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>seq</code></td><td>in</td><td>DNA or mRNA sequence 5&#x27;-&gt;3&#x27;, length a multiple of 3</td><td>—</td></tr><tr><td><code>stops</code></td><td>in</td><td>show stop codons as &#x27;*&#x27; or truncate at the first stop</td><td>—</td></tr><tr><td><code>protein</code></td><td>out</td><td>amino-acid sequence (one-letter codes)</td><td>—</td></tr><tr><td><code>length</code></td><td>out</td><td>number of residues shown</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> length a multiple of 3; DNA or RNA letters, not a mixture.</p>
+<pre><code class="shell">$ computational-biology solve bio_translation seq=ATGGCCATTGTAATGGGCCGCTGA stops=show
+protein = MAIVMGR*
+length = 8
+  by: Translation with the standard genetic code  (read codons in frame 1 and look each up in the standard genetic code (NCBI table 1))
+  stops = show
+  seq = ATGGCCATTGTAATGGGCCGCTGA
+  assumes: length a multiple of 3; DNA or RNA letters, not a mixture</code></pre>
+<p><strong>What the worked example means:</strong> This calculation translates the nucleic acid sequence ATGGCCATTGTAATGGGCCGCTGA into an amino acid sequence by reading triplet codons in frame one using the standard genetic code. The resulting protein is represented by one-letter codes and has a total length of 8 residues. If stop codons are present, they are marked as asterisks or the sequence is truncated depending on the setting for show, which determines how termination signals are displayed in the output.</p>
+<h3>Systems biology (1)</h3>
+<h4 id="bio_flux_balance_analysis">Flux balance analysis (optimal objective) — <code>bio_flux_balance_analysis</code></h4>
+<p>The maximum of a linear objective (e.g. a biomass or product flux) over all steady-state flux distributions of a metabolic network within flux bounds: flux balance analysis.</p>
+<div class="math">\[\max_v\ c^\top v \ \text{ s.t. } Sv = 0,\ \ l \le v \le u\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>S</code></td><td>in</td><td>stoichiometric matrix (metabolites x reactions)</td><td>—</td></tr><tr><td><code>lb</code></td><td>in</td><td>lower bound of each reaction flux</td><td>—</td></tr><tr><td><code>ub</code></td><td>in</td><td>upper bound of each reaction flux</td><td>—</td></tr><tr><td><code>c</code></td><td>in</td><td>objective coefficient of each reaction</td><td>—</td></tr><tr><td><code>objective</code></td><td>out</td><td>optimal objective value</td><td>—</td></tr></tbody></table>
+<p><strong>Applies when:</strong> steady state S v = 0; finite bounds lb &lt;= ub; a feasible flux distribution exists.</p>
+<pre><code class="shell">$ computational-biology solve bio_flux_balance_analysis &quot;S=[[1, -1, 0, 0], [0, 1, -1, -1]]&quot; &quot;lb=[0, 0, 0, 0]&quot; &quot;ub=[10, 8, 100, 3]&quot; &quot;c=[0, 0, 1, 0]&quot;
+objective = 8
+  by: Flux balance analysis (optimal objective)  (linear programming solved exactly in rational arithmetic (two-phase simplex, Bland&#x27;s rule); the optimal value is unique even when the optimal fluxes are not)
+  assumes: steady state S v = 0; finite bounds lb &lt;= ub; a feasible flux distribution exists</code></pre>
+<p><strong>What the worked example means:</strong> This calculation determines the maximum possible value for the specified biological objective, such as biomass production or product synthesis. It solves a linear programming problem where the objective coefficients are given by [0, 0, 1, 0] and the network structure is defined by the stoichiometric matrix [1 -1 0 0; 0 1 -1 -1]. The solution must satisfy mass balance constraints and respect the reaction limits set by lower bounds [0, 0, 0, 0] and upper bounds [10, 8, 100, 3]. The resulting optimal objective value is 8, which indicates the theoretical peak performance of the metabolic network under these conditions.</p>
+<p>Questions and reports: support@ai999x.com. AI999X — The Future Is Self-Improving.</p></body></html>
