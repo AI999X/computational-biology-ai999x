@@ -1119,7 +1119,7 @@ $$
 
 ![score (optimal global alignment score) against match (score of a match) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-global-alignment-score-curve)
 
-*score (optimal global alignment score) against match (score of a match) from 0.5 to 1.5. One curve for each value of mismatch (score of a mismatch): -1, -0.5, -2. Other inputs as in the worked example: seq1 = GATTACA, seq2 = GCATGCU, gap = -1. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 1, score = 0.*
+*score (optimal global alignment score) against match (score of a match) from 0.5 to 1.5. One curve for each value of mismatch (score of a mismatch): -1, -0.5, -2. Other inputs as in the worked example: seq1 = GATTACA, seq2 = GCATGCU, gap = -1.0. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 1, score = 0.*
 
 ```python
 computational_biology_ai999x.solve('bio_global_alignment_score', seq1='GATTACA', seq2='GCATGCU', match=1, mismatch=-1, gap=-1)
@@ -1174,7 +1174,7 @@ $$
 
 ![score (optimal global alignment score) against match (score of a match) from 1 to 3](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-global-alignment-affine-curve)
 
-*score (optimal global alignment score) against match (score of a match) from 1 to 3. One curve for each value of open (score of the first position of a gap (<= 0)): -5, -2.5, -10. Other inputs as in the worked example: seq1 = ACGTTTACG, seq2 = ACGACG, mismatch = -1, extend = -1. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 2, score = 5.*
+*score (optimal global alignment score) against match (score of a match) from 1 to 3. One curve for each value of open (score of the first position of a gap (<= 0)): -5, -2.5, -10. Other inputs as in the worked example: seq1 = ACGTTTACG, seq2 = ACGACG, mismatch = -1.0, extend = -1.0. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 2, score = 5.*
 
 ```python
 computational_biology_ai999x.solve('bio_global_alignment_affine', seq1='ACGTTTACG', seq2='ACGACG', match=2, mismatch=-1, open=-5, extend=-1)
@@ -1228,7 +1228,7 @@ $$
 
 ![score (optimal local alignment score (>= 0)) against match (score of a match) from 1](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-local-alignment-score-curve)
 
-*score (optimal local alignment score (>= 0)) against match (score of a match) from 1.5 to 4.5. One curve for each value of gap (score of each gap position (<= 0)): -2, -1, -4. Other inputs as in the worked example: seq1 = TGTTACGG, seq2 = GGTTGACTA, mismatch = -3. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 3, score = 13.*
+*score (optimal local alignment score (>= 0)) against match (score of a match) from 1.5 to 4.5. One curve for each value of gap (score of each gap position (<= 0)): -2, -1, -4. Other inputs as in the worked example: seq1 = TGTTACGG, seq2 = GGTTGACTA, mismatch = -3.0. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 3, score = 13.*
 
 ```python
 computational_biology_ai999x.solve('bio_local_alignment_score', seq1='TGTTACGG', seq2='GGTTGACTA', match=3, mismatch=-3, gap=-2)
@@ -1283,7 +1283,7 @@ $$
 
 ![score (optimal local alignment score (>= 0)) against match (score of a match) from 1 to 3](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-local-alignment-affine-curve)
 
-*score (optimal local alignment score (>= 0)) against match (score of a match) from 1 to 3. One curve for each value of open (score of the first position of a gap (<= 0)): -3, -1.5, -6. Other inputs as in the worked example: seq1 = TTACGTACGTTT, seq2 = GGACGTTACGTGG, mismatch = -1, extend = -1. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 2, score = 13.*
+*score (optimal local alignment score (>= 0)) against match (score of a match) from 1 to 3. One curve for each value of open (score of the first position of a gap (<= 0)): -3, -1.5, -6. Other inputs as in the worked example: seq1 = TTACGTACGTTT, seq2 = GGACGTTACGTGG, mismatch = -1.0, extend = -1.0. 31 points per curve computed by computational-biology-ai999x; marked: the worked example, match = 2, score = 13.*
 
 ```python
 computational_biology_ai999x.solve('bio_local_alignment_affine', seq1='TTACGTACGTTT', seq2='GGACGTTACGTGG', match=2, mismatch=-1, open=-3, extend=-1)
@@ -1389,7 +1389,7 @@ $$
 
 ![score (optimal local alignment score (>= 0)) against open (score of the first position of a gap (<= 0)) from -12 to -4](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-protein-local-blosum62-curve)
 
-*score (optimal local alignment score (>= 0)) against open (score of the first position of a gap (<= 0)) from -12 to -4. Other inputs as in the worked example: seq1 = HEAGAWGHEE, seq2 = PAWHEAE, extend = -8. 31 points computed by computational-biology-ai999x; marked: the worked example, open = -8, score = 20.*
+*score (optimal local alignment score (>= 0)) against open (score of the first position of a gap (<= 0)) from -12 to -4. Other inputs as in the worked example: seq1 = HEAGAWGHEE, seq2 = PAWHEAE, extend = -8.0. 31 points computed by computational-biology-ai999x; marked: the worked example, open = -8, score = 20.*
 
 ```python
 computational_biology_ai999x.solve('bio_protein_local_blosum62', seq1='HEAGAWGHEE', seq2='PAWHEAE', open=-8, extend=-8)
@@ -1443,7 +1443,7 @@ $$
 
 ![score (optimal semi-global alignment score) against match (score of a match) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-semiglobal-alignment-score-curve)
 
-*score (optimal semi-global alignment score) against match (score of a match) from 0.5 to 1.5. Other inputs as in the worked example: seq1 = TTTTACGTACGGGG, seq2 = ACGTAC, mismatch = -1, gap = -1. 31 points computed by computational-biology-ai999x; marked: the worked example, match = 1, score = 6.*
+*score (optimal semi-global alignment score) against match (score of a match) from 0.5 to 1.5. Other inputs as in the worked example: seq1 = TTTTACGTACGGGG, seq2 = ACGTAC, mismatch = -1.0, gap = -1.0. 31 points computed by computational-biology-ai999x; marked: the worked example, match = 1, score = 6.*
 
 ```python
 computational_biology_ai999x.solve('bio_semiglobal_alignment_score', seq1='TTTTACGTACGGGG', seq2='ACGTAC', match=1, mismatch=-1, gap=-1)
@@ -4253,7 +4253,7 @@ $$
 
 ![X (steady-state biomass concentration) against mu_max (maximum specific growth rate (1/time)) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-chemostat-steady-state-curve)
 
-*X (steady-state biomass concentration) against mu_max (maximum specific growth rate (1/time)) from 0.5 to 1.5. One curve for each value of S0 (feed substrate concentration): 10, 5, 20. Other inputs as in the worked example: Ks = 1, Y = 0.5, D = 0.5. 29 points per curve computed by computational-biology-ai999x; marked: the worked example, mu_max = 1, X = 4.5.*
+*X (steady-state biomass concentration) against mu_max (maximum specific growth rate (1/time)) from 0.5 to 1.5. One curve for each value of S0 (feed substrate concentration): 10, 5, 20. Other inputs as in the worked example: Ks = 1.0, Y = 0.5, D = 0.5. 29 points per curve computed by computational-biology-ai999x; marked: the worked example, mu_max = 1, X = 4.5.*
 
 ```python
 computational_biology_ai999x.solve('bio_chemostat_steady_state', mu_max=1, Ks=1, Y=0.5, D=0.5, S0=10)
