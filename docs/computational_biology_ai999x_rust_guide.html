@@ -21,42 +21,42 @@ figcaption{font-size:9pt;color:#555}
 .pb{page-break-after:always}
 </style></head><body>
 <h1>computational-biology: the Computational Biology program, user guide</h1>
-<p><strong>computational-biology-ai999x 1.1.0</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
-<p>Computational Biology covers DNA and protein sequences, alignment, molecular weights, genetics and population genetics, phylogenetics, enzyme kinetics, metabolic and population models, and ecology. This guide is about <code>computational-biology</code>, the model as a self-contained program for Windows and Linux: 83 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model&#x27;s page (https://www.ai999x.com/models/computational-biology-ai999x/); the Python package (<code>pip install computational-biology-ai999x</code>) has its own guide. Every command output printed here is what the program printed.</p>
+<p><strong>computational-biology-ai999x 1.6.0</strong>, Rust build: command line, desktop app and browser. <strong>Creator / engineer:</strong> Ibnul Jaif Farabi · <strong>Company:</strong> AI999X · support@ai999x.com</p>
+<p>Computational Biology covers DNA and protein sequences, alignment, molecular weights, genetics and population genetics, phylogenetics, enzyme kinetics, metabolic and population models, and ecology. This guide is about <code>computational-biology</code>, the model as a self-contained program for Windows and Linux: 86 capabilities in 10 topics, answered on your own computer with no network, no Python and nothing else to install. The same compiled model runs in the AI999X desktop app and in the browser on the model&#x27;s page (https://www.ai999x.com/models/computational-biology-ai999x/); the Python package (<code>pip install computational-biology-ai999x</code>) has its own guide. Every command output printed here is what the program printed.</p>
 <h2>Contents</h2>
 <ul><li>1. Get it: desktop app, command line, browser, Python</li><li>2. Quick start</li><li>3. Writing inputs</li><li>4. Outcomes and exit codes</li><li>5. Scripts and agents: batch and JSON</li><li>6. Figures</li><li>7. In a web page or Node.js: WebAssembly</li><li>8. Every capability</li></ul>
 <h2>1. Get it</h2>
-<p>Version 1.5.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/</p>
-<table><thead><tr><th>what</th><th>system</th><th>download</th></tr></thead><tbody><tr><td>Desktop app: Computational Biology</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.5.0/ai999x-computational-biology-1.5.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: Computational Biology</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.5.0/ai999x-computational-biology-1.5.0-linux-x86_64.tar.gz</td></tr><tr><td>Desktop app: all models</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: all models</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz</td></tr><tr><td>Command line</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-windows-x86_64.zip</td></tr><tr><td>Command line</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz</td></tr></tbody></table>
+<p>Version 1.6.0 of the AI999X desktop app and of the command-line bundle. Checksums for every file: https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS; the newest version is always under https://downloads.ai999x.com/desktop/latest/. Full instructions: https://www.ai999x.com/desktop-cli/</p>
+<table><thead><tr><th>what</th><th>system</th><th>download</th></tr></thead><tbody><tr><td>Desktop app: Computational Biology</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.6.0/ai999x-computational-biology-1.6.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: Computational Biology</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.6.0/ai999x-computational-biology-1.6.0-linux-x86_64.tar.gz</td></tr><tr><td>Desktop app: all models</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-windows-x86_64.zip</td></tr><tr><td>Desktop app: all models</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz</td></tr><tr><td>Command line</td><td>Windows x86-64</td><td>https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-windows-x86_64.zip</td></tr><tr><td>Command line</td><td>Linux x86-64</td><td>https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz</td></tr></tbody></table>
 <h3>Desktop app</h3>
-<p>Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
-<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-computational-biology-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+<p>Computational Biology in its own app: search, questions in words, input forms, live figures and explanations. Windows: Download ai999x-computational-biology-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x-computational-biology.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
+<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-computational-biology-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-computational-biology-1.5.0-linux-x86_64.tar.gz
-./ai999x-computational-biology-1.5.0-linux-x86_64/ai999x-computational-biology</code></pre>
-<p>It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.5.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
-<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+tar xzf ai999x-computational-biology-1.6.0-linux-x86_64.tar.gz
+./ai999x-computational-biology-1.6.0-linux-x86_64/ai999x-computational-biology</code></pre>
+<p>It opens on this model: type a question or pick a capability, fill in the form and press Compute. The AI999X desktop app with every model works the same way (choose the model first). Windows: Download ai999x-1.6.0-windows-x86_64.zip, right-click it → Extract All, then open the folder and start ai999x.exe. If Windows SmartScreen asks, choose More info → Run anyway. Linux:</p>
+<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-tar xzf ai999x-1.5.0-linux-x86_64.tar.gz
-./ai999x-1.5.0-linux-x86_64/ai999x</code></pre>
+tar xzf ai999x-1.6.0-linux-x86_64.tar.gz
+./ai999x-1.6.0-linux-x86_64/ai999x</code></pre>
 <h3>Command line, Linux</h3>
 <p>The bundle holds one program per model; <code>computational-biology</code> is this one. The checksum line should print OK.</p>
-<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.5.0/ai999x-cli-1.5.0-linux-x86_64.tar.gz
-curl -LO https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS
+<pre><code class="shell">curl -LO https://downloads.ai999x.com/desktop/1.6.0/ai999x-cli-1.6.0-linux-x86_64.tar.gz
+curl -LO https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS
 sha256sum -c --ignore-missing SHA256SUMS
-mkdir -p ~/.local/share &amp;&amp; tar xzf ai999x-cli-1.5.0-linux-x86_64.tar.gz -C ~/.local/share
-echo &#x27;export PATH=&quot;$HOME/.local/share/ai999x-cli-1.5.0-linux-x86_64:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
+mkdir -p ~/.local/share &amp;&amp; tar xzf ai999x-cli-1.6.0-linux-x86_64.tar.gz -C ~/.local/share
+echo &#x27;export PATH=&quot;$HOME/.local/share/ai999x-cli-1.6.0-linux-x86_64:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
 computational-biology --version</code></pre>
 <h3>Command line, Windows (PowerShell)</h3>
 <p>The fourth line should print True.</p>
-<pre><code class="powershell">$F = &quot;ai999x-cli-1.5.0-windows-x86_64.zip&quot;
-Invoke-WebRequest &quot;https://downloads.ai999x.com/desktop/1.5.0/$F&quot; -OutFile $F
-Invoke-WebRequest &quot;https://downloads.ai999x.com/desktop/1.5.0/SHA256SUMS&quot; -OutFile SHA256SUMS
+<pre><code class="powershell">$F = &quot;ai999x-cli-1.6.0-windows-x86_64.zip&quot;
+Invoke-WebRequest &quot;https://downloads.ai999x.com/desktop/1.6.0/$F&quot; -OutFile $F
+Invoke-WebRequest &quot;https://downloads.ai999x.com/desktop/1.6.0/SHA256SUMS&quot; -OutFile SHA256SUMS
 (Get-FileHash $F -Algorithm SHA256).Hash.ToLower() -eq ((Select-String -SimpleMatch $F SHA256SUMS).Line -split &#x27; &#x27;)[0]
 Expand-Archive $F -DestinationPath &quot;$env:LOCALAPPDATA\AI999X&quot; -Force
-$D = &quot;$env:LOCALAPPDATA\AI999X\ai999x-cli-1.5.0-windows-x86_64&quot;; $env:Path += &quot;;$D&quot;
+$D = &quot;$env:LOCALAPPDATA\AI999X\ai999x-cli-1.6.0-windows-x86_64&quot;; $env:Path += &quot;;$D&quot;
 [Environment]::SetEnvironmentVariable(&quot;Path&quot;, [Environment]::GetEnvironmentVariable(&quot;Path&quot;, &quot;User&quot;) + &quot;;$D&quot;, &quot;User&quot;)
 computational-biology --version</code></pre>
 <h3>In your browser</h3>
@@ -67,7 +67,7 @@ computational-biology --version</code></pre>
 <h3>2.1 Check the install</h3>
 <p>Prints the model, its version and that this is the Rust build.</p>
 <pre><code class="shell">$ computational-biology --version
-computational-biology-ai999x 1.5.0 (Rust build, ax-engine 1.5.0)</code></pre>
+computational-biology-ai999x 1.6.0 (Rust build, ax-engine 1.6.0)</code></pre>
 <h3>2.2 Ask in words</h3>
 <p>Write the question as you would say it: the program reads the quantities and their units, picks the capability and answers.</p>
 <pre><code class="shell">$ computational-biology ask &quot;Reverse complement: seq = ATGCCGTA&quot;
@@ -81,13 +81,13 @@ revcomp = TACGGCAT
 <pre><code class="shell">$ computational-biology search &quot;hardy-weinberg chi-square test&quot;
 bio_hardy_weinberg_test              Hardy-Weinberg chi-square test  (population genetics / Hardy-Weinberg)
 bio_hardy_weinberg_exact_test        Hardy-Weinberg exact test  (population genetics / Hardy-Weinberg)
+bio_hardy_weinberg_frequencies       Hardy-Weinberg genotype and carrier frequencies  (population genetics / Hardy-Weinberg)
+bio_testcross_recombination          Recombination frequency from two-point testcross counts  (genetics / linkage mapping)
+bio_three_point_testcross            Three-point testcross: gene order, map distances and interference  (genetics / linkage mapping)
 bio_michaelis_menten_fit             Michaelis-Menten nonlinear least-squares fit  (enzyme kinetics / Michaelis-Menten)
 bio_hill_fit                         Hill equation nonlinear least-squares fit  (enzyme kinetics / cooperativity)
 bio_tajima_d                         Tajima&#x27;s D  (population genetics / neutrality tests)
-bio_linkage_disequilibrium           Linkage disequilibrium D, D&#x27; and r^2  (population genetics / linkage disequilibrium)
-bio_pedigree_inbreeding              Inbreeding coefficient from a pedigree  (genetics / inbreeding)
-bio_semiglobal_alignment_score       Semi-global (end-gap-free) alignment score  (alignment / pairwise)
-… 6 more</code></pre>
+… 9 more</code></pre>
 <h3>2.4 List the capabilities</h3>
 <p>Every capability the program answers: its id (what you pass to solve) and its name.</p>
 <pre><code class="shell">$ computational-biology list
@@ -99,7 +99,7 @@ bio_brillouin_diversity                  Brillouin diversity index
 bio_chao1                                Chao1 species richness estimator
 bio_chemostat_steady_state               Chemostat steady state (Monod kinetics)
 bio_coalescent_times                     Expected coalescence times
-… 75 more</code></pre>
+… 78 more</code></pre>
 <h3>2.5 What a capability needs</h3>
 <p>The equation or method, every input and output with its SI unit. Read this before solve: it tells you the input names.</p>
 <pre><code class="shell">$ computational-biology info bio_hardy_weinberg_test
@@ -557,7 +557,7 @@ t = 6.386294361
   X = 0.5
   assumes: 0 &lt; X &lt; 1; positive S0, Vmax, Km</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the duration required for an irreversible Michaelis-Menten reaction to achieve a specific conversion level. Using the integrated rate law, it accounts for the decreasing substrate concentration as the reaction proceeds. With an initial substrate of 10, maximum velocity of 1, and Michaelis constant of 2, reaching a conversion fraction of 0.5 takes exactly 6.38629. This result helps predict when a biochemical assay or metabolic pathway will reach a desired state.</p>
-<h3>Genetics (5)</h3>
+<h3>Genetics (7)</h3>
 <h4 id="bio_pedigree_inbreeding">Inbreeding coefficient from a pedigree, <code>bio_pedigree_inbreeding</code></h4>
 <p>Wright&#x27;s inbreeding coefficient F of an individual from its pedigree (founders unrelated and not inbred).</p>
 <div class="math">\[F_X = \sum_{\text{paths}} \left(\tfrac12\right)^{n_1+n_2+1}(1 + F_A)\]</div>
@@ -623,6 +623,42 @@ r = 0.3160602794
   map = haldane
   assumes: d &gt;= 0; map function stated</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the probability of recombination between two genetic loci based on their stated map distance. By applying the selected map function to the input distance of 50, the model computes a recombination fraction of 0.31606. This value represents the likelihood that crossing over will separate these loci during meiosis, providing a direct measure of linkage strength.</p>
+<h4 id="bio_testcross_recombination">Recombination frequency from two-point testcross counts, <code>bio_testcross_recombination</code></h4>
+<p>The recombination frequency between two genes from the numbers of parental and recombinant offspring of a testcross, its standard error and the corresponding (uncorrected) map distance.</p>
+<div class="math">\[RF = \frac{n_{rec}}{n_{par} + n_{rec}},\quad d = 100\,RF\ \mathrm{cM}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>parental</code></td><td>in</td><td>number of offspring of the parental classes (both together)</td><td>, </td></tr><tr><td><code>recombinant</code></td><td>in</td><td>number of offspring of the recombinant classes (both together)</td><td>, </td></tr><tr><td><code>RF</code></td><td>out</td><td>recombination frequency</td><td>, </td></tr><tr><td><code>RF_percent</code></td><td>out</td><td>recombination frequency in %</td><td>, </td></tr><tr><td><code>d_cM</code></td><td>out</td><td>map distance in centimorgans (map units), uncorrected</td><td>, </td></tr><tr><td><code>SE</code></td><td>out</td><td>standard error of RF</td><td>, </td></tr><tr><td><code>linkage</code></td><td>out</td><td>linked (RF &lt; 0.5) or unlinked</td><td>, </td></tr></tbody></table>
+<p><strong>Applies when:</strong> counts whole numbers; recombinant &lt;= parental (RF &lt;= 0.5); a testcross (every gamete of the heterozygote visible).</p>
+<pre><code class="shell">$ computational-biology solve bio_testcross_recombination parental=920 recombinant=80
+RF = 0.08
+RF_percent = 8
+d_cM = 8
+SE = 0.008579044236
+linkage = linked
+  by: Recombination frequency from two-point testcross counts  (RF = recombinants / total; d = 100 RF cM; SE = sqrt(RF (1 - RF) / n))
+  assumes: counts whole numbers; recombinant &lt;= parental (RF &lt;= 0.5); a testcross (every gamete of the heterozygote visible)</code></pre>
+<p>In the worked example, parental = 920, recombinant = 80 go through the equation above and give RF = 0.08, RF_percent = 8, d_cM = 8, SE = 0.008579044236. It applies only when counts whole numbers; recombinant &lt;= parental (RF &lt;= 0.5); a testcross (every gamete of the heterozygote visible): outside that it says what is wrong instead of returning a number.</p>
+<h4 id="bio_three_point_testcross">Three-point testcross: gene order, map distances and interference, <code>bio_three_point_testcross</code></h4>
+<p>From the eight offspring classes of a three-point testcross: the parental and double-crossover classes, the gene in the middle, the recombination frequency and map distance of each interval (double crossovers counted in both), the coefficient of coincidence and the interference.</p>
+<div class="math">\[RF_{1} = \frac{n_{SCO,1} + n_{DCO}}{n},\quad c = \frac{n_{DCO}/n}{RF_1\,RF_2},\quad I = 1 - c\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>classes</code></td><td>in</td><td>the 8 offspring classes, three letters each in one locus order, upper case = dominant allele, separated by spaces</td><td>, </td></tr><tr><td><code>counts</code></td><td>in</td><td>number of offspring in each class, in the same order</td><td>, </td></tr><tr><td><code>gene_order</code></td><td>out</td><td>gene order (outer genes in their written order)</td><td>, </td></tr><tr><td><code>middle_gene</code></td><td>out</td><td>the gene in the middle</td><td>, </td></tr><tr><td><code>parental_classes</code></td><td>out</td><td>the two parental (most numerous) classes</td><td>, </td></tr><tr><td><code>dco_classes</code></td><td>out</td><td>the two double-crossover (least numerous) classes</td><td>, </td></tr><tr><td><code>RF_left</code></td><td>out</td><td>recombination frequency between the first outer gene and the middle gene</td><td>, </td></tr><tr><td><code>RF_right</code></td><td>out</td><td>recombination frequency between the middle gene and the second outer gene</td><td>, </td></tr><tr><td><code>d_left_cM</code></td><td>out</td><td>map distance of the first interval in cM</td><td>, </td></tr><tr><td><code>d_right_cM</code></td><td>out</td><td>map distance of the second interval in cM</td><td>, </td></tr><tr><td><code>d_total_cM</code></td><td>out</td><td>map distance between the outer genes (sum of the intervals) in cM</td><td>, </td></tr><tr><td><code>RF_outer_direct</code></td><td>out</td><td>recombination frequency counted directly between the outer genes (misses double crossovers)</td><td>, </td></tr><tr><td><code>coincidence</code></td><td>out</td><td>coefficient of coincidence: observed / expected double crossovers</td><td>, </td></tr><tr><td><code>interference</code></td><td>out</td><td>interference 1 - coincidence</td><td>, </td></tr></tbody></table>
+<p><strong>Applies when:</strong> 8 distinct classes of the same three genes; parental and double-crossover pairs reciprocal and clearly the largest/smallest; uncorrected map distances (1 % recombination = 1 cM).</p>
+<pre><code class="shell">$ computational-biology solve bio_three_point_testcross &quot;classes=ABC abc aBC Abc AbC aBc ABc abC&quot; &quot;counts=[390, 374, 45, 41, 72, 70, 5, 3]&quot;
+gene_order = A-C-B
+middle_gene = C
+parental_classes = ABC abc
+dco_classes = ABc abC
+RF_left = 0.094
+RF_right = 0.15
+d_left_cM = 9.4
+d_right_cM = 15
+d_total_cM = 24.4
+RF_outer_direct = 0.228
+coincidence = 0.5673758865
+interference = 0.4326241135
+  by: Three-point testcross: gene order, map distances and interference  (parental = two largest classes, double crossovers = two smallest; the middle gene is the one whose alleles the double crossovers swap relative to the parentals; RF of an interval = (its single crossovers + double crossovers)/n; coincidence = observed DCO / (RF1 RF2))
+  classes = ABC abc aBC Abc AbC aBc ABc abC
+  assumes: 8 distinct classes of the same three genes; parental and double-crossover pairs reciprocal and clearly the largest/smallest; uncorrected map distances (1 % recombination = 1 cM)</code></pre>
+<p>In the worked example, classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 374, 45, 41, 72, 70, 5, 3] go through the equation above and give gene_order = A-C-B, middle_gene = C, parental_classes = ABC abc, dco_classes = ABc abC. It applies only when 8 distinct classes of the same three genes; parental and double-crossover pairs reciprocal and clearly the largest/smallest; uncorrected map distances (1 % recombination = 1 cM): outside that it says what is wrong instead of returning a number.</p>
 <h3>Microbial growth (1)</h3>
 <h4 id="bio_chemostat_steady_state">Chemostat steady state (Monod kinetics), <code>bio_chemostat_steady_state</code></h4>
 <p>The steady-state substrate and biomass concentrations of a chemostat with Monod growth kinetics.</p>
@@ -749,7 +785,7 @@ total = 185
   by: Leslie matrix population projection  (multiply the age vector by the Leslie matrix t times)
   assumes: 0 &lt; S_i &lt;= 1; F_i &gt;= 0, at least one positive; t &lt;= 500</code></pre>
 <p><strong>What the worked example means:</strong> This calculation projects the future state of an age-structured population by multiplying the initial age vector by the Leslie matrix repeatedly. The resulting age distribution after 1 steps is given by [95, 50, 40], and the sum of these values yields the total population size of 185. This outcome reflects how specific survival rates and fecundity levels interact over discrete time intervals to shape demographic structure.</p>
-<h3>Population genetics (16)</h3>
+<h3>Population genetics (17)</h3>
 <h4 id="bio_haploid_selection">Allele frequency under haploid (genic) selection, <code>bio_haploid_selection</code></h4>
 <p>The frequency of allele A after t generations of haploid selection (relative fitness 1 + s against 1).</p>
 <div class="math">\[p&#x27; = \frac{p(1+s)}{1+sp}\]</div>
@@ -873,6 +909,24 @@ p_observed = 0.08571428571
   by: Hardy-Weinberg exact test  (exact conditional distribution of heterozygote counts given the allele counts (rational arithmetic))
   assumes: both alleles present; N &lt;= 1000</code></pre>
 <p><strong>What the worked example means:</strong> This calculation determines the exact probability of observing the specific number of heterozygotes given the total allele counts in the sample. Using rational arithmetic to avoid approximation errors, it computes the likelihood of the observed genotype configuration compared to all possible configurations with the same allele frequencies. The resulting p-value of 0.0857143 quantifies how likely such a deviation from expected proportions would occur by chance if the population were truly in equilibrium. A low value suggests significant departure from random mating assumptions.</p>
+<h4 id="bio_hardy_weinberg_frequencies">Hardy-Weinberg genotype and carrier frequencies, <code>bio_hardy_weinberg_frequencies</code></h4>
+<p>The allele frequencies p and q, the genotype frequencies p^2, 2pq and q^2, the carrier (heterozygote) frequency and the carrier frequency among unaffected people, from one allele frequency or from the frequency of the recessive phenotype; optionally the expected genotype counts in N individuals.</p>
+<div class="math">\[p + q = 1,\quad p^2 + 2pq + q^2 = 1,\quad q = \sqrt{f_{aa}}\]</div>
+<table><thead><tr><th>symbol</th><th></th><th>meaning</th><th>SI unit</th></tr></thead><tbody><tr><td><code>p</code></td><td>in</td><td>frequency of the dominant allele A (give one of p, q, q2) (optional)</td><td>, </td></tr><tr><td><code>q</code></td><td>in</td><td>frequency of the recessive allele a (give one of p, q, q2) (optional)</td><td>, </td></tr><tr><td><code>q2</code></td><td>in</td><td>frequency of the recessive phenotype aa (give one of p, q, q2) (optional)</td><td>, </td></tr><tr><td><code>N</code></td><td>in</td><td>number of individuals (optional, for expected counts) (optional)</td><td>, </td></tr><tr><td><code>p</code></td><td>out</td><td>frequency of allele A</td><td>, </td></tr><tr><td><code>q</code></td><td>out</td><td>frequency of allele a</td><td>, </td></tr><tr><td><code>p2</code></td><td>out</td><td>frequency of AA (p^2)</td><td>, </td></tr><tr><td><code>het_2pq</code></td><td>out</td><td>frequency of Aa (2pq)</td><td>, </td></tr><tr><td><code>q2</code></td><td>out</td><td>frequency of aa (q^2)</td><td>, </td></tr><tr><td><code>carrier_frequency</code></td><td>out</td><td>carrier (heterozygote) frequency in the population, 2pq</td><td>, </td></tr><tr><td><code>carrier_among_unaffected</code></td><td>out</td><td>probability that an unaffected person is a carrier, 2pq/(1 - q^2)</td><td>, </td></tr><tr><td><code>dominant_phenotype</code></td><td>out</td><td>frequency of the dominant phenotype, p^2 + 2pq</td><td>, </td></tr><tr><td><code>exp_AA</code></td><td>out</td><td>expected AA count (N p^2)</td><td>, </td></tr><tr><td><code>exp_Aa</code></td><td>out</td><td>expected Aa count (2Npq)</td><td>, </td></tr><tr><td><code>exp_aa</code></td><td>out</td><td>expected aa count (N q^2)</td><td>, </td></tr></tbody></table>
+<p><strong>Applies when:</strong> exactly one of p, q, q2, strictly between 0 and 1; Hardy-Weinberg equilibrium (random mating, no selection, migration or mutation, large population); complete dominance, one autosomal biallelic locus.</p>
+<pre><code class="shell">$ computational-biology solve bio_hardy_weinberg_frequencies q2=0.0004
+p = 0.98
+q = 0.02
+p2 = 0.9604
+het_2pq = 0.0392
+q2 = 0.0004
+carrier_frequency = 0.0392
+carrier_among_unaffected = 0.03921568627
+dominant_phenotype = 0.9996
+  by: Hardy-Weinberg genotype and carrier frequencies  (q = 1 - p (or sqrt of the recessive phenotype frequency); genotype frequencies p^2, 2pq, q^2)
+  q2 = 0.0004
+  assumes: exactly one of p, q, q2, strictly between 0 and 1; Hardy-Weinberg equilibrium (random mating, no selection, migration or mutation, large population); complete dominance, one autosomal biallelic locus</code></pre>
+<p>In the worked example, q2 = 0.0004 go through the equation above and give p = 0.98, q = 0.02, p2 = 0.9604, het_2pq = 0.0392. It applies only when exactly one of p, q, q2, strictly between 0 and 1; Hardy-Weinberg equilibrium (random mating, no selection, migration or mutation, large population); complete dominance, one autosomal biallelic locus: outside that it says what is wrong instead of returning a number.</p>
 <h4 id="bio_linkage_disequilibrium">Linkage disequilibrium D, D&#x27; and r^2, <code>bio_linkage_disequilibrium</code></h4>
 <p>The linkage disequilibrium between two biallelic loci from haplotype counts: D, Lewontin&#x27;s D&#x27; and r^2.</p>
 <div class="math">\[D = p_{AB} - p_Ap_B,\quad r^2 = \frac{D^2}{p_Aq_Ap_Bq_B},\quad D&#x27; = \frac{D}{D_{\max}}\]</div>

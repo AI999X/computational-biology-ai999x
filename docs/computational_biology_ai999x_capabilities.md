@@ -33,7 +33,7 @@ result.show()
 | Enzyme kinetics / linearised fits | [Lineweaver-Burk fit of Michaelis-Menten data](#bio_lineweaver_burk), [Hanes-Woolf fit of Michaelis-Menten data](#bio_hanes_woolf), [Eadie-Hofstee fit of Michaelis-Menten data](#bio_eadie_hofstee) |
 | Enzyme kinetics / Michaelis-Menten | [Michaelis-Menten nonlinear least-squares fit](#bio_michaelis_menten_fit) |
 | Genetics / inbreeding | [Inbreeding coefficient from a pedigree](#bio_pedigree_inbreeding) |
-| Genetics / linkage mapping | [Map distance from a recombination fraction](#bio_map_distance), [Recombination fraction from a map distance](#bio_recombination_fraction) |
+| Genetics / linkage mapping | [Map distance from a recombination fraction](#bio_map_distance), [Recombination fraction from a map distance](#bio_recombination_fraction), [Recombination frequency from two-point testcross counts](#bio_testcross_recombination), [Three-point testcross: gene order, map distances and interference](#bio_three_point_testcross) |
 | Genetics / Mendelian inheritance | [Probability of an offspring genotype in a cross](#bio_cross_genotype_probability), [Phenotype ratio of a cross (complete dominance)](#bio_cross_phenotype_ratio) |
 | Microbial growth / continuous culture | [Chemostat steady state (Monod kinetics)](#bio_chemostat_steady_state) |
 | Phylogenetics / distance methods | [UPGMA tree heights](#bio_upgma), [Neighbour-joining branch lengths](#bio_neighbor_joining) |
@@ -44,7 +44,7 @@ result.show()
 | Population biology / age structure | [Leslie matrix population projection](#bio_leslie_projection), [Leslie matrix growth rate and stable age distribution](#bio_leslie_growth_rate) |
 | Population genetics / coalescent | [Expected coalescence times](#bio_coalescent_times) |
 | Population genetics / drift | [Loss of heterozygosity by genetic drift](#bio_drift_heterozygosity), [Fixation probability in the Moran process](#bio_moran_fixation), [Effective population size with unequal sex ratio](#bio_ne_sex_ratio), [Effective size of a fluctuating population](#bio_ne_fluctuating_size) |
-| Population genetics / Hardy-Weinberg | [Hardy-Weinberg chi-square test](#bio_hardy_weinberg_test), [Hardy-Weinberg exact test](#bio_hardy_weinberg_exact_test) |
+| Population genetics / Hardy-Weinberg | [Hardy-Weinberg chi-square test](#bio_hardy_weinberg_test), [Hardy-Weinberg exact test](#bio_hardy_weinberg_exact_test), [Hardy-Weinberg genotype and carrier frequencies](#bio_hardy_weinberg_frequencies) |
 | Population genetics / linkage disequilibrium | [Linkage disequilibrium D, D' and r^2](#bio_linkage_disequilibrium) |
 | Population genetics / mutation | [Mutation-selection balance](#bio_mutation_selection_balance) |
 | Population genetics / natural selection | [Allele frequency under haploid (genic) selection](#bio_haploid_selection), [Decline of a recessive lethal allele](#bio_recessive_lethal), [Equilibrium under heterozygote advantage](#bio_heterozygote_advantage) |
@@ -183,6 +183,9 @@ Call `solve("<id>", **inputs)` with plain numbers; the result's `values` holds e
 | bio_chemostat_steady_state | Chemostat steady state (Monod kinetics) | mu_max, Ks, Y, D, S0 | S, X |
 | bio_flux_balance_analysis | Flux balance analysis (optimal objective) | S, lb, ub, c | objective |
 | bio_faith_pd | Faith's phylogenetic diversity | tree, taxa | pd |
+| bio_hardy_weinberg_frequencies | Hardy-Weinberg genotype and carrier frequencies | p, q, q2, N | p, q, p2, het_2pq, q2, carrier_frequency, carrier_among_unaffected, dominant_phenotype, exp_AA, exp_Aa, exp_aa |
+| bio_testcross_recombination | Recombination frequency from two-point testcross counts | parental, recombinant | RF, RF_percent, d_cM, SE, linkage |
+| bio_three_point_testcross | Three-point testcross: gene order, map distances and interference | classes, counts | gene_order, middle_gene, parental_classes, dco_classes, RF_left, RF_right, d_left_cM, d_right_cM, d_total_cM, RF_outer_direct, coincidence, interference |
 
 <a id="bio_reverse_complement"></a>
 
@@ -4376,3 +4379,178 @@ computational_biology_ai999x.solve('bio_faith_pd', tree='((A:1,B:2):3,(C:4,D:5):
 | Faith's phylogenetic diversity: taxa = A B | NEEDS_INPUT | bio_faith_pd needs tree (rooted tree in Newick format with branch lengths). Example: solve('bio_faith_pd', tree='((A:1,B |
 | Faith's phylogenetic diversity: tree = ((A:1,B:2):3,(C:4,D:5):6);, taxa = A B, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: computational_biology_ai999x.temp |
 | Faith's phylogenetic diversity: tree = ((A:1,B:2):3,(C:4,D:5):6);, taxa = A B and 7 more | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: computational_biology_ai999x.temp |
+
+<a id="bio_hardy_weinberg_frequencies"></a>
+
+### Hardy-Weinberg genotype and carrier frequencies, `bio_hardy_weinberg_frequencies`
+
+The allele frequencies p and q, the genotype frequencies $p^{2}$, 2pq and $q^{2}$, the carrier (heterozygote) frequency and the carrier frequency among unaffected people, from one allele frequency or from the frequency of the recessive phenotype; optionally the expected genotype counts in N individuals.
+
+$$
+p + q = 1,\quad p^2 + 2pq + q^2 = 1,\quad q = \sqrt{f_{aa}}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `p` | frequency of the dominant allele A (give one of p, q, q2) |  |
+| `q` | frequency of the recessive allele a (give one of p, q, q2) |  |
+| `q2` | frequency of the recessive phenotype aa (give one of p, q, q2) |  |
+| `N` | number of individuals (optional, for expected counts) |  |
+
+| output | meaning |
+|---|---|
+| `p` | frequency of allele A |
+| `q` | frequency of allele a |
+| `p2` | frequency of AA $(p^{2})$ |
+| `het_2pq` | frequency of Aa (2pq) |
+| `q2` | frequency of aa $(q^{2})$ |
+| `carrier_frequency` | carrier (heterozygote) frequency in the population, 2pq |
+| `carrier_among_unaffected` | probability that an unaffected person is a carrier, $2pq/(1 - q^{2})$ |
+| `dominant_phenotype` | frequency of the dominant phenotype, $p^{2} + 2pq$ |
+| `exp_AA` | expected AA count (N p^2) |
+| `exp_Aa` | expected Aa count (2Npq) |
+| `exp_aa` | expected aa count (N q^2) |
+
+- **Method:** $q = 1 - p$ (or sqrt of the recessive phenotype frequency); genotype frequencies $p^{2}$, 2pq, $q^{2}$
+- **Assumes:** exactly one of p, q, q2, strictly between 0 and 1; Hardy-Weinberg equilibrium (random mating, no selection, migration or mutation, large population); complete dominance, one autosomal biallelic locus
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![carrier_frequency (carrier (heterozygote) frequency in the population, 2pq) against q2 (frequency of the recessive phenotype aa (give one of p, q, q2)) from 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-hardy-weinberg-frequencies-curve)
+
+*carrier_frequency (carrier (heterozygote) frequency in the population, 2pq) against q2 (frequency of the recessive phenotype aa (give one of p, q, q2)) from 0.0002 to 0.0006. 31 points computed by computational-biology-ai999x; marked: the worked example, q2 = 0.0004, carrier_frequency = 0.0392.*
+
+```python
+computational_biology_ai999x.solve('bio_hardy_weinberg_frequencies', q2=0.0004)
+# -> p = 0.98, q = 0.02, p2 = 0.9604, het_2pq = 0.0392, q2 = 0.0004, carrier_frequency = 0.0392, carrier_among_unaffected = 0.0392157, dominant_phenotype = 0.9996   (SOLVED)
+```
+
+```python
+computational_biology_ai999x.solve('bio_hardy_weinberg_frequencies', p=0.7, N=1000)
+# -> p = 0.7, q = 0.3, p2 = 0.49, het_2pq = 0.42, q2 = 0.09, carrier_frequency = 0.42, carrier_among_unaffected = 0.461538, dominant_phenotype = 0.91, exp_AA = 490, exp_Aa = 420, exp_aa = 90   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Hardy-Weinberg frequencies: q2 = 0.0004 | SOLVED | p = 0.98, q = 0.02, p2 = 0.9604, het_2pq = 0.0392, q2 = 0.0004, carrier_frequency = 0.0392, carrier_among_unaffected = 0.0392157, dominant_phenotype = 0.9996 |
+| Hardy-Weinberg frequencies: p = 0.7, N = 1000 | SOLVED | p = 0.7, q = 0.3, p2 = 0.49, het_2pq = 0.42, q2 = 0.09, carrier_frequency = 0.42, carrier_among_unaffected = 0.461538, dominant_phenotype = 0.91, exp_AA = 490, exp_Aa = 420, exp_aa = 90 |
+| Carrier frequency: q2 = 0.04% | SOLVED | p = 0.98, q = 0.02, p2 = 0.9604, het_2pq = 0.0392, q2 = 0.0004, carrier_frequency = 0.0392, carrier_among_unaffected = 0.0392157, dominant_phenotype = 0.9996 |
+| Hardy-Weinberg frequencies: q2 = 1.2 | INVALID_INPUT | Hardy-Weinberg genotype and carrier frequencies: q2 must be a fraction between 0 and 1. |
+| Hardy-Weinberg frequencies: p = 0.7, q2 = 0.09 | INVALID_INPUT | Hardy-Weinberg genotype and carrier frequencies: give exactly one of p (frequency of A), q (frequency of a) or q2 (frequ |
+
+<a id="bio_testcross_recombination"></a>
+
+### Recombination frequency from two-point testcross counts, `bio_testcross_recombination`
+
+The recombination frequency between two genes from the numbers of parental and recombinant offspring of a testcross, its standard error and the corresponding (uncorrected) map distance.
+
+$$
+RF = \frac{n_{rec}}{n_{par} + n_{rec}},\quad d = 100\,RF\ \mathrm{cM}
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `parental` | number of offspring of the parental classes (both together) |  |
+| `recombinant` | number of offspring of the recombinant classes (both together) |  |
+
+| output | meaning |
+|---|---|
+| `RF` | recombination frequency |
+| `RF_percent` | recombination frequency in % |
+| `d_cM` | map distance in centimorgans (map units), uncorrected |
+| `SE` | standard error of RF |
+| `linkage` | linked $(RF < 0.5)$ or unlinked |
+
+- **Method:** RF = recombinants / total; $d = 100$ RF cM; $SE = sqrt$(RF (1 - RF) / n)
+- **Assumes:** counts whole numbers; recombinant <= parental $(RF  \leq  0.5)$; a testcross (every gamete of the heterozygote visible)
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![linked (RF < 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-testcross-recombination-decision)
+
+*linked (RF < 0.5) or unlinked (linkage) over parental (number of offspring of the parental classes (both together)) from 1 to 1840 and recombinant (number of offspring of the recombinant classes (both together)) from 1 to 160 (logarithmic axes): each of the 29 × 20 cells is one run of computational-biology-ai999x, coloured by the verdict it returned, linked: 390 cells, unlinked (independent assortment): 7 cells; blank cells: inputs the capability refuses. Marked: the worked example, parental = 920, recombinant = 80 → linked.*
+
+![RF (recombination frequency) against recombinant (number of offspring of the recombinant classes (both together)) from 1 to 160 on a logarithmic axis](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-testcross-recombination-curve)
+
+*RF (recombination frequency) against recombinant (number of offspring of the recombinant classes (both together)) from 1 to 160 on a logarithmic axis. One curve for each value of parental (number of offspring of the parental classes (both together)): 920, 460, 1840. 33 points per curve computed by computational-biology-ai999x; marked: the worked example, recombinant = 80, RF = 0.08.*
+
+```python
+computational_biology_ai999x.solve('bio_testcross_recombination', parental=920, recombinant=80)
+# -> RF = 0.08, RF_percent = 8, d_cM = 8, SE = 0.00857904, linkage = linked   (SOLVED)
+```
+
+```python
+computational_biology_ai999x.solve('bio_testcross_recombination', parental=300, recombinant=200)
+# -> RF = 0.4, RF_percent = 40, d_cM = 40, SE = 0.0219089, linkage = linked   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Two-point testcross: parental = 920, recombinant = 80 | SOLVED | RF = 0.08, RF_percent = 8, d_cM = 8, SE = 0.00857904, linkage = linked |
+| Two-point testcross: parental = 300, recombinant = 200 | SOLVED | RF = 0.4, RF_percent = 40, d_cM = 40, SE = 0.0219089, linkage = linked |
+| Two-point testcross: recombinant = 80 | NEEDS_INPUT | bio_testcross_recombination needs parental (number of offspring of the parental classes (both together)). Example: solve |
+| Two-point testcross: parental = 920, recombinant = 80, zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: computational_biology_ai999x.temp |
+| Two-point testcross: parental = 920, recombinant = 80 and 7 more | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: computational_biology_ai999x.temp |
+| Two-point testcross: parental = 100, recombinant = 300 | INVALID_INPUT | Recombination frequency from two-point testcross counts: the recombinant (less frequent) classes cannot outnumber the pa |
+
+<a id="bio_three_point_testcross"></a>
+
+### Three-point testcross: gene order, map distances and interference, `bio_three_point_testcross`
+
+From the eight offspring classes of a three-point testcross: the parental and double-crossover classes, the gene in the middle, the recombination frequency and map distance of each interval (double crossovers counted in both), the coefficient of coincidence and the interference.
+
+$$
+RF_{1} = \frac{n_{SCO,1} + n_{DCO}}{n},\quad c = \frac{n_{DCO}/n}{RF_1\,RF_2},\quad I = 1 - c
+$$
+
+| input | meaning | condition |
+|---|---|---|
+| `classes` | the 8 offspring classes, three letters each in one locus order, upper case = dominant allele, separated by spaces |  |
+| `counts` | number of offspring in each class, in the same order |  |
+
+| output | meaning |
+|---|---|
+| `gene_order` | gene order (outer genes in their written order) |
+| `middle_gene` | the gene in the middle |
+| `parental_classes` | the two parental (most numerous) classes |
+| `dco_classes` | the two double-crossover (least numerous) classes |
+| `RF_left` | recombination frequency between the first outer gene and the middle gene |
+| `RF_right` | recombination frequency between the middle gene and the second outer gene |
+| `d_left_cM` | map distance of the first interval in cM |
+| `d_right_cM` | map distance of the second interval in cM |
+| `d_total_cM` | map distance between the outer genes (sum of the intervals) in cM |
+| `RF_outer_direct` | recombination frequency counted directly between the outer genes (misses double crossovers) |
+| `coincidence` | coefficient of coincidence: observed / expected double crossovers |
+| `interference` | interference 1 - coincidence |
+
+- **Method:** parental = two largest classes, double crossovers = two smallest; the middle gene is the one whose alleles the double crossovers swap relative to the parentals; RF of an interval = (its single crossovers + double crossovers)/n; coincidence = observed DCO / (RF1 RF2)
+- **Assumes:** 8 distinct classes of the same three genes; parental and double-crossover pairs reciprocal and clearly the largest/smallest; uncorrected map distances (1 % recombination = 1 cM)
+- **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
+
+![The worked example of Three-point testcross: gene order, map distances and interference as inputs and results: stated classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 374, 45, 41, 72, 70, 5, 3]; returned by computational-biology-ai999x: gene_order = A-C-B, middle_gene = C, parental_classes = ABC abc, dco_classes = ABc abC, RF_left = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-three-point-testcross-io)
+
+*The worked example of Three-point testcross: gene order, map distances and interference as inputs and results: stated classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 374, 45, 41, 72, 70, 5, 3]; returned by computational-biology-ai999x: gene_order = A-C-B, middle_gene = C, parental_classes = ABC abc, dco_classes = ABc abC, RF_left = 0.094, RF_right = 0.15.*
+
+```python
+computational_biology_ai999x.solve('bio_three_point_testcross', classes='ABC abc aBC Abc AbC aBc ABc abC', counts=[390, 374, 45, 41, 72, 70, 5, 3])
+# -> gene_order = A-C-B, middle_gene = C, parental_classes = ABC abc, dco_classes = ABc abC, RF_left = 0.094, RF_right = 0.15, d_left_cM = 9.4, d_right_cM = 15, d_total_cM = 24.4, RF_outer_direct = 0.228, coincidence = 0.567376, interference = 0.432624   (SOLVED)
+```
+
+```python
+computational_biology_ai999x.solve('bio_three_point_testcross', classes='DEf deF dEf DeF DEF def Def dEF', counts=[420, 409, 60, 52, 30, 26, 2, 1])
+# -> gene_order = D-E-F, middle_gene = E, parental_classes = DEf deF, dco_classes = Def dEF, RF_left = 0.115, RF_right = 0.059, d_left_cM = 11.5, d_right_cM = 5.9, d_total_cM = 17.4, RF_outer_direct = 0.168, coincidence = 0.442152, interference = 0.557848   (SOLVED)
+```
+
+**Questions in words (documented forms), as executed:**
+
+| question | outcome | result |
+|---|---|---|
+| Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 374, 45, 41, 72, 70, 5, 3] | SOLVED | gene_order = A-C-B, middle_gene = C, parental_classes = ABC abc, dco_classes = ABc abC, RF_left = 0.094, RF_right = 0.15, d_left_cM = 9.4, d_right_cM = 15, d_total_cM = 24.4, RF_outer_direct = 0.228, coincidence = 0.567376, interference = 0.432624 |
+| Three-point testcross: classes = DEf deF dEf DeF DEF def Def dEF, counts = [420, 409, 60, 52, 30, 26, 2, 1] | SOLVED | gene_order = D-E-F, middle_gene = E, parental_classes = DEf deF, dco_classes = Def dEF, RF_left = 0.115, RF_right = 0.059, d_left_cM = 11.5, d_right_cM = 5.9, d_total_cM = 17.4, RF_outer_direct = 0.168, coincidence = 0.442152, interference = 0.557848 |
+| Three-point testcross: counts = [390, 374, 45, 41, 72, 70, 5, 3] | NEEDS_INPUT | bio_three_point_testcross needs classes (the 8 offspring classes, three letters each in one locus order, upper case = do |
+| Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 374, 45, 41, 72, 70, 5, 3], zz = 1 | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: computational_biology_ai999x.temp |
+| Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 374, 45, 41, 72, 70, 5, 3] and 7 more | UNRECOGNIZED_FORMAT | I could not match this question to a documented form, so I will not guess. Every form: computational_biology_ai999x.temp |
+| Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 45, 374, 41, 72, 70, 5, 3] | INVALID_INPUT | Three-point testcross: gene order, map distances and interference: the two most numerous classes must be reciprocal (the |
+| Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc ABc, counts = [390, 374, 45, 41, 72, 70, 5, 3] | INVALID_INPUT | Three-point testcross: gene order, map distances and interference: each of the 8 classes must be given once. |

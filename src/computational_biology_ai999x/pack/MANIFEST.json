@@ -1,5 +1,5 @@
 {
- "package": "1.5.0",
+ "package": "1.6.0",
  "pack": "1.0.1",
  "knowledge_db": null,
  "files": {
@@ -7,8 +7,8 @@
   "dictionary/terms.json": "b2d8da1d78769f517c23c6ea61c20fc6a48166102bca0adc66f36fb5f54d905d",
   "knowledge/relations.json": "789f147f4bc7b600cab25e960bc530aa04e10a0508be635a0e7e48e589323fd0",
   "knowledge/reference_cases.json": "7414a14e2c4202a7fae8cdd14e1a2ef7267f35a9665b0633001349c698d4e4e7",
-  "capabilities/procedures.py": "83f36009457aba69474db4966274b03621bb7baad396bf6893c5e7468daa69ae",
-  "capabilities/procedures_certified.json": "da484bae1ee0f16b9ccc1f0b035aece87ea36137618d9f6ee0baba62b05bb72f",
+  "capabilities/procedures.py": "bef86472aa16d934269de34170b8d7d5a6f7f3e4d9c3c24b7dd82362d63f8ac2",
+  "capabilities/procedures_certified.json": "cd3d466b54feb29747cb2dc8fc334099280775b826ff79a0afe8ff6ff38f0632",
   "computational_biology_knowledge_public.sqlite": "5d17501748d24f1fc33ff3df813bf329ad5607d96d56d8e58d206f93a4fe6775"
  },
  "engine": [

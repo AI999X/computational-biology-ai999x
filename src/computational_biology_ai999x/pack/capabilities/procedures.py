@@ -5,7 +5,8 @@ Topics (the biology view): DNA, RNA and protein sequences (reverse complement, t
 standard genetic code, GC content, k-mers, p-distance and edit distance, open reading frames, restriction sites,
 molecular masses, extinction coefficients, net charge and isoelectric point, hydropathy, instability index, melting
 temperatures), pairwise alignment scores (global, local and semi-global; linear and affine gaps; BLOSUM62),
-Mendelian and population genetics (crosses, Hardy-Weinberg tests, selection, mutation-selection balance, drift,
+Mendelian and population genetics (crosses, Hardy-Weinberg genotype and carrier frequencies, Hardy-Weinberg tests,
+two- and three-point testcross mapping, selection, mutation-selection balance, drift,
 fixation, effective population size, Fst, linkage disequilibrium, map functions, pedigree inbreeding), phylogenetics
 (Jukes-Cantor and Kimura distances, UPGMA, neighbour joining, tree counts, Robinson-Foulds distance, Fitch parsimony,
 coalescent times, nucleotide diversity, Watterson's theta, Tajima's D), enzyme kinetics (Michaelis-Menten fits and
@@ -5056,6 +5057,385 @@ _add("bio_faith_pd", name="Faith's phylogenetic diversity", topic="ecology / phy
      examples=[_ex({"tree": "((A:1,B:2):3,(C:4,D:5):6);", "taxa": "A B"}, {"pd": 6.0}),
                _ex({"tree": "((A:1,B:2):3,(C:4,D:5):6);", "taxa": "A C"}, {"pd": 14.0})],
      level="advanced")
+
+
+# ================================================================================================ CORE GAPS (2026-11-12)
+# Hardy-Weinberg genotype and carrier frequencies from one allele or phenotype frequency; recombination frequency from
+# testcross counts (two-point) and the gene order, map distances and interference of a three-point testcross.
+# Conventions: A is the dominant allele (frequency p), a the recessive one (q = 1 - p), complete dominance, one
+# biallelic autosomal locus in Hardy-Weinberg equilibrium; carriers are heterozygotes. Map distances from testcross
+# recombination frequencies are uncorrected (1 % recombination = 1 cM, no map function). In a three-point testcross
+# the classes are written as three letters in one fixed locus order (upper case = the dominant allele); the two most
+# numerous classes are the parental ones and the two least numerous the double crossovers (each pair must be
+# reciprocal, and a tie with the neighbouring class is refused); the gene order is written with the outer genes in
+# their written order around the middle gene.
+def hardy_weinberg_frequencies(p=None, q=None, q2=None, N=None):
+    given = 0
+    for v in (p, q, q2):
+        if v is not None:
+            given += 1
+    _need(given == 1, "give exactly one of p (frequency of A), q (frequency of a) or q2 (frequency of the recessive phenotype aa)")
+    if p is not None:
+        _frac("p", p, lo_open=True, hi_open=True)
+        qq = 1.0 - p
+    elif q is not None:
+        _frac("q", q, lo_open=True, hi_open=True)
+        qq = q
+    else:
+        _frac("q2", q2, lo_open=True, hi_open=True)
+        qq = math.sqrt(q2)
+    pp = 1.0 - qq
+    het = 2.0 * pp * qq
+    out = {"p": pp, "q": qq, "p2": pp * pp, "het_2pq": het, "q2": qq * qq, "carrier_frequency": het,
+           "carrier_among_unaffected": het / (1.0 - qq * qq), "dominant_phenotype": 1.0 - qq * qq}
+    if N is not None:
+        _need(isinstance(N, int) and N >= 1, "N must be a whole number of at least 1")
+        out["exp_AA"] = N * pp * pp
+        out["exp_Aa"] = N * het
+        out["exp_aa"] = N * qq * qq
+    return _out(**out)
+
+
+def _ref_hw_frequencies(p=None, q=None, q2=None, N=None):
+    """Random union of gametes: the outer product of the gamete-frequency vector (numpy) gives the genotype table;
+    q from the phenotype frequency by brentq on q^2 = q2; carriers among the unaffected as a conditional probability."""
+    import numpy as np
+    if p is not None:
+        qq = 1.0 - p
+    elif q is not None:
+        qq = q
+    else:
+        qq = _brentq(lambda x: x * x - q2, 0.0, 1.0)
+    g = np.array([1.0 - qq, qq])
+    table = np.outer(g, g)                                   # [[AA, Aa], [aA, aa]]
+    AA, het, aa = float(table[0, 0]), float(table[0, 1] + table[1, 0]), float(table[1, 1])
+    out = {"p": float(g[0]), "q": float(g[1]), "p2": AA, "het_2pq": het, "q2": aa, "carrier_frequency": het,
+           "carrier_among_unaffected": het / (AA + het), "dominant_phenotype": AA + het}
+    if N is not None:
+        out["exp_AA"] = N * AA
+        out["exp_Aa"] = N * het
+        out["exp_aa"] = N * aa
+    return out
+
+
+def _wrong_hw_frequencies(p=None, q=None, q2=None, N=None):
+    qq = (1.0 - p) if p is not None else (q if q is not None else math.sqrt(q2))
+    pp = 1.0 - qq
+    het = pp * qq                                             # heterozygotes without the factor 2
+    out = {"p": pp, "q": qq, "p2": pp * pp, "het_2pq": het, "q2": qq * qq, "carrier_frequency": het,
+           "carrier_among_unaffected": het / (1.0 - qq * qq), "dominant_phenotype": 1.0 - qq * qq}
+    if N is not None:
+        out["exp_AA"] = N * pp * pp
+        out["exp_Aa"] = N * het
+        out["exp_aa"] = N * qq * qq
+    return _out(**out)
+
+
+def _rand_hw_freq(rng):
+    r = rng.random()
+    if r < 0.34:
+        d = {"p": round(rng.uniform(0.05, 0.95), 3)}
+    elif r < 0.67:
+        d = {"q": round(rng.uniform(0.05, 0.95), 3)}
+    else:
+        d = {"q2": _sig(_lu(rng, 1e-5, 0.6), 3)}
+    if rng.random() < 0.5:
+        d["N"] = rng.randint(50, 100000)
+    return d
+
+
+_add("bio_hardy_weinberg_frequencies", name="Hardy-Weinberg genotype and carrier frequencies",
+     topic="population genetics / Hardy-Weinberg",
+     purpose="The allele frequencies p and q, the genotype frequencies p^2, 2pq and q^2, the carrier (heterozygote) "
+             "frequency and the carrier frequency among unaffected people, from one allele frequency or from the "
+             "frequency of the recessive phenotype; optionally the expected genotype counts in N individuals.",
+     inputs=[_numin("p", "frequency of the dominant allele A (give one of p, q, q2)", required=False, pct=True),
+             _numin("q", "frequency of the recessive allele a (give one of p, q, q2)", required=False, pct=True),
+             _numin("q2", "frequency of the recessive phenotype aa (give one of p, q, q2)", required=False, pct=True),
+             _intin("N", "number of individuals (optional, for expected counts)", lo=1, required=False)],
+     outputs=[_o("p", "frequency of allele A"), _o("q", "frequency of allele a"), _o("p2", "frequency of AA (p^2)"),
+              _o("het_2pq", "frequency of Aa (2pq)"), _o("q2", "frequency of aa (q^2)"),
+              _o("carrier_frequency", "carrier (heterozygote) frequency in the population, 2pq"),
+              _o("carrier_among_unaffected", "probability that an unaffected person is a carrier, 2pq/(1 - q^2)"),
+              _o("dominant_phenotype", "frequency of the dominant phenotype, p^2 + 2pq"),
+              _o("exp_AA", "expected AA count (N p^2)"), _o("exp_Aa", "expected Aa count (2Npq)"), _o("exp_aa", "expected aa count (N q^2)")],
+     primary="carrier_frequency",
+     conditions=["exactly one of p, q, q2, strictly between 0 and 1", "Hardy-Weinberg equilibrium (random mating, no selection, migration or mutation, large population)",
+                 "complete dominance, one autosomal biallelic locus"],
+     method="q = 1 - p (or sqrt of the recessive phenotype frequency); genotype frequencies p^2, 2pq, q^2",
+     latex=r"p + q = 1,\quad p^2 + 2pq + q^2 = 1,\quad q = \sqrt{f_{aa}}",
+     run=hardy_weinberg_frequencies, reference=_ref_hw_frequencies, wrong=_wrong_hw_frequencies, rand=_rand_hw_freq,
+     phrases=["Hardy-Weinberg frequencies", "Hardy-Weinberg genotype frequencies", "Carrier frequency"],
+     examples=[_ex({"q2": 0.0004}, {"p": 0.98, "q": 0.02, "p2": 0.9604, "het_2pq": 0.0392, "q2": 0.0004, "carrier_frequency": 0.0392,
+                                    "carrier_among_unaffected": 0.0392156862745, "dominant_phenotype": 0.9996}),
+               _ex({"p": 0.7, "N": 1000}, {"p": 0.7, "q": 0.3, "p2": 0.49, "het_2pq": 0.42, "q2": 0.09, "carrier_frequency": 0.42,
+                                           "carrier_among_unaffected": 0.461538461538, "exp_AA": 490.0, "exp_Aa": 420.0, "exp_aa": 90.0})],
+     extra_q=[{"q": "Carrier frequency: q2 = 0.04%", "outputs": {"q": 0.02, "carrier_frequency": 0.0392}},
+              {"q": "Hardy-Weinberg frequencies: q2 = 1.2", "outcome": "INVALID_INPUT"},
+              {"q": "Hardy-Weinberg frequencies: p = 0.7, q2 = 0.09", "outcome": "INVALID_INPUT"}],
+     level="beginner")
+
+
+def testcross_recombination(parental, recombinant):
+    _whole("parental", parental, 0)
+    _whole("recombinant", recombinant, 0)
+    n = parental + recombinant
+    _need(n >= 1, "at least one offspring is needed")
+    _need(recombinant <= parental, "the recombinant (less frequent) classes cannot outnumber the parental ones: recombination frequency is at most 0.5")
+    rf = recombinant / n
+    word = "linked" if rf < 0.5 else "unlinked (independent assortment)"
+    return _out(RF=rf, RF_percent=100.0 * rf, d_cM=100.0 * rf, SE=math.sqrt(rf * (1.0 - rf) / n), linkage=word)
+
+
+def _ref_testcross_recombination(parental, recombinant):
+    """The maximum-likelihood recombination fraction: the root of the binomial score R/r - P/(1 - r) (scipy brentq),
+    its standard error from scipy's binomial variance."""
+    from scipy.stats import binom
+    n = parental + recombinant
+    if recombinant == 0:
+        rf = 0.0
+    elif parental == recombinant:
+        rf = 0.5
+    else:
+        rf = _brentq(lambda r: recombinant / r - parental / (1.0 - r), 1e-300 + 0.5 * recombinant / n, 0.5)
+    se = math.sqrt(float(binom.var(n, rf))) / n
+    return {"RF": rf, "RF_percent": 100.0 * rf, "d_cM": 100.0 * rf, "SE": se,
+            "linkage": "linked" if rf < 0.5 else "unlinked (independent assortment)"}
+
+
+_add("bio_testcross_recombination", name="Recombination frequency from two-point testcross counts",
+     topic="genetics / linkage mapping",
+     purpose="The recombination frequency between two genes from the numbers of parental and recombinant offspring of a "
+             "testcross, its standard error and the corresponding (uncorrected) map distance.",
+     inputs=[_intin("parental", "number of offspring of the parental classes (both together)", lo=0),
+             _intin("recombinant", "number of offspring of the recombinant classes (both together)", lo=0)],
+     outputs=[_o("RF", "recombination frequency"), _o("RF_percent", "recombination frequency in %"),
+              _o("d_cM", "map distance in centimorgans (map units), uncorrected"), _o("SE", "standard error of RF"),
+              _o("linkage", "linked (RF < 0.5) or unlinked")],
+     primary="RF", conditions=["counts whole numbers", "recombinant <= parental (RF <= 0.5)", "a testcross (every gamete of the heterozygote visible)"],
+     method="RF = recombinants / total; d = 100 RF cM; SE = sqrt(RF (1 - RF) / n)",
+     latex=r"RF = \frac{n_{rec}}{n_{par} + n_{rec}},\quad d = 100\,RF\ \mathrm{cM}",
+     run=testcross_recombination, reference=_ref_testcross_recombination,
+     wrong=lambda parental, recombinant: (lambda rf: {"RF": rf, "RF_percent": 100 * rf, "d_cM": 100 * rf, "SE": 0.0, "linkage": "linked"})(
+         recombinant / parental if parental else 0.0),
+     rand=lambda rng: (lambda n, r: {"parental": n - int(n * r), "recombinant": int(n * r)})(rng.randint(50, 5000), rng.uniform(0.02, 0.45)),
+     phrases=["Two-point testcross", "Recombination frequency from testcross counts"],
+     examples=[_ex({"parental": 920, "recombinant": 80}, {"RF": 0.08, "RF_percent": 8.0, "d_cM": 8.0, "linkage": "linked"}),
+               _ex({"parental": 300, "recombinant": 200}, {"RF": 0.4, "RF_percent": 40.0, "d_cM": 40.0, "linkage": "linked"})],
+     extra_q=[{"q": "Two-point testcross: parental = 100, recombinant = 300", "outcome": "INVALID_INPUT"}],
+     level="beginner")
+
+
+def _flip_case(s):
+    out = ""
+    for ch in s:
+        if ch.isupper():
+            out += ch.lower()
+        else:
+            out += ch.upper()
+    return out
+
+
+def _rank_desc(cnt):
+    """Indices of cnt in decreasing order of count (ties: lower index first), by insertion."""
+    idx = []
+    for i in range(len(cnt)):
+        k = len(idx)
+        while k > 0 and cnt[idx[k - 1]] < cnt[i]:
+            k -= 1
+        idx.insert(k, i)
+    return idx
+
+
+def _tp_classes(classes, counts):
+    names = classes.split() if isinstance(classes, str) else []
+    _need(len(names) == 8, "give the 8 offspring classes, three letters each, separated by spaces")
+    cnt = _counts("counts", counts, 0)
+    _need(len(cnt) == 8, "give one count per class (8 counts)")
+    letters = ""
+    for nm in names:
+        _need(len(nm) == 3 and nm.isalpha(), "each class is written as three letters, one per gene")
+        if letters == "":
+            letters = nm.upper()
+        _need(nm.upper() == letters, "every class must name the same three genes in the same order")
+    _need(letters[0] != letters[1] and letters[0] != letters[2] and letters[1] != letters[2], "the three genes need different letters")
+    for i in range(8):
+        for j in range(i + 1, 8):
+            _need(names[i] != names[j], "each of the 8 classes must be given once")
+    n = 0
+    for c in cnt:
+        n += c
+    _need(n >= 1, "at least one offspring is needed")
+    return names, cnt, letters, n
+
+
+def _tp_rec(names, cnt, P, i, j):
+    """Offspring recombinant between loci i and j (their alleles not in a parental combination)."""
+    s = 0
+    for k in range(8):
+        if (names[k][i] == P[i]) != (names[k][j] == P[j]):
+            s += cnt[k]
+    return s
+
+
+def three_point_testcross(classes, counts):
+    names, cnt, letters, n = _tp_classes(classes, counts)
+    o = _rank_desc(cnt)
+    _need(cnt[o[1]] > cnt[o[2]], "the two parental (most numerous) classes are not clearly the largest")
+    _need(cnt[o[6]] < cnt[o[5]], "the two double-crossover (least numerous) classes are not clearly the smallest")
+    P = names[o[0]]
+    _need(names[o[1]] == _flip_case(P), "the two most numerous classes must be reciprocal (the parental classes)")
+    D = names[o[7]]
+    _need(names[o[6]] == _flip_case(D), "the two least numerous classes must be reciprocal (the double crossovers)")
+    diff = 0
+    for k in range(3):
+        if D[k] != P[k]:
+            diff += 1
+    mid = -1
+    for k in range(3):
+        if (diff == 1 and D[k] != P[k]) or (diff == 2 and D[k] == P[k]):
+            mid = k
+    outer = []
+    for k in range(3):
+        if k != mid:
+            outer.append(k)
+    a, b = outer[0], outer[1]
+    rl = _tp_rec(names, cnt, P, a, mid) / n
+    rr = _tp_rec(names, cnt, P, mid, b) / n
+    ro = _tp_rec(names, cnt, P, a, b) / n
+    _need(rl > 0 and rr > 0, "each interval needs some recombinants")
+    dco = (cnt[o[6]] + cnt[o[7]]) / n
+    coc = dco / (rl * rr)
+    return _out(gene_order=letters[a] + "-" + letters[mid] + "-" + letters[b], middle_gene=letters[mid],
+                parental_classes=names[o[0]] + " " + names[o[1]], dco_classes=names[o[6]] + " " + names[o[7]],
+                RF_left=rl, RF_right=rr, d_left_cM=100.0 * rl, d_right_cM=100.0 * rr, d_total_cM=100.0 * (rl + rr),
+                RF_outer_direct=ro, coincidence=coc, interference=1.0 - coc)
+
+
+def _ref_three_point(classes, counts):
+    """Parsimony: the parental haplotypes are the reciprocal pair with the largest total; each of the three possible
+    middle genes is tried and every class's crossovers are counted from its pattern of parental alleles (numpy); the
+    order needing the fewest crossovers is the gene order, and each interval's frequency is the crossover count in it."""
+    import numpy as np
+    from itertools import permutations
+    names = classes.split()
+    cnt = np.array([int(c) for c in counts], dtype=float)
+    n = float(cnt.sum())
+    letters = names[0].upper()
+    flip = lambda s: "".join(ch.lower() if ch.isupper() else ch.upper() for ch in s)        # noqa: E731
+    pairs = {}
+    for i, nm in enumerate(names):
+        key = min(nm, flip(nm))
+        pairs[key] = pairs.get(key, 0.0) + cnt[i]
+    par = max(pairs, key=lambda k: pairs[k])
+    P = par if par in names and cnt[names.index(par)] >= cnt[names.index(flip(par))] else flip(par)
+    s = np.array([[1 if nm[k] == P[k] else 0 for k in range(3)] for nm in names])          # 1 = allele of P's chromosome
+    best = None
+    for order in permutations(range(3)):
+        if order[0] > order[2]:
+            continue
+        x1 = (s[:, order[0]] != s[:, order[1]]).astype(float)
+        x2 = (s[:, order[1]] != s[:, order[2]]).astype(float)
+        total = float(np.dot(cnt, x1 + x2))
+        if best is None or total < best[0]:
+            best = (total, order, float(np.dot(cnt, x1)) / n, float(np.dot(cnt, x2)) / n,
+                    float(np.dot(cnt, x1 * x2)) / n, float(np.dot(cnt, (s[:, order[0]] != s[:, order[2]]).astype(float))) / n)
+    _, order, rl, rr, dco, ro = best
+    a, mid, b = order
+    srt = sorted(range(8), key=lambda i: (-cnt[i], i))
+    coc = dco / (rl * rr)
+    return {"gene_order": letters[a] + "-" + letters[mid] + "-" + letters[b], "middle_gene": letters[mid],
+            "parental_classes": names[srt[0]] + " " + names[srt[1]], "dco_classes": names[srt[6]] + " " + names[srt[7]],
+            "RF_left": rl, "RF_right": rr, "d_left_cM": 100 * rl, "d_right_cM": 100 * rr, "d_total_cM": 100 * (rl + rr),
+            "RF_outer_direct": ro, "coincidence": coc, "interference": 1 - coc}
+
+
+def _wrong_three_point(classes, counts):
+    """The double crossovers forgotten in each interval (only the single-crossover classes counted)."""
+    r = dict(three_point_testcross(classes, counts))
+    names, cnt, letters, n = _tp_classes(classes, counts)
+    o = _rank_desc(cnt)
+    dco = (cnt[o[6]] + cnt[o[7]]) / n
+    rl, rr = r["RF_left"] - dco, r["RF_right"] - dco
+    r.update(RF_left=rl, RF_right=rr, d_left_cM=100 * rl, d_right_cM=100 * rr, d_total_cM=100 * (rl + rr))
+    if rl > 0 and rr > 0:
+        r.update(coincidence=dco / (rl * rr), interference=1 - dco / (rl * rr))
+    return _out(**r)
+
+
+def _rand_three_point(rng):
+    for _attempt in range(200):
+        n = rng.randint(400, 5000)
+        r1, r2 = rng.uniform(0.06, 0.3), rng.uniform(0.06, 0.3)
+        dco = rng.uniform(0.2, 0.9) * r1 * r2
+        freqs = [1 - r1 - r2 + dco, r1 - dco, r2 - dco, dco]       # parental, SCO left, SCO right, DCO
+        cls = []
+        for f in freqs:
+            sh = rng.uniform(0.4, 0.6)
+            cls.append((int(round(n * f * sh)), int(round(n * f * (1 - sh)))))
+        par, l1, l2, dd = cls
+        if min(par) <= max(l1 + l2) or max(dd) >= min(l1 + l2) or min(dd) < 1:
+            continue
+        letters = rng.sample("ABCDEGHKLMNPRSTVW", 3)
+        mid = rng.randint(0, 2)
+        outer = [k for k in range(3) if k != mid]
+        P = [rng.random() < 0.5 for _ in range(3)]                 # True = upper case on the first parental class
+
+        def cls_name(flip_positions):
+            return "".join((letters[k] if (P[k] != (k in flip_positions)) else letters[k].lower()) for k in range(3))
+        table = {cls_name(()): par[0], cls_name((0, 1, 2)): par[1],
+                 cls_name((outer[0],)): l1[0], cls_name(tuple(k for k in range(3) if k != outer[0])): l1[1],
+                 cls_name((outer[1],)): l2[0], cls_name(tuple(k for k in range(3) if k != outer[1])): l2[1],
+                 cls_name((mid,)): dd[0], cls_name(tuple(k for k in range(3) if k != mid)): dd[1]}
+        cnts = sorted(table.values(), reverse=True)
+        if cnts[1] == cnts[2] or cnts[5] == cnts[6] or len(table) != 8:
+            continue
+        keys = list(table)
+        rng.shuffle(keys)
+        return {"classes": " ".join(keys), "counts": [float(table[k]) for k in keys]}
+    return {"classes": "ABC abc aBC Abc AbC aBc ABc abC", "counts": [390.0, 374.0, 45.0, 41.0, 72.0, 70.0, 5.0, 3.0]}
+
+
+_add("bio_three_point_testcross", name="Three-point testcross: gene order, map distances and interference",
+     topic="genetics / linkage mapping",
+     purpose="From the eight offspring classes of a three-point testcross: the parental and double-crossover classes, "
+             "the gene in the middle, the recombination frequency and map distance of each interval (double crossovers "
+             "counted in both), the coefficient of coincidence and the interference.",
+     inputs=[_textin("classes", "the 8 offspring classes, three letters each in one locus order, upper case = dominant "
+                                "allele, separated by spaces", "names", hi=200),
+             _vecin("counts", "number of offspring in each class, in the same order", 8, 8)],
+     outputs=[_o("gene_order", "gene order (outer genes in their written order)", "text"), _o("middle_gene", "the gene in the middle", "text"),
+              _o("parental_classes", "the two parental (most numerous) classes", "text"),
+              _o("dco_classes", "the two double-crossover (least numerous) classes", "text"),
+              _o("RF_left", "recombination frequency between the first outer gene and the middle gene"),
+              _o("RF_right", "recombination frequency between the middle gene and the second outer gene"),
+              _o("d_left_cM", "map distance of the first interval in cM"), _o("d_right_cM", "map distance of the second interval in cM"),
+              _o("d_total_cM", "map distance between the outer genes (sum of the intervals) in cM"),
+              _o("RF_outer_direct", "recombination frequency counted directly between the outer genes (misses double crossovers)"),
+              _o("coincidence", "coefficient of coincidence: observed / expected double crossovers"),
+              _o("interference", "interference 1 - coincidence")],
+     primary="gene_order",
+     conditions=["8 distinct classes of the same three genes", "parental and double-crossover pairs reciprocal and clearly the largest/smallest",
+                 "uncorrected map distances (1 % recombination = 1 cM)"],
+     method="parental = two largest classes, double crossovers = two smallest; the middle gene is the one whose alleles the double "
+            "crossovers swap relative to the parentals; RF of an interval = (its single crossovers + double crossovers)/n; "
+            "coincidence = observed DCO / (RF1 RF2)",
+     latex=r"RF_{1} = \frac{n_{SCO,1} + n_{DCO}}{n},\quad c = \frac{n_{DCO}/n}{RF_1\,RF_2},\quad I = 1 - c",
+     run=three_point_testcross, reference=_ref_three_point, wrong=_wrong_three_point, rand=_rand_three_point,
+     phrases=["Three-point testcross", "Three-point cross", "Gene order from a three-point testcross"],
+     examples=[_ex({"classes": "ABC abc aBC Abc AbC aBc ABc abC", "counts": [390, 374, 45, 41, 72, 70, 5, 3]},
+                   {"gene_order": "A-C-B", "middle_gene": "C", "parental_classes": "ABC abc", "dco_classes": "ABc abC",
+                    "RF_left": 0.094, "RF_right": 0.15, "d_left_cM": 9.4, "d_right_cM": 15.0, "d_total_cM": 24.4,
+                    "RF_outer_direct": 0.228, "coincidence": 0.567375886525, "interference": 0.432624113475}),
+               _ex({"classes": "DEf deF dEf DeF DEF def Def dEF", "counts": [420, 409, 60, 52, 30, 26, 2, 1]},
+                   {"gene_order": "D-E-F", "middle_gene": "E", "parental_classes": "DEf deF", "dco_classes": "Def dEF",
+                    "RF_left": 0.115, "RF_right": 0.059, "d_left_cM": 11.5, "d_right_cM": 5.9, "d_total_cM": 17.4,
+                    "RF_outer_direct": 0.168, "coincidence": 0.442151805453, "interference": 0.557848194547})],
+     extra_q=[{"q": "Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc abC, counts = [390, 45, 374, 41, 72, 70, 5, 3]",
+               "outcome": "INVALID_INPUT"},
+              {"q": "Three-point testcross: classes = ABC abc aBC Abc AbC aBc ABc ABc, counts = [390, 374, 45, 41, 72, 70, 5, 3]",
+               "outcome": "INVALID_INPUT"}],
+     level="intermediate")
 
 
 # ==== END OF PROCEDURES
