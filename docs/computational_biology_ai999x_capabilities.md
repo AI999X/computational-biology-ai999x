@@ -1065,7 +1065,7 @@ $$
 
 ![Nearest-neighbour melting temperature of the 28-mer CGTTCCAAAGATGTGGGCATGAGCTTAC against sodium concentration (5–1000 mM, logarithmic) at three strand concentrations, each point a run of the package: more salt and more strands both stabilise the duplex](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-tm-nearest-neighbor-curve)
 
-*Nearest-neighbour melting temperature of the 28-mer CGTTCCAAAGATGTGGGCATGAGCTTAC against sodium concentration (5–1000 mM, logarithmic) at three strand concentrations, each point a run of the package: more salt and more strands both stabilise the duplex. Marked: the worked example, Na = 50 mM, 25 nM each, tm = 60.32 °C.*
+*Nearest-neighbour melting temperature of the 28-mer CGTTCCAAAGATGTGGGCATGAGCTTAC against sodium concentration (5–1000 mM, logarithmic) at three strand concentrations, each point a run of the package: more salt and more strands both stabilise the duplex. Marked: the worked example, Na = 50.0 mM, 25.0 nM each, tm = 60.32 °C.*
 
 ```python
 computational_biology_ai999x.solve('bio_tm_nearest_neighbor', seq='CGTTCCAAAGATGTGGGCATGAGCTTAC', Na=50, dnac1=25, dnac2=25)
@@ -1867,7 +1867,7 @@ $$
 
 ![Equilibrium frequency of a deleterious allele between mutation and selection (s = 1) against the mutation rate, for dominance h = 0, 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-mutation-selection-balance-curve)
 
-*Equilibrium frequency of a deleterious allele between mutation and selection (s = 1) against the mutation rate, for dominance h = 0, 0.01, 0.1 and 0.5: each curve 21 runs of the package. A fully recessive allele persists at about √(μ/s), a partly dominant one near μ/(hs). Marked: the worked example μ = 0.0001, s = 1, h = 0, q_eq = 0.01.*
+*Equilibrium frequency of a deleterious allele between mutation and selection (s = 1) against the mutation rate, for dominance h = 0, 0.01, 0.1 and 0.5: each curve 21 runs of the package. A fully recessive allele persists at about √(μ/s), a partly dominant one near μ/(hs). Marked: the worked example μ = 0.0001, s = 1.0, h = 0.0, q_eq = 0.01.*
 
 ```python
 computational_biology_ai999x.solve('bio_mutation_selection_balance', mu=0.0001, s=1, h=0)
@@ -3169,9 +3169,9 @@ $$
 - **Assumes:** $0 < X < 1$; positive S0, Vmax, Km
 - **Evidence:** certified procedure (gates: conditions, control, examples, fast_enough, questions, reference, sensitivity, templates)
 
-![Time an enzyme needs to convert a fraction X of its substrate (S0 = 10, Vmax = 1) for Km = 0](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-michaelis-menten-time-curve)
+![Time an enzyme needs to convert a fraction X of its substrate (S0 = 10](https://www.ai999x.com/?ax_fig=computational-biology-ai999x/bio-michaelis-menten-time-curve)
 
-*Time an enzyme needs to convert a fraction X of its substrate (S0 = 10, Vmax = 1) for Km = 0.5, 2 and 8, each curve 49 runs of the package; the last few per cent take longest. Marked: the worked example X = 0.5, Km = 2, t = 6.386.*
+*Time an enzyme needs to convert a fraction X of its substrate (S0 = 10.0, Vmax = 1.0) for Km = 0.5, 2.0 and 8, each curve 49 runs of the package; the last few per cent take longest. Marked: the worked example X = 0.5, Km = 2.0, t = 6.386.*
 
 ```python
 computational_biology_ai999x.solve('bio_michaelis_menten_time', S0=10, Vmax=1, Km=2, X=0.5)
