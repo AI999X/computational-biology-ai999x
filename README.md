@@ -10,8 +10,8 @@ Computational Biology covers DNA and protein sequences, alignment, molecular wei
 
 | | |
 |---|---|
-| **Desktop app** (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.5/ai999x-computational-biology-1.6.5-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.5/ai999x-computational-biology-1.6.5-linux-x86_64.tar.gz) |
-| **Command line** `computational-biology` (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.4/ai999x-cli-1.6.4-linux-x86_64.tar.gz) |
+| **Desktop app** (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-computational-biology-1.6.6-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-computational-biology-1.6.6-linux-x86_64.tar.gz) |
+| **Command line** `computational-biology` (Windows, Linux) | [Windows](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-cli-1.6.6-windows-x86_64.zip) · [Linux](https://github.com/AI999X/ai999x-desktop/releases/download/v1.6.6/ai999x-cli-1.6.6-linux-x86_64.tar.gz) |
 | **Browser** (any device) | [Try it on the model page](https://www.ai999x.com/models/computational-biology-ai999x/#capabilities) |
 | **Python** 3.10+ | `pip install computational-biology-ai999x`: on Windows and Linux (x86-64) `pip` installs the same compiled engine; on other systems (macOS, ARM) it installs a pure-Python build that gives the same answers |
 
@@ -201,96 +201,6 @@ $ computational-biology solve bio_kimura_distance seq1=AAAAAAAAAA seq2=AAAAAAAGG
 d = 0.4023594781
 ```
 
-## Rust library: 15 examples
-
-The crate `computational-biology-ai999x` (in `rust/` of the GitHub repository) answers a JSON request with `computational_biology_ai999x::solve_json`. Each call below was compiled and run on this release; the comment under it is what it printed. The whole program is `rust/computational-biology/examples/readme.rs`: `cd rust && cargo run --release --example readme -p computational-biology-ai999x`.
-
-```rust
-use serde_json::{json, Value};
-
-fn show(request: Value) {
-    let answer: Value = serde_json::from_str(&computational_biology_ai999x::solve_json(&request.to_string())).unwrap();
-    println!("{}", answer["outcome"].as_str().unwrap_or(""));
-    for v in answer["values"].as_array().into_iter().flatten() {
-        let unit = v[2].as_str().unwrap_or("");
-        let unit = if unit.is_empty() || unit == "1" { String::new() } else { format!(" {unit}") };
-        println!("{} = {}{}", v[0].as_str().unwrap_or(""), v[1], unit);
-    }
-}
-
-show(json!({"key": "bio_global_alignment_score", "inputs": {"seq1": "GATTACA", "seq2": "GCATGCU", "match": "1", "mismatch": "-1", "gap": "-1"}}));
-// SOLVED
-// score = 0.0
-
-show(json!({"key": "bio_ace", "inputs": {"counts": [1, 1, 2, 3, 5, 8, 20, 50], "rare_threshold": "10"}}));
-// SOLVED
-// ace = 9.719298245614034
-
-show(json!({"key": "bio_competitive_inhibition_fit", "inputs": {"S": [1, 2, 4, 8, 1, 2, 4, 8], "I": [0, 0, 0, 0, 2, 2, 2, 2], "v": [5, 6.66667, 8, 8.88889, 2.5, 4, 5.71429, 7.27273]}}));
-// SOLVED
-// Vmax = 10.0000020366
-// Km = 1.00000009868
-// Ki = 1.00000071089
-
-show(json!({"key": "bio_pedigree_inbreeding", "inputs": {"pedigree": "P-S, Q-S, P-D, Q-D, S-X, D-X", "individual": "X"}}));
-// SOLVED
-// F = 0.25
-
-show(json!({"key": "bio_chemostat_steady_state", "inputs": {"mu_max": "1", "Ks": "1", "Y": "0.5", "D": "0.5", "S0": "10"}}));
-// SOLVED
-// S = 1.0
-// X = 4.5
-
-show(json!({"key": "bio_jukes_cantor_distance", "inputs": {"seq1": "AAAAAAAAAA", "seq2": "AAAAAAAACC"}}));
-// SOLVED
-// p = 0.2
-// d = 0.232616196228
-
-show(json!({"key": "bio_leslie_growth_rate", "inputs": {"F": [0, 2], "S": [0.5]}}));
-// SOLVED
-// lambda1 = 1.0
-// r = 0.0
-// R0 = 1.0
-// stable = [0.666666666667,0.333333333333]
-
-show(json!({"key": "bio_haploid_selection", "inputs": {"p0": "0.5", "s": "1", "t": "1"}}));
-// SOLVED
-// p_t = 0.666666666667
-
-show(json!({"key": "bio_amino_acid_composition", "inputs": {"seq": "MAAAK"}}));
-// SOLVED
-// percent = {"A":60.0,"C":0.0,"D":0.0,"E":0.0,"F":0.0,"G":0.0,"H":0.0,"I":0.0,"K":20.0,"L":0.0,"M":20.0,"N":0.0,"P":0.0,"Q":0.0,"R":0.0,"S":0.0,"T":0.0,"V":0.0,"W":0.0,"Y":0.0}
-// most_common = "A"
-// length = 5
-
-show(json!({"key": "bio_flux_balance_analysis", "inputs": {"S": [[1, -1, 0, 0], [0, 1, -1, -1]], "lb": [0, 0, 0, 0], "ub": [10, 8, 100, 3], "c": [0, 0, 1, 0]}}));
-// SOLVED
-// objective = 8.0
-
-show(json!({"key": "bio_global_alignment_affine", "inputs": {"seq1": "ACGTTTACG", "seq2": "ACGACG", "match": "2", "mismatch": "-1", "open": "-5", "extend": "-1"}}));
-// SOLVED
-// score = 5.0
-
-show(json!({"key": "bio_dominance_indices", "inputs": {"counts": [50, 30, 20]}}));
-// SOLVED
-// berger_parker = 0.5
-// mcintosh = 0.426176221892
-
-show(json!({"key": "bio_eadie_hofstee", "inputs": {"S": [1, 2, 4, 8], "v": [5, 6.66667, 8, 8.88889]}}));
-// SOLVED
-// Vmax = 10.0000015048
-// Km = 0.999999979816
-// r2 = 0.999999999998
-
-show(json!({"key": "bio_map_distance", "inputs": {"r": "0.2", "map": "haldane"}}));
-// SOLVED
-// d_cM = 25.5412811883
-
-show(json!({"key": "bio_kimura_distance", "inputs": {"seq1": "AAAAAAAAAA", "seq2": "AAAAAAAGGC"}}));
-// SOLVED
-// d = 0.402359478109
-```
-
 ## Guides
 
 - Desktop app guide: the window, every calculation, scenes and charts: [PDF](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_desktop_guide.pdf) · [HTML](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_desktop_guide.html) · [Markdown](https://huggingface.co/AI999X/computational-biology-ai999x/blob/main/docs/computational_biology_ai999x_desktop_guide.md)
@@ -299,7 +209,7 @@ show(json!({"key": "bio_kimura_distance", "inputs": {"seq1": "AAAAAAAAAA", "seq2
 
 Every calculation, with its formula, a worked example and its figures: **[Computational Biology on ai999x.com](https://www.ai999x.com/models/computational-biology-ai999x/)**. Install guides for the app and the command line: [https://www.ai999x.com/desktop-cli/](https://www.ai999x.com/desktop-cli/).
 
-Version 1.6.4 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
+Version 1.6.6 · License: Apache-2.0 · Author: Ibnul Jaif Farabi · Organization: AI999X · Contact: support@ai999x.com · [Support the project](https://buymeacoffee.com/ibnuljaiffarabi)
 
 *The Future Is Self-Improving.*
 
